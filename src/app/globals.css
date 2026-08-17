@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * デザイントークン出典：AgriGuide_Next移行_要件定義書v2.0 §3
+ * カラーパレット・スペーシング・シャドウ・角丸の値をCSS変数として定義。
+ * Tailwind側（tailwind.config.ts）からは var(--xxx) として参照する。
+ */
+:root {
+  --background: #ffffff;
+  --foreground: var(--ink);
+
+  /* カラーパレット */
+  --g6: #2d7a2d; /* green-700: メインカラー・CTA・見出し（最重要色） */
+  --g5: #3a9a3a; /* green-600: ホバー状態・アクセント */
+  --g3: #b8e0b8; /* green-200: ボーダー・区切り */
+  --g1: #f0fbf0; /* green-50: 背景・カード */
+  --g9: #1c3d1c; /* green-900: Footer背景 */
+  --gold: #b08020; /* 警告・注意・次点（焦らせ要素） */
+  --sky: #1a4878; /* blue-900: 行政向け・情報系 */
+  --red: #ae2e2e; /* エラー・禁止（控えめに使う） */
+  --ink: #1a1a1a; /* gray-900: 本文テキスト */
+  --muted: #6a6858; /* gray-500: 補足テキスト */
+
+  /* スペーシング・シャドウ・角丸 */
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+/* フォーカスリング（アクセシビリティ：WCAG 2.1 AA） */
+:focus-visible {
+  outline: 2px solid var(--g6);
+  outline-offset: 2px;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  h1,
+  h2 {
+    @apply font-serif font-bold;
+    font-size: clamp(20px, 5vw, 32px);
+  }
+  body {
+    @apply font-sans;
+    font-size: clamp(14px, 3.5vw, 16px);
+  }
+}
