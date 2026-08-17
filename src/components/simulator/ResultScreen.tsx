@@ -22,6 +22,7 @@ import {
 } from "@/lib/simulator/calculations";
 import { windowReferrals } from "@/data/windowReferral";
 import { roadmapPhases } from "@/data/roadmap";
+import { trackEvent } from "@/lib/analytics";
 
 // シミュレーター結果画面（12要素）
 // 出典：AgriGuide_Next移行_要件定義書v2.0 §6「結果画面の表示順序」
@@ -50,6 +51,13 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
   useEffect(() => {
     setCurrentMonth(new Date().getMonth() + 1);
   }, []);
+
+  // GA4：結果画面を表示した時点で、就農意欲レベル（Lv1〜3）をパラメータ付きで送信。
+  // 個人を特定する情報は含めない。市町村への紹介料モデル検討のため、
+  // 「Lv3（実行層）到達者数」をGA4上で追えるようにする目的。
+  useEffect(() => {
+    trackEvent("simulator_result_view", { motivation_level: level });
+  }, [level]);
   const timingAlerts = useMemo(
     () => (currentMonth ? calcTimingAlerts(answers.crops.filter((c) => c !== "any"), currentMonth) : []),
     [answers.crops, currentMonth]
@@ -174,6 +182,21 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
                       ? `${match.region.name}があなたの条件に一番近い候補です。`
                       : "おすすめの地域と比べるとスコアはやや低めですが、他にも魅力があります。"}
                 </p>
+                <ExternalLink
+                  href={match.region.link}
+                  className="mt-2 inline-block text-sm font-bold text-green-700 hover:underline"
+                  onClick={() =>
+                    trackEvent("region_referral_click", {
+                      region_key: match.region.key,
+                      region_name: match.region.name,
+                      is_top: match.isTop,
+                      motivation_level: level,
+                      source: "simulator_result",
+                    })
+                  }
+                >
+                  詳細を確認する →
+                </ExternalLink>
               </div>
             ))}
           </div>
@@ -228,6 +251,13 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
           <ExternalLink
             href={windowReferral.url}
             className="mt-3 inline-block rounded bg-green-700 px-4 py-2 text-sm font-bold text-white hover:bg-green-600"
+            onClick={() =>
+              trackEvent("window_referral_click", {
+                window_key: windowReferral.key,
+                window_name: windowReferral.name,
+                motivation_level: level,
+              })
+            }
           >
             相談してみる →
           </ExternalLink>

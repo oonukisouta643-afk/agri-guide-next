@@ -1,11 +1,15 @@
+"use client";
+
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Badge } from "@/components/ui/Badge";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { Reveal } from "@/components/ui/Reveal";
 import { regions } from "@/data/regions";
+import { trackEvent } from "@/lib/analytics";
 
 // Section 6：Regions（福島県北の就農支援施策）
 // 出典：AgriGuide_Next移行_要件定義書v2.0 §5
+// "use client"：GA4イベント送信（onClick）のため。詳細はsrc/lib/analytics.ts参照。
 
 export function Regions() {
   return (
@@ -38,6 +42,13 @@ export function Regions() {
               <ExternalLink
                 href={region.link}
                 className="mt-4 inline-block shrink-0 text-sm font-bold text-green-700 hover:underline sm:mt-0"
+                onClick={() =>
+                  trackEvent("region_referral_click", {
+                    region_key: region.key,
+                    region_name: region.name,
+                    source: "homepage",
+                  })
+                }
               >
                 詳細を確認する →
               </ExternalLink>
