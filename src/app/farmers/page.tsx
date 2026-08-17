@@ -33,7 +33,7 @@ export default function FarmersPage() {
       <Reveal delayMs={100}>
         <div className="mx-auto mt-6 max-w-content text-center">
           <ExternalLink
-            href="https://start-fukuagri.jp/consultation/"
+            href="https://start-fukuagri.jp/modelcase/"
             className="text-sm font-bold text-green-700 hover:underline"
           >
             ふくのうの就農ロールモデルページも見る →

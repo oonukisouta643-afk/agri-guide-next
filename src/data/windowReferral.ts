@@ -13,7 +13,7 @@ export const windowReferrals: Record<WindowKey, WindowReferral> = {
   fukunou: {
     key: "fukunou",
     name: "ふくのう（農業経営・就農支援センター）",
-    url: "https://start-fukuagri.jp/consultation/",
+    url: "https://start-fukuagri.jp/syuno/",
   },
   kenpo: {
     key: "kenpo",
@@ -33,6 +33,6 @@ export const windowReferrals: Record<WindowKey, WindowReferral> = {
   any: {
     key: "any",
     name: "ふくのう（何でも相談OK）",
-    url: "https://start-fukuagri.jp/consultation/",
+    url: "https://start-fukuagri.jp/syuno/",
   },
 };

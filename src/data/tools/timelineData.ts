@@ -37,6 +37,6 @@ export const timelinePhases: TimelinePhase[] = [
     label: "就農直前〜直後",
     description: "農地の目処が立ち、いよいよ就農が近づいている段階。",
     suggestion: "ふくのうや農業委員会への相談で、手続きを具体的に進めましょう。",
-    link: { text: "ふくのうに相談する", href: "https://start-fukuagri.jp/consultation/" },
+    link: { text: "ふくのうに相談する", href: "https://start-fukuagri.jp/syuno/" },
   },
 ];

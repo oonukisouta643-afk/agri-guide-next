@@ -283,10 +283,10 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
             <ExternalLink href="https://start-fukuagri.jp/procedure/" className="text-green-700 hover:underline">
               就農ステップ →
             </ExternalLink>
-            <ExternalLink href="https://start-fukuagri.jp/role-model/" className="text-green-700 hover:underline">
+            <ExternalLink href="https://start-fukuagri.jp/modelcase/" className="text-green-700 hover:underline">
               ロールモデル →
             </ExternalLink>
-            <ExternalLink href="https://start-fukuagri.jp/consultation/" className="text-green-700 hover:underline">
+            <ExternalLink href="https://start-fukuagri.jp/syuno/" className="text-green-700 hover:underline">
               相談する →
             </ExternalLink>
           </div>

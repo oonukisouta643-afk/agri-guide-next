@@ -250,7 +250,7 @@ export function nextStepByLevel(level: MotivationLevel): { message: string; url:
     case 2:
       return {
         message: "ふくのうへの就農相談を予約しましょう（オンライン可・無料）",
-        url: "https://start-fukuagri.jp/consultation/",
+        url: "https://start-fukuagri.jp/syuno/",
       };
     default:
       return {
