@@ -41,9 +41,12 @@ export function Reveal({ children, className = "", delayMs = 0 }: RevealProps) {
   }, []);
 
   return (
+    // js-reveal：JavaScriptが動かない環境向けのフォールバック用マーカークラス。
+    // globals.cssの<noscript>ブロックで、JS無効時にopacity:1を強制して
+    // コンテンツが永久に非表示のままにならないようにしている。
     <div
       ref={ref}
-      className={`transition-all duration-500 ease-out ${
+      className={`js-reveal transition-all duration-500 ease-out ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
       } ${className}`}
       style={{ transitionDelay: isVisible ? `${delayMs}ms` : "0ms" }}

@@ -48,6 +48,18 @@ body {
   }
 }
 
+/* シミュレーターのステップ遷移アニメーション（F-19） */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @layer base {
   h1,
   h2 {

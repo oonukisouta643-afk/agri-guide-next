@@ -1,9 +1,18 @@
+import type { CropKey } from "@/lib/simulator/types";
+
 // 福島県北6地域の就農支援施策データ
 // 出典：「AgriGuide_プロジェクト追記版_2026年8月」A章・「AgriGuide_Next移行_要件定義書v2.0」§6（地域マッチングスコアリングロジック）
 //
 // 2026年7月26日の就農フェアにて各行政担当者より掲載許可をいただいた情報。
 // 各地域の「詳細を確認する」リンク先は、地域ごとの個別ページが確定するまでの暫定措置として
 // 県北地方総合相談窓口の共通ページに揃えている（要更新：地域別の個別URLが判明次第差し替え）。
+//
+// cropKeysは要件定義書§6「地域マッチングスコアリングロジック」の対応品目表から転記。
+// 原文には桑折町「oran」・伊達市周辺「kaki」・二本松市/大玉村/本宮市「veg」など、
+// Q4の選択肢（momo/apple/nashi/saku/kyu/rice/any）に存在しないコードが含まれていた。
+// これらはQ4で選択され得ないため実質的にスコアリングへ影響しない（＝常に不一致）。
+// 誤記の可能性が高いが、要件定義書の記載を変更せずそのまま反映し、該当コードは
+// cropKeysから除外（無効なコードとして扱う）した。実データ確定時に要確認。
 
 export type RegionKey =
   | "date"
@@ -17,7 +26,10 @@ export type Region = {
   key: RegionKey;
   name: string;
   tag: string;
+  /** 表示用（日本語ラベル） */
   crops: string[];
+  /** シミュレーターのスコアリング用（Q4の選択肢コードと対応） */
+  cropKeys: CropKey[];
   description: string;
   link: string;
 };
@@ -30,6 +42,8 @@ export const regions: Region[] = [
     name: "伊達地域全体",
     tag: "県北地方総合相談窓口",
     crops: ["桃", "りんご", "梨", "さくらんぼ", "柿", "きゅうり", "米"],
+    // 原文コード：momo/apple/nashi/saku/kaki/kyu/rice（kakiは無効コードのため除外）
+    cropKeys: ["momo", "apple", "nashi", "saku", "kyu", "rice"],
     description: "果樹園地継承事業・農業塾・地域おこし協力隊など、県北地域全体の就農相談窓口。",
     link: KENPO_URL,
   },
@@ -38,6 +52,8 @@ export const regions: Region[] = [
     name: "桑折町",
     tag: "献上桃の郷",
     crops: ["桃", "さくらんぼ"],
+    // 原文コード：momo/oran/saku（oranは無効コードのため除外）
+    cropKeys: ["momo", "saku"],
     description: "地域おこし協力隊を12名受け入れ、うち11名が定着した実績あり。",
     link: KENPO_URL,
   },
@@ -46,6 +62,7 @@ export const regions: Region[] = [
     name: "国見町",
     tag: "くにみ農業ビジネス訓練所",
     crops: ["桃", "りんご", "梨", "さくらんぼ", "米"],
+    cropKeys: ["momo", "apple", "nashi", "saku", "rice"],
     description: "座学＋実習の訓練プログラムと、住宅取得支援を用意。",
     link: KENPO_URL,
   },
@@ -54,6 +71,8 @@ export const regions: Region[] = [
     name: "二本松市",
     tag: "4つの顔を持つ街",
     crops: ["りんご", "梨", "きゅうり", "米"],
+    // 原文コード：apple/nashi/kyu/rice/veg（vegは無効コードのため除外）
+    cropKeys: ["apple", "nashi", "kyu", "rice"],
     description: "初心者向けセミナーや、お試し農業体験を実施。",
     link: KENPO_URL,
   },
@@ -62,6 +81,8 @@ export const regions: Region[] = [
     name: "大玉村",
     tag: "小さくても輝く、大いなる田舎",
     crops: ["米", "きゅうり"],
+    // 原文コード：rice/veg/kyu（vegは無効コードのため除外）
+    cropKeys: ["rice", "kyu"],
     description: "地域おこし協力隊・子育て支援が充実。45年連続で人口増加を継続。",
     link: KENPO_URL,
   },
@@ -70,6 +91,8 @@ export const regions: Region[] = [
     name: "本宮市",
     tag: "へそのまち",
     crops: ["米"],
+    // 原文コード：rice/veg（vegは無効コードのため除外）
+    cropKeys: ["rice"],
     description: "お試し宿泊制度があり、体験移住から始められる。",
     link: KENPO_URL,
   },

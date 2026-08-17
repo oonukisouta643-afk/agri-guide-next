@@ -48,6 +48,10 @@ export default function RootLayout({
       <body
         className={`${notoSerifJP.variable} ${notoSansJP.variable} ${jetbrainsMono.variable} antialiased flex min-h-screen flex-col`}
       >
+        {/* js-reveal：JavaScriptが無効な環境では常時表示にフォールバックする（F-06のグレースフルデグラデーション） */}
+        <noscript>
+          <style>{`.js-reveal { opacity: 1 !important; transform: none !important; }`}</style>
+        </noscript>
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
