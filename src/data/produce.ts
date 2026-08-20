@@ -10,6 +10,9 @@
 // Unsplash（無料ライセンス、Unsplash+の有料素材は除外）の実写真に差し替え。
 // Hero.tsxの背景画像と同じ「外部URLを直接指定」方式（next/imageは使わずimgタグ）。
 // 各写真はUnsplash Licenseの下で無料利用可能なものを選定（2026年8月20日確認）。
+// 2026年8月20日④：米が航空写真の田んぼでスタイルが浮く／きゅうりが調理済みっぽいという
+// フィードバックを受け、米は稲穂のクローズアップに、きゅうりは畑でツルになってる状態の
+// クローズアップに差し替え（他の3品目と同じ「収穫前・素材そのもの」の見た目に統一）。
 // photoCreditはUnsplashクレジット表記用（法的必須ではないが記録として保持）。
 
 export type ProduceKey = "peach" | "apple" | "kaki" | "kyuri" | "rice";
@@ -64,7 +67,7 @@ export const produceItems: ProduceItem[] = [
       "福島県は夏秋きゅうりの生産量全国1位。果樹より早く収入になりやすく、新規就農のスタートにも。",
     season: "旬：6〜9月",
     photoUrl:
-      "https://images.unsplash.com/photo-1574115820909-c7476394d233?auto=format&fit=crop&w=600&q=75",
+      "https://images.unsplash.com/photo-1676994174279-102e0abff98f?auto=format&fit=crop&w=600&q=75",
     photoCredit: "Unsplash",
   },
   {
@@ -74,7 +77,7 @@ export const produceItems: ProduceItem[] = [
     description: "阿武隈川の清流と盆地の寒暖差が育む良質米。冬は農閑期になるため他品目との組み合わせがしやすい。",
     season: "旬：9〜10月",
     photoUrl:
-      "https://images.unsplash.com/photo-1519082572439-7ed19908e47e?auto=format&fit=crop&w=600&q=75",
+      "https://images.unsplash.com/photo-1759646850616-8bc3e6567ea5?auto=format&fit=crop&w=600&q=75",
     photoCredit: "Unsplash",
   },
 ];
