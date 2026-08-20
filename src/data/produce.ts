@@ -1,4 +1,4 @@
-// 福島県北の特産品データ（ProduceShowcaseで使用）
+﻿// 福島県北の特産品データ（ProduceShowcaseで使用）
 // 出典：OLD版 index.html #440-467（.produce-strip）
 //
 // OLD版は5品目中4品目をUnsplashの外部画像に依存していた。
@@ -15,8 +15,13 @@
 // クローズアップに差し替え（他の3品目と同じ「収穫前・素材そのもの」の見た目に統一）。
 // 2026年8月20日⑤：④で差し替えたきゅうり写真が実際にはゴーヤ（bitter melon）だったと
 // 判明（サイト表示で発覚）。ページテキストで「cucumber」と明記されている写真
-// （half cucumber on white background）に差し替え。画像内容を直接見て検証できないため、
-// 今後も写真素材は必ずページの説明文・alt・タグ情報で品目名を確認してから採用すること。
+// （half cucumber on white background）に差し替え。
+// 2026年8月20日⑥：⑤の写真が白いスタジオ背景で、他3品目（自然な質感の写真）と
+// スタイルが浮いて見えるというフィードバックを受け、学名「Cucumis sativus」まで
+// 説明文に明記された、ツルに実った状態の自然な背景の写真に差し替え（きゅうりであることの
+// 確実性と、他カードとのスタイル統一を両立）。
+// 画像内容を直接見て検証できないため、今後も写真素材は必ずページの説明文・alt・タグ・
+// 学名情報で品目名を確認してから採用すること。
 // photoCreditはUnsplashクレジット表記用（法的必須ではないが記録として保持）。
 
 export type ProduceKey = "peach" | "apple" | "kaki" | "kyuri" | "rice";
@@ -71,7 +76,7 @@ export const produceItems: ProduceItem[] = [
       "福島県は夏秋きゅうりの生産量全国1位。果樹より早く収入になりやすく、新規就農のスタートにも。",
     season: "旬：6〜9月",
     photoUrl:
-      "https://images.unsplash.com/photo-1587313170527-446f86d0c3d9?auto=format&fit=crop&w=600&q=75",
+      "https://images.unsplash.com/photo-1761755207671-d07ea4bb555c?auto=format&fit=crop&w=600&q=75",
     photoCredit: "Unsplash",
   },
   {
