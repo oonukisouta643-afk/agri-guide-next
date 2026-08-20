@@ -13,6 +13,10 @@
 // 2026年8月20日④：米が航空写真の田んぼでスタイルが浮く／きゅうりが調理済みっぽいという
 // フィードバックを受け、米は稲穂のクローズアップに、きゅうりは畑でツルになってる状態の
 // クローズアップに差し替え（他の3品目と同じ「収穫前・素材そのもの」の見た目に統一）。
+// 2026年8月20日⑤：④で差し替えたきゅうり写真が実際にはゴーヤ（bitter melon）だったと
+// 判明（サイト表示で発覚）。ページテキストで「cucumber」と明記されている写真
+// （half cucumber on white background）に差し替え。画像内容を直接見て検証できないため、
+// 今後も写真素材は必ずページの説明文・alt・タグ情報で品目名を確認してから採用すること。
 // photoCreditはUnsplashクレジット表記用（法的必須ではないが記録として保持）。
 
 export type ProduceKey = "peach" | "apple" | "kaki" | "kyuri" | "rice";
@@ -67,7 +71,7 @@ export const produceItems: ProduceItem[] = [
       "福島県は夏秋きゅうりの生産量全国1位。果樹より早く収入になりやすく、新規就農のスタートにも。",
     season: "旬：6〜9月",
     photoUrl:
-      "https://images.unsplash.com/photo-1676994174279-102e0abff98f?auto=format&fit=crop&w=600&q=75",
+      "https://images.unsplash.com/photo-1587313170527-446f86d0c3d9?auto=format&fit=crop&w=600&q=75",
     photoCredit: "Unsplash",
   },
   {
