@@ -4,7 +4,8 @@
 
 type SectionHeaderProps = {
   eye?: string;
-  title: string;
+  /** 通常は文字列。見出し内の一部だけ強調したい場合はReactNode（<>テキスト<em>強調</em>テキスト</>等）を渡せる。 */
+  title: React.ReactNode;
   lead?: string;
   className?: string;
 };

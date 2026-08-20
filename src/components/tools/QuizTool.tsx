@@ -41,15 +41,19 @@ export function QuizTool() {
   }
 
   if (finished) {
+    const feedback =
+      correctCount >= 4
+        ? "補助金への理解が高いです。就農シミュレーターで自分の条件に合わせた詳細な試算をしてみましょう。"
+        : correctCount >= 2
+          ? "農業の補助金制度にはまだ知らないことがあるかもしれません。シミュレーターで実際に計算してみてください。"
+          : "農業の補助金制度は意外と充実しています。シミュレーターで自分がいくらもらえるか確認してみてください。";
     return (
       <Card className="text-center">
         <p className="font-mono text-xs font-bold text-green-700">RESULT</p>
         <p className="mt-2 font-serif text-2xl font-bold text-ink">
           {correctCount} / {quizQuestions.length} 問正解
         </p>
-        <p className="mt-3 text-sm text-muted">
-          就農シミュレーターでは、あなたの条件に合わせて実際に使える補助金を自動計算できます。
-        </p>
+        <p className="mt-3 text-left text-sm leading-relaxed text-ink bg-green-50 rounded p-3">{feedback}</p>
         <div className="mt-4 flex justify-center gap-3">
           <Button variant="secondary" onClick={handleRestart}>
             もう一度挑戦する
@@ -62,7 +66,17 @@ export function QuizTool() {
 
   return (
     <div>
-      <p className="text-sm text-muted">
+      <div className="flex gap-1">
+        {quizQuestions.map((q, i) => (
+          <div
+            key={q.id}
+            className={`h-1 flex-1 rounded-full ${
+              i < step ? "bg-green-700" : i === step ? "bg-green-400" : "bg-black/10"
+            }`}
+          />
+        ))}
+      </div>
+      <p className="mt-2 text-sm text-muted">
         Q{step + 1} / {quizQuestions.length}
       </p>
       <Card className="mt-3">

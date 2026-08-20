@@ -1,22 +1,28 @@
 import { regions, type Region } from "@/data/regions";
 import { similarCases, type SimilarCase } from "@/data/similarCases";
-import type { CropKey, SimulatorState } from "./types";
+import type { AgeKey, CropKey, FamilyKey, SimulatorState, TimingKey } from "./types";
 import { questions } from "./questions";
 
 // 就農シミュレーター：結果画面の計算ロジック
-// 出典：AgriGuide_Next移行_要件定義書v2.0 §6
+// 出典：AgriGuide_Next移行_要件定義書v2.0 §6／agri-simulator-v4.html（旧版）buildResult()（506〜627行目）
 
 // ---------------------------------------------------------------------------
 // ① KPIサマリー・② 補助金リスト
 // ---------------------------------------------------------------------------
 
-export type SubsidyBadge = "ok" | "warn" | "req";
+// 旧版buildResult()のbadge値（'ok'/'req'/'no'）にあわせる。
+// 「no」＝対象外であることを明示的に表示するためのバッジ（要件2：情報の欠落を防ぐ）。
+export type SubsidyBadge = "ok" | "req" | "no";
 
 export type SubsidyItem = {
+  icon: string;
   name: string;
   amountText: string;
   badge: SubsidyBadge;
+  /** 制度の簡単な説明 */
   note: string;
+  /** 注意書き・確認事項（WarningBoxで強調表示） */
+  warn?: string;
 };
 
 export type FundingResult = {
@@ -24,93 +30,165 @@ export type FundingResult = {
   durationEstimateText: string;
   initialCostEstimateText: string;
   subsidyItems: SubsidyItem[];
+  /** 結果ヒーロー見出し（年代・家族構成・目標年収） */
+  titleText: string;
+};
+
+const ageLabelJa: Record<AgeKey, string> = {
+  "20s": "20代",
+  "30s": "30代",
+  "40s": "40代",
+  "50p": "50代以上",
+};
+
+const familyLabelJa: Record<FamilyKey, string> = {
+  single: "単身",
+  couple: "夫婦2人",
+  kids: "子育て世帯",
+};
+
+// 旧版buildResult()の timeLbl マップをそのまま移植
+const durationLabelJa: Record<TimingKey, string> = {
+  w1y: "約1〜2年",
+  w3y: "約2〜3年",
+  o3y: "約3〜5年",
+  info: "まず情報収集から",
+};
+
+// 旧版buildResult()の costMap をそのまま移植（KPI「想定初期費用」用。⑨のコスト表とは別の数値）
+const initialCostByCrop: Partial<Record<CropKey, string>> = {
+  momo: "80〜120万円/反",
+  apple: "60〜100万円/反",
+  kyu: "50〜120万円/反",
+  rice: "30〜80万円/反",
 };
 
 export function calcFunding(s: SimulatorState): FundingResult {
+  // 50歳以上は就農準備資金の対象外（trainOk）
+  const trainOk = s.age !== "50p";
+  // 東京圏・その他都市部からの移住はふくしま移住支援金の対象（fromTokyo）
+  const fromTokyo = s.loc === "tokyo" || s.loc === "other";
+
   const items: SubsidyItem[] = [];
   let maxTotal = 0;
 
-  // 基本：就農準備資金（年間150万円×最長2年）＋経営開始資金（年間150万円×最長3年）
-  // 条件：50代以上（S.age === '50p'）は就農準備資金の対象外
-  if (s.age !== "50p") {
-    items.push({
-      name: "就農準備資金",
-      amountText: "年間150万円×最長2年（上限300万円）",
-      badge: "ok",
-      note: "研修期間中の生活費として活用できます。",
-    });
-    maxTotal += 300;
-  }
+  // 1. 就農準備資金（研修期間中）
   items.push({
-    name: "農業次世代人材投資資金・経営開始資金",
-    amountText: "年間150万円×最長3年（上限450万円）",
-    badge: "ok",
-    note: "就農直後の経営が安定するまでの支援です。",
+    icon: "💴",
+    name: "就農準備資金（研修期間中）",
+    amountText: trainOk ? "年間150万円×最長2年" : "対象外（50歳未満が条件）",
+    badge: trainOk ? "ok" : "no",
+    note: "農業研修機関に登録して研修中に受け取れる生活支援金。",
+    warn: trainOk ? undefined : "50歳以上は対象外です。",
   });
-  maxTotal += 450;
+  if (trainOk) maxTotal += 300;
 
-  // 東京圏移住：ふくしま移住支援金（単身60万円・家族100万円）
-  if (s.loc === "tokyo") {
-    const isFamily = s.family !== "single";
+  // 2. 経営開始資金（新規就農者育成総合対策）
+  items.push({
+    icon: "🌱",
+    name: "経営開始資金（新規就農者育成総合対策）",
+    amountText: trainOk ? "年間150万円×最長3年" : "対象外（原則50歳未満が条件）",
+    badge: trainOk ? "req" : "no",
+    note: "独立就農後に受け取れる収入補助。認定新規就農者の認定が必要。",
+    warn: trainOk
+      ? "認定には農業経営改善計画の提出が必要です。"
+      : "50歳以上は対象外です（原則50歳未満）。",
+  });
+  if (trainOk) maxTotal += 450;
+
+  // 3. 地域計画早期実現支援枠（2026年度新設・常時案内）
+  items.push({
+    icon: "🌾",
+    name: "地域計画早期実現支援枠（2026年度新設）",
+    amountText: "上限600万円（農機・施設導入等）",
+    badge: "req",
+    note: "認定新規就農者が地域計画に位置づけられた場合の特別枠。",
+    warn: "地域計画への位置づけは農業委員会に確認してください。",
+  });
+
+  // 4. 経営発展支援事業／世代交代・初期投資促進事業（常時案内・市町村への要確認を明記）
+  items.push({
+    icon: "🚜",
+    name: "経営発展支援事業／世代交代・初期投資促進事業",
+    amountText: "機械・施設等の初期投資を支援（上限額は市町村窓口へ要確認）",
+    badge: "req",
+    note: "国（農林水産省）の新規就農者育成総合対策のうち、初期投資を支援する制度。実施主体は市町村。",
+    warn: "金額・要件は市町村の農業担当窓口に必ず確認してください（2026年8月時点、当サイトでは正式な上限額を未確認）。",
+  });
+
+  // 5. JAふくしま未来 担い手育成給付事業（常時案内）
+  items.push({
+    icon: "🤝",
+    name: "JAふくしま未来 担い手育成給付事業",
+    amountText: "申請額の1/2以内・上限50万円",
+    badge: "req",
+    note: "新規就農資金・規模拡大資金・技術研修資金を対象としたJA独自の給付事業。",
+    warn: "詳細はJAふくしま未来の各地区本部に確認してください。",
+  });
+
+  // 6. ふくしま移住支援金（東京圏・その他都市部からの移住のみ）
+  if (fromTokyo) {
+    const isSingle = s.family === "single";
     items.push({
-      name: "ふくしま移住支援金",
-      amountText: isFamily ? "100万円（世帯）" : "60万円（単身）",
+      icon: "🏠",
+      name: `ふくしま移住支援金（${isSingle ? "単身60万円" : "家族100万円"}）`,
+      amountText: isSingle ? "60万円（一時金）" : "100万円（一時金）",
       badge: "ok",
-      note: "東京圏からの移住が対象です。",
+      note: "東京圏からの移住に対して支給される一時金。",
+      warn: "転入前に市町村窓口で必ず要件確認してください。",
     });
-    maxTotal += isFamily ? 100 : 60;
+    maxTotal += isSingle ? 60 : 100;
   }
 
-  // 自己資金が少ない場合：融資制度の案内（金額は個別審査のため合計には含めない）
-  if (s.cap === "u100" || s.cap === "100to300") {
-    items.push({
-      name: "日本政策金融公庫の農業融資",
-      amountText: "金額は個別審査（要相談）",
-      badge: "warn",
-      note: "自己資金だけで不安な場合の選択肢です。",
-    });
-  }
+  // 7. 日本政策金融公庫 農業融資（常時案内・自己資金の多寡にかかわらず表示）
+  items.push({
+    icon: "🏦",
+    name: "日本政策金融公庫 農業融資",
+    amountText: "低金利（特例0%）／最大3億円",
+    badge: "req",
+    note: "農業者向けの低金利融資制度。まず相談だけでもOK。",
+    warn: "融資申請には農業経営計画書が必要です。",
+  });
 
-  // 地域計画早期実現支援枠：1年以内に就農予定の場合、上限600万円
-  if (s.timing === "w1y") {
-    items.push({
-      name: "地域計画早期実現支援枠",
-      amountText: "上限600万円",
-      badge: "ok",
-      note: "1年以内の就農を予定している方向けの枠です。",
-    });
-    maxTotal += 600;
-  }
+  const durationEstimateText = s.timing ? durationLabelJa[s.timing] : "—";
 
-  // 世代交代初期投資促進事業：規模が大きい場合に案内（金額は個別のため合計には含めない）
-  if (s.scale === "large") {
-    items.push({
-      name: "世代交代初期投資促進事業",
-      amountText: "金額は個別相談",
-      badge: "warn",
-      note: "規模の大きい経営を検討している方向けの制度です。",
-    });
-  }
+  const mainCrop = s.crops.find((c): c is CropKey => c in initialCostByCrop);
+  const initialCostEstimateText = mainCrop ? initialCostByCrop[mainCrop]! : "100〜300万円";
 
-  // 就農期間目安：農業経験・就農希望時期から簡易的に推定（要件定義書に算出式の明記なし。目安として実装）
-  let durationEstimateText = "3〜5年ほどが目安";
-  if (s.exp === "train" || s.timing === "w1y") {
-    durationEstimateText = "1〜2年ほどが目安";
-  } else if (s.exp === "part" || s.exp === "garden" || s.timing === "w3y") {
-    durationEstimateText = "2〜3年ほどが目安";
-  }
-
-  // 想定初期費用：規模から簡易的に推定（要件定義書§6結果③の通り仮データ。実データは今後精査）
-  let initialCostEstimateText = "300〜500万円（仮データ）";
-  if (s.scale === "mid") initialCostEstimateText = "500〜1,000万円（仮データ）";
-  if (s.scale === "large") initialCostEstimateText = "1,000万円〜（仮データ）";
+  const ageLbl = s.age ? ageLabelJa[s.age] : "";
+  const famLbl = s.family ? familyLabelJa[s.family] : "";
+  const titleText = `${ageLbl}・${famLbl}・目標年収${s.income}万円`;
 
   return {
     maxSubsidyText: `最大${maxTotal.toLocaleString()}万円`,
     durationEstimateText,
     initialCostEstimateText,
     subsidyItems: items,
+    titleText,
   };
+}
+
+// ---------------------------------------------------------------------------
+// Q4「興味品目」ライブ相性フィードバック（旧版updCropMatch()の移植）
+// ---------------------------------------------------------------------------
+
+export type CropMatchDisplay = { percent: number; label: string };
+
+const fruitKeys: CropKey[] = ["momo", "apple", "nashi", "grape", "saku", "kaki"];
+
+export function calcCropMatchDisplay(crops: CropKey[]): CropMatchDisplay {
+  const fm = crops.filter((c) => fruitKeys.includes(c)).length;
+  if (fm >= 3) return { percent: 95, label: "果樹農業と高い相性！福島県北は最適な産地です 🍑" };
+  if (fm >= 2) return { percent: 80, label: "福島県北の果樹農業との相性がとてもいいです" };
+  if (fm >= 1) return { percent: 65, label: "福島県北で育てられる品目です" };
+  if (crops.includes("kyu")) return { percent: 70, label: "きゅうりは福島県北の主要品目のひとつです 🥒" };
+  if (crops.includes("rice")) return { percent: 55, label: "米・野菜も福島県北で栽培できます" };
+  return { percent: 40, label: "まだ未定でも大丈夫です" };
+}
+
+// Q8「目標年収」ライブ補助金カバー率（旧版updIncome()の移植）
+export function calcIncomeCoverPercent(income: number): number {
+  return Math.min(95, Math.round((150 / income) * 100));
 }
 
 // ---------------------------------------------------------------------------
@@ -124,15 +202,32 @@ export type RegionMatch = {
   isTop: boolean;
 };
 
-const cropLabel: Record<string, string> = {
+const cropLabel: Record<CropKey, string> = {
   momo: "桃",
   apple: "りんご",
   nashi: "梨",
+  grape: "ぶどう",
   saku: "さくらんぼ",
+  kaki: "あんぽ柿",
   kyu: "きゅうり",
-  rice: "米",
+  tomato: "トマト",
+  rice: "米・野菜",
+  organic: "有機農業",
+  flower: "花き",
+  any: "未定",
+  dairy: "酪農",
+  beef: "肉用牛",
+  chicken: "養鶏",
 };
 
+const familyMatchLabelJa: Record<FamilyKey, string> = {
+  single: "単身",
+  couple: "夫婦",
+  kids: "子育て世帯",
+};
+
+// 旧版buildResult()内のスコアリングロジック（692〜708行目）を移植：
+// 品目一致（+3/件）・自己資金の範囲内（+2）・家族構成の適合（+1）・就農時期の適合（+1）
 export function calcRegionMatch(s: SimulatorState): RegionMatch[] {
   const selectedCrops = s.crops.filter((c): c is CropKey => c !== "any");
 
@@ -140,25 +235,31 @@ export function calcRegionMatch(s: SimulatorState): RegionMatch[] {
     const reasons: string[] = [];
     let score = 0;
 
-    for (const crop of selectedCrops) {
-      if (region.cropKeys.includes(crop)) {
-        score += 3;
-        reasons.push(`${cropLabel[crop] ?? crop}の産地`);
-      }
+    const cropMatches = selectedCrops.filter((crop) => region.cropKeys.includes(crop));
+    if (cropMatches.length > 0) {
+      score += cropMatches.length * 3;
+      reasons.push(`希望品目（${cropMatches.map((c) => cropLabel[c] ?? c).join("・")}）の産地`);
     }
 
-    if (s.family === "kids" && region.key === "otama") {
+    if (s.cap && region.capKeys.includes(s.cap)) {
+      score += 2;
+      reasons.push("自己資金の範囲内で始めやすい");
+    }
+
+    if (s.family && region.familyKeys.includes(s.family)) {
       score += 1;
-      reasons.push("子育て支援が充実");
+      reasons.push(`生活環境が${familyMatchLabelJa[s.family]}に向いている`);
+    }
+
+    if (s.timing && region.timingKeys.includes(s.timing)) {
+      score += 1;
     }
 
     return { region, score, reasons };
   });
 
   // 結果画面④「地域マッチング」は要件定義書§6の表示順序一覧で「常時表示」と
-  // 明記されているため、スコアが1点も付かない場合（品目未選択＝「まだ決まってい
-  // ない」のみ選択、かつ子育て世帯でない等）でもトップ3地域を必ず返す。
-  // （品目一致による+3点が主要な加点要素のため、スコア0のまま返るケースはある）
+  // 明記されているため、スコアが1点も付かない場合でもトップ3地域を必ず返す。
   return scored
     .sort((a, b) => b.score - a.score)
     .slice(0, 3)
@@ -174,19 +275,55 @@ export type TimingAlert = {
   cropLabel: string;
   urgent: boolean;
   seasonText: string;
+  /** 品目別の詳しい警告文（<strong>タグ含む・信頼できる静的コンテンツのためHTML許容） */
+  messageHtml: string;
 };
 
 type TimingRule = {
   applicationSeason: string;
   urgentMonths: number[];
+  messageHtml: string;
 };
 
+// 旧版buildResult()内のtimingAlertsオブジェクト（798〜807行目）を移植。
+// nashi（梨）は旧版に存在しなかったため、appleの申し込み時期を参考にした推定文言（要確認）。
 const timingRules: Partial<Record<CropKey, TimingRule>> = {
-  momo: { applicationSeason: "10〜11月", urgentMonths: [9, 10, 11, 12] },
-  apple: { applicationSeason: "10〜11月", urgentMonths: [9, 10, 11, 12] },
-  saku: { applicationSeason: "9〜10月", urgentMonths: [8, 9, 10, 11] },
-  kyu: { applicationSeason: "2〜3月", urgentMonths: [1, 2, 3] },
-  rice: { applicationSeason: "2〜3月", urgentMonths: [1, 2, 3, 4] },
+  momo: {
+    applicationSeason: "10〜11月",
+    urgentMonths: [9, 10, 11, 12],
+    messageHtml:
+      "🍑 桃の研修は毎年4月スタートが多く、申し込みは前年の<strong>10〜11月締め切り</strong>がほとんどです。今から動かないと次のチャンスは約1年後になります。",
+  },
+  apple: {
+    applicationSeason: "10〜11月",
+    urgentMonths: [9, 10, 11, 12],
+    messageHtml:
+      "🍎 りんごの研修申し込みも秋〜冬が多く、<strong>年内に動き始める</strong>ことで来春の研修スタートに間に合います。",
+  },
+  nashi: {
+    applicationSeason: "10〜11月",
+    urgentMonths: [9, 10, 11, 12],
+    messageHtml:
+      "🍐 梨の研修も秋〜冬の募集が中心で、<strong>年内の相談開始</strong>が来春の研修スタートへの近道です（りんごに準じた目安・要確認）。",
+  },
+  saku: {
+    applicationSeason: "9〜10月",
+    urgentMonths: [8, 9, 10, 11],
+    messageHtml:
+      "🍒 さくらんぼの研修は収穫（6月）に合わせた準備が必要で、<strong>前年の秋が申し込みのタイミング</strong>です。",
+  },
+  kyu: {
+    applicationSeason: "2〜3月",
+    urgentMonths: [1, 2, 3],
+    messageHtml:
+      "🥒 きゅうりの夏秋作は4〜5月定植が多く、<strong>3月までに農地・資材の準備</strong>が必要です。今年の作付けを目指すなら今すぐ動く必要があります。",
+  },
+  rice: {
+    applicationSeason: "2〜3月",
+    urgentMonths: [1, 2, 3, 4],
+    messageHtml:
+      "🌾 米の田植えは5〜6月。<strong>農地の確保と農業委員会への申請</strong>は少なくとも3ヶ月前が目安です。",
+  },
 };
 
 export function calcTimingAlerts(crops: CropKey[], currentMonth: number): TimingAlert[] {
@@ -200,6 +337,7 @@ export function calcTimingAlerts(crops: CropKey[], currentMonth: number): Timing
         cropLabel: cropLabel[crop] ?? crop,
         urgent,
         seasonText: `募集時期の目安：${rule.applicationSeason}`,
+        messageHtml: rule.messageHtml,
       };
     });
 }
@@ -270,6 +408,13 @@ function findLabel(key: "timing" | "exp" | "crops" | "cap", value: string): stri
       return q.options.find((o) => o.value === value)?.label ?? value;
     }
     if (q.kind === "multi" && q.key === key) {
+      for (const g of q.groups) {
+        const found = g.options.find((o) => o.value === value);
+        if (found) return found.label;
+      }
+      return value;
+    }
+    if (q.kind === "capIncome" && q.key === key) {
       return q.options.find((o) => o.value === value)?.label ?? value;
     }
     if (q.kind === "dual" && key === "timing") {
@@ -290,6 +435,7 @@ export function buildMailto(s: SimulatorState): string {
     `農業経験：${s.exp ? findLabel("exp", s.exp) : "未回答"}`,
     `希望品目：${cropsText}`,
     `自己資金：${s.cap ? findLabel("cap", s.cap) : "未回答"}`,
+    `目標年収：約${s.income}万円`,
   ].join("\n");
 
   return `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
