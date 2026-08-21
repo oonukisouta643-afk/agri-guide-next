@@ -18,11 +18,14 @@
 // （half cucumber on white background）に差し替え。
 // 2026年8月20日⑥：⑤の写真が白いスタジオ背景で、他3品目（自然な質感の写真）と
 // スタイルが浮いて見えるというフィードバックを受け、学名「Cucumis sativus」まで
-// 説明文に明記された、ツルに実った状態の自然な背景の写真に差し替え（きゅうりであることの
-// 確実性と、他カードとのスタイル統一を両立）。
-// 画像内容を直接見て検証できないため、今後も写真素材は必ずページの説明文・alt・タグ・
-// 学名情報で品目名を確認してから採用すること。
+// 説明文に明記された、ツルに実った状態の自然な背景の写真に差し替え。
+// 2026年8月20日⑦：⑥の写真も実際はきゅうりか判別しづらい（「うりでは？」との指摘）と
+// 判明。外部ストック写真のテキスト情報頼りの選定を繰り返し外していたため方針転換し、
+// 大貫さんご本人が提供した実写真（きゅうり、木製トレイ・木製テーブル、IMG_6662.JPG）を
+// public/images/produce/kyuri.jpgとして自己ホストする方式に切り替え。外部URL依存・
+// 品目誤認のリスクを両方解消。他4品目はUnsplash無料素材の外部リンクのまま。
 // photoCreditはUnsplashクレジット表記用（法的必須ではないが記録として保持）。
+// きゅうりのみ自己ホストのためphotoCreditは"提供写真"。
 
 export type ProduceKey = "peach" | "apple" | "kaki" | "kyuri" | "rice";
 
@@ -75,9 +78,8 @@ export const produceItems: ProduceItem[] = [
     description:
       "福島県は夏秋きゅうりの生産量全国1位。果樹より早く収入になりやすく、新規就農のスタートにも。",
     season: "旬：6〜9月",
-    photoUrl:
-      "https://images.unsplash.com/photo-1761755207671-d07ea4bb555c?auto=format&fit=crop&w=600&q=75",
-    photoCredit: "Unsplash",
+    photoUrl: "/images/produce/kyuri.jpg",
+    photoCredit: "提供写真",
   },
   {
     key: "rice",

@@ -1,110 +1,31 @@
-cd $env:USERPROFILE\Downloads\agri-guide-next-git
+﻿// タブ③：需給ギャップの価値（行政が自前では作れない情報）
+// 出典：「AgriGuide_プロジェクト完全記録」10章「業界課題の仮説」
+// 果樹研究所勤務・就農予定の知人からの現場情報と、就農フェアでの行政担当者への
+// ヒアリングをもとにした仮説。統計データではなく、一次情報に基づく仮説である旨を明記する。
 
-# 1. 画像を配置（Downloadsに保存されてる想定）
-New-Item -ItemType Directory -Force -Path "public\images\produce" | Out-Null
-Copy-Item "$env:USERPROFILE\Downloads\kyuri.jpg" "public\images\produce\kyuri.jpg" -Force
-
-# 2. produce.tsを更新
-@'
-// 福島県北の特産品データ（ProduceShowcaseで使用）
-// 出典：OLD版 index.html #440-467（.produce-strip）
-//
-// OLD版は5品目中4品目をUnsplashの外部画像に依存していた。
-// 変遷：
-// 2026年8月20日①：外部画像はリンク切れリスクがあるとして、絵文字＋グラデーションに統一。
-// 2026年8月20日②：見た目が単調というフィードバックを受け、絵文字表示から
-// オリジナルのライン風SVGアイコン（ProduceIcons.tsx）に差し替え。
-// 2026年8月20日③：「イラストではリアリティが出ない」というフィードバックを受け、
-// Unsplash（無料ライセンス、Unsplash+の有料素材は除外）の実写真に差し替え。
-// Hero.tsxの背景画像と同じ「外部URLを直接指定」方式（next/imageは使わずimgタグ）。
-// 各写真はUnsplash Licenseの下で無料利用可能なものを選定（2026年8月20日確認）。
-// 2026年8月20日④：米が航空写真の田んぼでスタイルが浮く／きゅうりが調理済みっぽいという
-// フィードバックを受け、米は稲穂のクローズアップに、きゅうりは畑でツルになってる状態の
-// クローズアップに差し替え（他の3品目と同じ「収穫前・素材そのもの」の見た目に統一）。
-// 2026年8月20日⑤：④で差し替えたきゅうり写真が実際にはゴーヤ（bitter melon）だったと
-// 判明（サイト表示で発覚）。ページテキストで「cucumber」と明記されている写真
-// （half cucumber on white background）に差し替え。
-// 2026年8月20日⑥：⑤の写真が白いスタジオ背景で、他3品目（自然な質感の写真）と
-// スタイルが浮いて見えるというフィードバックを受け、学名「Cucumis sativus」まで
-// 説明文に明記された、ツルに実った状態の自然な背景の写真に差し替え。
-// 2026年8月20日⑦：⑥の写真も実際はきゅうりか判別しづらい（「うりでは？」との指摘）と
-// 判明。外部ストック写真のテキスト情報頼りの選定を繰り返し外していたため方針転換し、
-// 大貫さんご本人が提供した実写真（きゅうり、木製トレイ・木製テーブル、IMG_6662.JPG）を
-// public/images/produce/kyuri.jpgとして自己ホストする方式に切り替え。外部URL依存・
-// 品目誤認のリスクを両方解消。他4品目はUnsplash無料素材の外部リンクのまま。
-// photoCreditはUnsplashクレジット表記用（法的必須ではないが記録として保持）。
-// きゅうりのみ自己ホストのためphotoCreditは"提供写真"。
-
-export type ProduceKey = "peach" | "apple" | "kaki" | "kyuri" | "rice";
-
-export type ProduceItem = {
-  key: ProduceKey;
-  emoji: string;
-  name: string;
-  description: string;
-  season: string;
-  photoUrl: string;
-  photoCredit: string;
-};
-
-export const produceItems: ProduceItem[] = [
+export const gapHypotheses = [
   {
-    key: "peach",
-    emoji: "🍑",
-    name: "桃",
-    description:
-      "盆地の寒暖差が育む糖度の高さが特徴。生産量全国2位。6月下旬〜9月下旬まで約60品種が楽しめる。",
-    season: "旬：7〜8月",
-    photoUrl:
-      "https://images.unsplash.com/photo-1438274754346-45322cac87e4?auto=format&fit=crop&w=600&q=75",
-    photoCredit: "Unsplash",
+    topic: "農家の「孤立」の実態",
+    officialAssumption: "農家は閉鎖的なコミュニティにいる（一般的なイメージ）",
+    actualReality:
+      "現場情報（果樹農家の知人）によると、原因は孤立ではなく、収穫タイミングの制約（JAの締切等）と季節による繁閑差。繁忙期は身動きが取れないが、農閑期は自由度が高い。",
   },
   {
-    key: "apple",
-    emoji: "🍎",
-    name: "りんご",
-    description: "桃の収穫が終わる秋から収入になる品目。複数品目経営の安定化に欠かせない存在。",
-    season: "旬：10〜12月",
-    photoUrl:
-      "https://images.unsplash.com/photo-1572166365087-96ac83103260?auto=format&fit=crop&w=600&q=75",
-    photoCredit: "Unsplash",
+    topic: "就農希望者が本当に求めている情報",
+    officialAssumption: "農業技術・補助金制度の情報が求められている",
+    actualReality:
+      "「自分と近い属性の人の実例」（就農前職業・自己資金・きっかけ）の方が「自分ごと化」されやすい。ふくのうサイトでも就農ロールモデル（実例・収益数字あり）へのアクセスが多く、県外からの流入も見られる。",
   },
   {
-    key: "kaki",
-    emoji: "🍊",
-    name: "あんぽ柿",
-    description: "半乾燥の独特製法で作る福島の伝統食品。とろけるような食感と濃厚な甘さ。",
-    season: "旬：11〜2月",
-    photoUrl:
-      "https://images.unsplash.com/photo-1762980623131-e58cae8cf401?auto=format&fit=crop&w=600&q=75",
-    photoCredit: "Unsplash",
-  },
-  {
-    key: "kyuri",
-    emoji: "🥒",
-    name: "きゅうり",
-    description:
-      "福島県は夏秋きゅうりの生産量全国1位。果樹より早く収入になりやすく、新規就農のスタートにも。",
-    season: "旬：6〜9月",
-    photoUrl: "/images/produce/kyuri.jpg",
-    photoCredit: "提供写真",
-  },
-  {
-    key: "rice",
-    emoji: "🌾",
-    name: "米",
-    description: "阿武隈川の清流と盆地の寒暖差が育む良質米。冬は農閑期になるため他品目との組み合わせがしやすい。",
-    season: "旬：9〜10月",
-    photoUrl:
-      "https://images.unsplash.com/photo-1759646850616-8bc3e6567ea5?auto=format&fit=crop&w=600&q=75",
-    photoCredit: "Unsplash",
+    topic: "新規就農者の量と定着",
+    officialAssumption: "エントリー数（就農希望者数）の増加が主目的",
+    actualReality:
+      "就農フェアで行政担当者から直接聞いた課題感：「来ても定着しない」。量だけでなく、事前の解像度向上による定着率が課題。",
   },
 ];
-'@ | Set-Content -Path "src\data\produce.ts" -Encoding UTF8
 
-# 3. コミット＆プッシュ（念のため先にfetch/resetでリモート最新に合わせる）
-git fetch origin main
-git reset --soft origin/main
-git add -A
-git commit -m "きゅうり写真を大貫さん提供の実写真(自己ホスト)に差し替え"
-git push origin main
+export const gapValueProposition = {
+  headline: "行政が自前では収集しにくい「潜在層の生の声」を集められる",
+  description:
+    "Agri-Guideはアンケート5種を通じて、就農を検討している人・断念した人の生の声を継続的に収集している。これは行政が独自に集めることが難しい情報であり、需給ギャップを可視化するための材料になり得る。",
+};
