@@ -1,4 +1,4 @@
-﻿// 福島県北の特産品データ（ProduceShowcaseで使用）
+// 福島県北の特産品データ（ProduceShowcaseで使用）
 // 出典：OLD版 index.html #440-467（.produce-strip）
 //
 // OLD版は5品目中4品目をUnsplashの外部画像に依存していた。
