@@ -111,6 +111,7 @@ export const questions: Question[] = [
           { value: "grape", label: "ぶどう", icon: "🍇" },
           { value: "saku", label: "さくらんぼ", icon: "🍒" },
           { value: "kaki", label: "あんぽ柿", icon: "🟠" },
+          { value: "strawberry", label: "いちご", icon: "🍓" },
         ],
       },
       {
@@ -119,7 +120,9 @@ export const questions: Question[] = [
         options: [
           { value: "kyu", label: "きゅうり", icon: "🥒" },
           { value: "tomato", label: "トマト", icon: "🍅" },
-          { value: "rice", label: "米・野菜", icon: "🌾" },
+          { value: "rice", label: "米", icon: "🌾" },
+          { value: "leafy", label: "葉物野菜", icon: "🥬" },
+          { value: "mushroom", label: "きのこ", icon: "🍄" },
           { value: "organic", label: "有機農業", icon: "🌿" },
           { value: "flower", label: "花き", icon: "🌷" },
           { value: "any", label: "まだわからない", icon: "🤔" },

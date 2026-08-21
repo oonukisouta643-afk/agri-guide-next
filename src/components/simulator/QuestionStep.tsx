@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { Question } from "@/lib/simulator/questions";
 import type { SimulatorAction, SimulatorMachineState } from "@/lib/simulator/reducer";
-import { calcCropMatchDisplay, calcIncomeCoverPercent } from "@/lib/simulator/calculations";
+import { calcCropCoverage, calcIncomeCoverPercent } from "@/lib/simulator/calculations";
 import type { CropKey } from "@/lib/simulator/types";
 
 // シミュレーターの質問ステップ（Q1〜Q10）
@@ -184,19 +184,11 @@ export function QuestionStep({
             </p>
           )}
           {(() => {
-            const match = calcCropMatchDisplay(answers.crops as CropKey[]);
+            const coverage = calcCropCoverage(answers.crops as CropKey[]);
             return (
               <div className="mt-4 rounded-lg border border-green-200 bg-green-50 px-4 py-3">
-                <p className="mb-2 text-xs font-bold text-green-700">🌿 福島県北との相性</p>
-                <div className="h-2 w-full overflow-hidden rounded-sm bg-green-200/60">
-                  <div
-                    className="h-full rounded-sm bg-gradient-to-r from-green-600 to-green-700 transition-all duration-500 ease-out"
-                    style={{ width: `${match.percent}%` }}
-                  />
-                </div>
-                <p className="mt-1 font-mono text-xs font-bold text-green-700">
-                  {match.percent}% — {match.label}
-                </p>
+                <p className="mb-2 text-xs font-bold text-green-700">🌿 福島県北6地域との照合</p>
+                <p className="text-xs leading-relaxed text-ink">{coverage.message}</p>
               </div>
             );
           })()}

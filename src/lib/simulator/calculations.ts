@@ -172,18 +172,46 @@ export function calcFunding(s: SimulatorState): FundingResult {
 // Q4「興味品目」ライブ相性フィードバック（旧版updCropMatch()の移植）
 // ---------------------------------------------------------------------------
 
-export type CropMatchDisplay = { percent: number; label: string };
+// 2026年8月21日：以前はここで「福島県北との相性◯％」という固定値のバーを表示していたが、
+// 選択肢自体が6地域の栽培品目に寄っていて、実質どの品目を選んでも高い％が出る作りだった
+// （「誰が選んでも高マッチ度になるのは不自然」というフィードバック）。
+// ％の演出はやめて、実際にregions.tsのcropKeysと照合した事実ベースの文言に差し替えた。
+// 品目自体もstrawberry/leafy/mushroomを追加し、6地域がカバーしていない選択肢を
+// 意図的に含めることで「一致しない」という正直な結果も出るようにしている。
 
-const fruitKeys: CropKey[] = ["momo", "apple", "nashi", "grape", "saku", "kaki"];
+export type CropCoverage = {
+  /** 選んだ品目のうち、6地域のいずれかで実際に栽培されている品目のラベル */
+  coveredLabels: string[];
+  /** 選んだ品目のうち、6地域のどこも栽培していない品目のラベル */
+  uncoveredLabels: string[];
+  message: string;
+};
 
-export function calcCropMatchDisplay(crops: CropKey[]): CropMatchDisplay {
-  const fm = crops.filter((c) => fruitKeys.includes(c)).length;
-  if (fm >= 3) return { percent: 95, label: "果樹農業と高い相性！福島県北は最適な産地です 🍑" };
-  if (fm >= 2) return { percent: 80, label: "福島県北の果樹農業との相性がとてもいいです" };
-  if (fm >= 1) return { percent: 65, label: "福島県北で育てられる品目です" };
-  if (crops.includes("kyu")) return { percent: 70, label: "きゅうりは福島県北の主要品目のひとつです 🥒" };
-  if (crops.includes("rice")) return { percent: 55, label: "米・野菜も福島県北で栽培できます" };
-  return { percent: 40, label: "まだ未定でも大丈夫です" };
+export function calcCropCoverage(crops: CropKey[]): CropCoverage {
+  if (crops.length === 0) {
+    return {
+      coveredLabels: [],
+      uncoveredLabels: [],
+      message: "品目を選ぶと、実際にその品目を栽培している地域があるか確認できます。",
+    };
+  }
+
+  const covered = crops.filter((c) => regions.some((r) => r.cropKeys.includes(c)));
+  const uncovered = crops.filter((c) => !covered.includes(c));
+  const coveredLabels = covered.map((c) => cropLabel[c] ?? c);
+  const uncoveredLabels = uncovered.map((c) => cropLabel[c] ?? c);
+
+  let message: string;
+  if (covered.length === 0) {
+    message =
+      "選んだ品目は、今回ご案内する6地域では主要な栽培品目として登録されていません。地域のおすすめは弱めになりますが、シミュレーション自体はこのまま進められます。";
+  } else if (uncovered.length === 0) {
+    message = `選んだ品目（${coveredLabels.join("・")}）は、ご案内する6地域のいずれかで実際に栽培されています。`;
+  } else {
+    message = `選んだ品目のうち「${coveredLabels.join("・")}」は6地域のいずれかで栽培実績があります。「${uncoveredLabels.join("・")}」は今回ご案内する6地域では主要品目としては登録されていません。`;
+  }
+
+  return { coveredLabels, uncoveredLabels, message };
 }
 
 // Q8「目標年収」ライブ補助金カバー率（旧版updIncome()の移植）
@@ -209,9 +237,12 @@ const cropLabel: Record<CropKey, string> = {
   grape: "ぶどう",
   saku: "さくらんぼ",
   kaki: "あんぽ柿",
+  strawberry: "いちご",
   kyu: "きゅうり",
   tomato: "トマト",
-  rice: "米・野菜",
+  rice: "米",
+  leafy: "葉物野菜",
+  mushroom: "きのこ",
   organic: "有機農業",
   flower: "花き",
   any: "未定",

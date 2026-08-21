@@ -5,10 +5,16 @@ export type AgeKey = "20s" | "30s" | "40s" | "50p";
 export type FamilyKey = "single" | "couple" | "kids";
 export type LocKey = "tokyo" | "other" | "tohoku" | "inside";
 
-// 旧版Q5（興味品目）の3グループ15択に対応。
-// 🌳果樹・果物：momo/apple/nashi/grape/saku/kaki
-// 🥬野菜・畑作：kyu/tomato/rice/organic/flower/any（「まだわからない」）
+// 旧版Q5（興味品目）の3グループ15択＋2026年8月21日追加の3択に対応。
+// 🌳果樹・果物：momo/apple/nashi/grape/saku/kaki/strawberry
+// 🥬野菜・畑作：kyu/tomato/rice/leafy/mushroom/organic/flower/any（「まだわからない」）
 // 🐄畜産：dairy/beef/chicken
+//
+// 2026年8月21日：「シミュレーターの品目選択肢が福島県北6地域の特産品に寄りすぎていて、
+// 誰が選んでも地域マッチ度が高く出るのは不自然」というフィードバックを受け、
+// 6地域のいずれもカバーしていない品目（strawberry/leafy/mushroom）を追加。
+// これにより「選んだ品目がこの6地域の強みと一致しない」という正直な結果も
+// 起こりうるようにした（calculations.tsのcalcCropCoverage参照）。
 export type CropKey =
   | "momo"
   | "apple"
@@ -16,9 +22,12 @@ export type CropKey =
   | "grape"
   | "saku"
   | "kaki"
+  | "strawberry"
   | "kyu"
   | "tomato"
   | "rice"
+  | "leafy"
+  | "mushroom"
   | "organic"
   | "flower"
   | "any"

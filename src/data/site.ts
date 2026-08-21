@@ -8,10 +8,14 @@ export const siteConfig = {
   contactEmail: "oonukisouta643@gmail.com",
 };
 
+// 2026年8月21日：OLD版index.htmlはPCナビ・モバイルドロワー・フッターの3箇所全部に
+// 「補助金一覧」へのリンクを置いていたが、Next版はmobileTocにしか入っておらず
+// デスクトップナビ・フッターから抜け落ちていたため追加（「HTML版と再度照らし合わせて」の指摘対応）。
 export const navLinks = [
   { href: "/#story", label: "このサービスとは" },
   { href: "/tools", label: "ツール集" },
   { href: "/farmers", label: "農家プロフィール" },
+  { href: "/subsidies", label: "補助金一覧" },
   { href: "/#chiiki", label: "地域施策" },
 ];
 
