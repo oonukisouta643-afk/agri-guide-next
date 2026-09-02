@@ -8,11 +8,49 @@ export const siteConfig = {
   contactEmail: "oonukisouta643@gmail.com",
 };
 
+// 2026年8月21日：OLD版index.htmlはPCナビ・モバイルドロワー・フッターの3箇所全部に
+// 「補助金一覧」へのリンクを置いていたが、Next版はmobileTocにしか入っておらず
+// デスクトップナビ・フッターから抜け落ちていたため追加（「HTML版と再度照らし合わせて」の指摘対応）。
 export const navLinks = [
   { href: "/#story", label: "このサービスとは" },
   { href: "/tools", label: "ツール集" },
   { href: "/farmers", label: "農家プロフィール" },
+  { href: "/subsidies", label: "補助金一覧" },
   { href: "/#chiiki", label: "地域施策" },
+];
+
+// モバイルドロワー用の目次（ToC）。navLinksより網羅的で、グループ分けして表示する。
+// 2026年8月21日追加：「スマホだとページ内のどこに何があるかわからない」というフィードバックを受け、
+// ハンバーガーメニューを実質的なサイトマップとして機能させるために新設。
+export const mobileToc: { heading: string; links: { href: string; label: string }[] }[] = [
+  {
+    heading: "このページについて",
+    links: [
+      { href: "/#story", label: "このサービスとは" },
+      { href: "/#how", label: "使い方" },
+      { href: "/#field", label: "アンケートに答える" },
+      { href: "/#chiiki", label: "地域の支援策" },
+      { href: "/#contact", label: "お問い合わせ" },
+    ],
+  },
+  {
+    heading: "ツール・診断",
+    links: [
+      { href: "/simulator", label: "🌿 就農シミュレーター" },
+      { href: "/tools", label: "ツール集" },
+    ],
+  },
+  {
+    heading: "情報を見る",
+    links: [
+      { href: "/farmers", label: "農家プロフィール" },
+      { href: "/subsidies", label: "補助金一覧" },
+    ],
+  },
+  {
+    heading: "行政・連携機関の方へ",
+    links: [{ href: "/admin", label: "行政向け資料" }],
+  },
 ];
 
 export const simulatorCta = {

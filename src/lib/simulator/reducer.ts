@@ -22,6 +22,7 @@ export const initialMachineState: SimulatorMachineState = {
 export type SimulatorAction =
   | { type: "SET_SINGLE"; key: keyof SimulatorState; value: string }
   | { type: "TOGGLE_CROP"; value: string }
+  | { type: "SET_INCOME"; value: number }
   | { type: "SET_WORRY"; value: string }
   | { type: "SET_TIMING"; value: string }
   | { type: "NEXT" }
@@ -40,11 +41,23 @@ export function simulatorReducer(
         answers: { ...state.answers, [action.key]: action.value },
       };
     case "TOGGLE_CROP": {
-      const crops = state.answers.crops.includes(action.value as never)
-        ? state.answers.crops.filter((c) => c !== action.value)
-        : [...state.answers.crops, action.value as SimulatorState["crops"][number]];
+      // 旧版handleChk()のロジックを移植：「まだわからない」（any）は他の品目選択と排他。
+      // 何かを選ぶとanyは自動解除され、全て解除されるとanyが自動的に選択される。
+      const value = action.value as SimulatorState["crops"][number];
+      let crops: SimulatorState["crops"];
+      if (value === "any") {
+        crops = state.answers.crops.includes("any") ? [] : ["any"];
+      } else {
+        const withoutAny = state.answers.crops.filter((c) => c !== "any");
+        crops = withoutAny.includes(value)
+          ? withoutAny.filter((c) => c !== value)
+          : [...withoutAny, value];
+        if (crops.length === 0) crops = ["any"];
+      }
       return { ...state, answers: { ...state.answers, crops } };
     }
+    case "SET_INCOME":
+      return { ...state, answers: { ...state.answers, income: action.value } };
     case "SET_WORRY":
       return {
         ...state,
