@@ -67,7 +67,7 @@ export function Footer() {
         </div>
 
         <p className="text-xs text-white/60">
-          © {new Date().getFullYear()} 大貫想太 / {siteConfig.fullName}
+          © {new Date().getFullYear()} {siteConfig.fullName}
         </p>
       </div>
     </footer>

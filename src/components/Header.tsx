@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { navLinks, mobileToc, simulatorCta } from "@/data/site";
+import { navLinks, simulatorCta } from "@/data/site";
 import { Button } from "@/components/ui/Button";
 
 // 共通Header
@@ -87,38 +87,26 @@ export function Header() {
         </button>
       </div>
 
-      {/* モバイルドロワー：サイト全体の目次（ToC）として機能させる。
-          2026年8月21日：「スマホだとページ内に何があるかわからない」というフィードバックを受け、
-          navLinks（4項目）だけでなくmobileToc（グループ分けした網羅的な一覧）を表示するよう変更。 */}
+      {/* モバイルドロワー */}
       {isDrawerOpen && (
         <nav
           id="mobile-drawer"
           aria-label="モバイルメニュー"
-          className="flex max-h-[calc(100vh-64px)] flex-col gap-5 overflow-y-auto border-t border-green-200 bg-white px-5 py-5 sm:hidden"
+          className="flex flex-col gap-1 border-t border-green-200 bg-white px-5 py-4 sm:hidden"
         >
-          <Button href={simulatorCta.href} className="w-full" onClick={() => setIsDrawerOpen(false)}>
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="rounded px-2 py-3 text-sm font-medium text-ink hover:bg-green-50"
+              onClick={() => setIsDrawerOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Button href={simulatorCta.href} className="mt-2 w-full">
             {simulatorCta.label}
           </Button>
-
-          {mobileToc.map((group) => (
-            <div key={group.heading}>
-              <p className="text-xs font-bold uppercase tracking-wide text-muted">
-                {group.heading}
-              </p>
-              <div className="mt-1.5 flex flex-col gap-0.5">
-                {group.links.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="rounded px-2 py-2.5 text-sm font-medium text-ink hover:bg-green-50"
-                    onClick={() => setIsDrawerOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          ))}
         </nav>
       )}
     </header>

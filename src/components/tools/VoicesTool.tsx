@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
 import { voices, type Reason } from "@/data/tools/voicesData";
 
@@ -43,9 +42,6 @@ export function VoicesTool() {
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
         {filtered.map((voice) => (
           <div key={voice.id} className="rounded border-l-[3px] border-green-700 bg-white p-4 shadow-sm">
-            <div className="mb-1 flex justify-end">
-              <Badge text="⚠️ 仮データ" color="gold" />
-            </div>
             <p className="text-sm text-ink">「{voice.quote}」</p>
             <p className="mt-2 text-xs text-muted">{voice.attribution}</p>
             <div className="mt-2 flex flex-wrap gap-1">
@@ -59,12 +55,6 @@ export function VoicesTool() {
       <p className="mt-4 text-xs text-muted">
         ※仮データです。FORM 02の回答が集まり次第、実際の声に差し替えます。
       </p>
-      <Link
-        href="/simulator"
-        className="mt-3.5 block w-full rounded bg-green-700 py-3 text-center text-sm font-bold text-white hover:bg-green-600"
-      >
-        🌿 あなたの条件でシミュレーターを試す
-      </Link>
     </div>
   );
 }

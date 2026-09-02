@@ -3,9 +3,7 @@ import { Card } from "@/components/ui/Card";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { Reveal } from "@/components/ui/Reveal";
-import { Button } from "@/components/ui/Button";
-import { WarningBox } from "@/components/ui/WarningBox";
-import { FarmerFilter } from "@/components/farmers/FarmerFilter";
+import { FarmerCard } from "@/components/farmers/FarmerCard";
 import { DayTimeline } from "@/components/farmers/DayTimeline";
 import { farmerProfiles, comingSoonProfiles, peachFarmerDay } from "@/data/farmers";
 import { surveyForms } from "@/data/forms";
@@ -46,32 +44,26 @@ export default function FarmersPage() {
         </div>
       </Reveal>
 
-      <Reveal delayMs={150}>
-        <div className="mt-10">
-          <FarmerFilter farmers={farmerProfiles} comingSoon={comingSoonProfiles} />
-        </div>
-      </Reveal>
+      <div className="mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2">
+        {farmerProfiles.map((farmer, i) => (
+          <Reveal key={farmer.id} delayMs={(i % 4) * 75}>
+            <FarmerCard farmer={farmer} />
+          </Reveal>
+        ))}
+      </div>
 
-      {/* 次のステップ：シミュレーターへのCTA */}
-      <div className="mx-auto mt-10 max-w-5xl">
-        <Reveal>
-          <div className="rounded-lg bg-gradient-to-br from-green-700 to-green-900 px-6 py-8 text-center">
-            <h3 className="font-serif text-lg font-bold text-white">
-              農家のリアルを知ったら
-              <br />
-              シミュレーターで試してみる
-            </h3>
-            <p className="mx-auto mt-2 max-w-md text-sm text-white/70">
-              年齢・家族構成・希望品目を入力するだけ。就農ロードマップと受け取れる補助金が3分でわかります。
-            </p>
-            <Button
-              href="/simulator"
-              className="mt-4 !bg-white !text-green-800 hover:!bg-green-50"
-            >
-              🌿 シミュレーターを試す（無料）
-            </Button>
-          </div>
-        </Reveal>
+      {/* coming-card */}
+      <div className="mx-auto mt-6 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-3">
+        {comingSoonProfiles.map((c) => (
+          <Reveal key={c.id}>
+            <div className="flex h-full flex-col items-center justify-center rounded border border-dashed border-green-200 bg-green-50/50 p-6 text-center">
+              <p className="font-bold text-ink">{c.category}</p>
+              <p className="mt-2 text-xs text-muted">{c.beforeJob}</p>
+              <p className="mt-1 text-xs text-muted">準備中</p>
+              <p className="mt-2 text-xs text-muted">{c.note}</p>
+            </div>
+          </Reveal>
+        ))}
       </div>
 
       {/* 農家の1日 */}
@@ -84,11 +76,6 @@ export default function FarmersPage() {
             <DayTimeline schedule={peachFarmerDay} />
           </Card>
         </Reveal>
-        <Reveal delayMs={150}>
-          <WarningBox type="warn" className="mt-4">
-            ⚠️ 仮データです。実際のスケジュールは農家さん・品目・時期によって大きく異なります。農家ヒアリング完了後に更新します。
-          </WarningBox>
-        </Reveal>
       </div>
 
       {/* 農家募集フォーム */}
@@ -99,11 +86,6 @@ export default function FarmersPage() {
             <p className="mt-2 text-sm text-muted">
               就農・移住を考えている方に向けて、あなたの経験を聞かせてください。
             </p>
-            <WarningBox type="tip" className="mt-4 text-left">
-              <strong>最小限の情報だけでOK</strong>
-              <br />
-              お名前（ニックネーム可）・品目・就農年数・一言メッセージ（50字程度）
-            </WarningBox>
             {form01 && (
               <ExternalLink
                 href={form01.url}

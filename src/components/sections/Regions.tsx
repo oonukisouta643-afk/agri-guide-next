@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Badge } from "@/components/ui/Badge";
 import { ExternalLink } from "@/components/ui/ExternalLink";
@@ -32,7 +31,7 @@ export function Regions() {
                   {region.crops.map((crop) => (
                     <span
                       key={crop}
-                      className="rounded-sm border border-green-200 bg-green-100 px-2.5 py-1 text-xs font-bold text-green-700"
+                      className="rounded-sm bg-green-50 px-2 py-0.5 text-xs text-green-700"
                     >
                       {crop}
                     </span>
@@ -60,12 +59,6 @@ export function Regions() {
 
       <p className="mx-auto mt-6 max-w-5xl text-center text-xs text-muted">
         2026年7月26日就農フェアにて各行政担当者より掲載許可をいただいた情報です。
-      </p>
-
-      <p className="mx-auto mt-4 max-w-5xl text-center">
-        <Link href="/subsidies" className="text-sm font-bold text-green-700 hover:underline">
-          地域ごとの補助金・支援制度をもっと詳しく見る →
-        </Link>
       </p>
     </section>
   );
