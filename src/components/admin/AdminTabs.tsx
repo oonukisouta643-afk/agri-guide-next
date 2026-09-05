@@ -7,10 +7,12 @@ import { GapTab } from "@/components/admin/GapTab";
 import { CollaborationTab } from "@/components/admin/CollaborationTab";
 import { CompetitorTab } from "@/components/admin/CompetitorTab";
 import { OverviewTab } from "@/components/admin/OverviewTab";
+import { EcosystemTab } from "@/components/admin/EcosystemTab";
 
-// / admin　行政向け提案書：6タブ切り替え式
+// / admin　行政向け提案書：7タブ切り替え式
 // 出典：AgriGuide_Next移行_要件定義書v2.0 §2「/ admin」（①〜⑤）
 // ⑥は①〜⑤を踏まえた総括タブ（2026年8月17日追加・ユーザー依頼による）
+// ⑦は2026年9月3日の合同相談会・9月5日の意義性整理を踏まえた支援体制マップ（2026年9月5日追加）
 
 const tabs = [
   { id: "fukunou", label: "①ふくのうとの関係", Component: FukunouTab },
@@ -19,6 +21,7 @@ const tabs = [
   { id: "collaboration", label: "④行政連携シナリオ", Component: CollaborationTab },
   { id: "competitor", label: "⑤競合ポジション", Component: CompetitorTab },
   { id: "overview", label: "⑥総括・ビジョン", Component: OverviewTab },
+  { id: "ecosystem", label: "⑦支援体制マップ", Component: EcosystemTab },
 ] as const;
 
 export function AdminTabs() {
