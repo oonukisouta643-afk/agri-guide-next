@@ -79,12 +79,16 @@ for (const path of added) {
 // 3. 追加された行の中身
 const allow = loadAllowlist();
 const names = loadBlockedNames();
-const diff = git("diff", "--cached", "-U0", "--no-color", "--no-ext-diff", "--diff-filter=ACMR");
+// core.quotePath=false にしないと、日本語のファイル名がクォートされた八進数の形になり、中身を見落とすため。
+const diff = git("-c", "core.quotePath=false", "diff", "--cached", "-U0", "--no-color", "--no-ext-diff", "--diff-filter=ACMR");
 let file = null;
 let lineNo = 0;
-for (const line of diff.split("\n")) {
+for (const line of diff.split(/\r?\n/)) {
   if (line.startsWith("+++ ")) {
-    file = line.startsWith("+++ b/") ? line.slice(6) : null;
+    // 空白を含むファイル名には末尾に TAB が付き、特殊な文字を含むと「"b/..."」とクォートされる。
+    let name = line.slice(4).replace(/\t$/, "");
+    if (name.startsWith('"') && name.endsWith('"')) name = name.slice(1, -1);
+    file = name.startsWith("b/") ? name.slice(2) : null;
     continue;
   }
   const hunk = line.match(/^@@ -\d+(?:,\d+)? \+(\d+)(?:,\d+)? @@/);
@@ -124,7 +128,8 @@ if (!existsSync(join(root, "node_modules"))) {
   for (const args of [["--no-install", "tsc", "--noEmit"], ["--no-install", "next", "lint"]]) {
     const r = spawnSync(npx, args, { cwd: root, encoding: "utf8", shell: process.platform === "win32" });
     if (r.status !== 0) {
-      errors.push(`npx ${args.slice(1).join(" ")} がエラーです：\n${(r.stdout || "") + (r.stderr || "")}`.trim());
+      const detail = (r.stdout || "") + (r.stderr || "") + (r.error ? `\n${r.error.message}` : "");
+      errors.push(`npx ${args.slice(1).join(" ")} がエラーです（ステージではなく作業ツリー全体を見ています）：\n${detail}`.trim());
     }
   }
 }

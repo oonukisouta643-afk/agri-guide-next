@@ -148,5 +148,204 @@
   {
     "file": "broken-json.json",
     "expect": 2
+  },
+  {
+    "file": "abbr-no-verif.json",
+    "expect": 2
+  },
+  {
+    "file": "abbr-reset-sof.json",
+    "expect": 2
+  },
+  {
+    "file": "abbr-reset-har.json",
+    "expect": 2
+  },
+  {
+    "file": "abbr-add-al.json",
+    "expect": 2
+  },
+  {
+    "file": "abbr-push-mirr.json",
+    "expect": 2
+  },
+  {
+    "file": "abbr-push-dele.json",
+    "expect": 2
+  },
+  {
+    "file": "abbr-push-force-w.json",
+    "expect": 2
+  },
+  {
+    "file": "wild-refs.json",
+    "expect": 2
+  },
+  {
+    "file": "wild-all.json",
+    "expect": 2
+  },
+  {
+    "file": "add-dashdash-dot.json",
+    "expect": 2
+  },
+  {
+    "file": "add-colon-slash.json",
+    "expect": 2
+  },
+  {
+    "file": "add-star.json",
+    "expect": 2
+  },
+  {
+    "file": "add-dot-redirect.json",
+    "expect": 2
+  },
+  {
+    "file": "stage-A.json",
+    "expect": 2
+  },
+  {
+    "file": "stage-dot.json",
+    "expect": 2
+  },
+  {
+    "file": "c-alias.json",
+    "expect": 2
+  },
+  {
+    "file": "config-alias.json",
+    "expect": 2
+  },
+  {
+    "file": "config-env.json",
+    "expect": 2
+  },
+  {
+    "file": "git-config-count.json",
+    "expect": 2
+  },
+  {
+    "file": "config-remote-push.json",
+    "expect": 2
+  },
+  {
+    "file": "brace-group.json",
+    "expect": 2
+  },
+  {
+    "file": "bang.json",
+    "expect": 2
+  },
+  {
+    "file": "if-then.json",
+    "expect": 2
+  },
+  {
+    "file": "while-do.json",
+    "expect": 2
+  },
+  {
+    "file": "redirect-attached.json",
+    "expect": 2
+  },
+  {
+    "file": "push-2to1-on-main.json",
+    "expect": 2,
+    "branch": "main"
+  },
+  {
+    "file": "push-redirect-log-on-main.json",
+    "expect": 2,
+    "branch": "main"
+  },
+  {
+    "file": "push-at-on-main.json",
+    "expect": 2,
+    "branch": "main"
+  },
+  {
+    "file": "env-u.json",
+    "expect": 2
+  },
+  {
+    "file": "sudo-u.json",
+    "expect": 2
+  },
+  {
+    "file": "nice-n.json",
+    "expect": 2
+  },
+  {
+    "file": "timeout.json",
+    "expect": 2
+  },
+  {
+    "file": "stdbuf.json",
+    "expect": 2
+  },
+  {
+    "file": "pipe-sh.json",
+    "expect": 2
+  },
+  {
+    "file": "pwsh-c.json",
+    "expect": 2
+  },
+  {
+    "file": "powershell-c.json",
+    "expect": 2
+  },
+  {
+    "file": "cmd-c.json",
+    "expect": 2
+  },
+  {
+    "file": "node-e.json",
+    "expect": 2
+  },
+  {
+    "file": "var-push.json",
+    "expect": 2
+  },
+  {
+    "file": "xargs-push.json",
+    "expect": 2
+  },
+  {
+    "file": "ps-remove-item.json",
+    "expect": 2
+  },
+  {
+    "file": "ps-semicolon.json",
+    "expect": 2
+  },
+  {
+    "file": "commit-uno-ok.json",
+    "expect": 0
+  },
+  {
+    "file": "push-branch-redirect-ok.json",
+    "expect": 0
+  },
+  {
+    "file": "config-get-alias-ok.json",
+    "expect": 0
+  },
+  {
+    "file": "add-file-redirect-ok.json",
+    "expect": 0
+  },
+  {
+    "file": "node-run-ok.json",
+    "expect": 0
+  },
+  {
+    "file": "rm-single-ok.json",
+    "expect": 0
+  },
+  {
+    "file": "timeout-ok.json",
+    "expect": 0
   }
 ]

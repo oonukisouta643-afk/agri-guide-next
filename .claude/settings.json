@@ -17,13 +17,22 @@
       "Bash(git reset --soft*)",
       "Bash(git clean*)",
       "Bash(git commit *--no-verify*)",
-      "Bash(git commit *-n *)"
+      "Bash(git commit *-n *)",
+      "Bash(git commit *--no-ve*)",
+      "Bash(git reset --so*)",
+      "Bash(git reset --ha*)",
+      "Bash(git add --a*)",
+      "Bash(git push *--mi*)",
+      "Bash(git push *--de*)",
+      "Bash(git stage -A*)",
+      "Bash(git stage .)",
+      "Bash(git -c *)"
     ]
   },
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Bash",
+        "matcher": "Bash|PowerShell",
         "hooks": [
           {
             "type": "command",
