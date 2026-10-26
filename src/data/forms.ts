@@ -52,3 +52,10 @@ export const surveyForms: SurveyForm[] = [
     url: "https://docs.google.com/forms/d/1JIZSyWLVMPvf3duzFax1zUKC69LSn6z_vhNaMdkueLY/viewform",
   },
 ];
+
+// FORM 06：地域とのつながりがない方の就農相談（/soudan）
+// 出典：docs/INSTRUCTIONS_soudan-page.md（2026年10月25日）。フォームは大貫さんが作る。
+// 段階A（公開前）は "preparing" のまま。URL が空なら、status が "open" でも「準備中」として扱う。
+export type SoudanStatus = "preparing" | "open" | "closed";
+export const FORM06_SOUDAN_STATUS: SoudanStatus = "preparing";
+export const FORM06_SOUDAN_URL: string = "";
