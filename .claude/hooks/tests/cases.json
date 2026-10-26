@@ -1,0 +1,152 @@
+[
+  {
+    "file": "push-main.json",
+    "expect": 2
+  },
+  {
+    "file": "push-u-main.json",
+    "expect": 2
+  },
+  {
+    "file": "push-head-main.json",
+    "expect": 2
+  },
+  {
+    "file": "push-plus-main.json",
+    "expect": 2
+  },
+  {
+    "file": "push-refs-main.json",
+    "expect": 2
+  },
+  {
+    "file": "push-main-force.json",
+    "expect": 2
+  },
+  {
+    "file": "push-force-lease.json",
+    "expect": 2
+  },
+  {
+    "file": "push-dash-c.json",
+    "expect": 2
+  },
+  {
+    "file": "push-sh-c.json",
+    "expect": 2
+  },
+  {
+    "file": "push-bare-on-main.json",
+    "expect": 2,
+    "branch": "main"
+  },
+  {
+    "file": "push-production.json",
+    "expect": 2
+  },
+  {
+    "file": "push-delete.json",
+    "expect": 2
+  },
+  {
+    "file": "add-A.json",
+    "expect": 2
+  },
+  {
+    "file": "add-all.json",
+    "expect": 2
+  },
+  {
+    "file": "add-u.json",
+    "expect": 2
+  },
+  {
+    "file": "add-dot.json",
+    "expect": 2
+  },
+  {
+    "file": "reset-soft.json",
+    "expect": 2
+  },
+  {
+    "file": "reset-hard.json",
+    "expect": 2
+  },
+  {
+    "file": "clean.json",
+    "expect": 2
+  },
+  {
+    "file": "commit-no-verify.json",
+    "expect": 2
+  },
+  {
+    "file": "commit-nm.json",
+    "expect": 2
+  },
+  {
+    "file": "config-hookspath.json",
+    "expect": 2
+  },
+  {
+    "file": "c-hookspath.json",
+    "expect": 2
+  },
+  {
+    "file": "names-env-commit.json",
+    "expect": 2
+  },
+  {
+    "file": "push-origin-head-on-main.json",
+    "expect": 2,
+    "branch": "main"
+  },
+  {
+    "file": "chain-push-main.json",
+    "expect": 2
+  },
+  {
+    "file": "rm-rf.json",
+    "expect": 2
+  },
+  {
+    "file": "push-branch.json",
+    "expect": 0
+  },
+  {
+    "file": "push-u-branch.json",
+    "expect": 0
+  },
+  {
+    "file": "add-file.json",
+    "expect": 0
+  },
+  {
+    "file": "add-dotfile.json",
+    "expect": 0
+  },
+  {
+    "file": "commit-msg-quoted.json",
+    "expect": 0
+  },
+  {
+    "file": "grep-quoted.json",
+    "expect": 0
+  },
+  {
+    "file": "commit-am.json",
+    "expect": 0
+  },
+  {
+    "file": "config-hookspath-ok.json",
+    "expect": 0
+  },
+  {
+    "file": "status.json",
+    "expect": 0
+  },
+  {
+    "file": "broken-json.json",
+    "expect": 2
+  }
+]

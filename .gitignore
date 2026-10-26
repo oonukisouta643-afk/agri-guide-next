@@ -34,3 +34,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Claude Code のローカル専用（実名の一覧など。コミットしない）
+/.claude/local/

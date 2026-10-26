@@ -1,0 +1,2 @@
+# pre-commit はシェルスクリプトなので、Windows でも改行を LF のままにする
+.githooks/pre-commit text eol=lf

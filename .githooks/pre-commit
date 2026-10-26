@@ -1,0 +1,4 @@
+#!/bin/sh
+# コミットの前に、実名・削除の数・非公開の資料・言い過ぎ・型と lint を確かめる。
+# 有効にするには：git config core.hooksPath .githooks（npm install の prepare でも設定される）
+exec node "$(git rev-parse --show-toplevel)/.githooks/precommit-check.mjs"
