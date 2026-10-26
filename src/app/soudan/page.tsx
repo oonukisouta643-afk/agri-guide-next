@@ -24,14 +24,15 @@ const CONSENT_TEXT =
 // 公的な窓口のリンクは、シミュレーターの窓口案内（src/data/windowReferral.ts）で使っているものを流用する。
 const SUPPORT_CENTER_URL = windowReferrals.fukunou.url;
 
-function PublicWindows() {
+// 「大事なこと」では「〜担当課もあります。」、受付終了の文では「〜担当課があります。」（指示書の文のまま）。
+function PublicWindows({ ending = "もあります。" }: { ending?: "もあります。" | "があります。" }) {
   return (
     <>
       公的な窓口として、
       <ExternalLink href={SUPPORT_CENTER_URL} className="text-green-700 underline">
         福島県農業経営・就農支援センター
       </ExternalLink>
-      や各市町村の担当課もあります。
+      や各市町村の担当課{ending}
     </>
   );
 }
@@ -58,7 +59,7 @@ export default function SoudanPage() {
         {status === "closed" && (
           <WarningBox type="warn">
             相談の受け付けは終了しました。
-            <PublicWindows />
+            <PublicWindows ending="があります。" />
           </WarningBox>
         )}
 
