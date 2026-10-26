@@ -1,15 +1,16 @@
-// タブ⑤：競合ポジション（直接競合ゼロの独自ポジション）
+// タブ⑤：競合ポジション（調べた範囲で直接重なるサービスが見当たらない立ち位置）
+// 2026年10月26日：見出しと Agri-Guide の特徴の言い過ぎを弱めた（docs/INSTRUCTIONS_admin-overview.md「5.」）。
 // 出典：「AgriGuide_プロジェクト完全記録」8章「競合分析・ポジショニング」より転記（実データ）。
 
 export const competitorHeadline =
-  "直接競合ゼロ。「地域特化×就農前の潜在層」というポジションを取るサービスが現時点で存在しない。";
+  "調べた範囲では、「地域特化×就農前の潜在層」を主な対象にしたサービスは見当たりませんでした。";
 
 export const competitors = [
   {
     service: "Agri-Guide",
     target: "潜在層（漠然と興味）",
     relation: "本体",
-    feature: "地域特化×解像度向上。直接競合ゼロの独自ポジション",
+    feature: "地域特化×解像度向上",
     isSelf: true,
   },
   {
