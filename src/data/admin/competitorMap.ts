@@ -17,7 +17,7 @@ export const competitors = [
     service: "ふくのう",
     target: "就農検討者",
     relation: "送客先・補完",
-    feature: "福島県公式。就農相談・研修紹介。潜在層へのリーチなし",
+    feature: "福島県公式。就農相談・研修紹介",
     isSelf: false,
   },
   {

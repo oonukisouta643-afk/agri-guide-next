@@ -9,7 +9,7 @@ import { OverviewTab } from "@/components/admin/OverviewTab";
 import { EcosystemTab } from "@/components/admin/EcosystemTab";
 import { AdminOverviewTab } from "@/components/admin/AdminOverviewTab";
 
-// / admin　行政向け提案書：7タブ切り替え式
+// / admin　行政向け提案書：タブ切り替え式
 // 出典：AgriGuide_Next移行_要件定義書v2.0 §2「/ admin」（①〜⑤）
 // ⑥は①〜⑤を踏まえた総括タブ（2026年8月17日追加・ユーザー依頼による）
 // ⑦は2026年9月3日の合同相談会・9月5日の意義性整理を踏まえた支援体制マップ（2026年9月5日追加）
