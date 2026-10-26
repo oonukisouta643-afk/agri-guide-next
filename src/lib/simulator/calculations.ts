@@ -125,7 +125,7 @@ export function calcFunding(s: SimulatorState): FundingResult {
     name: "新規就農者チャレンジ事業（令和8年度新設）",
     amountText: "国庫補助3/10以内・上限1,500万円（個人）／3,000万円（法人）",
     badge: "req",
-    note: "経営開始後5年以内の方の機械・施設整備向け。独立・自営就農時65歳未満で、青年等就農計画の認定を受けた方が対象（経営発展支援事業を使った方も利用可）。実施主体は市町村。",
+    note: "経営開始後5年以内の方の機械・施設整備向け。独立・自営就農時65歳未満で、青年等就農計画の認定を受けた方が対象（経営発展支援事業を使った方も、青年等就農計画の目標を達成済み、または達成できる見込みであれば利用可）。実施主体は市町村。",
     warn: "要件の詳細は市町村の農業担当窓口に確認してください。",
   });
 
@@ -228,8 +228,9 @@ export function calcCropCoverage(crops: CropKey[]): CropCoverage {
 }
 
 // Q8「目標年収」ライブ補助金カバー率（旧版updIncome()の移植）
+// 2026年10月26日：就農準備資金・経営開始資金の令和8年度からの新規交付分（年165万円）に合わせて 150→165。
 export function calcIncomeCoverPercent(income: number): number {
-  return Math.min(95, Math.round((150 / income) * 100));
+  return Math.min(95, Math.round((165 / income) * 100));
 }
 
 // ---------------------------------------------------------------------------
