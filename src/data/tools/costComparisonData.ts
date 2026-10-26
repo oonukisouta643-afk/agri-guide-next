@@ -4,7 +4,7 @@
 //
 // 加えて、旧サイト（netlify-0816/agri-tools.html 206-221, 706-795行）の
 // 「東京での手取り月収スライダー（20〜50万円）で人物像と収支が動的に切り替わる」インタラクションを移植。
-// 家賃・食費・光熱費・交通費・通信費・娯楽交際費の内訳、就農準備資金（年150万円＝月12.5万円）、
+// 家賃・食費・光熱費・交通費・通信費・娯楽交際費の内訳、就農準備資金（旧サイトでは年150万円＝月12.5万円。2026年10月26日に令和8年度からの年165万円＝月13.75万円へ更新）、
 // ペルソナ名・説明文・コメント文の計算式・しきい値は全て旧サイトの実データ・実ロジックをそのまま移植したもの。
 // 出典：SUUMO 2024年12月データ（福島市周辺家賃）、総務省家計調査2024年・単身世帯データ（旧サイト303-305行）
 
@@ -136,13 +136,13 @@ export function computeIncomeComparison(income: number): IncomeComparison {
   const fComm = 1.0;
   const fEnter = 1.5;
   const fTotal = fRent + fFood + fUtil + fTrans + fComm + fEnter;
-  const subsidy = 12.5; // 就農準備資金 年150万円÷12
+  const subsidy = 13.75; // 就農準備資金 年165万円÷12（令和8年度からの新規交付分）
   const fLeft = subsidy - fTotal;
 
   // コメント
   let comment: string;
   if (income <= 25) {
-    comment = `${personaName}の場合、東京では毎月${tokyoLeft.toFixed(1)}万円しか残りません。就農研修中の補助金（月12.5万円）だけでも、支出を抑えれば生活できる水準です。農業収入が加わる就農3年目以降はさらに改善します。`;
+    comment = `${personaName}の場合、東京では毎月${tokyoLeft.toFixed(1)}万円しか残りません。就農研修中の補助金（月13.75万円）だけでも、支出を抑えれば生活できる水準です。農業収入が加わる就農3年目以降はさらに改善します。`;
   } else if (income <= 35) {
     comment = `${personaName}の場合、東京では${tokyoLeft.toFixed(1)}万円残りますが、研修中の福島でも補助金だけで${fLeft >= 0 ? "+" : ""}${fLeft.toFixed(1)}万円残ります。収入は下がりますが生活コストも下がるため、手元に残るお金の差は思ったより小さいかもしれません。`;
   } else {

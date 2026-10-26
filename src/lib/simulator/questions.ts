@@ -144,7 +144,7 @@ export const questions: Question[] = [
     kind: "single",
     key: "exp",
     title: "農業の経験はありますか？",
-    subtitle: "経験ゼロでも大丈夫。年150万円の補助を受けながら研修できます。",
+    subtitle: "経験ゼロでも大丈夫。年165万円の補助を受けながら研修できます。",
     options: [
       { value: "none", label: "全くない", icon: "🌱" },
       { value: "garden", label: "家庭菜園程度", icon: "🪴" },
