@@ -66,8 +66,11 @@ const initialCostByCrop: Partial<Record<CropKey, string>> = {
 export function calcFunding(s: SimulatorState): FundingResult {
   // 50歳以上は就農準備資金の対象外（trainOk）
   const trainOk = s.age !== "50p";
-  // 東京圏・その他都市部からの移住はふくしま移住支援金の対象（fromTokyo）
-  const fromTokyo = s.loc === "tokyo" || s.loc === "other";
+  // ふくしま移住支援金は、東京23区に住んでいた人・東京圏から23区へ通勤していた人などが対象（fromTokyo）。
+  // 東京圏以外の都市部（「その他の都市部」）は対象にならない。
+  // 出典：福島県「ふくしま移住支援金給付事業について」https://www.pref.fukushima.lg.jp/sec/11025b/iju.html
+  // （2026年7月27日更新）。2026年10月27日に確認。
+  const fromTokyo = s.loc === "tokyo";
 
   const items: SubsidyItem[] = [];
   let maxTotal = 0;
@@ -120,11 +123,11 @@ export function calcFunding(s: SimulatorState): FundingResult {
       : "50歳以上は対象外です（49歳以下が条件）。",
   });
 
-  // 4.5 新規就農者チャレンジ事業（令和8年度新設・常時案内）
+  // 4.5 新規就農者チャレンジ事業（令和7年度補正予算・常時案内）
   // 出典：src/data/subsidies.ts の福島県タブ（2026年9月1日に福島県農業担い手課に確認、農水省公開ページで裏付け）
   items.push({
     icon: "🏗️",
-    name: "新規就農者チャレンジ事業（令和8年度新設）",
+    name: "新規就農者チャレンジ事業（令和7年度補正予算）",
     amountText: "国庫補助3/10以内・上限1,500万円（個人）／3,000万円（法人）",
     badge: "req",
     note: "経営開始後5年以内の方の機械・施設整備向け。独立・自営就農時65歳未満で、青年等就農計画の認定を受けた方が対象（経営発展支援事業を使った方も、青年等就農計画の目標を達成済み、または達成できる見込みであれば利用可）。実施主体は市町村。",
@@ -141,7 +144,7 @@ export function calcFunding(s: SimulatorState): FundingResult {
     warn: "詳細はJAふくしま未来の各地区本部に確認してください。",
   });
 
-  // 6. ふくしま移住支援金（東京圏・その他都市部からの移住のみ）
+  // 6. ふくしま移住支援金（東京圏からの移住のみ）
   if (fromTokyo) {
     const isSingle = s.family === "single";
     items.push({
@@ -149,7 +152,7 @@ export function calcFunding(s: SimulatorState): FundingResult {
       name: `ふくしま移住支援金（${isSingle ? "単身60万円" : "家族100万円"}）`,
       amountText: isSingle ? "60万円（一時金）" : "100万円（一時金）",
       badge: "ok",
-      note: "東京圏からの移住に対して支給される一時金。",
+      note: "東京23区に住んでいた人や、東京圏（東京・埼玉・千葉・神奈川）から23区へ通勤していた人などが移住したときに支給される一時金。",
       warn: "転入前に市町村窓口で必ず要件確認してください。",
     });
     maxTotal += isSingle ? 60 : 100;
@@ -434,7 +437,7 @@ export function nextStepByLevel(level: MotivationLevel): { message: string; url:
       };
     case 2:
       return {
-        message: "ふくのうへの就農相談を予約しましょう（オンライン可・無料）",
+        message: "就農支援センターへの相談を、ふくのうから申し込みましょう（オンライン相談も選べます）",
         url: "https://start-fukuagri.jp/syuno/",
       };
     default:

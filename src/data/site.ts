@@ -4,7 +4,7 @@
 export const siteConfig = {
   name: "Agri-Guide",
   fullName: "県北ふくしまAgri-Guide",
-  url: "https://fukushima-agri-guide.jp",
+  url: "https://www.fukushima-agri-guide.jp",
   contactEmail: "oonukisouta643@gmail.com",
 };
 

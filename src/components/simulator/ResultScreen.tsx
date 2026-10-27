@@ -65,8 +65,8 @@ const fukunouLinks = [
   {
     href: "https://start-fukuagri.jp/support/",
     icon: "📞",
-    title: "ふくのうに相談",
-    desc: "無料・就農前でもOK",
+    title: "就農支援センターに相談",
+    desc: "ふくのうから申し込み・就農前でもOK",
   },
 ];
 
@@ -428,9 +428,9 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
       {/* ⑩ ふくのうへの4リンクグリッド（旧版344〜359行目のアイコン＋説明カード構成を移植） */}
       <Reveal>
         <Card>
-          <h3 className="font-bold text-ink">次のステップ：ふくのうへ相談する</h3>
+          <h3 className="font-bold text-ink">次のステップ：就農支援センターに相談する</h3>
           <p className="mt-2 text-sm leading-relaxed text-ink">
-            シミュレーションで方向性が見えてきたら、福島県の公式就農支援窓口「ふくのう」に相談してみてください。お試し就農体験・就農相談・研修機関の紹介まで、無料でサポートしてもらえます。
+            シミュレーションで方向性が見えてきたら、県の就農サイト「ふくのう」から、福島県農業経営・就農支援センターへの相談を申し込めます。ふくのうには、お試し就農体験や就農の手順の案内もあります。
           </p>
           <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
             {fukunouLinks.map((link) => (
