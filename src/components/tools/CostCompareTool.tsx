@@ -166,7 +166,7 @@ export function CostCompareTool() {
                 <>
                   +{result.fukushima.subsidy.toFixed(1)}万円/月
                   <br />
-                  <span className="text-[10px]">(年150万円)</span>
+                  <span className="text-[10px]">(年165万円)</span>
                 </>
               }
               highlight
