@@ -55,7 +55,7 @@ export const timelinePhases: TimelinePhase[] = [
     icon: "📚",
     dotColorClass: "bg-green-500",
     checklist: [
-      "農業研修機関に登録（就農準備資金 年150万円スタート）",
+      "農業研修機関に登録（就農準備資金 年165万円スタート）",
       "農地バンク経由で農地情報を収集",
       "日本政策金融公庫に農業融資の相談",
     ],
@@ -83,7 +83,7 @@ export const timelinePhases: TimelinePhase[] = [
     icon: "🌱",
     dotColorClass: "bg-green-700",
     checklist: [
-      "経営開始資金の申請（年150万円×最長3年）",
+      "経営開始資金の申請（年165万円×最長3年）",
       "青色申告の開始（税務署に申請）",
       "ふくのう・農業委員会との定期相談を継続",
     ],

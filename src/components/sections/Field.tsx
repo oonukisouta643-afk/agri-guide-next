@@ -124,11 +124,6 @@ const teaserCards = [
     description: "果樹研究所・元JA人脈経由で福島県北地域農家へのヒアリングを実施中",
   },
   {
-    icon: "📊",
-    title: "需給ギャップ分析（8月予定）",
-    description: "農家・行政側の認識と就農希望者の実態を照合したレポートを行政へ無償提供",
-  },
-  {
     icon: "🏛️",
     title: "2026年度 政策の追い風",
     description: "農業構造転換集中対策が494億円に倍増・地域計画早期実現支援枠（上限600万円）新設",
@@ -175,7 +170,7 @@ export function Field() {
         </div>
       </Reveal>
 
-      <div className="mx-auto mt-4 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-3">
+      <div className="mx-auto mt-4 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2">
         {teaserCards.map((card, i) => (
           <Reveal key={card.title} delayMs={i * 75}>
             <Card className="h-full">
