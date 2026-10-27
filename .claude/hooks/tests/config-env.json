@@ -1,0 +1,1 @@
+{"tool_name":"Bash","tool_input":{"command":"git --config-env=core.hooksPath=X commit -m x"}}

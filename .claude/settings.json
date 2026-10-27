@@ -1,0 +1,49 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(git push *main*)",
+      "Bash(git push *production*)",
+      "Bash(git push *--force*)",
+      "Bash(git push *-f *)",
+      "Bash(git push *--mirror*)",
+      "Bash(git push *--delete*)",
+      "Bash(git add -A)",
+      "Bash(git add -A *)",
+      "Bash(git add --all*)",
+      "Bash(git add -u*)",
+      "Bash(git add .)",
+      "Bash(git add . *)",
+      "Bash(git reset --hard*)",
+      "Bash(git reset --soft*)",
+      "Bash(git clean*)",
+      "Bash(git commit *--no-verify*)",
+      "Bash(git commit *-n *)",
+      "Bash(git commit *--no-ve*)",
+      "Bash(git reset --so*)",
+      "Bash(git reset --ha*)",
+      "Bash(git add --a*)",
+      "Bash(git push *--mi*)",
+      "Bash(git push *--de*)",
+      "Bash(git stage -A*)",
+      "Bash(git stage .)",
+      "Bash(git -c *)",
+      "Bash(gh pr merge*)",
+      "Bash(gh * pr merge*)",
+      "Bash(gh api *merge*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/guard-bash.mjs\"",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
