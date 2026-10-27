@@ -27,7 +27,7 @@ export function StatsStrip() {
   return (
     <section className="border-y border-green-200 bg-white px-5 py-8 sm:px-10">
       <Reveal>
-        <div className="mx-auto grid max-w-5xl grid-cols-2 gap-x-4 gap-y-6 text-center sm:grid-cols-3 sm:gap-y-0">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-x-4 gap-y-6 text-center sm:grid-cols-3 sm:gap-y-0">
           {stats.map((stat) => (
             <div key={stat.label}>
               <p className="font-serif text-2xl font-bold leading-tight text-green-700 sm:text-3xl">

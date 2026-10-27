@@ -98,7 +98,7 @@ export const regions: Region[] = [
     timingKeys: ["w1y", "w3y", "o3y", "info"],
     description: "座学＋実習の訓練プログラムと、住宅取得支援を用意。",
     push: "農業ビジネス訓練所で座学＋実習。未経験でも体系的に学べる研修体制あり。",
-    tradeoff: "もも産出額は伊達市（38.9億円）が大きく、国見町（22.2億円）と桑折町（23.1億円）は同じくらい（農林水産省 市町村別農業産出額〈推計〉令和5年）。",
+    tradeoff: "ももの産出額は伊達市の方が大きい（令和5年。東北農政局 福島県拠点「MAFF NAVI ふくしま」）。",
     link: "https://www.town.kunimi.fukushima.jp",
   },
   {
