@@ -87,7 +87,7 @@ export function ProfitTool() {
       </Card>
 
       <WarningBox type="warn" className="mt-3">
-        ⚠️ 全て全国平均値ベースの仮データです。実際の収益は品種・規模・経営能力により大きく異なります。2026年8月に農家ヒアリングデータで更新予定。
+        ⚠️ 全て全国平均値ベースの仮データです。実際の収益は品種・規模・経営能力により大きく異なります。
       </WarningBox>
 
       <Link

@@ -142,7 +142,7 @@ export function Field() {
           <Card>
             <p className="font-bold text-ink">データを社会に届ける</p>
             <p className="mt-2 text-sm text-muted">
-              みなさんの回答は、行政や関係団体への提案資料としても活用され、支援制度の充実につながります。
+              みなさんの回答は、行政や関係団体への提案資料にも使わせていただくことがあります。
             </p>
           </Card>
         </Reveal>

@@ -43,7 +43,7 @@ export const timelinePhases: TimelinePhase[] = [
     checklist: [
       "就農支援センターへの相談を「ふくのう」から申し込む",
       "農業委員会に農地情報を問い合わせる",
-      "農業経営改善計画の骨子を作る",
+      "青年等就農計画（認定新規就農者になるための計画）の骨子を作る",
     ],
     nextAction: "就農支援センターへの相談の申し込み",
     link: { text: "就農シミュレーターを試す", href: "/simulator" },
@@ -69,7 +69,7 @@ export const timelinePhases: TimelinePhase[] = [
     icon: "📝",
     dotColorClass: "bg-green-600",
     checklist: [
-      "認定新規就農者の申請（農業委員会）",
+      "認定新規就農者の申請（市町村に青年等就農計画を提出）",
       "ふくしま移住支援金の要件確認（転入前に必須）",
       "農機・施設の発注・準備",
     ],

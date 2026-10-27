@@ -124,7 +124,7 @@ export function CalendarTool() {
             <p className="text-sm font-bold text-ink">{crop.productionAreas.join("・")}</p>
             <p className="mt-1.5 text-xs leading-relaxed text-muted">{crop.life}</p>
             <p className="mt-2.5 rounded bg-white p-2.5 text-[11px] text-gold">
-              ⚠️ 産地データは2026年8月の農家ヒアリング後に実数値で更新予定。現在は概算です。
+              ⚠️ 産地データは概算です。
             </p>
           </Card>
           <button
@@ -213,7 +213,7 @@ export function CalendarTool() {
           })()}
 
           <WarningBox type="warn" className="mt-3">
-            ⚠️ 仮データです。産地・品目情報は2026年8月の農家ヒアリング後に更新予定。
+            ⚠️ 仮データです。産地・品目の情報は、確かめられたものから更新します。
           </WarningBox>
 
           <Link
