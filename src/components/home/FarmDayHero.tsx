@@ -591,12 +591,13 @@ export default function FarmDayHero({ secondsPerDay = DEFAULT_SECONDS_PER_DAY }:
           <NearLayer riceNear={ids.riceNear} />
           <Shadows trees={backTrees} dx={shadowDx} opacity={shadowOp} />
           <TreesLayer trees={backTrees} />
-          <Mower x={mowerX} y={604} s={2} opacity={idx === 3 ? 1 : 0} />
-          <Person x={1020} y={606} s={1.85} opacity={idx === 0 && t > 0.03 ? 1 : 0} />
-          <Crates x={1062} y={608} s={1.9} n={6} opacity={idx === 0 ? 1 : 0} />
           <Person x={930} y={394} s={1.1} opacity={(idx === 1 && frac > 0.08) || idx === 4 ? 1 : 0} />
           <Shadows trees={frontTrees} dx={shadowDx} opacity={shadowOp} />
           <TreesLayer trees={frontTrees} />
+          {/* 主役の人と機械は、手前の列の木より前に描く（木に隠れないように） */}
+          <Mower x={mowerX} y={636} s={2} opacity={idx === 3 ? 1 : 0} />
+          <Person x={940} y={636} s={2.1} opacity={idx === 0 && t > 0.03 ? 1 : 0} />
+          <Crates x={968} y={638} s={2.1} n={6} opacity={idx === 0 ? 1 : 0} />
 
           {/* 光：朝夕の色かぶりと夜の暗さ */}
           <rect x="0" y="280" width="1440" height="360" fill={L.tint} opacity={L.tintA * 0.8} />
@@ -652,7 +653,7 @@ export default function FarmDayHero({ secondsPerDay = DEFAULT_SECONDS_PER_DAY }:
       {/* 幅が狭いときの配置（Tailwind に置き換える場合は、同じ意味のクラスにする） */}
       <style>{`
         @media (min-width: 761px) { .fdh-card { position: absolute; top: 40px; left: 40px; max-width: 500px; } }
-        @media (max-width: 760px) { .fdh-card { position: relative; margin: -28px 16px 0; } .fdh-facts { grid-template-columns: minmax(0, 1fr) !important; } }
+        @media (max-width: 760px) { .fdh-card { position: relative; margin: 12px 16px 0; } .fdh-facts { grid-template-columns: minmax(0, 1fr) !important; } }
       `}</style>
     </section>
   );
