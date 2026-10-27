@@ -102,7 +102,7 @@ export function computeIncomeComparison(income: number): IncomeComparison {
     personaDesc =
       "東京・一人暮らし3年目。手取りは少なく家賃を払うと余裕がほとんどない。農業への興味はあるが「お金が心配」と感じている。";
   } else if (income <= 32) {
-    personaName = "田中さん（35歳・独身）";
+    personaName = "高橋さん（35歳・独身）";
     personaDesc =
       "東京・一人暮らし8年目。会社員として働きながら農業に関心を持ち始めた。補助金込みの農業収入と比べてみると意外な発見がある。";
   } else if (income <= 42) {
