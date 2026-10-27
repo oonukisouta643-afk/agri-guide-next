@@ -376,7 +376,11 @@ const timingRules: Partial<Record<CropKey, TimingRule>> = {
   },
 };
 
+// 申し込みの時期と締め切りは出典が確かめられないため、確かめられるまで出さない（2026年10月27日）。
+const SHOW_TIMING_ALERTS: boolean = false;
+
 export function calcTimingAlerts(crops: CropKey[], currentMonth: number): TimingAlert[] {
+  if (!SHOW_TIMING_ALERTS) return [];
   return crops
     .filter((c): c is keyof typeof timingRules => c in timingRules)
     .map((crop) => {
@@ -442,7 +446,7 @@ export function nextStepByLevel(level: MotivationLevel): { message: string; url:
       };
     default:
       return {
-        message: "まずはお試し就農体験から始めてみましょう（1〜3日・無料）",
+        message: "まずはふくのうで、体験や実習の募集を見てみましょう",
         url: "https://start-fukuagri.jp/trainee/",
       };
   }

@@ -48,7 +48,7 @@ const fukunouLinks = [
     href: "https://start-fukuagri.jp/trainee/",
     icon: "🌱",
     title: "お試し就農体験",
-    desc: "1〜3日間・無料・交通費補助あり",
+    desc: "ふくのうで募集の情報を確認",
   },
   {
     href: "https://start-fukuagri.jp/procedure/",
@@ -60,7 +60,7 @@ const fukunouLinks = [
     href: "https://start-fukuagri.jp/modelcase/",
     icon: "👨‍🌾",
     title: "就農ロールモデル",
-    desc: "実例・収益数字あり",
+    desc: "就農した方の実例",
   },
   {
     href: "https://start-fukuagri.jp/support/",

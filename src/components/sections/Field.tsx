@@ -200,7 +200,7 @@ export function Field() {
               <div>
                 <p className="font-bold text-ink">農家プロフィール（掲載中）</p>
                 <p className="mt-1 text-sm text-muted">
-                  実際に福島県北地域で農業をしている農家さんの声・プロフィールを公開中。話を聞いてみたい方はこちら →
+                  農家さんの声・プロフィールのページです（いまは仮データ。実際の方の声を集めています）→
                 </p>
               </div>
             </Card>

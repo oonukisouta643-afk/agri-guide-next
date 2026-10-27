@@ -16,7 +16,7 @@ import { surveyForms } from "@/data/forms";
 export const metadata: Metadata = {
   title: "農家プロフィール",
   description:
-    "福島県北地域で実際に就農した方々のプロフィール。就農前の職業・自己資金・農業歴を包み隠さず紹介します。",
+    "就農した方のプロフィールを載せるページです（現在は仮データ。実際の方の声を集めています）。",
 };
 
 const form01 = surveyForms.find((f) => f.id === "FORM 01");

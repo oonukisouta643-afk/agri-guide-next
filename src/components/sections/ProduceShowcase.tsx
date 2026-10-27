@@ -23,7 +23,7 @@ export function ProduceShowcase() {
               農業の<span className="font-bold text-green-700">豊かさ</span>を知っていますか？
             </>
           }
-          lead="盆地の寒暖差と豊かな水が、桃・りんご・梨・さくらんぼ・きゅうりなど多様な品目を育てます。東京から新幹線で約80分の立地です。"
+          lead="盆地の寒暖差と豊かな水が、桃・りんご・梨・さくらんぼ・きゅうりなど多様な品目を育てます。"
         />
       </Reveal>
 
