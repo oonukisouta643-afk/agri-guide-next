@@ -67,7 +67,7 @@ export const placeholderItems: PlaceholderItem[] = [
   },
   {
     area: "地域カードの「詳細を確認する」リンク先",
-    detail: "6地域すべて暫定的に県北地方総合相談窓口の共通ページにリンク",
+    detail: "6地域すべて暫定的に県北農林事務所のページにリンク",
     file: "src/data/regions.ts",
     needsFrom: "地域別の個別ページURL",
   },
