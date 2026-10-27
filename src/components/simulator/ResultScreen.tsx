@@ -223,21 +223,8 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
                 <td className="py-2 text-muted">就農1年目の総費用</td>
                 <td className="py-2 text-right font-mono font-bold text-ink">中央値 約400万円</td>
               </tr>
-              <tr className="bg-green-50">
-                <td className="py-2 font-bold text-green-700">
-                  補助金＋融資 合計上限（全制度合算）
-                </td>
-                <td className="py-2 text-right font-mono text-base font-black text-green-700">
-                  最大750万円以上
-                </td>
-              </tr>
             </tbody>
           </table>
-          <p className="mt-2 text-xs leading-relaxed text-muted">
-            ※ 上部「受給可能な補助金」（あなたの回答から算出した給付金の目安）とは別の数値です。
-            こちらは給付金に加えて日本政策金融公庫の融資枠なども含めた、全制度を合算した理論上の
-            上限額であり、実際に受け取れる金額とは異なります。
-          </p>
         </Card>
       </Reveal>
 
