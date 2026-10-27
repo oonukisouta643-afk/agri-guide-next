@@ -32,7 +32,7 @@ export const windowReferrals: Record<WindowKey, WindowReferral> = {
   fukunou: {
     key: "fukunou",
     name: "福島県農業経営・就農支援センター",
-    desc: "県・JAグループ福島・県農業会議・県農業振興公社が共同で運営する相談窓口です。就農の手順・補助金・研修先などを相談できます。県の就農サイト「ふくのう」から申し込め、オンライン（Zoom）相談も選べます。",
+    desc: "県・JAグループ福島・県農業会議・県農業振興公社が共同で運営する相談窓口です。就農の手順や補助金などを相談できます。県の就農サイト「ふくのう」から申し込め、オンライン（Zoom）相談も選べます。",
     url: "https://start-fukuagri.jp/syuno/",
     label: "ふくのうから相談を申し込む",
     color: "#2D7A2D",

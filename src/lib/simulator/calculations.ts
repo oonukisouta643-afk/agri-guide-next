@@ -152,7 +152,7 @@ export function calcFunding(s: SimulatorState): FundingResult {
       name: `ふくしま移住支援金（${isSingle ? "単身60万円" : "家族100万円"}）`,
       amountText: isSingle ? "60万円（一時金）" : "100万円（一時金）",
       badge: "ok",
-      note: "東京圏からの移住に対して支給される一時金。",
+      note: "東京23区に住んでいた人や、東京圏（東京・埼玉・千葉・神奈川）から23区へ通勤していた人などが移住したときに支給される一時金。",
       warn: "転入前に市町村窓口で必ず要件確認してください。",
     });
     maxTotal += isSingle ? 60 : 100;
@@ -437,7 +437,7 @@ export function nextStepByLevel(level: MotivationLevel): { message: string; url:
       };
     case 2:
       return {
-        message: "ふくのうへの就農相談を予約しましょう（オンライン可・無料）",
+        message: "就農支援センターへの相談を、ふくのうから申し込みましょう（オンライン相談も選べます）",
         url: "https://start-fukuagri.jp/syuno/",
       };
     default:

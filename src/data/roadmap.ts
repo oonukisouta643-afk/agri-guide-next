@@ -21,8 +21,9 @@ export function buildRoadmap(s: SimulatorState): RoadmapStep[] {
   const trainOk = s.age !== "50p";
   // 農業バイト経験あり／研修経験ありは「経験者」として研修フェーズをスキップ
   const hasExp = s.exp === "part" || s.exp === "train";
-  // 東京圏・その他都市部からの移住はふくしま移住支援金の対象
-  const fromTokyo = s.loc === "tokyo" || s.loc === "other";
+  // ふくしま移住支援金は東京23区在住・東京圏から23区へ通勤などが対象（「その他の都市部」は対象外）。
+  // 出典：福島県「ふくしま移住支援金給付事業について」（2026年7月27日更新）。calculations.ts と同じ条件。
+  const fromTokyo = s.loc === "tokyo";
 
   if (!hasExp) {
     steps.push({
@@ -43,13 +44,12 @@ export function buildRoadmap(s: SimulatorState): RoadmapStep[] {
     steps.push({
       icon: "📋",
       phase: "まず最初に",
-      title: "ふくのうに就農相談の予約を入れる",
+      title: "就農支援センターへの相談を申し込む",
       description:
         "農業経験がある場合は具体的な就農相談から入るのがスムーズです。認定新規就農者の認定に向けた計画づくりをサポートしてもらえます。",
       details: [
         "📞 相談先：福島県農業経営・就農支援センター（申し込みは「ふくのう」から）",
-        "🌐 start-fukuagri.jp/support/ から予約",
-        "💰 相談費用：無料",
+        "🌐 start-fukuagri.jp/syuno/ から申し込み（オンライン相談も選べます）",
         "📋 農業経営改善計画の作成サポートあり",
       ],
     });
@@ -65,7 +65,7 @@ export function buildRoadmap(s: SimulatorState): RoadmapStep[] {
       details: [
         "💰 就農準備資金：年間165万円（月13.75万円。令和8年度からの新規交付分）を最長2年間受給",
         "📅 研修期間：年間1,200時間以上が条件",
-        "🏛️ 登録先：ふくのう経由で研修機関を紹介してもらえます",
+        "🏛️ 研修先の探し方：就農支援センター（申し込みは「ふくのう」から）に相談できます",
         "📋 start-fukuagri.jp/procedure/ で就農ステップ全体を確認",
         "⚠️ 研修機関への登録は就農の1〜2年前が目安",
       ],
@@ -114,7 +114,7 @@ export function buildRoadmap(s: SimulatorState): RoadmapStep[] {
       details: [
         "💰 支給額：単身60万円・家族100万円（一時金）",
         "📍 申請先：転入先の市町村担当窓口",
-        "🗼 対象：東京圏（東京・神奈川・埼玉・千葉・茨城・栃木・群馬・山梨）からの移住",
+        "🗼 対象：東京23区に住んでいた方、東京圏（東京・埼玉・千葉・神奈川）から23区へ通勤していた方など（詳しい要件は県・市町村で確認）",
         "⚠️ 転入後の申請。転入前に要件確認必須",
         "🌐 詳細：福島県公式 ふくしま移住支援金給付事業",
       ],

@@ -88,7 +88,7 @@ export const questions: Question[] = [
     subtitle: "東京圏からの移住だとふくしま移住支援金の対象になりやすいです。",
     hintBand: true,
     options: [
-      { value: "tokyo", label: "東京・首都圏", icon: "🗼" },
+      { value: "tokyo", label: "東京圏（1都3県）", icon: "🗼" },
       { value: "other", label: "その他の都市部", icon: "🏙️" },
       { value: "tohoku", label: "東北地方", icon: "🏔️" },
       { value: "inside", label: "福島県内", icon: "🌿" },
