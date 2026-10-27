@@ -442,7 +442,7 @@ export function nextStepByLevel(level: MotivationLevel): { message: string; url:
       };
     default:
       return {
-        message: "まずはお試し就農体験から始めてみましょう（1〜3日・無料）",
+        message: "ふくのうの「お試し就農生」（農業法人で働く時給制の研修）の募集を確かめてみましょう",
         url: "https://start-fukuagri.jp/trainee/",
       };
   }
