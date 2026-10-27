@@ -111,6 +111,44 @@ export const SEASONS: Season[] = [
   },
 ];
 
+/* ------------------------------------------------------------------ */
+/* 重ねて出すデータ（推測・仮データを含む。値は docs/data/open/ の CSV） */
+/* ------------------------------------------------------------------ */
+
+// 月ごとの忙しさ（もも）。10_果樹の作業の時期.csv の「もも（あかつき・川中島白桃）」の行。
+// 山口県の月別労働時間をもとに、摘果と収穫の時期を福島に合わせた目安（推測）
+const BUSY = [1, 1, 1, 2, 3, 2, 2, 3, 1, 1, 1, 1] as const; // 1=△少ない 2=○忙しい 3=◎とても忙しい
+// 出荷できる月：品種をずらして、平年で7月上旬（はつひめ）〜9月上旬（ゆうぞら）（県 果樹情報）
+const SHIP_MONTHS = [7, 8, 9];
+// 季節ごとの月
+const SEASON_MONTHS: Record<string, number[]> = {
+  spring: [4],
+  "early-summer": [5, 6],
+  summer: [7, 8, 9],
+  autumn: [9, 10],
+  winter: [1, 2],
+};
+// 60aを1人で担う場合の、その季節の1日の作業時間の目安（推測）。
+// 山口県の資料の月別労働時間（h/10a）×6（60a）÷その月の日数。FACTS の「1日 約14時間」と同じ計算
+const DAY_HOURS: Record<string, { when: string; value: string; basis: string } | null> = {
+  spring: null,
+  "early-summer": { when: "一番忙しい5月（摘果）は", value: "約8時間", basis: "山口県の資料の5月 41.2時間/10a から。6月は約2時間" },
+  summer: { when: "一番忙しい8月（収穫）は", value: "約14時間", basis: "山口県の資料の収穫期の月 72.4時間/10a から" },
+  autumn: { when: "月の平均では", value: "1時間未満", basis: "山口県の資料の8〜10月 1〜2時間/10a から。防除や秋肥の日は別" },
+  winter: { when: "剪定の1〜2月は", value: "約2〜4時間", basis: "山口県の資料の1月 20時間・2月 10時間/10a から" },
+};
+// 60a・もも（あかつき）の1〜10年目の農業所得（万円、四捨五入）。09_果樹の試算_60aの10年.csv（仮データ）。
+// 国の支援・経営開始資金は含めない。単価・経営費は長野県の指標で仮置き、新植の収量の立ち上がりは推測
+const INCOME_NEW = [-165, -165, -136, -79, 2, 122, 241, 313, 313, 313];
+const INCOME_INHERIT = [138, 196, 254, 313, 313, 313, 313, 313, 313, 313];
+
+const DATA_SOURCES = [
+  "忙しさ：山口県の月別労働時間をもとに、福島の摘果・収穫の時期に合わせた目安（推測）。",
+  "1日の作業時間：山口県の資料の月別労働時間（10aあたり）×6（60a）÷日数で試算（推測）。春は福島の開花の時期に合う数字が見つかっていないため出していません。兼業なら、忙しい時期は家族の手伝いや雇用が前提になる見込みです。",
+  "出荷できる月：福島県 果樹情報（平年。品種をずらした場合）。",
+  "所得の道のり：Agri-Guide の試算（仮データ）。60a、もも（あかつき）。収量は福島県果樹農業振興計画、単価・経営費は長野県の作目別経営指標で仮置き。新しく植えた場合の収量の立ち上がりは岡山県の資料からの推測で、苗木などの初期投資は含めていません。先輩の園地を受け継いだ場合は、賃貸で受け継ぎ樹体の買い取りはなしとし、収量が1年目7割から4年目に成園並みになる仮定（推測。楽観的な仮定です）。国の支援金・経営開始資金は含めていません。",
+];
+
 const SEASON_SOURCE = "季節の時期の出典：農林水産省 広報誌 aff 2019年5・6月号（福島市飯坂町のもも農家）、福島県 果樹情報（農業振興課。果樹研究所の観測、平年は1986〜2015年の平均）。";
 
 export const FACTS = [
@@ -650,6 +688,107 @@ const Caption = memo(function Caption({ season, idx, onPickSeason, onPick }: { s
   );
 });
 
+/** 景色に重ねるデータの枠（季節ごとの忙しさ・1日の作業時間・出荷できる月・所得の道のり） */
+const DataOverlay = memo(function DataOverlay({ season }: { season: number }) {
+  const se = SEASONS[season];
+  const on = SEASON_MONTHS[se.key];
+  const hours = DAY_HOURS[se.key];
+  // 所得の棒グラフ（1〜10年目、2本ずつ）
+  const W = 300;
+  const H = 72;
+  const max = 320;
+  const zeroY = H * (max / (max + 170));
+  const yOf = (v: number) => zeroY - (v / (max + 170)) * H;
+  const bw = 11;
+  return (
+    <div className="fdh-hud" style={S.hud} role="region" aria-label="データで見る、もも農家の一年">
+      <p style={S.hudHead}>
+        データで見る　<span style={S.hudHeadSub}>もも・60aを1人で担う場合</span>
+      </p>
+
+      {/* 12か月：忙しさと出荷できる月 */}
+      <div>
+        <p style={S.hudLabel}>月ごとの忙しさと、出荷できる月</p>
+        <div style={S.months} role="img" aria-label={`忙しいのは5月と8月。出荷できるのは7月から9月上旬。いまは${se.name}（${se.months}）`}>
+          {BUSY.map((b, i) => {
+            const m = i + 1;
+            const here = on.includes(m);
+            return (
+              <div key={m} style={S.monthCol}>
+                <div style={S.barBox}>
+                  <div
+                    style={{
+                      ...S.bar,
+                      height: `${b * 33}%`,
+                      background: here ? "#FFD27A" : b === 3 ? "rgba(255,255,255,0.75)" : "rgba(255,255,255,0.38)",
+                      boxShadow: here ? "0 0 10px rgba(255,210,122,0.9)" : "none",
+                    }}
+                  />
+                </div>
+                <span style={{ ...S.monthNum, color: here ? "#FFD27A" : "rgba(255,255,255,0.8)", fontWeight: here ? 700 : 400 }}>{m}</span>
+                <span style={{ ...S.ship, opacity: SHIP_MONTHS.includes(m) ? 1 : 0 }}>¥</span>
+              </div>
+            );
+          })}
+        </div>
+        <p style={S.hudNote}>棒の高さ＝忙しさ（目安・推測）。¥＝ももを出荷できる月（品種をずらした場合）</p>
+      </div>
+
+      {/* この季節の1日 */}
+      <div style={S.hudRow}>
+        <p style={S.hudLabel}>
+          {se.name}（{se.months}）の1日の作業時間
+        </p>
+        {hours ? (
+          <>
+            <p style={S.hudBig}>
+              <span style={S.hudWhen}>{hours.when}</span>
+              {hours.value}
+            </p>
+            <p style={S.hudNote}>{hours.basis}（推測）</p>
+          </>
+        ) : (
+          <>
+            <p style={{ ...S.hudBig, fontSize: 20 }}>数字なし</p>
+            <p style={S.hudNote}>福島の開花の時期に合う資料が、まだ見つかっていません</p>
+          </>
+        )}
+      </div>
+
+      {/* 所得の道のり */}
+      <div style={S.hudRow}>
+        <p style={S.hudLabel}>収入が出るまで（1年の農業所得、1〜10年目）</p>
+        <svg viewBox={`0 0 ${W} ${H + 16}`} width="100%" role="img" aria-label="新しく植えた場合は4年目まで赤字で、5年目でほぼ0、6年目から100万円台。先輩の園地を受け継いだ場合は1年目から所得がプラス（仮データ）">
+          {INCOME_NEW.map((v, i) => {
+            const x = 6 + i * 29.4;
+            const v2 = INCOME_INHERIT[i];
+            return (
+              <g key={i}>
+                <rect x={x} y={yOf(Math.max(0, v))} width={bw} height={Math.max(1, yOf(Math.min(0, v)) - yOf(Math.max(0, v)))} fill={v < 0 ? "#F0907A" : "#FFD27A"} />
+                <rect x={x + bw + 1} y={yOf(Math.max(0, v2))} width={bw} height={Math.max(1, yOf(Math.min(0, v2)) - yOf(Math.max(0, v2)))} fill={v2 < 0 ? "#F0907A" : "#9FD6A0"} />
+                <text x={x + bw} y={H + 13} fill="rgba(255,255,255,0.8)" fontSize={10} textAnchor="middle">
+                  {i + 1}
+                </text>
+              </g>
+            );
+          })}
+          {/* ゼロの線は棒の上に描く（5年目のほぼ0の棒が見えるように） */}
+          <line x1={0} x2={W} y1={zeroY} y2={zeroY} stroke="rgba(255,255,255,0.5)" strokeWidth={1} />
+        </svg>
+        <p style={S.hudLegend}>
+          <span style={{ ...S.swatch, background: "#FFD27A" }} />
+          新しく植える（赤字は
+          <span style={{ ...S.swatch, background: "#F0907A", marginLeft: 4 }} />）
+          <span style={{ ...S.swatch, background: "#9FD6A0", marginLeft: 10 }} />
+          先輩の園地を受け継ぐ
+        </p>
+        <p style={S.hudText}>新しく植えると、4年目まで赤字。5年目でほぼ0、6年目から100万円台。先輩の園地を受け継ぐと、1年目から所得がプラス。</p>
+        <p style={S.hudNote}>仮データ（単価・経営費は長野県の指標で仮置き。受け継いだ場合の収量の伸びは楽観的な仮定。初期投資・国の支援金は含めない）。出典は下の「データの出典」に</p>
+      </div>
+    </div>
+  );
+});
+
 /* ------------------------------------------------------------------ */
 /* 本体                                                               */
 /* ------------------------------------------------------------------ */
@@ -901,11 +1040,21 @@ export default function FarmDayHero({ secondsPerDay = DEFAULT_SECONDS_PER_DAY }:
         </div>
       </div>
 
+      <DataOverlay season={season} />
+
       <div style={S.below}>
         <div style={S.progressTrack} aria-hidden="true">
           <div style={{ ...S.progressFill, width: `${Math.max(1, t * 100)}%` }} />
         </div>
         <Caption season={season} idx={idx} onPickSeason={pickSeason} onPick={pick} />
+        <div style={S.sources}>
+          <h2 style={{ ...S.factsTitle, fontSize: 18, margin: 0 }}>データの出典</h2>
+          <ul style={S.sourceList}>
+            {DATA_SOURCES.map((s) => (
+              <li key={s}>{s}</li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       {/* 幅が狭いときの配置（Tailwind に置き換える場合は、同じ意味のクラスにする） */}
@@ -913,6 +1062,8 @@ export default function FarmDayHero({ secondsPerDay = DEFAULT_SECONDS_PER_DAY }:
         @media (min-width: 1025px) { .fdh-card { position: absolute; top: 40px; left: 40px; max-width: 500px; } }
         @media (max-width: 1024px) { .fdh-card { position: relative; margin: 12px 16px 0; } }
         @media (max-width: 760px) { .fdh-facts { grid-template-columns: minmax(0, 1fr) !important; } }
+        @media (min-width: 1440px) { .fdh-hud { position: absolute; top: 56px; right: 24px; width: 340px; } }
+        @media (max-width: 1439px) { .fdh-hud { position: relative; margin: 12px 16px 0; } }
       `}</style>
     </section>
   );
@@ -951,6 +1102,26 @@ const S: Record<string, CSSProperties> = {
   pillSub: { fontSize: 12, fontWeight: 400, opacity: 0.85 },
   seasonNote: { margin: "4px 0 0", fontSize: 14, lineHeight: 1.7, color: SUB, borderTop: `1px dashed ${LINE}`, paddingTop: 10 },
   nowSeason: { margin: 0, fontSize: 14, fontWeight: 700, color: GREEN },
+  // データの重ね表示（暗いガラスの板に、光る線と数字）
+  hud: { background: "rgba(14,22,20,0.72)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)", border: "1px solid rgba(255,210,122,0.45)", boxShadow: "0 0 0 1px rgba(255,255,255,0.06) inset, 0 8px 24px rgba(0,0,0,0.25)", borderRadius: 14, padding: "12px 16px 10px", color: "#FFFFFF", display: "flex", flexDirection: "column", gap: 8 },
+  hudHead: { margin: 0, fontSize: 14, fontWeight: 700, letterSpacing: "0.06em", color: "#FFD27A" },
+  hudHeadSub: { fontSize: 12, fontWeight: 400, color: "rgba(255,255,255,0.8)", letterSpacing: 0 },
+  hudRow: { borderTop: "1px solid rgba(255,210,122,0.3)", paddingTop: 10 },
+  hudLabel: { margin: "0 0 4px", fontSize: 12, fontWeight: 700, color: "rgba(255,255,255,0.9)" },
+  hudBig: { margin: 0, fontSize: 30, fontWeight: 700, lineHeight: 1.15, color: "#FFD27A", textShadow: "0 0 12px rgba(255,210,122,0.55)" },
+  hudText: { margin: "4px 0 0", fontSize: 13, lineHeight: 1.6 },
+  hudWhen: { display: "block", fontSize: 12, fontWeight: 400, color: "rgba(255,255,255,0.85)", textShadow: "none" },
+  hudNote: { margin: "2px 0 0", fontSize: 11, lineHeight: 1.5, color: "rgba(255,255,255,0.72)" },
+  hudLegend: { margin: "2px 0 0", fontSize: 11, color: "rgba(255,255,255,0.85)", display: "flex", alignItems: "center", flexWrap: "wrap", gap: 2 },
+  swatch: { display: "inline-block", width: 9, height: 9, borderRadius: 2, marginRight: 4 },
+  months: { display: "grid", gridTemplateColumns: "repeat(12, minmax(0, 1fr))", gap: 3 },
+  monthCol: { display: "flex", flexDirection: "column", alignItems: "center", gap: 2 },
+  barBox: { height: 30, width: "100%", display: "flex", alignItems: "flex-end" },
+  bar: { width: "100%", borderRadius: "3px 3px 0 0", transition: "background .6s ease, box-shadow .6s ease" },
+  monthNum: { fontSize: 11 },
+  ship: { fontSize: 11, fontWeight: 700, color: "#9FD6A0", lineHeight: 1 },
+  sources: { display: "flex", flexDirection: "column", gap: 8, marginTop: 8 },
+  sourceList: { margin: 0, paddingLeft: 20, fontSize: 13, lineHeight: 1.7, color: MUTED },
   caption: { background: PAPER, border: `1px solid ${LINE}`, borderRadius: 16, padding: "22px 24px", display: "flex", flexDirection: "column", gap: 8 },
   capLabel: { margin: 0, fontSize: 13, fontWeight: 700, color: "#6E5F45" },
   capTitle: { margin: 0, fontSize: 24, fontWeight: 700 },
