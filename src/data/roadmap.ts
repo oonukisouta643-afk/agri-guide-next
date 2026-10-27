@@ -32,7 +32,7 @@ export function buildRoadmap(s: SimulatorState): RoadmapStep[] {
       description:
         "実際の農家で1〜3日間の作業体験ができます。交通費の補助もあります。決断は不要です。まず体で確かめるだけでOK。",
       details: [
-        "📞 申し込み先：ふくのう（福島県農業経営・就農支援センター）",
+        "📞 申し込み先：福島県の就農サイト「ふくのう」",
         "🌐 start-fukuagri.jp/trainee/ から募集情報を確認",
         "💰 参加費：無料（交通費補助あり）",
         "📅 期間：1〜3日間（短期から選べる）",
@@ -47,7 +47,7 @@ export function buildRoadmap(s: SimulatorState): RoadmapStep[] {
       description:
         "農業経験がある場合は具体的な就農相談から入るのがスムーズです。認定新規就農者の認定に向けた計画づくりをサポートしてもらえます。",
       details: [
-        "📞 相談先：ふくのう（福島県農業経営・就農支援センター）",
+        "📞 相談先：福島県農業経営・就農支援センター（申し込みは「ふくのう」から）",
         "🌐 start-fukuagri.jp/support/ から予約",
         "💰 相談費用：無料",
         "📋 農業経営改善計画の作成サポートあり",

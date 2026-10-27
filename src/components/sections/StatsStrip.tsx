@@ -4,6 +4,8 @@ import { Reveal } from "@/components/ui/Reveal";
 // 出典：OLD版 index.html #246-255（.stats-strip）の内容を移植。
 // 「農業に興味はあるけど踏み出せていない」層に対して、制度・費用面の危機感と
 // 追い風（2026年度の予算拡充）を数字で先に示す役割。
+// 494億円（前年度244億円）の出典：農林水産省「令和８年度農林水産関係予算の概要」
+// （https://www.maff.go.jp/j/budget/pdf/r8kettei_gaiyo.pdf 、前年度は令和7年度当初予算額）。2026年10月27日に確認。
 
 const stats = [
   {
@@ -16,7 +18,7 @@ const stats = [
   },
   {
     value: "494億円",
-    label: "2026年度 農業構造転換 集中対策（前年度比2倍）",
+    label: "2026年度 国の農業構造転換集中対策（前年度244億円の約2倍）",
   },
   {
     value: "600万円",

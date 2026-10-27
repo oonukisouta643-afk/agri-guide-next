@@ -4,6 +4,11 @@
 //
 // URLは旧版のまま移植すると誤り（/consultation/）になる窓口があったため、
 // プロジェクト内で既に修正済みの正しいURL（/syuno/）はそのまま維持している。
+//
+// 2026年10月27日：「ふくのう」は県農業担い手課が運営する就農サイト、「福島県農業経営・就農支援センター」は
+// 県と農業団体3者が運営する相談窓口で、別のもの。/syuno/ はセンターへの相談の申込ページなので、窓口名をセンターにし、
+// 「ふくのうから申し込む」と書き分けた。出典：https://start-fukuagri.jp/syuno/ 、
+// https://www.pref.fukushima.lg.jp/sec/36021c/nougyokeiei-syunoushien-gaiyou.html （2026年10月9日更新）。2026年10月27日に確認。
 
 import type { WindowKey } from "@/lib/simulator/types";
 
@@ -26,10 +31,10 @@ export type WindowReferral = {
 export const windowReferrals: Record<WindowKey, WindowReferral> = {
   fukunou: {
     key: "fukunou",
-    name: "ふくのう（農業経営・就農支援センター）",
-    desc: "就農の手順・補助金・研修機関の紹介まで何でも無料で相談できます。オンライン相談も可能です。",
+    name: "福島県農業経営・就農支援センター",
+    desc: "県・JAグループ福島・県農業会議・県農業振興公社が共同で運営する相談窓口です。就農の手順・補助金・研修先などを相談できます。県の就農サイト「ふくのう」から申し込め、オンライン（Zoom）相談も選べます。",
     url: "https://start-fukuagri.jp/syuno/",
-    label: "ふくのうへ相談する",
+    label: "ふくのうから相談を申し込む",
     color: "#2D7A2D",
     bg: "#F0FBF0",
     border: "#B8E0B8",
@@ -58,7 +63,7 @@ export const windowReferrals: Record<WindowKey, WindowReferral> = {
     key: "city",
     name: "各市町村窓口",
     desc: "気になる市町村が決まっている方は直接問い合わせるのが一番早いです。桑折町・国見町・二本松市・大玉村・本宮市の各窓口へ。",
-    url: "https://fukushima-agri-guide.jp/#chiiki",
+    url: "https://www.fukushima-agri-guide.jp/#chiiki",
     label: "各市町村の情報を見る",
     color: "#B08020",
     bg: "#FBF5E0",
@@ -66,10 +71,10 @@ export const windowReferrals: Record<WindowKey, WindowReferral> = {
   },
   any: {
     key: "any",
-    name: "ふくのう（まず何でも相談OK）",
-    desc: "「何を聞けばいいかわからない」という状態でも大丈夫です。ふくのうは就農前の漠然とした相談も歓迎しています。",
+    name: "福島県農業経営・就農支援センター（まず相談してみる）",
+    desc: "何を聞けばいいか分からない段階でも、県の就農サイト「ふくのう」から就農支援センターへの相談を申し込めます。",
     url: "https://start-fukuagri.jp/syuno/",
-    label: "ふくのうへ相談する",
+    label: "ふくのうから相談を申し込む",
     color: "#2D7A2D",
     bg: "#F0FBF0",
     border: "#B8E0B8",
