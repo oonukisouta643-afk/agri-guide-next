@@ -389,6 +389,20 @@ function checkSegment(seg, allSegments, warnings) {
     }
   }
 
+  // PR のマージは本番公開と同じ。ルールセットは承認0なので、ここで止める（マージは大貫さんが GitHub の画面で行う）。
+  if (Object.prototype.hasOwnProperty.call(OPAQUE_RUNNERS, cmd) && /(^|[\s"'`;&|(])gh(\.exe)?\s[^;&|]*?(\bpr\s+merge\b|\/merges?\b)/i.test(seg.raw)) {
+    block(`${cmd} の中の gh のマージ`, "中身を確かめられないため。", "PR のマージは大貫さんが GitHub の画面で行います。");
+  }
+  if (cmd === "gh" || cmd === "gh.exe") {
+    const prAt = lowerRest.indexOf("pr");
+    const isPrMerge = prAt !== -1 && lowerRest[prAt + 1] === "merge";
+    const isApiMerge = lowerRest.includes("api") && lowerRest.some((w) => /\/merges?\b/.test(w));
+    if (isPrMerge || isApiMerge) {
+      block("gh での PR のマージ", "main に入ると本番に公開されるため。", "PR を作るところまでにして、マージは大貫さんが GitHub の画面で行ってください。");
+    }
+    return;
+  }
+
   if (cmd !== "git") return;
   const { sub, args } = checkGit(rest);
   if (!sub) return;

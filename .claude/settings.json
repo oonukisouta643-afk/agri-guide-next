@@ -26,7 +26,10 @@
       "Bash(git push *--de*)",
       "Bash(git stage -A*)",
       "Bash(git stage .)",
-      "Bash(git -c *)"
+      "Bash(git -c *)",
+      "Bash(gh pr merge*)",
+      "Bash(gh * pr merge*)",
+      "Bash(gh api *merge*)"
     ]
   },
   "hooks": {

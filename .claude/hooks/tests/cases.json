@@ -347,5 +347,29 @@
   {
     "file": "timeout-ok.json",
     "expect": 0
+  },
+  {
+    "file": "gh-pr-merge.json",
+    "expect": 2
+  },
+  {
+    "file": "gh-r-pr-merge.json",
+    "expect": 2
+  },
+  {
+    "file": "gh-api-merge.json",
+    "expect": 2
+  },
+  {
+    "file": "gh-bash-c-merge.json",
+    "expect": 2
+  },
+  {
+    "file": "gh-pr-create-ok.json",
+    "expect": 0
+  },
+  {
+    "file": "gh-api-read-ok.json",
+    "expect": 0
   }
 ]
