@@ -94,7 +94,7 @@ export function TimelineTool() {
       </div>
 
       <WarningBox type="warn" className="mt-2">
-        ⚠️ 仮データです。実際のスケジュールは条件により異なります。ふくのうに相談して確認してください。
+        ⚠️ 仮データです。実際のスケジュールは条件により異なります。就農支援センターに相談して確認してください。
       </WarningBox>
     </div>
   );

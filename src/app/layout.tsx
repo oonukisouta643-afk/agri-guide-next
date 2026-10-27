@@ -30,7 +30,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 // F-08：全ページmeta・OGP・description設定（サイト全体の既定値。各ページは個別にexport const metadataで上書き）
 export const metadata: Metadata = {
-  metadataBase: new URL("https://fukushima-agri-guide.jp"),
+  metadataBase: new URL("https://www.fukushima-agri-guide.jp"),
   title: {
     default: "県北ふくしまAgri-Guide｜農家という生き方を、もっとリアルに。",
     template: "%s｜県北ふくしまAgri-Guide",

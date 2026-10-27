@@ -4,7 +4,7 @@
 export const siteConfig = {
   name: "Agri-Guide",
   fullName: "県北ふくしまAgri-Guide",
-  url: "https://fukushima-agri-guide.jp",
+  url: "https://www.fukushima-agri-guide.jp",
   contactEmail: "oonukisouta643@gmail.com",
 };
 
@@ -46,10 +46,6 @@ export const mobileToc: { heading: string; links: { href: string; label: string 
       { href: "/farmers", label: "農家プロフィール" },
       { href: "/subsidies", label: "補助金一覧" },
     ],
-  },
-  {
-    heading: "行政・連携機関の方へ",
-    links: [{ href: "/admin", label: "行政向け資料" }],
   },
 ];
 

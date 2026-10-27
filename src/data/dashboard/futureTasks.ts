@@ -54,7 +54,7 @@ export const futureTasks: FutureTask[] = [
     title: "地域別施策の横断比較表（/regions/compare）",
     description: "6地域の補助金・研修・農地賃借料・主要品目を一覧で比較できるテーブル。",
     status: "planned",
-    timing: "馬場さん情報待ち",
+    timing: "県の担当課の情報待ち",
   },
   {
     id: "line-official",

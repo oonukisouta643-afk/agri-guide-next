@@ -8,7 +8,7 @@
 // 追加漏れになっていた。Search Consoleでサイトのページが1件もインデックスされていない状態が
 // 確認されたため、まず判明していたこの漏れを修正する。
 
-const BASE_URL = "https://fukushima-agri-guide.jp";
+const BASE_URL = "https://www.fukushima-agri-guide.jp";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = ["", "/simulator", "/tools", "/farmers", "/subsidies"];

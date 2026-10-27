@@ -88,7 +88,7 @@ export const questions: Question[] = [
     subtitle: "東京圏からの移住だとふくしま移住支援金の対象になりやすいです。",
     hintBand: true,
     options: [
-      { value: "tokyo", label: "東京・首都圏", icon: "🗼" },
+      { value: "tokyo", label: "東京圏（1都3県）", icon: "🗼" },
       { value: "other", label: "その他の都市部", icon: "🏙️" },
       { value: "tohoku", label: "東北地方", icon: "🏔️" },
       { value: "inside", label: "福島県内", icon: "🌿" },
@@ -144,7 +144,7 @@ export const questions: Question[] = [
     kind: "single",
     key: "exp",
     title: "農業の経験はありますか？",
-    subtitle: "経験ゼロでも大丈夫。年150万円の補助を受けながら研修できます。",
+    subtitle: "経験ゼロでも大丈夫。年165万円の補助を受けながら研修できます。",
     options: [
       { value: "none", label: "全くない", icon: "🌱" },
       { value: "garden", label: "家庭菜園程度", icon: "🪴" },
@@ -223,7 +223,7 @@ export const questions: Question[] = [
     subtitle: "選ぶだけでOKです。結果画面で最適な相談窓口をご案内します。",
     options: [
       { value: "fukunou", label: "就農手順・補助金", icon: "🌱" },
-      { value: "kenpo", label: "福島県北の農地・JA", icon: "🍑" },
+      { value: "kenpo", label: "福島県北の農業（県の窓口）", icon: "🍑" },
       { value: "iju", label: "移住・生活環境", icon: "🏡" },
       { value: "city", label: "市町村施策", icon: "🏛️" },
       { value: "any", label: "まだわからない", icon: "💬" },

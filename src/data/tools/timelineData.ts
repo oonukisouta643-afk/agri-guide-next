@@ -41,11 +41,11 @@ export const timelinePhases: TimelinePhase[] = [
     icon: "📋",
     dotColorClass: "bg-green-400",
     checklist: [
-      "ふくのうに就農相談の予約を入れる",
+      "就農支援センターへの相談を「ふくのう」から申し込む",
       "農業委員会に農地情報を問い合わせる",
       "農業経営改善計画の骨子を作る",
     ],
-    nextAction: "ふくのうへの就農相談予約",
+    nextAction: "就農支援センターへの相談の申し込み",
     link: { text: "就農シミュレーターを試す", href: "/simulator" },
   },
   {
@@ -55,7 +55,7 @@ export const timelinePhases: TimelinePhase[] = [
     icon: "📚",
     dotColorClass: "bg-green-500",
     checklist: [
-      "農業研修機関に登録（就農準備資金 年150万円スタート）",
+      "農業研修機関に登録（就農準備資金 年165万円スタート）",
       "農地バンク経由で農地情報を収集",
       "日本政策金融公庫に農業融資の相談",
     ],
@@ -74,7 +74,7 @@ export const timelinePhases: TimelinePhase[] = [
       "農機・施設の発注・準備",
     ],
     nextAction: "ふくしま移住支援金の申請・農機/施設の準備",
-    link: { text: "ふくのうに相談する", href: "https://start-fukuagri.jp/syuno/" },
+    link: { text: "ふくのうから相談を申し込む", href: "https://start-fukuagri.jp/syuno/" },
   },
   {
     key: "start",
@@ -83,9 +83,9 @@ export const timelinePhases: TimelinePhase[] = [
     icon: "🌱",
     dotColorClass: "bg-green-700",
     checklist: [
-      "経営開始資金の申請（年150万円×最長3年）",
+      "経営開始資金の申請（年165万円×最長3年）",
       "青色申告の開始（税務署に申請）",
-      "ふくのう・農業委員会との定期相談を継続",
+      "就農支援センター・農業委員会との定期相談を継続",
     ],
     nextAction: "経営開始資金の申請",
   },

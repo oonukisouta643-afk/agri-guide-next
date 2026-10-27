@@ -65,8 +65,8 @@ const fukunouLinks = [
   {
     href: "https://start-fukuagri.jp/support/",
     icon: "📞",
-    title: "ふくのうに相談",
-    desc: "無料・就農前でもOK",
+    title: "就農支援センターに相談",
+    desc: "ふくのうから申し込み・就農前でもOK",
   },
 ];
 
@@ -198,7 +198,7 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
         </Card>
       </Reveal>
 
-      {/* ③ 農地・初期費用テーブル（旧版308〜334行目の5行構成を移植） */}
+      {/* ③ 農地・初期費用テーブル（旧版308〜334行目の5行構成を移植。2026年10月27日に根拠のない「合計上限」の行を外して4行） */}
       <Reveal>
         <Card>
           <h3 className="font-bold text-ink">農地・初期費用の目安</h3>
@@ -223,21 +223,8 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
                 <td className="py-2 text-muted">就農1年目の総費用</td>
                 <td className="py-2 text-right font-mono font-bold text-ink">中央値 約400万円</td>
               </tr>
-              <tr className="bg-green-50">
-                <td className="py-2 font-bold text-green-700">
-                  補助金＋融資 合計上限（全制度合算）
-                </td>
-                <td className="py-2 text-right font-mono text-base font-black text-green-700">
-                  最大750万円以上
-                </td>
-              </tr>
             </tbody>
           </table>
-          <p className="mt-2 text-xs leading-relaxed text-muted">
-            ※ 上部「受給可能な補助金」（あなたの回答から算出した給付金の目安）とは別の数値です。
-            こちらは給付金に加えて日本政策金融公庫の融資枠なども含めた、全制度を合算した理論上の
-            上限額であり、実際に受け取れる金額とは異なります。
-          </p>
         </Card>
       </Reveal>
 
@@ -300,7 +287,7 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
       </Reveal>
 
       {/* ④.5 地域コミュニティとの関わり方（期待値調整）
-          出典：2026年8月29日・菅野亮一さん（桑折町で新規就農・4年目）へのインタビューと、
+          出典：2026年8月29日・桑折町で新規就農4年目の果樹農家さんへのインタビューと、
           2026年9月3日・伊達市農政課／JAふくしま未来／県北農林事務所（普及所）同席の合同相談会
           （claude/2026-09-03_伊達市合同相談会_結果.md）で複数の立場から共通して伺った内容。
           「情報を知っている」だけでなく地域コミュニティとの信頼構築が就農の実質的なハードルに
@@ -441,9 +428,9 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
       {/* ⑩ ふくのうへの4リンクグリッド（旧版344〜359行目のアイコン＋説明カード構成を移植） */}
       <Reveal>
         <Card>
-          <h3 className="font-bold text-ink">次のステップ：ふくのうへ相談する</h3>
+          <h3 className="font-bold text-ink">次のステップ：就農支援センターに相談する</h3>
           <p className="mt-2 text-sm leading-relaxed text-ink">
-            シミュレーションで方向性が見えてきたら、福島県の公式就農支援窓口「ふくのう」に相談してみてください。お試し就農体験・就農相談・研修機関の紹介まで、無料でサポートしてもらえます。
+            シミュレーションで方向性が見えてきたら、県の就農サイト「ふくのう」から、福島県農業経営・就農支援センターへの相談を申し込めます。ふくのうには、お試し就農体験や就農の手順の案内もあります。
           </p>
           <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
             {fukunouLinks.map((link) => (

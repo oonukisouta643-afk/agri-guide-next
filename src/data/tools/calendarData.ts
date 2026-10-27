@@ -196,7 +196,7 @@ export const calendarCrops: CalendarCrop[] = [
     emoji: "🥒",
     fit: "◎ 初期費用を抑えやすい",
     fitLevel: "high",
-    productionAreas: ["二本松市", "大玉村", "伊達地域全体"],
+    productionAreas: ["二本松市", "大玉村", "伊達市"],
     areaNote:
       "野菜の中では比較的早く収入になる品目。県北は全国有数のきゅうり産地で、JAの出荷体制が整っている。",
     cost: "低〜中（50〜120万円/反目安）",

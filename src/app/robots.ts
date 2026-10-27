@@ -10,6 +10,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/admin", "/dashboard"],
     },
-    sitemap: "https://fukushima-agri-guide.jp/sitemap.xml",
+    sitemap: "https://www.fukushima-agri-guide.jp/sitemap.xml",
   };
 }

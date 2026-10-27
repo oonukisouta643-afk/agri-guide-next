@@ -3,7 +3,6 @@ import { StatsStrip } from "@/components/sections/StatsStrip";
 import { Story } from "@/components/sections/Story";
 import { How } from "@/components/sections/How";
 import { SimCta } from "@/components/sections/SimCta";
-import { AdminSection } from "@/components/sections/AdminSection";
 import { Field } from "@/components/sections/Field";
 import { ProduceShowcase } from "@/components/sections/ProduceShowcase";
 import { Tools } from "@/components/sections/Tools";
@@ -13,7 +12,8 @@ import { Contact } from "@/components/sections/Contact";
 
 // トップページ（/）
 // 出典：AgriGuide_Next移行_要件定義書v2.0 §5、OLD版 index.html（旧サイト）の実際のセクション順序
-// セクション順序：Hero→StatsStrip→Story→How→SimCta→AdminSection→Field→ProduceShowcase→Tools→Regions→RoadmapSection→Contact
+// 2026年10月27日：AdminSection（/admin へのリンク）を外した。/admin はサイト内からリンクしない（ハンドブック第4章）。
+// セクション順序：Hero→StatsStrip→Story→How→SimCta→Field→ProduceShowcase→Tools→Regions→RoadmapSection→Contact
 // 2026年8月20日：OLD版との突合で欠落していたセクション（StatsStrip・SimCta・AdminSection・
 // ProduceShowcase・RoadmapSection等）を復元。
 // 2026年8月20日：チーム紹介セクション・連携調整中の機関チップは引き続き非掲載
@@ -27,7 +27,6 @@ export default function Home() {
       <Story />
       <How />
       <SimCta />
-      <AdminSection />
       <Field />
       <ProduceShowcase />
       <Tools />

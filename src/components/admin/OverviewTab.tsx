@@ -6,7 +6,7 @@ export function OverviewTab() {
   return (
     <div className="space-y-6">
       <WarningBox type="warn">
-        このタブは①〜⑤を踏まえてClaudeが構成した総括案です。行政へ提示する前に内容の確認をお願いします。
+        このタブは各タブを踏まえてClaudeが構成した総括案です。行政へ提示する前に内容の確認をお願いします。
       </WarningBox>
 
       <Card>
@@ -18,7 +18,7 @@ export function OverviewTab() {
       </Card>
 
       <div>
-        <p className="mb-3 text-sm font-bold text-muted">提供価値（①〜⑤より）</p>
+        <p className="mb-3 text-sm font-bold text-muted">提供価値（各タブより）</p>
         <div className="space-y-3">
           {valueSummary.map((v) => (
             <Card key={v.point}>
