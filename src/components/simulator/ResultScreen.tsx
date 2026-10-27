@@ -198,7 +198,7 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
         </Card>
       </Reveal>
 
-      {/* ③ 農地・初期費用テーブル（旧版308〜334行目の5行構成を移植） */}
+      {/* ③ 農地・初期費用テーブル（旧版308〜334行目の5行構成を移植。2026年10月27日に根拠のない「合計上限」の行を外して4行） */}
       <Reveal>
         <Card>
           <h3 className="font-bold text-ink">農地・初期費用の目安</h3>
