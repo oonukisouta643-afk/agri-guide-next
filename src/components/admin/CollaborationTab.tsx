@@ -22,7 +22,7 @@ export function CollaborationTab() {
       </WarningBox>
 
       <div>
-        <p className="mb-3 text-sm font-bold text-muted">3ステップで信頼を積み上げる</p>
+        <p className="mb-3 text-sm font-bold text-muted">段階的に信頼を積み上げる</p>
         <div className="space-y-3">
           {collaborationSteps.map((step) => (
             <Card key={step.step}>

@@ -20,7 +20,7 @@ export const collaborationSteps = [
     status: "done" as const,
   },
   {
-    step: "STEP 3（2027年以降）",
+    step: "STEP 2（2027年以降）",
     title: "B2Gモデルの有償化交渉",
     description:
       "無償提供の実績をもとに、データ提供・業務委託等の形で行政からの予算獲得を目指す。就農フェア・ふくのうサイト運営の受託モデル（受託事業者の事例）を参考にする。",
