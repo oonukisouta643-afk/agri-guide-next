@@ -223,7 +223,7 @@ export const questions: Question[] = [
     subtitle: "選ぶだけでOKです。結果画面で最適な相談窓口をご案内します。",
     options: [
       { value: "fukunou", label: "就農手順・補助金", icon: "🌱" },
-      { value: "kenpo", label: "福島県北の農地・JA", icon: "🍑" },
+      { value: "kenpo", label: "福島県北の農業（県の窓口）", icon: "🍑" },
       { value: "iju", label: "移住・生活環境", icon: "🏡" },
       { value: "city", label: "市町村施策", icon: "🏛️" },
       { value: "any", label: "まだわからない", icon: "💬" },
