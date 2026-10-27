@@ -7,6 +7,8 @@
  * - もも農家の収穫期（夏）の一日を、夜明け前から夜まで 6 つの時間帯で見せる。
  * - 時間帯と作業の中身は「例」。農家の方への聞き取りで確かめて PHASES を更新する。
  * - prefers-reduced-motion のときは止まった絵（朝）を出す。画面外・タブ非表示のときは止める。
+ * - docs/src/FarmDayHero.tsx をもとに、2026年10月27日の大貫さんの決定で構図・タイトル・リード文を直し、
+ *   FACTS の出典の書き方を直した（PHASES と FACTS の value・text は変えていない）。
  */
 
 import { memo, useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
@@ -444,7 +446,7 @@ export default function FarmDayHero({ secondsPerDay = DEFAULT_SECONDS_PER_DAY }:
   const [t, setT] = useState(START_T);
   const [playing, setPlaying] = useState(false);
   const [visible, setVisible] = useState(true);
-  // 幅が狭いときは、絵の右側（園地と作業場）を切り出す
+  // 幅が狭いとき（1024px以下。紹介の枠を絵の下に回す境目と同じ）は、絵の右側（園地と作業場）を切り出す
   const [narrow, setNarrow] = useState(false);
   const rootRef = useRef<HTMLElement | null>(null);
   const uid = useId().replace(/[^a-zA-Z0-9_-]/g, "");
@@ -460,7 +462,7 @@ export default function FarmDayHero({ secondsPerDay = DEFAULT_SECONDS_PER_DAY }:
   }, []);
 
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 760px)");
+    const mq = window.matchMedia("(max-width: 1024px)");
     const apply = () => setNarrow(mq.matches);
     apply();
     mq.addEventListener?.("change", apply);
@@ -652,8 +654,9 @@ export default function FarmDayHero({ secondsPerDay = DEFAULT_SECONDS_PER_DAY }:
 
       {/* 幅が狭いときの配置（Tailwind に置き換える場合は、同じ意味のクラスにする） */}
       <style>{`
-        @media (min-width: 761px) { .fdh-card { position: absolute; top: 40px; left: 40px; max-width: 500px; } }
-        @media (max-width: 760px) { .fdh-card { position: relative; margin: 12px 16px 0; } .fdh-facts { grid-template-columns: minmax(0, 1fr) !important; } }
+        @media (min-width: 1025px) { .fdh-card { position: absolute; top: 40px; left: 40px; max-width: 500px; } }
+        @media (max-width: 1024px) { .fdh-card { position: relative; margin: 12px 16px 0; } }
+        @media (max-width: 760px) { .fdh-facts { grid-template-columns: minmax(0, 1fr) !important; } }
       `}</style>
     </section>
   );
