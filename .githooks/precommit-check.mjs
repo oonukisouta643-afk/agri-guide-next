@@ -20,6 +20,7 @@ const WORD_CHECK_EXEMPT = [/^\.claude\//, /^\.githooks\//, /^CLAUDE\.md$/, /^doc
 // コミットしてはいけないもの。
 const FORBIDDEN_PATHS = [
   [/^docs\/AGRIGUIDE_HANDBOOK\.md$/, "ハンドブック（関係者の名前を含む）"],
+  [/^docs\/HANDBOOK_SUMMARY\.md$/, "ハンドブックの要約（関係者の名前を含む）"],
   [/^docs\/history\//, "docs/history/（関係者の名前・連絡先を含む）"],
   [/^docs\/data\/.*\.xlsx$/, "docs/data/ の確認用xlsx"],
   [/^\.claude\/local\//, ".claude/local/（実名の一覧など）"],

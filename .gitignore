@@ -41,5 +41,6 @@ next-env.d.ts
 
 # 運営者の手元だけに置く資料（関係者の名前や面談の記録を含むため、コミットしない）
 /docs/AGRIGUIDE_HANDBOOK.md
+/docs/HANDBOOK_SUMMARY.md
 /docs/history/
 /docs/data/*.xlsx
