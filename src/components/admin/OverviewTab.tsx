@@ -18,7 +18,7 @@ export function OverviewTab() {
       </Card>
 
       <div>
-        <p className="mb-3 text-sm font-bold text-muted">提供価値（①〜⑤より）</p>
+        <p className="mb-3 text-sm font-bold text-muted">提供価値（各タブより）</p>
         <div className="space-y-3">
           {valueSummary.map((v) => (
             <Card key={v.point}>

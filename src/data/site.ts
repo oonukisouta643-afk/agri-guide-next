@@ -47,10 +47,6 @@ export const mobileToc: { heading: string; links: { href: string; label: string 
       { href: "/subsidies", label: "補助金一覧" },
     ],
   },
-  {
-    heading: "行政・連携機関の方へ",
-    links: [{ href: "/admin", label: "行政向け資料" }],
-  },
 ];
 
 export const simulatorCta = {
