@@ -26,8 +26,8 @@ export const PHASES = [
 ] as const;
 
 export const FACTS = [
-  { value: "10aあたり 年225時間", text: "ももの成園の年間の労働時間（あかつき）", source: "出典：福島県果樹農業振興計画（令和8年3月）" },
-  { value: "5月と8月", text: "ももで一番忙しい時期。5月は摘果、8月は収穫", source: "山口県と農林水産省の資料の月別労働時間を、福島の開花・収穫の時期に合わせた目安（推測を含む）" },
+  { value: "10aあたり 年225時間", text: "ももの成園の年間の労働時間（あかつき）", source: "出典：福島県果樹農業振興計画書（令和8年3月）" },
+  { value: "5月と8月", text: "ももで一番忙しい時期。5月は摘果、8月は収穫", source: "山口県の資料の月別労働時間を、福島の開花・収穫の時期に合わせた目安（推測を含む）" },
   { value: "1日 約14時間", text: "60aを1人で担う場合の、一番忙しい月の1日の作業時間の目安", source: "山口県の資料の月別労働時間からの試算。兼業なら、この時期は家族の手伝いや雇用が前提になる見込みです（いずれも推測）" },
 ] as const;
 
@@ -83,6 +83,14 @@ function lightAt(t: number) {
 
 /** もも（開心自然形：低く横に広がる）。x,y は根元、s は遠近の倍率、v は木ごとのばらつき（0〜1） */
 const LEAF = ["#466F36", "#4B763A", "#527E40", "#42683A", "#57804A"];
+// 実の位置（根元からの相対。s 倍する）
+const FRUIT: [number, number][] = [
+  [-22, 24],
+  [-11, 21],
+  [1, 23],
+  [12, 21],
+  [23, 25],
+];
 function PeachTree({ x, y, s, v }: { x: number; y: number; s: number; v: number }) {
   const a = (v * 7) % 1;
   const b = (v * 13) % 1;
@@ -104,10 +112,19 @@ function PeachTree({ x, y, s, v }: { x: number; y: number; s: number; v: number 
       <ellipse cx={x + lean * s} cy={y - (36 + a * 2) * s} rx={(15 + b * 4) * s} ry={(8.5 + a * 2) * s} fill={c3} />
       <ellipse cx={x + (b - 0.5) * 20 * s} cy={y - 27 * s} rx={(10 + a * 4) * s} ry={5 * s} fill={c2} opacity={0.9} />
       <ellipse cx={x + (a - 0.5) * 10 * s} cy={y - 38 * s} rx={8 * s} ry={3.6 * s} fill="#6C9852" opacity={0.55} />
-      {s > 1 && (
-        <g fill="#D98C78">
-          <circle cx={x - (10 + b * 6) * s} cy={y - 25 * s} r={1.8 * s} />
-          <circle cx={x + (6 + a * 6) * s} cy={y - 27 * s} r={1.8 * s} />
+      {/* もも（収穫期の実。樹冠の下側に、1本に5個） */}
+      {s > 0.7 && (
+        <g>
+          {FRUIT.map(([fx, fy], i) => {
+            const cx = x + (fx + ((i % 2 ? a : b) - 0.5) * 4) * s;
+            const cy = y - (fy + (i % 2 ? b : a) * 2) * s;
+            return (
+              <g key={i}>
+                <circle cx={cx} cy={cy} r={2.6 * s} fill="#E3876F" />
+                <circle cx={cx - 0.8 * s} cy={cy - 0.8 * s} r={0.9 * s} fill="#F6C6AE" />
+              </g>
+            );
+          })}
         </g>
       )}
     </g>
@@ -260,12 +277,15 @@ const NEAR_PADDIES = [
   { d: "M376 566 L730 566 L718 640 L326 640 Z", fill: "#8BB45C" },
 ];
 
+// 園地は主役なので、手前ほど大きく、画面の下まで寄せる（2026年10月27日に構図を直した）
 const ORCHARD_ROWS = [
-  { y: 432, s: 0.62, x0: 800, gap: 64 },
-  { y: 466, s: 0.82, x0: 790, gap: 82 },
-  { y: 516, s: 1.08, x0: 770, gap: 108 },
-  { y: 590, s: 1.45, x0: 750, gap: 146 },
+  { y: 444, s: 0.8, x0: 785, gap: 78 },
+  { y: 494, s: 1.15, x0: 770, gap: 112 },
+  { y: 562, s: 1.65, x0: 750, gap: 158 },
+  { y: 640, s: 2.3, x0: 730, gap: 215 },
 ];
+// 手前の列（人や草刈機より前に描く木）の境目
+const FRONT_ROW_Y = 610;
 
 function orchardTrees() {
   const out: { x: number; y: number; s: number; v: number; key: string }[] = [];
@@ -424,6 +444,8 @@ export default function FarmDayHero({ secondsPerDay = DEFAULT_SECONDS_PER_DAY }:
   const [t, setT] = useState(START_T);
   const [playing, setPlaying] = useState(false);
   const [visible, setVisible] = useState(true);
+  // 幅が狭いときは、絵の右側（園地と作業場）を切り出す
+  const [narrow, setNarrow] = useState(false);
   const rootRef = useRef<HTMLElement | null>(null);
   const uid = useId().replace(/[^a-zA-Z0-9_-]/g, "");
   const ids = { sky: `fdh-sky-${uid}`, glow: `fdh-glow-${uid}`, rice: `fdh-rice-${uid}`, riceNear: `fdh-rice-near-${uid}` };
@@ -432,6 +454,14 @@ export default function FarmDayHero({ secondsPerDay = DEFAULT_SECONDS_PER_DAY }:
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const apply = () => setPlaying(!mq.matches);
+    apply();
+    mq.addEventListener?.("change", apply);
+    return () => mq.removeEventListener?.("change", apply);
+  }, []);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 760px)");
+    const apply = () => setNarrow(mq.matches);
     apply();
     mq.addEventListener?.("change", apply);
     return () => mq.removeEventListener?.("change", apply);
@@ -464,8 +494,8 @@ export default function FarmDayHero({ secondsPerDay = DEFAULT_SECONDS_PER_DAY }:
   }, [playing, visible, secondsPerDay]);
 
   const trees = useMemo(orchardTrees, []);
-  const backTrees = useMemo(() => trees.filter((tr) => tr.y < 560), [trees]);
-  const frontTrees = useMemo(() => trees.filter((tr) => tr.y >= 560), [trees]);
+  const backTrees = useMemo(() => trees.filter((tr) => tr.y < FRONT_ROW_Y), [trees]);
+  const frontTrees = useMemo(() => trees.filter((tr) => tr.y >= FRONT_ROW_Y), [trees]);
 
   const L = lightAt(t);
   const idx = Math.min(5, Math.floor(t * 6));
@@ -501,7 +531,7 @@ export default function FarmDayHero({ secondsPerDay = DEFAULT_SECONDS_PER_DAY }:
     truckDir = 1;
     truckX = Math.min(850, -200 + frac * 1.8 * 1050);
   }
-  const mowerX = idx === 3 ? 1480 - frac * 820 : 1480;
+  const mowerX = idx === 3 ? 1520 - frac * 780 : 1520;
   const lit = t < 0.1 || t > 0.8;
 
   const togglePlay = useCallback(() => setPlaying((p) => !p), []);
@@ -513,7 +543,7 @@ export default function FarmDayHero({ secondsPerDay = DEFAULT_SECONDS_PER_DAY }:
   return (
     <section ref={rootRef} aria-label="農家の一日" style={S.section}>
       <div style={S.sceneWrap}>
-        <svg viewBox="0 0 1440 640" preserveAspectRatio="xMidYMax slice" width="100%" height="100%" role="img" aria-label="もも農家の夏の一日。夜明け前から夜まで、果樹園と田んぼの景色が移り変わるイラスト" style={{ display: "block" }}>
+        <svg viewBox="0 0 1440 640" preserveAspectRatio={narrow ? "xMaxYMax slice" : "xMidYMax slice"} width="100%" height="100%" role="img" aria-label="もも農家の夏の一日。夜明け前から夜まで、果樹園と田んぼの景色が移り変わるイラスト" style={{ display: "block" }}>
           <defs>
             <linearGradient id={ids.sky} x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stopColor={L.top} />
@@ -561,10 +591,10 @@ export default function FarmDayHero({ secondsPerDay = DEFAULT_SECONDS_PER_DAY }:
           <NearLayer riceNear={ids.riceNear} />
           <Shadows trees={backTrees} dx={shadowDx} opacity={shadowOp} />
           <TreesLayer trees={backTrees} />
-          <Mower x={mowerX} y={548} s={1.15} opacity={idx === 3 ? 1 : 0} />
-          <Person x={965} y={520} s={1.25} opacity={idx === 0 && t > 0.03 ? 1 : 0} />
-          <Crates x={985} y={522} s={1.3} n={6} opacity={idx === 0 ? 1 : 0} />
-          <Person x={930} y={394} s={0.9} opacity={(idx === 1 && frac > 0.08) || idx === 4 ? 1 : 0} />
+          <Mower x={mowerX} y={604} s={2} opacity={idx === 3 ? 1 : 0} />
+          <Person x={1020} y={606} s={1.85} opacity={idx === 0 && t > 0.03 ? 1 : 0} />
+          <Crates x={1062} y={608} s={1.9} n={6} opacity={idx === 0 ? 1 : 0} />
+          <Person x={930} y={394} s={1.1} opacity={(idx === 1 && frac > 0.08) || idx === 4 ? 1 : 0} />
           <Shadows trees={frontTrees} dx={shadowDx} opacity={shadowOp} />
           <TreesLayer trees={frontTrees} />
 
@@ -597,11 +627,11 @@ export default function FarmDayHero({ secondsPerDay = DEFAULT_SECONDS_PER_DAY }:
       <div className="fdh-card" style={S.card}>
         <p style={S.eyebrow}>県北ふくしまAgri-Guide</p>
         <h1 style={S.h1}>
-          農家の一日を、
+          たとえば、収穫期の
           <br />
-          来る前に。
+          もも農家の一日。
         </h1>
-        <p style={S.lead}>就農する前に、仕事と暮らしのリズムを知っておく。福島のもも農家の、収穫期（夏）の一日の例です。</p>
+        <p style={S.lead}>就農する前に、仕事と暮らしのリズムを知っておくために。福島のもも農家の、収穫期（夏）の一日を描いています。</p>
         <div style={S.ctaRow}>
           <a href="/simulator" style={S.ctaPrimary}>
             就農シミュレーターを試す
