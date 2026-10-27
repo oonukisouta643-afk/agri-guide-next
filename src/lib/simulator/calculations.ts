@@ -442,8 +442,8 @@ export function nextStepByLevel(level: MotivationLevel): { message: string; url:
       };
     default:
       return {
-        message: "ふくのうの「お試し就農生」（農業法人で働く時給制の研修）の募集を確かめてみましょう",
-        url: "https://start-fukuagri.jp/trainee/",
+        message: "まずはふくのうの「就農までのステップ」で、全体の流れを確かめてみましょう",
+        url: "https://start-fukuagri.jp/procedure/",
       };
   }
 }

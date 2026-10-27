@@ -50,7 +50,7 @@ const fukunouLinks = [
     href: "https://start-fukuagri.jp/trainee/",
     icon: "🌱",
     title: "お試し就農生",
-    desc: "農業法人で働く時給制の研修",
+    desc: "農業法人などで働く時給制の研修",
   },
   {
     href: "https://start-fukuagri.jp/procedure/",
@@ -432,7 +432,7 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
         <Card>
           <h3 className="font-bold text-ink">次のステップ：就農支援センターに相談する</h3>
           <p className="mt-2 text-sm leading-relaxed text-ink">
-            シミュレーションで方向性が見えてきたら、県の就農サイト「ふくのう」から、福島県農業経営・就農支援センターへの相談を申し込めます。ふくのうには、県内の農業法人で働く時給制の研修「お試し就農生」の募集や、就農の手順の案内もあります。
+            シミュレーションで方向性が見えてきたら、県の就農サイト「ふくのう」から、福島県農業経営・就農支援センターへの相談を申し込めます。ふくのうには、県内の農業法人などで働く時給制の研修「お試し就農生」の募集や、就農の手順の案内もあります。
           </p>
           <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
             {fukunouLinks.map((link) => (
