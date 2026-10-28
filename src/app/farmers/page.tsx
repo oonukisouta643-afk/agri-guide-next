@@ -5,11 +5,14 @@ import { ExternalLink } from "@/components/ui/ExternalLink";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { WarningBox } from "@/components/ui/WarningBox";
+import { DayTimeline } from "@/components/farmers/DayTimeline";
+import { peachFarmerDay } from "@/data/farmers";
 import { surveyForms } from "@/data/forms";
 
 // / farmers　農家さんの声
 // 出典：AgriGuide_Next移行_要件定義書v2.0 §2
-// 2026年10月28日：架空のプロフィール4人と「農家の1日」（出典なし）を外し、農家さんの声を集めるページにした。
+// 2026年10月28日：架空のプロフィール4人を外し、農家さんの声を集めるページにした。
+// 「農家の1日」は同じ日にトップに合わせて直したもの（PR #12）を残す（仮データの表示つき）。
 // 掲載の了承をいただいた方の話から載せる（実名は本人の了承がある場合だけ）。
 
 export const metadata: Metadata = {
@@ -68,6 +71,23 @@ export default function FarmersPage() {
               </Button>
             </div>
           </div>
+        </Reveal>
+      </div>
+
+      {/* 農家の1日 */}
+      <div className="mx-auto mt-14 max-w-content">
+        <Reveal>
+          <SectionHeader eye="a day in the life" title="農家の1日" lead="桃農家・繁忙期のスケジュール例" />
+        </Reveal>
+        <Reveal delayMs={100}>
+          <Card className="mt-8">
+            <DayTimeline schedule={peachFarmerDay} />
+          </Card>
+        </Reveal>
+        <Reveal delayMs={150}>
+          <WarningBox type="warn" className="mt-4">
+            ⚠️ 仮データです。実際のスケジュールは農家さん・品目・時期によって大きく異なります。農家ヒアリング完了後に更新します。
+          </WarningBox>
         </Reveal>
       </div>
 
