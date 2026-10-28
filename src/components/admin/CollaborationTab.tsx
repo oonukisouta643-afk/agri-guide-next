@@ -14,11 +14,13 @@ const statusBadge = {
   future: { text: "将来", color: "sky" as const },
 };
 
+// 2026年10月28日：画面の注意書きから、内部向けの依頼文（「Claudeが作成」「行政へ提示する前に確認を」）を外した（⑦と同じ扱い）。
+// 中身は Claude が作った案のままなので、行政に見せる前に大貫さんが確かめる（ハンドブック第6章）。
 export function CollaborationTab() {
   return (
     <div className="space-y-6">
       <WarningBox type="warn">
-        このタブの連携シナリオ・想定Q&amp;Aは、要件定義書に文言の指定がなかったためClaudeが作成した案です（案C・Dとアンケートの声は実際の回答に基づきますが、サンプル数が少ない参考情報です）。行政へ提示する前に内容の確認をお願いします。
+        このタブの連携シナリオ・想定Q&amp;Aは、Agri-Guide が考えた案です（案C・Dとアンケートの声は実際の回答に基づきますが、サンプル数が少ない参考情報です）。
       </WarningBox>
 
       <div>

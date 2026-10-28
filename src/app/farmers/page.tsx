@@ -15,6 +15,7 @@ import { surveyForms } from "@/data/forms";
 
 export const metadata: Metadata = {
   title: "農家プロフィール",
+  alternates: { canonical: "/farmers" },
   description:
     "就農した方のプロフィールを載せるページです（現在は仮データ。実際の方の声を集めています）。",
 };

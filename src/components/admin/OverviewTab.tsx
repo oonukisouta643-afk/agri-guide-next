@@ -2,11 +2,13 @@ import { Card } from "@/components/ui/Card";
 import { WarningBox } from "@/components/ui/WarningBox";
 import { serviceOverview, valueSummary, futureVision } from "@/data/admin/overview";
 
+// 2026年10月28日：画面の注意書きから、内部向けの依頼文（「Claudeが作成」「行政へ提示する前に確認を」）を外した（⑦と同じ扱い）。
+// 中身は Claude が作った案のままなので、行政に見せる前に大貫さんが確かめる（ハンドブック第6章）。
 export function OverviewTab() {
   return (
     <div className="space-y-6">
       <WarningBox type="warn">
-        このタブは各タブを踏まえてClaudeが構成した総括案です。行政へ提示する前に内容の確認をお願いします。
+        このタブは、各タブを踏まえた Agri-Guide の総括の案です。
       </WarningBox>
 
       <Card>
