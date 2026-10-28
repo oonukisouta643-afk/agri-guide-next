@@ -2,7 +2,7 @@ import type { DaySchedule } from "@/data/farmers";
 
 // 農家の1日（桃農家・繁忙期のスケジュール）
 // 出典：AgriGuide_Next移行_要件定義書v2.0 §2「/ farmers」／旧サイト agri-farmers.html var schedule
-// 4:30〜18:00の9ステップ・タイムライン表示（時刻＋アイコン＋見出し＋説明文）
+// 4:30〜17:00の9ステップ・タイムライン表示（時刻＋アイコン＋見出し＋説明文）
 
 export function DayTimeline({ schedule }: { schedule: DaySchedule[] }) {
   return (
