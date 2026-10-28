@@ -9,7 +9,7 @@ import { HERO_DAY_LINES, HERO_SEASON_ORDER, HERO_SEASON_SOURCE_SHORT, SEASONS } 
 // 季節の見出し → その季節の一日を上から1行ずつ → 数秒止まる → 消えて次の季節（夏→秋→冬→春→初夏→夏…）。
 // 枠や白い背景は使わず、写真の上に白い文字で出す（右側に黒っぽいグラデーションと文字の影）。
 // 一時停止のボタンあり。動きを減らす設定のときは夏の一日を全部出して止める。タブが見えていない間は進めない。
-// 行のデータは src/data/farmSeasons.ts の HERO_DAY_LINES（夏は peachFarmerDay の仮データを短くしたもの、ほかは時間帯だけの例）。
+// 行のデータは src/data/farmSeasons.ts の HERO_DAY_LINES（夏の朝〜昼・選果と箱詰め・初夏の時刻と消毒は現場に近い方の回答、夏の午後は peachFarmerDay の仮データ、ほかは時間帯だけの例。くわしくは farmSeasons.ts のコメント）。
 // 背景：農村風景の写真（Unsplash、フリー素材）。県北の写真ではない。
 
 const HERO_IMAGE_URL =
@@ -161,7 +161,7 @@ export function HeroDay() {
           </p>
 
           <p className="mt-3 text-xs leading-relaxed text-white/85">
-            時刻と作業は例です（夏の時刻と作業は仮データ。もも農家の一日の例で、農家さん・品種・天候で変わります）。{HERO_SEASON_SOURCE_SHORT}
+            時刻と作業は例です。夏はJAに出す人の例です。夏の朝〜昼と選果・箱詰め、初夏の時刻と消毒は、果樹の現場に近い方に聞いた話をもとにしています（ほかは仮データ・例。人・品種・天候で変わります）。{HERO_SEASON_SOURCE_SHORT}
           </p>
         </div>
       </div>
