@@ -13,7 +13,6 @@ import {
   calcFunding,
   calcRegionMatch,
   calcTimingAlerts,
-  calcSimilarCase,
   calcMotivationLevel,
   nextStepByLevel,
   buildMailto,
@@ -80,7 +79,6 @@ type ResultScreenProps = {
 export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
   const funding = useMemo(() => calcFunding(answers), [answers]);
   const regionMatches = useMemo(() => calcRegionMatch(answers), [answers]);
-  const similarCase = useMemo(() => calcSimilarCase(answers), [answers]);
   const level = useMemo(() => calcMotivationLevel(answers), [answers]);
   const nextStep = useMemo(() => nextStepByLevel(level), [level]);
   const mailtoHref = useMemo(() => buildMailto(answers), [answers]);
@@ -325,32 +323,7 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
           </Reveal>
         ))}
 
-      {/* ⑥ 似た条件の人カード */}
-      {similarCase && (
-        <Reveal>
-          <Card>
-            <h3 className="font-bold text-ink">似た条件で就農した方</h3>
-            <div className="mt-3">
-              <p className="font-bold text-ink">
-                {similarCase.name}（{similarCase.area}）
-              </p>
-              <p className="text-xs text-muted">
-                {similarCase.before} → {similarCase.now}
-              </p>
-              <p className="mt-2 text-sm text-ink">「{similarCase.quote}」</p>
-              <Link
-                href={similarCase.link}
-                className="mt-3 inline-block text-sm font-bold text-green-700 hover:underline"
-              >
-                他の農家プロフィールを見る →
-              </Link>
-            </div>
-            <p className="mt-2 text-xs text-muted">
-              ※仮データです。農家ヒアリングが完了次第、実データに差し替えます。
-            </p>
-          </Card>
-        </Reveal>
-      )}
+      {/* ⑥ 似た条件の人カードは、作った人物だったため2026年10月28日に外した（本物の話がそろったら作り直す） */}
 
       {/* ⑦ 窓口斡旋ボックス（旧版WINDOWSオブジェクト：desc・per-window色テーマを移植） */}
       <Reveal>

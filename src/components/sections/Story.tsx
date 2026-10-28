@@ -64,22 +64,6 @@ const stats = [
   },
 ];
 
-// ※仮データ。FORM 02の回答が集まり次第、実際の声に差し替え予定。
-const voices = [
-  {
-    quote: "何から調べればいいのか分からず、結局そのままになってしまいました。",
-    attribution: "30代・会社員・東京都",
-  },
-  {
-    quote: "農地を借りるハードルが高そうで、相談する勇気が出ませんでした。",
-    attribution: "40代・自営業・神奈川県",
-  },
-  {
-    quote: "収入の見通しが立たず、家族を説得できませんでした。",
-    attribution: "30代・会社員・埼玉県",
-  },
-];
-
 export function Story() {
   return (
     <section id="story" className="px-5 py-14 sm:px-10 sm:py-[72px]">
@@ -140,19 +124,7 @@ export function Story() {
         </div>
       </Reveal>
 
-      <div className="mx-auto mt-6 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-3">
-        {voices.map((voice, i) => (
-          <Reveal key={voice.attribution} delayMs={i * 100}>
-            <div className="h-full rounded border-l-[3px] border-green-700 bg-white p-5 shadow-sm">
-              <p className="text-sm text-ink">「{voice.quote}」</p>
-              <p className="mt-3 text-xs text-muted">{voice.attribution}</p>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-      <p className="mx-auto mt-4 max-w-5xl text-center text-xs text-muted">
-        ※仮データ。FORM 02の回答が集まり次第、実際の声に差し替えます。
-      </p>
+      {/* 断念者の声（3件）は作った声だったため2026年10月28日に外した */}
     </section>
   );
 }

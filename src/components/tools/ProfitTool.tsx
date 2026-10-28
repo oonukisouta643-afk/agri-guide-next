@@ -4,21 +4,32 @@ import { useState } from "react";
 import Link from "next/link";
 import { Card } from "@/components/ui/Card";
 import { WarningBox } from "@/components/ui/WarningBox";
-import { profitCrops } from "@/data/tools/profitData";
+import { profitAreaA, profitCrops, type ProfitRoute } from "@/data/tools/profitData";
 
 // Tool G：品目別収益モデル
-// 「桃/りんご/きゅうり/米/梨の5品目・年別棒グラフ・初期費用・黒字化年数」
-// 旧サイト（agri-tools.html 966-1027行）の「初期投資回収前の赤字年を含む純収支」表示を移植。
-// 赤字年は赤色バーで視覚的に区別する（"あなたは最初の1〜2年赤字になる"という現実を隠さない）。
+// 2026年10月28日に作り直した：もも・なし・りんごの3品目、60a、1〜10年目の農業所得。
+// 「新しく植える」と「先輩の園地を受け継ぐ」を切り替えて比べる。数字の出典は src/data/tools/profitData.ts。
+// 赤字の年は赤で出す（最初の数年は赤字になりうる、という現実を隠さない）。
+
+const routeLabels: Record<ProfitRoute, string> = {
+  newPlanting: "新しく植える",
+  takeover: "先輩の園地を受け継ぐ",
+};
+
+function toManYen(yen: number) {
+  return Math.round(yen / 10000);
+}
 
 export function ProfitTool() {
   const [selectedKey, setSelectedKey] = useState(profitCrops[0].key);
+  const [route, setRoute] = useState<ProfitRoute>("newPlanting");
   const crop = profitCrops.find((c) => c.key === selectedKey) ?? profitCrops[0];
 
-  const years = crop.yearlyNet;
+  const years = crop.income[route].map(toManYen);
   const max = Math.max(...years, 50);
   const min = Math.min(...years, -10);
   const range = max - min || 1;
+  const firstPlusYear = years.findIndex((y) => y > 0) + 1;
 
   return (
     <div>
@@ -39,55 +50,62 @@ export function ProfitTool() {
         ))}
       </div>
 
+      <div className="mt-3 flex flex-wrap gap-2">
+        {(Object.keys(routeLabels) as ProfitRoute[]).map((r) => (
+          <button
+            key={r}
+            type="button"
+            onClick={() => setRoute(r)}
+            className={`rounded border px-3 py-1.5 text-xs font-bold transition-colors ${
+              r === route ? "border-green-700 bg-green-50 text-green-800" : "border-black/10 bg-white text-muted hover:bg-green-50"
+            }`}
+          >
+            {routeLabels[r]}
+          </button>
+        ))}
+      </div>
+
       <Card className="mt-6">
         <p className="text-sm font-bold text-ink">
-          {crop.emoji} {crop.label}（{crop.scale}あたり）
+          {crop.emoji} {crop.label}（{crop.variety}）・{routeLabels[route]}・{profitAreaA}aの場合
         </p>
-        <p className="mt-1 text-xs leading-relaxed text-muted">{crop.note}</p>
+        <p className="mt-1 text-xs leading-relaxed text-muted">
+          成園の収量 {crop.yieldKgPer10a.toLocaleString()}kg/10a、単価 {crop.priceYenPerKg}円/kg
+          {route === "newPlanting" && `、新植の初期投資 ${toManYen(crop.newPlantingCostYenPer10a)}万円/10a`}
+          。経営開始資金や国の支援は含まない農業所得です。
+        </p>
 
-        <p className="mb-2.5 mt-6 text-xs font-bold text-muted">年別農業収入の推移（万円・仮データ）</p>
-        <div className="flex items-end gap-2" style={{ height: 140 }}>
+        <p className="mb-2.5 mt-6 text-xs font-bold text-muted">1〜10年目の農業所得（万円・試算）</p>
+        <div className="flex items-end gap-1 sm:gap-2" style={{ height: 150 }}>
           {years.map((y, i) => {
             const h = Math.max(4, Math.round(((y - min) / range) * 110));
             const isNegative = y < 0;
             return (
               <div key={i} className="flex flex-1 flex-col items-center justify-end gap-1">
-                <span className={`text-[10px] font-bold ${isNegative ? "text-red" : "text-green-700"}`}>
-                  {y >= 0 ? "+" : ""}
+                <span className={`text-[9px] font-bold sm:text-[10px] ${isNegative ? "text-red" : "text-green-700"}`}>
+                  {y > 0 ? "+" : ""}
                   {y}
                 </span>
-                <div
-                  className={`w-full rounded-t ${isNegative ? "bg-red" : "bg-green-600"}`}
-                  style={{ height: `${h}px` }}
-                />
-                <span className="text-[10px] text-muted">{i + 1}年目</span>
+                <div className={`w-full rounded-t ${isNegative ? "bg-red" : "bg-green-600"}`} style={{ height: `${h}px` }} />
+                <span className="text-[9px] text-muted sm:text-[10px]">{i + 1}年</span>
               </div>
             );
           })}
         </div>
 
+        <p className="mt-3 text-xs text-ink">
+          {firstPlusYear > 0
+            ? `この試算では、農業所得がプラスになるのは${firstPlusYear}年目からです。`
+            : "この試算では、10年目までに農業所得はプラスになりません。"}
+        </p>
         {years.some((y) => y < 0) && (
-          <p className="mt-2 text-[11px] text-red">
-            ⚠️ 赤字（マイナス）の年は、初期投資を年間収益がまだ回収できていない時期です。
-          </p>
+          <p className="mt-1 text-[11px] text-red">赤字（マイナス）の年は、木が育ちきっておらず、収入が経営費に届かない時期です。</p>
         )}
-
-        <div className="mt-3 grid grid-cols-2 gap-2">
-          <div className="rounded bg-green-50 p-2.5 text-center">
-            <p className="text-[10px] text-muted">初期費用目安</p>
-            <p className="text-sm font-bold text-ink">約{crop.initialCostManYen}万円</p>
-            <p className="text-[9px] text-muted">※仮データ</p>
-          </div>
-          <div className="rounded bg-green-50 p-2.5 text-center">
-            <p className="text-[10px] text-muted">黒字化の目安</p>
-            <p className="text-sm font-bold text-ink">{crop.breakEvenYear}年目頃</p>
-            <p className="text-[9px] text-muted">※仮データ</p>
-          </div>
-        </div>
+        {crop.costNote && route === "newPlanting" && <p className="mt-1 text-[11px] text-muted">※ {crop.costNote}</p>}
       </Card>
 
       <WarningBox type="warn" className="mt-3">
-        ⚠️ 全て全国平均値ベースの仮データです。実際の収益は品種・規模・経営能力により大きく異なります。
+        ⚠️ 試算です。約束した数字ではありません。収量は福島県果樹農業振興計画、単価・経営費は長野県の作目別経営指標を仮に使っています（福島県の指標が見つからないため）。実際の収入は品種・園地・天候・販売先で大きく変わります。
       </WarningBox>
 
       <Link

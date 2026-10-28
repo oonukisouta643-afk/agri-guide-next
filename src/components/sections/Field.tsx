@@ -198,9 +198,9 @@ export function Field() {
                 👨‍🌾
               </span>
               <div>
-                <p className="font-bold text-ink">農家プロフィール（掲載中）</p>
+                <p className="font-bold text-ink">農家さんの声（募集中）</p>
                 <p className="mt-1 text-sm text-muted">
-                  農家さんの声・プロフィールのページです（いまは仮データ。実際の方の声を集めています）→
+                  就農した農家さんの声を集めています。掲載の了承をいただいた方から紹介します →
                 </p>
               </div>
             </Card>

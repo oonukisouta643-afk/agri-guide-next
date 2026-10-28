@@ -50,12 +50,12 @@ export function aptitudeResultText(totalScore: number, maxScore: number): { titl
   if (ratio >= 0.5) {
     return {
       title: "相性○：向いている面と不安な面がありそうです",
-      description: "農業カレンダーやコスト比較ツールで、不安な部分から解像度を上げてみるのがおすすめです。",
+      description: "農業カレンダーや品目別収益モデルで、不安な部分から解像度を上げてみるのがおすすめです。",
     };
   }
   return {
     title: "相性△：じっくり検討するのがよさそうです",
-    description: "この診断はあくまで目安です。断念者の本音や農家プロフィールも読んで、リアルな声に触れてみてください。",
+    description: "この診断はあくまで目安です。品目別収益モデルや就農タイムラインで、収入の立ち上がりや準備の流れも見てみてください。",
   };
 }
 
