@@ -1,0 +1,133 @@
+// もも農家の季節ごとの一日（春・初夏・夏・秋・冬）
+// 季節の時期は出典つき（SEASON_SOURCE）。時間帯と作業の順番は「例」として表示する（事実として書かない）。
+// 調べた記録：docs/history/2026-10-27_農家の一日_作業の見直しと置き場所.md
+// 使っている所：src/components/home/FarmDayHero.tsx（農家の一日のアニメーション）、src/components/home/HeroDay.tsx（トップの見本。HERO_DAY_LINES）
+
+export const TIME_LABELS = ["夜明け前", "朝", "昼まで", "午後", "夕方", "夜"] as const;
+
+export type Stage = "blossom" | "young" | "fruit" | "autumn" | "bare";
+export type Phase = { title: string; desc: string };
+export type Season = { key: string; name: string; months: string; theme: string; stage: Stage; note: string; phases: Phase[] };
+
+// 時期の出典（記録の 2 章）
+// - aff：農林水産省 広報誌 aff 2019年5・6月号（福島市飯坂町のもも農家）
+// - 県 果樹情報：福島県農林水産部農業振興課（果樹研究所の観測。令和元年度第11号、令和2年度第2〜5号・第9号）
+export const SEASONS: Season[] = [
+  {
+    key: "spring",
+    name: "春",
+    months: "4月",
+    theme: "花の季節",
+    stage: "blossom",
+    note: "あかつきの満開は平年で4月20日ごろ。県は開花期から幼果期にかけて霜の対策を呼びかけ、事前の備えとして下草をこまめに短く刈ることを挙げています。病気の防除は花が散ってから（県 果樹情報）。",
+    phases: [
+      { title: "冷え込む朝は、霜の見回り", desc: "花は霜に弱い時期です。冷え込みそうな朝は、暗いうちに園地の様子を見に行くこともあります。" },
+      { title: "花の咲き具合を見る", desc: "園地が一面ピンクになる季節。木ごとに、花の咲き具合を確かめます。" },
+      { title: "授粉", desc: "授粉が必要な品種では、花に一つずつ花粉をつけていきます。" },
+      { title: "下草を短く刈る", desc: "地面が温まりやすいように、木の下の草を短く刈っておきます。霜への備えの一つです。" },
+      { title: "片付けと、明日の天気の確認", desc: "道具を片付け、翌朝の冷え込みの予報を確かめます。" },
+      { title: "記録して休む", desc: "花の咲いた日や作業を記録して、休みます。" },
+    ],
+  },
+  {
+    key: "early-summer",
+    name: "初夏",
+    months: "5〜6月",
+    theme: "摘果と袋かけ",
+    stage: "young",
+    note: "摘果は5月から、仕上げの摘果は実の核が固まり始める前（6月上旬〜中旬ごろ）まで。品種によって、そのあと袋かけ（aff、県 果樹情報）。",
+    phases: [
+      { title: "身支度をして園地へ", desc: "日が長くなる季節。明るくなったら、園地に向かいます。" },
+      { title: "摘果", desc: "小さな実を一つずつ見て、残す実を選び、ほかを落とします。実の大きさと味を決める作業です。" },
+      { title: "摘果の続き", desc: "1本の木にたくさんの実がつくので、根気のいる作業が続きます。" },
+      { title: "袋かけ", desc: "袋が必要な品種では、残した実に一つずつ袋をかけていきます。" },
+      { title: "通路の草刈り", desc: "草がよく伸びる季節。乗用の草刈機で、木の間の通路を刈ります。" },
+      { title: "早めに休む", desc: "明日も一日、木の上を見上げる作業です。早めに休みます。" },
+    ],
+  },
+  {
+    key: "summer",
+    name: "夏",
+    months: "7〜9月上旬",
+    theme: "収穫と出荷",
+    stage: "fruit",
+    note: "収穫は品種をずらしながら、平年で7月上旬（はつひめ）から9月上旬（ゆうぞら）まで続きます。あかつきは平年で8月2日〜10日ごろ（県 果樹情報）。",
+    phases: [
+      { title: "涼しいうちに収穫", desc: "気温が上がる前に、熟したももを一つずつ手で収穫し、コンテナに入れていきます。" },
+      { title: "選果と箱詰め", desc: "作業場で、傷や大きさを見て選り分け、出荷用の箱に詰めます。" },
+      { title: "出荷", desc: "出荷の締め切りに間に合うように、軽トラで集荷場へ運びます。締め切りは12時と現場の方から聞いています（出荷先・地域・時期で違います。確認中）。" },
+      { title: "園地の手入れ", desc: "次に収穫する木の色づきを見たり、草刈りなどの手入れをしたりします。" },
+      { title: "片付けと翌日の準備", desc: "道具や機械を片付け、翌朝の収穫の段取りをします。" },
+      { title: "記録して、早めに休む", desc: "出荷した量や作業を記録し、早めに休みます。翌朝もまた早いからです。" },
+    ],
+  },
+  {
+    key: "autumn",
+    name: "秋",
+    months: "9〜10月",
+    theme: "来年への手入れ",
+    stage: "autumn",
+    note: "秋肥は9月のできるだけ早い時期に。勢いの強い木の秋の剪定は9月中旬ごろが目安。県は秋の防除も呼びかけています（県 果樹情報。防除は令和元年の呼びかけ）。",
+    phases: [
+      { title: "園地の見回り", desc: "収穫が終わった園地を回って、木の様子を確かめます。" },
+      { title: "秋肥", desc: "実をつけて疲れた木に、肥料をやります。来年の花と実のための準備です。" },
+      { title: "秋の剪定", desc: "勢いの強い木では、伸びすぎた枝を整理します。" },
+      { title: "秋の防除", desc: "来年に病気を持ち越さないよう、スピードスプレーヤーで薬をまきます。" },
+      { title: "片付け", desc: "日が短くなってきました。暗くなる前に片付けます。" },
+      { title: "一年を振り返る", desc: "今年の収穫や売り上げを振り返って、来年の計画を考えます。" },
+    ],
+  },
+  {
+    key: "winter",
+    name: "冬",
+    months: "1〜2月",
+    theme: "剪定",
+    stage: "bare",
+    note: "剪定は2月下旬までに（aff）。木の形と、来年の実のつき方を決める仕事です。",
+    phases: [
+      { title: "明るくなるのを待つ", desc: "冬は日の出が遅い季節。道具の手入れをして、明るくなるのを待ちます。" },
+      { title: "剪定", desc: "はしごに上り、枝を一本ずつ見て切ります。木の形と、来年の実のつき方を決める仕事です。" },
+      { title: "剪定の続き", desc: "木ごとに形が違うので、同じ切り方はできません。量をこなして覚えていく技術です。" },
+      { title: "切った枝の片付け", desc: "切った枝を集めて、園地の外に運び出します。" },
+      { title: "日が暮れる前に終わる", desc: "日が短いので、早めに作業を切り上げます。" },
+      { title: "来年の準備", desc: "品種の組み合わせや、資材の準備を考えます。" },
+    ],
+  },
+];
+
+export const SEASON_SOURCE = "季節の時期の出典：農林水産省 広報誌 aff 2019年5・6月号（福島市飯坂町のもも農家）、福島県 果樹情報（農業振興課。果樹研究所の観測、平年は1986〜2015年の平均）。";
+
+// トップのファーストビュー（src/components/home/HeroDay.tsx）で、季節ごとに1行ずつ出す一日の流れ。
+// - 夏：src/data/farmers.ts の peachFarmerDay（仮データ）の時刻と作業を、トップ用に短く言い換えたもの。
+//   作業・時刻は足していない。14:00 は元が「防除・管理作業（摘果など）」だが、収穫期に摘果は不自然なので「防除や園地の見回り」とした。
+// - 春・初夏・秋・冬：上の SEASONS の phases の title。時刻の出典がないので、頭は TIME_LABELS（時間帯）にしている。
+export type HeroSeasonKey = "spring" | "early-summer" | "summer" | "autumn" | "winter";
+export type HeroDayLine = { label: string; text: string };
+
+const phaseLines = (key: HeroSeasonKey): HeroDayLine[] => {
+  const s = SEASONS.find((x) => x.key === key);
+  return (s?.phases ?? []).map((p, i) => ({ label: TIME_LABELS[i], text: p.title }));
+};
+
+export const HERO_DAY_LINES: Record<HeroSeasonKey, HeroDayLine[]> = {
+  summer: [
+    { label: "4:30", text: "起きて畑の様子を見る" },
+    { label: "5:00", text: "涼しいうちに収穫" },
+    { label: "8:00", text: "朝食・ひと息" },
+    { label: "9:00", text: "選果と箱詰め" },
+    { label: "11:00", text: "JAへ出荷" },
+    { label: "12:00", text: "昼食・休憩（暑い時間は作業を控える）" },
+    { label: "14:00", text: "防除や園地の見回り" },
+    { label: "16:00", text: "翌日の準備と記録" },
+    { label: "18:00", text: "作業を終えて、入浴・夕食" },
+  ],
+  autumn: phaseLines("autumn"),
+  winter: phaseLines("winter"),
+  spring: phaseLines("spring"),
+  "early-summer": phaseLines("early-summer"),
+};
+
+// トップで回す順（夏から）
+export const HERO_SEASON_ORDER: HeroSeasonKey[] = ["summer", "autumn", "winter", "spring", "early-summer"];
+
+export const HERO_SEASON_SOURCE_SHORT = "季節の時期：農林水産省 aff・福島県 果樹情報";
