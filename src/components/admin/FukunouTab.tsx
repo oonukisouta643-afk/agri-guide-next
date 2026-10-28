@@ -10,7 +10,7 @@ export function FukunouTab() {
       </Card>
 
       <div>
-        <p className="mb-3 text-sm font-bold text-muted">ふくのうサイトの現状課題（運営者ヒアリングより）</p>
+        <p className="mb-3 text-sm font-bold text-muted">ふくのうサイトの現状課題（ふくのうサイト運営受託者の担当者へのヒアリングより）</p>
         <div className="space-y-3">
           {fukunouIssues.map((issue) => (
             <Card key={issue.title}>

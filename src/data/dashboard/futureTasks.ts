@@ -38,7 +38,7 @@ export const futureTasks: FutureTask[] = [
   {
     id: "F-38",
     title: "就農チェックリスト",
-    description: "お試し就農体験申し込み・ふくのう相談予約・農業委員会問い合わせ等をチェックできる機能。localStorageで保存。",
+    description: "ふくのうの「お試し就農生」（時給制の研修）の募集の確認・就農支援センターへの相談の申し込み・農業委員会問い合わせ等をチェックできる機能。localStorageで保存。",
     status: "planned",
     timing: "Phase 4〜5",
   },

@@ -26,6 +26,9 @@ export function SimulatorApp() {
     if (restored) {
       dispatch({ type: "HYDRATE", answers: restored });
     }
+    // 2026年10月28日：読み込んだあとは URL から ?sim= を消す（回答の中身が GA4 や履歴に残らないように）。
+    // GA4 の最初の page_view からは GoogleAnalytics.tsx の側で外している。
+    window.history.replaceState(window.history.state, "", "/simulator");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

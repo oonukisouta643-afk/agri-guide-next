@@ -12,13 +12,14 @@ import { siteConfig } from "@/data/site";
 //   ・お問い合わせは mailto（サイトのサーバーには保存しない。components/sections/Contact.tsx）
 //   ・アンケートは Google フォームへのリンク（data/forms.ts）
 //   ・シミュレーターの回答はブラウザの中で計算し、共有用URLに入るだけ（サーバーには保存しない）。
-//     共有用URL（?sim=）は開いたあとも残るので、GA4 の page_view に含まれうる
+//     共有用URL（?sim=）は、開いたあと URL から消し、GA4 には ?sim= を外した URL を送る（2026年10月28日から）
 //   ・シミュレーター結果の「メールで相談する」は mailto で、本文に回答の一部が入る（lib/simulator/calculations.ts）
 //   ・一部の画像は images.unsplash.com から直接読み込む（components/sections/Hero.tsx、data/produce.ts）
 // 外部リンクは2026年10月28日に開けることを確かめた。
 
 export const metadata: Metadata = {
   title: "プライバシーポリシー",
+  alternates: { canonical: "/privacy" },
   description: "県北ふくしまAgri-Guide が集める情報と、その使い方について。",
 };
 
@@ -67,7 +68,7 @@ const sections: { title: string; body: ReactNode }[] = [
     title: "4. 就農シミュレーター",
     body: (
       <p>
-        シミュレーターの回答は、お使いのブラウザの中で計算します。このサイトのサーバーには保存しません。結果を共有するためのURLには、回答の内容（年代・品目・自己資金など）が入ります。氏名などは入りません。共有用URLでページを開くと、URLに入った回答の内容も、Google アナリティクスに記録されることがあります。
+        シミュレーターの回答は、お使いのブラウザの中で計算します。このサイトのサーバーには保存しません。結果を共有するためのURLには、回答の内容（年代・品目・自己資金など）が入ります。氏名などは入りません。共有用URLでページを開いたときは、Google アナリティクスには、回答の内容を外したURLを送ります。
       </p>
     ),
   },

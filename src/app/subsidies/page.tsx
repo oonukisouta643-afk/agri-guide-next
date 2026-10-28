@@ -10,6 +10,7 @@ import { SubsidyTabs } from "@/components/subsidies/SubsidyTabs";
 
 export const metadata: Metadata = {
   title: "補助金・支援制度一覧",
+  alternates: { canonical: "/subsidies" },
   description:
     "福島県北6市町村＋県＋JAふくしま未来の新規就農・農業経営に関する補助金・支援制度を地域ごとにまとめた一覧です。",
 };
