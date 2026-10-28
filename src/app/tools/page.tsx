@@ -7,6 +7,7 @@ import { ToolTabs } from "@/components/tools/ToolTabs";
 
 export const metadata: Metadata = {
   title: "農業ツール集",
+  alternates: { canonical: "/tools" },
   description:
     "農業カレンダー・補助金クイズ・品目別収益モデルなど、就農をリアルに体感できる5つの無料ツール集です。",
 };

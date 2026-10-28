@@ -7,6 +7,7 @@ import { SimulatorApp } from "@/components/simulator/SimulatorApp";
 
 export const metadata: Metadata = {
   title: "就農シミュレーター",
+  alternates: { canonical: "/simulator" },
   description:
     "10問に答えるだけで、補助金の目安・おすすめの地域・次のステップが分かる無料の就農シミュレーターです。",
 };

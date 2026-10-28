@@ -11,6 +11,9 @@ import Script from "next/script";
 //   2. Vercelのプロジェクト設定 → Environment Variables に
 //      NEXT_PUBLIC_GA_MEASUREMENT_ID = 取得した測定ID を追加して再デプロイ
 
+// 2026年10月28日：シミュレーターの共有URL（?sim=）には回答の中身が入るので、?sim= があるときは
+// 自動の page_view を止め、?sim= を外した page_location で1回だけ送る（config に page_location を
+// 入れると、そのあとのページ移動にも残ってしまうため、event の側に入れる）。
 export function GoogleAnalytics() {
   const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
   if (!measurementId) return null;
@@ -23,7 +26,14 @@ export function GoogleAnalytics() {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${measurementId}');
+          var gaUrl = new URL(window.location.href);
+          if (gaUrl.searchParams.has('sim')) {
+            gaUrl.searchParams.delete('sim');
+            gtag('config', '${measurementId}', { send_page_view: false });
+            gtag('event', 'page_view', { page_location: gaUrl.toString() });
+          } else {
+            gtag('config', '${measurementId}');
+          }
         `}
       </Script>
     </>

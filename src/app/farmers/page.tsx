@@ -17,6 +17,7 @@ import { surveyForms } from "@/data/forms";
 
 export const metadata: Metadata = {
   title: "農家さんの声",
+  alternates: { canonical: "/farmers" },
   description:
     "福島県北で就農した農家さんの声を集めています。掲載の了承をいただいた方から順に紹介します。",
 };

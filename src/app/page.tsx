@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { HeroDay } from "@/components/home/HeroDay";
 import { StatsStrip } from "@/components/sections/StatsStrip";
 import { Story } from "@/components/sections/Story";
@@ -19,6 +20,12 @@ import { Contact } from "@/components/sections/Contact";
 // ProduceShowcase・RoadmapSection等）を復元。
 // 2026年8月20日：チーム紹介セクション・連携調整中の機関チップは引き続き非掲載
 // （運営者個人・協力者の情報を最小化する方針のため、意図的な除外）。
+
+// 2026年10月28日：canonical を付けた（各ページも同じ。metadataBase の www 付きの URL になる）。
+// layout に置くと全ページが / を指してしまうので、ページごとに書く。
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (
