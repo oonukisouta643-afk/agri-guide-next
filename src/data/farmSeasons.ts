@@ -99,32 +99,61 @@ export const SEASON_SOURCE = "季節の時期の出典：農林水産省 広報�
 
 // トップのファーストビュー（src/components/home/HeroDay.tsx）で、季節ごとに1行ずつ出す一日の流れ。
 // - 夏：src/data/farmers.ts の peachFarmerDay（仮データ）の時刻と作業を、トップ用に短く言い換えたもの。
-//   作業・時刻は足していない。14:00 は元が「防除・管理作業（摘果など）」だが、収穫期に摘果は不自然なので「防除や畑の見回り」とした。
-// - 春・初夏・秋・冬：上の SEASONS の phases の title。時刻の出典がないので、頭は TIME_LABELS（時間帯）にしている。
+//   作業は足していない。14:00 は元が「防除・管理作業（摘果など）」だが、収穫期に摘果は不自然なので、
+//   上の SEASONS の夏の「次に収穫する木の色づきを見たり」から「色づきの見回り」とした。
+//   終わりは元の 18:00 を 17:00 にした（2026年10月28日、大貫さんの判断：早起きなので17時ごろに終わる）。
+// - 春・初夏・秋・冬：上の SEASONS の phases の title と desc を、作業の様子が分かるように短くまとめたもの（作業は足していない）。
+//   時刻の出典がないので、頭は TIME_LABELS（時間帯）にしている。
+// どの行も、PCの幅（文の枠 約294px）で1行に収まるよう、だいたい20字以内にしている。
 export type HeroSeasonKey = "spring" | "early-summer" | "summer" | "autumn" | "winter";
 export type HeroDayLine = { label: string; text: string };
 
-const phaseLines = (key: HeroSeasonKey): HeroDayLine[] => {
-  const s = SEASONS.find((x) => x.key === key);
-  return (s?.phases ?? []).map((p, i) => ({ label: TIME_LABELS[i], text: p.title }));
-};
+const byTime = (texts: string[]): HeroDayLine[] => texts.map((text, i) => ({ label: TIME_LABELS[i], text }));
 
 export const HERO_DAY_LINES: Record<HeroSeasonKey, HeroDayLine[]> = {
   summer: [
-    { label: "4:30", text: "起きて畑の様子を見る" },
-    { label: "5:00", text: "涼しいうちに収穫" },
+    { label: "4:30", text: "起きて、畑の様子を見る" },
+    { label: "5:00", text: "涼しいうちに、ももを手で収穫" },
     { label: "8:00", text: "朝食・ひと息" },
-    { label: "9:00", text: "選果と箱詰め" },
-    { label: "11:00", text: "JAへ出荷" },
+    { label: "9:00", text: "傷や大きさで選り分けて箱詰め" },
+    { label: "11:00", text: "軽トラでJAへ出荷" },
     { label: "12:00", text: "昼食・休憩（暑い時間は作業を控える）" },
-    { label: "14:00", text: "防除や畑の見回り" },
-    { label: "16:00", text: "翌日の準備と記録" },
-    { label: "18:00", text: "作業を終えて、入浴・夕食" },
+    { label: "14:00", text: "虫や病気の予防、色づきの見回り" },
+    { label: "16:00", text: "片付けと翌朝の段取り・記録" },
+    { label: "17:00", text: "作業を終える" },
   ],
-  autumn: phaseLines("autumn"),
-  winter: phaseLines("winter"),
-  spring: phaseLines("spring"),
-  "early-summer": phaseLines("early-summer"),
+  autumn: byTime([
+    "収穫の終わった畑を見回る",
+    "疲れた木に肥料をやる（秋肥）",
+    "勢いの強い木は、伸びすぎた枝を整理",
+    "来年の病気を防ぐ薬まき",
+    "日が短い。暗くなる前に片付け",
+    "今年の収穫と売り上げを振り返る",
+  ]),
+  winter: byTime([
+    "道具を手入れし、明るくなるのを待つ",
+    "はしごに上り、枝を見て切る（剪定）",
+    "木ごとに形が違い、同じ切り方はできない",
+    "切った枝を集めて畑の外へ",
+    "日が短いので早めに切り上げる",
+    "品種の組み合わせや資材を考える",
+  ]),
+  spring: byTime([
+    "冷える朝は、霜の様子を見に畑へ",
+    "一面ピンク。花の咲き具合を見て回る",
+    "品種によっては、花に花粉をつける（授粉）",
+    "霜に備え、木の下の草を短く刈る",
+    "片付けて、冷え込みの予報を確認",
+    "花の咲いた日や作業を記録",
+  ]),
+  "early-summer": byTime([
+    "明るくなったら畑へ",
+    "実を一つずつ見て、残す実を選ぶ（摘果）",
+    "木を見上げたまま、摘果が続く",
+    "品種によっては、実に袋をかける",
+    "草がよく伸びる。通路の草刈り",
+    "明日に備えて早めに休む",
+  ]),
 };
 
 // トップで回す順（夏から）
