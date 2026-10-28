@@ -13,7 +13,7 @@ import { trackEvent } from "@/lib/analytics";
 
 // Section 4：Field（アンケート・フィールド調査）
 // 出典：AgriGuide_Next移行_要件定義書v2.0 §5、OLD版 index.html #360-437
-// "use client"：アンケート設問アコーディオンの開閉状態・農家プロフィール誘導のGA4送信のため。
+// "use client"：アンケート設問アコーディオンの開閉状態・「農家さんの声」ページへの誘導のGA4送信のため（イベント名 farmer_profile_teaser_click は計測を続けるため、ページ名が変わってもそのまま）。
 
 const badgeColorByForm: Record<string, "green" | "sky" | "gold" | "red"> = {
   "FORM 01": "green",

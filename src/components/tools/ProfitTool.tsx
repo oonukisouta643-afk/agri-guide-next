@@ -30,6 +30,7 @@ export function ProfitTool() {
   const min = Math.min(...years, -10);
   const range = max - min || 1;
   const firstPlusYear = years.findIndex((y) => y > 0) + 1;
+  const cumulative = toManYen(crop.income[route].reduce((a, b) => a + b, 0));
 
   return (
     <div>
@@ -102,6 +103,17 @@ export function ProfitTool() {
           <p className="mt-1 text-[11px] text-red">赤字（マイナス）の年は、木が育ちきっておらず、収入が経営費に届かない時期です。</p>
         )}
         {crop.costNote && route === "newPlanting" && <p className="mt-1 text-[11px] text-muted">※ {crop.costNote}</p>}
+        {route === "newPlanting" && cumulative < 0 && (
+          <p className="mt-1 text-[11px] text-muted">
+            ※ 10年間の農業所得の合計は約{cumulative}万円で、この試算では10年目までに初めの赤字を取り戻せません。
+          </p>
+        )}
+        {route === "takeover" && (
+          <p className="mt-1 text-[11px] text-muted">
+            ※
+            受け継ぐ場合の収量（1年目は成園の70%、2年目80%、3年目90%、4年目から100%）は推測で、根拠になる資料は見つかっていません。4年目に熟練者の水準に届くのは楽観的な仮定です。園地は借りる前提（地代 年15,000円/10a）、引き継ぎの一時金は0円としています（推測）。
+          </p>
+        )}
       </Card>
 
       <WarningBox type="warn" className="mt-3">

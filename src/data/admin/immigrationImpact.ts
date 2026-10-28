@@ -9,7 +9,7 @@ export const targetTiers = [
     level: "Lv.1",
     label: "潜在層",
     definition: "就農時期「わからない/5年以上」・農業経験なし",
-    action: "農業カレンダー・コスト比較・シミュレーターで解像度を上げる",
+    action: "農業カレンダー・品目別収益モデル・シミュレーターで解像度を上げる",
   },
   {
     level: "Lv.2",
