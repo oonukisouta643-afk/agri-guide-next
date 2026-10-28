@@ -60,7 +60,7 @@ export const timelinePhases: TimelinePhase[] = [
       "日本政策金融公庫に農業融資の相談",
     ],
     nextAction: "認定新規就農者の申請準備",
-    link: { text: "農家プロフィールを見る", href: "/farmers" },
+    link: { text: "品目別収益モデルを見る", href: "/tools#profit" },
   },
   {
     key: "certify",

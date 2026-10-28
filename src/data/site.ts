@@ -14,7 +14,7 @@ export const siteConfig = {
 export const navLinks = [
   { href: "/#story", label: "このサービスとは" },
   { href: "/tools", label: "ツール集" },
-  { href: "/farmers", label: "農家プロフィール" },
+  { href: "/farmers", label: "農家さんの声" },
   { href: "/subsidies", label: "補助金一覧" },
   { href: "/#chiiki", label: "地域施策" },
 ];
@@ -43,7 +43,7 @@ export const mobileToc: { heading: string; links: { href: string; label: string 
   {
     heading: "情報を見る",
     links: [
-      { href: "/farmers", label: "農家プロフィール" },
+      { href: "/farmers", label: "農家さんの声" },
       { href: "/subsidies", label: "補助金一覧" },
     ],
   },

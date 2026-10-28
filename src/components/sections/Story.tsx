@@ -4,7 +4,7 @@ import { Reveal } from "@/components/ui/Reveal";
 
 // Section 2：Story（なぜやるのか）
 // 出典：AgriGuide_Next移行_要件定義書v2.0 §5、OLD版 index.html #256-334
-// 数字3枚カード（67歳・4割減・情報不足）＋一言フック＋3つの機能訴求カード＋代表の語り＋断念者の声3件（仮データ）
+// 数字3枚カード（新規就農者・受け手の決まっていない農地・果樹の経営体。出典は /admin 全体像と同じ）＋一言フック＋3つの機能訴求カード＋代表の語り（断念者の声3件は2026年10月28日に外した）
 //
 // 2026年8月21日：「サイト全体がつまらない・お堅い」というフィードバックを受け見直し。
 // 機能カードが「何ができるか」の説明に終始していて「わくわく」が抜けていたため、
@@ -61,22 +61,6 @@ const stats = [
     value: "5,189",
     label: "福島県の果樹の経営体（2020年。2010年は7,905）",
     note: "農林業センサス（2010年・2020年）",
-  },
-];
-
-// ※仮データ。FORM 02の回答が集まり次第、実際の声に差し替え予定。
-const voices = [
-  {
-    quote: "何から調べればいいのか分からず、結局そのままになってしまいました。",
-    attribution: "30代・会社員・東京都",
-  },
-  {
-    quote: "農地を借りるハードルが高そうで、相談する勇気が出ませんでした。",
-    attribution: "40代・自営業・神奈川県",
-  },
-  {
-    quote: "収入の見通しが立たず、家族を説得できませんでした。",
-    attribution: "30代・会社員・埼玉県",
   },
 ];
 
@@ -140,19 +124,7 @@ export function Story() {
         </div>
       </Reveal>
 
-      <div className="mx-auto mt-6 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-3">
-        {voices.map((voice, i) => (
-          <Reveal key={voice.attribution} delayMs={i * 100}>
-            <div className="h-full rounded border-l-[3px] border-green-700 bg-white p-5 shadow-sm">
-              <p className="text-sm text-ink">「{voice.quote}」</p>
-              <p className="mt-3 text-xs text-muted">{voice.attribution}</p>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-      <p className="mx-auto mt-4 max-w-5xl text-center text-xs text-muted">
-        ※仮データ。FORM 02の回答が集まり次第、実際の声に差し替えます。
-      </p>
+      {/* 断念者の声（3件）は作った声だったため2026年10月28日に外した */}
     </section>
   );
 }

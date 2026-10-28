@@ -18,7 +18,7 @@ export const tools: Tool[] = [
     id: "calendar",
     icon: "📅",
     title: "農業カレンダー",
-    description: "品目から住む場所を考える。産地確認からカレンダー表示まで4ステップ。",
+    description: "果樹4品目の、月ごとの忙しさと福島での収穫時期の目安。",
     href: "/tools#calendar",
   },
   {
@@ -27,13 +27,6 @@ export const tools: Tool[] = [
     title: "補助金クイズ",
     description: "5問のクイズ形式で、就農支援の補助金制度を楽しく学べる。",
     href: "/tools#quiz",
-  },
-  {
-    id: "cost",
-    icon: "🏙️",
-    title: "コスト比較",
-    description: "東京 vs 福島県北の生活コストを、ペルソナ別・カテゴリ別に比較。",
-    href: "/tools#cost",
   },
   {
     id: "aptitude",
@@ -50,17 +43,10 @@ export const tools: Tool[] = [
     href: "/tools#timeline",
   },
   {
-    id: "voices",
-    icon: "💬",
-    title: "断念者の本音",
-    description: "就農を諦めた人たちの声6件。情報格差など理由別に整理。",
-    href: "/tools#voices",
-  },
-  {
     id: "profit",
     icon: "💰",
     title: "品目別収益モデル",
-    description: "桃・りんご・きゅうり・米・梨の5品目の年別収益シミュレーション。初期費用・黒字化年数つき。",
+    description: "もも・なし・りんごの1〜10年目の農業所得の試算。新しく植える場合と、先輩の園地を受け継ぐ場合を比べられる。",
     href: "/tools#profit",
     wide: true,
   },

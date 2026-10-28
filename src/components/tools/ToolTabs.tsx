@@ -3,22 +3,19 @@
 import { useEffect, useState } from "react";
 import { CalendarTool } from "@/components/tools/CalendarTool";
 import { QuizTool } from "@/components/tools/QuizTool";
-import { CostCompareTool } from "@/components/tools/CostCompareTool";
 import { AptitudeTool } from "@/components/tools/AptitudeTool";
 import { TimelineTool } from "@/components/tools/TimelineTool";
-import { VoicesTool } from "@/components/tools/VoicesTool";
 import { ProfitTool } from "@/components/tools/ProfitTool";
 
-// / tools　農業ツール集：7ツール（タブ切り替え式）
+// / tools　農業ツール集：5ツール（タブ切り替え式）
+// 2026年10月28日：「コスト比較」（出典の弱い数字と作った人物）と「断念者の本音」（作った声）を外した。
 // 出典：AgriGuide_Next移行_要件定義書v2.0 §2「/ tools」
 
 const tabs = [
   { id: "calendar", label: "農業カレンダー", icon: "📅", Component: CalendarTool },
   { id: "quiz", label: "補助金クイズ", icon: "🎓", Component: QuizTool },
-  { id: "cost", label: "コスト比較", icon: "🏙️", Component: CostCompareTool },
   { id: "aptitude", label: "農業適性チェック", icon: "🌱", Component: AptitudeTool },
   { id: "timeline", label: "就農タイムライン", icon: "🕒", Component: TimelineTool },
-  { id: "voices", label: "断念者の本音", icon: "💬", Component: VoicesTool },
   { id: "profit", label: "品目別収益モデル", icon: "💰", Component: ProfitTool },
 ] as const;
 

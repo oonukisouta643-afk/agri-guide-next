@@ -1,5 +1,4 @@
 import { regions, type Region } from "@/data/regions";
-import { similarCases, type SimilarCase } from "@/data/similarCases";
 import type { AgeKey, CropKey, FamilyKey, SimulatorState, TimingKey } from "./types";
 import { questions } from "./questions";
 
@@ -394,30 +393,6 @@ export function calcTimingAlerts(crops: CropKey[], currentMonth: number): Timing
         messageHtml: rule.messageHtml,
       };
     });
-}
-
-// ---------------------------------------------------------------------------
-// ⑥ 似た条件の人カード
-// ---------------------------------------------------------------------------
-
-export function calcSimilarCase(s: SimulatorState): SimilarCase | null {
-  let best: { c: SimilarCase; score: number } | null = null;
-
-  for (const c of similarCases) {
-    let score = 0;
-    if (s.age === c.age) score += 1;
-    if (s.family === c.family) score += 1;
-    if (s.exp === c.exp) score += 1;
-    if (s.crops.some((crop) => crop !== "any" && c.crops.includes(crop as CropKey))) {
-      score += 1;
-    }
-    if (!best || score > best.score) {
-      best = { c, score };
-    }
-  }
-
-  if (!best || best.score < 2) return null;
-  return best.c;
 }
 
 // ---------------------------------------------------------------------------
