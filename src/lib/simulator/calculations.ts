@@ -442,8 +442,8 @@ export function nextStepByLevel(level: MotivationLevel): { message: string; url:
       };
     default:
       return {
-        message: "まずはお試し就農体験から始めてみましょう（1〜3日・無料）",
-        url: "https://start-fukuagri.jp/trainee/",
+        message: "まずはふくのうの「就農までのステップ」で、全体の流れを確かめてみましょう",
+        url: "https://start-fukuagri.jp/procedure/",
       };
   }
 }

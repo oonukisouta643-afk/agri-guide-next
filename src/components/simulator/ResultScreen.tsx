@@ -43,12 +43,14 @@ const subsidyBadgeText: Record<SubsidyBadge, string> = {
 
 // 旧版「ふくのうへの4リンクグリッド」（344〜359行目）を移植。
 // 4つ目の相談リンクは/support/（Q10回答連動のwindowReferralで使う/syuno/とは別ページ）。
+// 「お試し就農生」の内容の出典：ふくのう「お試し就農生募集」https://start-fukuagri.jp/trainee/ （2026年10月27日に確認）。
+// 1〜3日の無料体験ではなく、時給制の研修生として県内の農業法人等で働き、研修後の雇用就農を目指す仕組み。
 const fukunouLinks = [
   {
     href: "https://start-fukuagri.jp/trainee/",
     icon: "🌱",
-    title: "お試し就農体験",
-    desc: "1〜3日間・無料・交通費補助あり",
+    title: "お試し就農生",
+    desc: "農業法人などで働く時給制の研修",
   },
   {
     href: "https://start-fukuagri.jp/procedure/",
@@ -301,7 +303,7 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
             現地の農家・行政・JA・農業普及機関への取材を通じて見えてきたことですが、新規就農では「情報を知っている」ことと同じくらい、地域のコミュニティに時間をかけて信頼してもらうことが重要になる場面が多いようです。実際、新規就農者は地域おこし協力隊や地元出身者（Uターン）のケースが中心で、縁もゆかりもない状態からいきなり就農するケースは今のところ多くありません。農地や技術の引き継ぎも、地域の人間関係の中で進むことが多いと言われています。
           </p>
           <p className="mt-2 leading-relaxed">
-            就農を具体的に考え始めたら、お試し就農体験や研修などを通じて早めに現地に顔を出す機会を作ることをおすすめします。
+            就農を具体的に考え始めたら、研修や農業体験などを通じて早めに現地に顔を出す機会を作ることをおすすめします。
           </p>
           <p className="mt-2 text-xs opacity-80">
             ※ 桑折町の新規就農者・行政関係者への取材をもとにした実態把握であり、網羅的な調査結果ではありません。地域・品目によって状況は異なる場合があります。
@@ -430,7 +432,7 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
         <Card>
           <h3 className="font-bold text-ink">次のステップ：就農支援センターに相談する</h3>
           <p className="mt-2 text-sm leading-relaxed text-ink">
-            シミュレーションで方向性が見えてきたら、県の就農サイト「ふくのう」から、福島県農業経営・就農支援センターへの相談を申し込めます。ふくのうには、お試し就農体験や就農の手順の案内もあります。
+            シミュレーションで方向性が見えてきたら、県の就農サイト「ふくのう」から、福島県農業経営・就農支援センターへの相談を申し込めます。ふくのうには、県内の農業法人などで働く時給制の研修「お試し就農生」の募集や、就農の手順の案内もあります。
           </p>
           <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
             {fukunouLinks.map((link) => (
