@@ -45,7 +45,7 @@ export const produceItems: ProduceItem[] = [
     emoji: "🍑",
     name: "桃",
     description:
-      "盆地の寒暖差が育む糖度の高さが特徴。生産量全国2位。6月下旬〜9月下旬まで約60品種が楽しめる。",
+      "盆地の寒暖差が育む糖度の高さが特徴。夏から秋にかけて、いろいろな品種が出回る。",
     season: "旬：7〜8月",
     photoUrl:
       "https://images.unsplash.com/photo-1438274754346-45322cac87e4?auto=format&fit=crop&w=600&q=75",
@@ -76,7 +76,7 @@ export const produceItems: ProduceItem[] = [
     emoji: "🥒",
     name: "きゅうり",
     description:
-      "福島県は夏秋きゅうりの生産量全国1位。果樹より早く収入になりやすく、新規就農のスタートにも。",
+      "県北には夏秋きゅうりの産地がある。果樹より早く収入になりやすく、新規就農のスタートにも。",
     season: "旬：6〜9月",
     photoUrl: "/images/produce/kyuri.jpg",
     photoCredit: "提供写真",

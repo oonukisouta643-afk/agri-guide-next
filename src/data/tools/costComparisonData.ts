@@ -146,7 +146,7 @@ export function computeIncomeComparison(income: number): IncomeComparison {
   } else if (income <= 35) {
     comment = `${personaName}の場合、東京では${tokyoLeft.toFixed(1)}万円残りますが、研修中の福島でも補助金だけで${fLeft >= 0 ? "+" : ""}${fLeft.toFixed(1)}万円残ります。収入は下がりますが生活コストも下がるため、手元に残るお金の差は思ったより小さいかもしれません。`;
   } else {
-    comment = `${personaName}の場合、東京の手取りは高いですが支出も多い。農業収入が安定する就農3〜5年目以降は、福島県北での農業収入（果樹農家の平均200〜400万円）と低い生活コストの組み合わせで、実質的な豊かさが逆転する可能性があります。`;
+    comment = `${personaName}の場合、東京の手取りは高いですが支出も多い。農業収入が安定する就農3〜5年目以降は、福島県北での農業収入と低い生活コストの組み合わせで、実質的な豊かさが逆転する可能性があります。`;
   }
 
   return {

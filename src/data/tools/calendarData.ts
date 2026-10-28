@@ -49,7 +49,7 @@ export const calendarCrops: CalendarCrop[] = [
     areaNote: "県北地域は全国有数の桃の産地。寒暖差と日照が糖度を高める。",
     cost: "中程度（80〜120万円/反目安）",
     bep: "3〜5年",
-    life: "新幹線・高速アクセス良好。スーパー・病院が揃う。東京から約80分。",
+    life: "新幹線・高速道路が通る。買い物や通院は市町村の中心部へ。",
     cal: [
       { month: 1, type: "", label: "農閑期" },
       { month: 2, type: "work", label: "剪定" },

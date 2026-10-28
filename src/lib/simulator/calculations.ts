@@ -94,7 +94,7 @@ export function calcFunding(s: SimulatorState): FundingResult {
     badge: trainOk ? "req" : "no",
     note: "独立就農後に受け取れる収入補助。認定新規就農者の認定が必要。令和8年度からの新規交付分は年165万円（従来は年150万円）。",
     warn: trainOk
-      ? "認定には農業経営改善計画の提出が必要です。"
+      ? "認定には、青年等就農計画を市町村に提出する必要があります。"
       : "50歳以上は対象外です（原則50歳未満）。",
   });
   if (trainOk) maxTotal += 495;
@@ -376,7 +376,11 @@ const timingRules: Partial<Record<CropKey, TimingRule>> = {
   },
 };
 
+// 申し込みの時期と締め切りは出典が確かめられないため、確かめられるまで出さない（2026年10月27日）。
+const SHOW_TIMING_ALERTS: boolean = false;
+
 export function calcTimingAlerts(crops: CropKey[], currentMonth: number): TimingAlert[] {
+  if (!SHOW_TIMING_ALERTS) return [];
   return crops
     .filter((c): c is keyof typeof timingRules => c in timingRules)
     .map((crop) => {

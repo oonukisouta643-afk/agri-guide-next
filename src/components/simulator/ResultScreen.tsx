@@ -62,7 +62,7 @@ const fukunouLinks = [
     href: "https://start-fukuagri.jp/modelcase/",
     icon: "👨‍🌾",
     title: "就農ロールモデル",
-    desc: "実例・収益数字あり",
+    desc: "就農した方の実例",
   },
   {
     href: "https://start-fukuagri.jp/support/",
@@ -119,7 +119,7 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
       {/* 仮データ表示中バナー（旧版.draft-notice、294行目の移植） */}
       <Reveal>
         <WarningBox type="warn">
-          <p className="font-bold">⚠️ 仮データ表示中・2026年8月更新予定</p>
+          <p className="font-bold">⚠️ 仮データを含みます（農家さんへの聞き取りがそろったら更新します）</p>
           <p className="mt-1">
             品目別の初期費用・年収は全国平均値ベースの試算です。福島県北地域の実データはFORM
             03集計後に更新します。
@@ -155,7 +155,7 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
             </p>
           </Card>
           <Card className="text-center">
-            <p className="text-xs text-muted">想定初期費用（仮データ・8月更新）</p>
+            <p className="text-xs text-muted">想定初期費用（仮データ）</p>
             <p className="mt-1 font-serif text-xl font-bold text-green-700">
               {funding.initialCostEstimateText}
             </p>
@@ -205,7 +205,7 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
         <Card>
           <h3 className="font-bold text-ink">農地・初期費用の目安</h3>
           <p className="mt-2 text-xs text-muted">
-            ※ 全国平均値ベースの仮データ。2026年8月に農家ヒアリングデータで更新予定。
+            ※ 全国平均値ベースの仮データです。
           </p>
           <table className="mt-3 w-full text-sm">
             <tbody>
@@ -236,7 +236,7 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
         <Card>
           <h3 className="font-bold text-ink">おすすめの地域</h3>
           <p className="mt-1 text-xs text-muted">
-            ※ 仮データ。農家ヒアリング完了後（2026年8月）に精度を上げます。
+            ※ 仮データです。
           </p>
           <div className="mt-3 space-y-3">
             {regionMatches.map((match) => (
@@ -485,10 +485,10 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
         </div>
       </Reveal>
 
-      {/* 免責事項（旧版.disc、388行目の移植。日付は2026年8月時点の情報に更新） */}
+      {/* 免責事項（旧版.disc、388行目の移植） */}
       <Reveal>
         <p className="rounded bg-black/[.03] p-3 text-[11px] leading-relaxed text-muted">
-          ※ 本シミュレーションは2026年8月時点の情報に基づく概算です。補助金の受給には各制度の要件を満たす必要があります。実際の金額・条件は申請時に各窓口にご確認ください。
+          ※ 本シミュレーションは概算です（補助金の金額は2026年10月に公式資料で確認）。補助金の受給には各制度の要件を満たす必要があります。実際の金額・条件は申請時に各窓口にご確認ください。
         </p>
       </Reveal>
     </div>
