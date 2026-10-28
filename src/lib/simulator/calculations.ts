@@ -446,8 +446,8 @@ export function nextStepByLevel(level: MotivationLevel): { message: string; url:
       };
     default:
       return {
-        message: "まずはふくのうで、体験や実習の募集を見てみましょう",
-        url: "https://start-fukuagri.jp/trainee/",
+        message: "まずはふくのうの「就農までのステップ」で、全体の流れを確かめてみましょう",
+        url: "https://start-fukuagri.jp/procedure/",
       };
   }
 }

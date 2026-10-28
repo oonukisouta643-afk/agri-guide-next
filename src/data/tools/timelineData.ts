@@ -29,9 +29,9 @@ export const timelinePhases: TimelinePhase[] = [
     checklist: [
       "就農シミュレーターで補助金・初期費用を試算",
       "農業カレンダーで1年の生活イメージをつかむ",
-      "ふくのうのお試し就農体験に申し込む",
+      "ふくのうの「お試し就農生」（時給制の研修）の募集を確かめる",
     ],
-    nextAction: "お試し就農体験の申し込み",
+    nextAction: "お試し就農生の募集内容の確認",
     link: { text: "農業カレンダーを見る", href: "/tools#calendar" },
   },
   {
