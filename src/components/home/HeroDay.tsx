@@ -107,7 +107,7 @@ export function HeroDay() {
           <div className="flex items-start justify-between gap-3">
             <p
               className="min-w-0 text-sm font-bold tracking-wide transition-opacity duration-700"
-              style={{ opacity: stage === "out" ? 0 : 1 }}
+              style={{ opacity: stage === "out" && !paused ? 0 : 1 }}
               aria-hidden="true"
               data-hero-day-heading
             >
@@ -135,8 +135,8 @@ export function HeroDay() {
 
           {/* 一日の行（9行分の高さをとっておき、季節が変わっても下が動かないようにする） */}
           <ol
-            className="mt-3 min-h-[15.75rem] space-y-1 transition-opacity duration-700"
-            style={{ opacity: stage === "out" ? 0 : 1 }}
+            className="mt-3 min-h-[17rem] space-y-1 transition-opacity duration-700 sm:min-h-[15.75rem]"
+            style={{ opacity: stage === "out" && !paused ? 0 : 1 }}
             aria-hidden="true"
             data-hero-day-lines
           >
@@ -160,8 +160,8 @@ export function HeroDay() {
             桃農家の夏（収穫期）の一日の例：{summerSummary}。季節によって一日の流れは変わります。
           </p>
 
-          <p className="mt-3 text-[11px] leading-relaxed text-white/75">
-            時刻と作業は例です（夏の時刻は仮データ。農家さん・品種・天候で変わります）。{HERO_SEASON_SOURCE_SHORT}
+          <p className="mt-3 text-xs leading-relaxed text-white/85">
+            時刻と作業は例です（夏の時刻と作業は仮データ。もも農家の一日の例で、農家さん・品種・天候で変わります）。{HERO_SEASON_SOURCE_SHORT}
           </p>
         </div>
       </div>
