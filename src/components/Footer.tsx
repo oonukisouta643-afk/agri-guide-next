@@ -67,6 +67,10 @@ export function Footer() {
         </div>
 
         <p className="text-xs text-white/60">
+          <Link href="/privacy" className="hover:underline">
+            プライバシーポリシー
+          </Link>
+          <span className="mx-2">/</span>
           © {new Date().getFullYear()} 大貫想太 / {siteConfig.fullName}
         </p>
       </div>
