@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "kata:import": "node scripts/kata/import.mjs",
+    "kata:validate": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/kata/validate.mjs",
     "prepare": "git config core.hooksPath .githooks || exit 0"
   },
   "dependencies": {

@@ -44,3 +44,6 @@ next-env.d.ts
 /docs/HANDBOOK_SUMMARY.md
 /docs/history/
 /docs/data/*.xlsx
+
+# 型（src/kata/）の取り込み用の公式ファイル。人が置く（src/kata/README.md）
+/data-raw/
