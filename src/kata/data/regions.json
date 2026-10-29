@@ -1,0 +1,152 @@
+[
+  {
+    "id": "kenpoku",
+    "name": "県北",
+    "municipalityIds": [
+      "072010",
+      "072109",
+      "072133",
+      "072141",
+      "073016",
+      "073032",
+      "073083",
+      "073229"
+    ],
+    "newFarmers": {
+      "value": 113,
+      "kind": "official",
+      "sourceId": "pref-new-farmers",
+      "year": 2026,
+      "note": "令和8年度調査（2026年9月15日公表）。市町村別は公表されていない"
+    }
+  },
+  {
+    "id": "kenchu",
+    "name": "県中",
+    "municipalityIds": [
+      "072036",
+      "072079",
+      "072117",
+      "073423",
+      "073440",
+      "075019",
+      "075027",
+      "075035",
+      "075043",
+      "075051",
+      "075213",
+      "075221"
+    ],
+    "newFarmers": {
+      "value": 61,
+      "kind": "official",
+      "sourceId": "pref-new-farmers",
+      "year": 2026,
+      "note": "令和8年度調査（2026年9月15日公表）。市町村別は公表されていない"
+    }
+  },
+  {
+    "id": "kennan",
+    "name": "県南",
+    "municipalityIds": [
+      "072052",
+      "074616",
+      "074641",
+      "074659",
+      "074667",
+      "074811",
+      "074829",
+      "074837",
+      "074845"
+    ],
+    "newFarmers": {
+      "value": 35,
+      "kind": "official",
+      "sourceId": "pref-new-farmers",
+      "year": 2026,
+      "note": "令和8年度調査（2026年9月15日公表）。市町村別は公表されていない"
+    }
+  },
+  {
+    "id": "aizu",
+    "name": "会津",
+    "municipalityIds": [
+      "072028",
+      "072087",
+      "074021",
+      "074055",
+      "074071",
+      "074080",
+      "074217",
+      "074225",
+      "074233",
+      "074446",
+      "074454",
+      "074462",
+      "074471"
+    ],
+    "newFarmers": {
+      "value": 38,
+      "kind": "official",
+      "sourceId": "pref-new-farmers",
+      "year": 2026,
+      "note": "令和8年度調査（2026年9月15日公表）。市町村別は公表されていない"
+    }
+  },
+  {
+    "id": "minamiaizu",
+    "name": "南会津",
+    "municipalityIds": [
+      "073628",
+      "073644",
+      "073679",
+      "073687"
+    ],
+    "newFarmers": {
+      "value": 17,
+      "kind": "official",
+      "sourceId": "pref-new-farmers",
+      "year": 2026,
+      "note": "令和8年度調査（2026年9月15日公表）。市町村別は公表されていない"
+    }
+  },
+  {
+    "id": "soso",
+    "name": "相双",
+    "municipalityIds": [
+      "072095",
+      "072125",
+      "075418",
+      "075426",
+      "075434",
+      "075442",
+      "075451",
+      "075469",
+      "075477",
+      "075485",
+      "075612",
+      "075647"
+    ],
+    "newFarmers": {
+      "value": 64,
+      "kind": "official",
+      "sourceId": "pref-new-farmers",
+      "year": 2026,
+      "note": "令和8年度調査（2026年9月15日公表）。市町村別は公表されていない"
+    }
+  },
+  {
+    "id": "iwaki",
+    "name": "いわき",
+    "municipalityIds": [
+      "072044"
+    ],
+    "newFarmers": {
+      "value": 31,
+      "kind": "official",
+      "sourceId": "pref-new-farmers",
+      "year": 2026,
+      "note": "令和8年度調査（2026年9月15日公表）。市町村別は公表されていない"
+    }
+  }
+]

@@ -1,0 +1,191 @@
+[
+  {
+    "id": "pref-yakuba",
+    "title": "福島県「市役所・町村役場一覧」（2026年1月22日更新）",
+    "publisher": "福島県",
+    "dataYear": "2026年1月22日更新",
+    "url": "https://www.pref.fukushima.lg.jp/sec/01145a/yakuba.html",
+    "accessedAt": "2026-10-16",
+    "license": "オープンデータとしての利用条件の表示なし。数値のみを出典つきで引いている。Phase 2 で確かめる",
+    "usedFor": "市町村の一覧・地方の区分・公式サイト"
+  },
+  {
+    "id": "pref-code",
+    "title": "福島県「市町村コード」",
+    "publisher": "福島県",
+    "dataYear": "掲載時点",
+    "url": "https://www.pref.fukushima.lg.jp/sec/01145a/code.html",
+    "accessedAt": "2026-10-28",
+    "license": "オープンデータとしての利用条件の表示なし。数値のみを出典つきで引いている。Phase 2 で確かめる",
+    "usedFor": "市町村ID（全国地方公共団体コード）。2026年10月28日にページの59件と一致することを確かめた"
+  },
+  {
+    "id": "soumu-code",
+    "title": "総務省「全国地方公共団体コード」（都道府県コード及び市区町村コード）",
+    "publisher": "総務省",
+    "dataYear": "令和6年1月1日現在",
+    "url": "https://www.soumu.go.jp/denshijiti/code.html",
+    "accessedAt": "2026-10-28",
+    "usedFor": "ふりがな（市区町村名のカナ）。ローマ字の slug はこのカナから機械的に作った"
+  },
+  {
+    "id": "area",
+    "title": "第140回福島県統計年鑑2026 第1章（元：国土地理院 全国都道府県市区町村別面積調）／福島県市町村別統計 令和5年版「1 面積」",
+    "publisher": "福島県（元：国土地理院）",
+    "dataYear": "2025年10月1日または2022年10月1日",
+    "url": "https://www.pref.fukushima.lg.jp/uploaded/attachment/746485.pdf",
+    "accessedAt": "2026-10-16",
+    "license": "オープンデータとしての利用条件の表示なし。数値のみを出典つきで引いている。Phase 2 で確かめる",
+    "usedFor": "総面積"
+  },
+  {
+    "id": "maff-production-r5",
+    "title": "東北農政局 福島県拠点「MAFF NAVI ふくしま Vol.04（令和7年4月）令和5年市町村別農業産出額（推計）」",
+    "publisher": "農林水産省 東北農政局",
+    "dataYear": "令和5年（2023年）",
+    "url": "https://www.maff.go.jp/tohoku/tiiki/hukusima/attach/pdf/index-6.pdf",
+    "accessedAt": "2026-10-16",
+    "license": "公共データ利用規約（第1.0版）に準拠（CC BY 4.0 と互換）。公開用データの README による。Phase 2 で確かめ直す",
+    "usedFor": "農業産出額（合計・部門別）"
+  },
+  {
+    "id": "census-2020",
+    "title": "福島県統計課「農林業センサス 市町村別主要統計表」2020年版・2015年版",
+    "publisher": "福島県",
+    "dataYear": "2020年（農林業センサス）",
+    "url": "https://www.pref.fukushima.lg.jp/uploaded/attachment/484291.pdf",
+    "accessedAt": "2026-10-16",
+    "license": "オープンデータとしての利用条件の表示なし。数値のみを出典つきで引いている。Phase 2 で確かめる",
+    "usedFor": "経営耕地面積"
+  },
+  {
+    "id": "tohoku-age-2020",
+    "title": "東北農政局「東北農業データファイル（地図版）」7",
+    "publisher": "農林水産省 東北農政局",
+    "dataYear": "2020年（農林業センサス）",
+    "url": "https://www.maff.go.jp/tohoku/stinfo/deta/attach/pdf/tizu-29.pdf",
+    "accessedAt": "2026-10-16",
+    "license": "公共データ利用規約（第1.0版）に準拠（CC BY 4.0 と互換）。公開用データの README による。Phase 2 で確かめ直す",
+    "usedFor": "基幹的農業従事者の平均年齢"
+  },
+  {
+    "id": "tohoku-successor-2020",
+    "title": "東北農政局「東北農業データファイル（地図版）」10",
+    "publisher": "農林水産省 東北農政局",
+    "dataYear": "2020年（農林業センサス）",
+    "url": "https://www.maff.go.jp/tohoku/stinfo/deta/attach/pdf/tizu-15.pdf",
+    "accessedAt": "2026-10-16",
+    "license": "公共データ利用規約（第1.0版）に準拠（CC BY 4.0 と互換）。公開用データの README による。Phase 2 で確かめ直す",
+    "usedFor": "後継者を確保している経営体の割合"
+  },
+  {
+    "id": "tohoku-consolidation",
+    "title": "東北農政局「担い手への農地集積率」",
+    "publisher": "農林水産省 東北農政局",
+    "dataYear": "2026年3月末",
+    "url": "https://www.maff.go.jp/tohoku/keiei/nouti_seisaku/noutisyuuseki/attach/pdf/index-30.pdf",
+    "accessedAt": "2026-10-16",
+    "license": "公共データ利用規約（第1.0版）に準拠（CC BY 4.0 と互換）。公開用データの README による。Phase 2 で確かめ直す",
+    "usedFor": "担い手への農地集積率"
+  },
+  {
+    "id": "jma-normals",
+    "title": "気象庁「過去の気象データ検索」。06の確認状況が「第三者サイト」の観測所は、気象庁の平年値を転載している weather.time-j.net で確認した値（要照合）",
+    "publisher": "気象庁",
+    "dataYear": "平年値（1991〜2020年）",
+    "url": "https://www.data.jma.go.jp/stats/etrn/",
+    "accessedAt": "2026-10-16",
+    "license": "公共データ利用規約（第1.0版）に準拠（CC BY 4.0 と互換）。公開用データの README による。Phase 2 で確かめ直す",
+    "usedFor": "年平均気温・年降水量・日照時間・最深積雪"
+  },
+  {
+    "id": "gi",
+    "title": "農林水産省「登録産品一覧」（各産品の登録簿）",
+    "publisher": "農林水産省",
+    "dataYear": "登録日は産品ごと",
+    "url": "https://www.maff.go.jp/j/shokusan/gi_act/register/",
+    "accessedAt": "2026-10-16",
+    "license": "公共データ利用規約（第1.0版）に準拠（CC BY 4.0 と互換）。公開用データの README による。Phase 2 で確かめ直す",
+    "usedFor": "産地の目印（GI）"
+  },
+  {
+    "id": "vegetable-designated",
+    "title": "東北農政局「野菜指定産地一覧（福島県）」2026年8月3日現在",
+    "publisher": "農林水産省 東北農政局",
+    "dataYear": "2026年8月3日現在",
+    "url": "https://www.maff.go.jp/tohoku/seisan/yasai/shiteisanchi/list_fu.html",
+    "accessedAt": "2026-10-16",
+    "license": "公共データ利用規約（第1.0版）に準拠（CC BY 4.0 と互換）。公開用データの README による。Phase 2 で確かめ直す",
+    "usedFor": "産地の目印（野菜指定産地）"
+  },
+  {
+    "id": "fruit-plan-councils",
+    "title": "福島県「果樹農業振興計画書（案）」令和8年3月の協議会一覧",
+    "publisher": "福島県",
+    "dataYear": "令和8年3月（案）",
+    "url": "https://www.pref.fukushima.lg.jp/uploaded/attachment/724548.pdf",
+    "accessedAt": "2026-10-16",
+    "license": "オープンデータとしての利用条件の表示なし。数値のみを出典つきで引いている。Phase 2 で確かめる",
+    "usedFor": "産地の目印（果樹産地協議会）、品目ページの主な産地"
+  },
+  {
+    "id": "aizu-brands",
+    "title": "会津農林事務所「会津地域の農林水産物」2021年3月",
+    "publisher": "福島県 会津農林事務所",
+    "dataYear": "2021年3月",
+    "url": "https://www.pref.fukushima.lg.jp/uploaded/attachment/482916.pdf",
+    "accessedAt": "2026-10-16",
+    "license": "オープンデータとしての利用条件の表示なし。数値のみを出典つきで引いている。Phase 2 で確かめる",
+    "usedFor": "産地の目印（その他のブランド）"
+  },
+  {
+    "id": "trademark-asparagus",
+    "title": "福島県の報道発表資料（令和5年5月10日）",
+    "publisher": "福島県",
+    "dataYear": "令和5年5月10日",
+    "url": "https://www.pref.fukushima.lg.jp/uploaded/attachment/575229.pdf",
+    "accessedAt": "2026-10-16",
+    "license": "オープンデータとしての利用条件の表示なし。数値のみを出典つきで引いている。Phase 2 で確かめる",
+    "usedFor": "産地の目印（地域団体商標）"
+  },
+  {
+    "id": "pref-new-farmers",
+    "title": "福島県農業担い手課「令和7年度の新規就農者数について」「令和8年度の新規就農者数について」（2026年9月15日）",
+    "publisher": "福島県 農業担い手課",
+    "dataYear": "令和8年度調査（2026年9月15日公表）",
+    "url": "https://www.pref.fukushima.lg.jp/sec/36021c/sinkisyunou07.html",
+    "accessedAt": "2026-10-16",
+    "license": "オープンデータとしての利用条件の表示なし。数値のみを出典つきで引いている。Phase 2 で確かめる",
+    "usedFor": "地方別の新規就農者数"
+  },
+  {
+    "id": "pref-fruit-plan",
+    "title": "福島県「果樹農業振興計画書」令和8年3月（確定版。案と同じ値であることを2026年10月16日に確認）",
+    "publisher": "福島県",
+    "dataYear": "令和8年3月",
+    "url": "https://www.pref.fukushima.lg.jp/uploaded/attachment/737680.pdf",
+    "accessedAt": "2026-10-16",
+    "license": "オープンデータとしての利用条件の表示なし。数値のみを出典つきで引いている。Phase 2 で確かめる",
+    "usedFor": "果樹の成園10aあたりの収量・労働時間"
+  },
+  {
+    "id": "nagano-indicators",
+    "title": "長野県「作目別経営指標一覧表」（令和4年版と推定）",
+    "publisher": "長野県",
+    "dataYear": "令和4年版と推定",
+    "url": "https://www.pref.nagano.lg.jp/nogi/keiei/documents/r4keieishihyoulist.pdf",
+    "accessedAt": "2026-10-16",
+    "license": "オープンデータとしての利用条件の表示なし。数値のみを出典つきで引いている。Phase 2 で確かめる",
+    "usedFor": "果樹の単価・経営費（福島県の果樹の経営指標が見つからないため仮に使用。福島の値ではない）"
+  },
+  {
+    "id": "agriguide-open-08",
+    "title": "県北ふくしまAgri-Guide「福島県59市町村 就農の地域データ」08_果樹の試算_前提（2026年10月16日版）",
+    "publisher": "県北ふくしまAgri-Guide",
+    "dataYear": "2026年10月16日版",
+    "url": "https://www.fukushima-agri-guide.jp",
+    "accessedAt": "2026-10-16",
+    "license": "CC BY 4.0（まとめた部分）。元の数値はそれぞれの出典の利用条件による",
+    "usedFor": "道のりの前提（収量の立ち上がり・地代・経営費の割合・初期投資）と計算のしかた。項目ごとの根拠は 08 の根拠・出典の列"
+  }
+]

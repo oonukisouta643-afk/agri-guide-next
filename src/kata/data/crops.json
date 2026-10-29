@@ -1,0 +1,283 @@
+[
+  {
+    "id": "momo",
+    "name": "もも",
+    "variety": "あかつき",
+    "perTenA": {
+      "yieldKg": {
+        "value": 2600,
+        "kind": "official",
+        "sourceId": "pref-fruit-plan",
+        "note": "成園10aあたり（あかつき）"
+      },
+      "laborHours": {
+        "value": 225,
+        "kind": "official",
+        "sourceId": "pref-fruit-plan",
+        "note": "成園10aあたりの年間労働時間（もも あかつき、県調べ）"
+      },
+      "unitPriceYenPerKg": {
+        "value": 539,
+        "kind": "estimate",
+        "sourceId": "nagano-indicators",
+        "note": "長野県の作目別経営指標の単価をそのまま使用（福島の値ではない）"
+      },
+      "costYen": {
+        "value": 865555.6,
+        "kind": "estimate",
+        "sourceId": "nagano-indicators",
+        "note": "長野県の経営費 927381円/10a ×（0.5＋0.5×福島の収量2600kg÷長野の収量3000kg）。経営費の半分を収量に比例させた。福島の値ではない"
+      }
+    },
+    "yearsToFirstHarvest": {
+      "value": 3,
+      "kind": "estimate",
+      "sourceId": "agriguide-open-08",
+      "note": "新植の収量の立ち上がり（0、0、0.06、0.18、0.35、0.6、0.85、1、1、1）で、初めて収量が出る年"
+    },
+    "yearsToFullProduction": {
+      "value": 8,
+      "kind": "estimate",
+      "sourceId": "agriguide-open-08",
+      "note": "新植の収量の立ち上がりで、成園並み（割合1）になる年"
+    },
+    "initialInvestmentPerTenA": {
+      "value": 200000,
+      "kind": "estimate",
+      "sourceId": "agriguide-open-08",
+      "note": "推測（公開用データ08の根拠の列を参照）"
+    },
+    "mainMunicipalityIds": [
+      "072010",
+      "072133",
+      "073016",
+      "073032",
+      "073083",
+      "072079",
+      "072117",
+      "073423",
+      "073440",
+      "075019",
+      "075027",
+      "075035",
+      "075043",
+      "075051",
+      "075213",
+      "075221",
+      "072052",
+      "072028",
+      "072087",
+      "074021",
+      "074055",
+      "074071",
+      "074080",
+      "074217",
+      "074225",
+      "074233",
+      "074446",
+      "074454",
+      "074462",
+      "074471",
+      "073628",
+      "073644",
+      "073679",
+      "073687",
+      "075418",
+      "075426",
+      "075434",
+      "075442",
+      "075451",
+      "075469",
+      "075477",
+      "075485"
+    ],
+    "mainMunicipalitiesNote": "福島県「果樹農業振興計画書（案）」令和8年3月の果樹産地協議会のうち、対象品目に「もも」を挙げている協議会に入っている市町村（公開用データ03）。産出額の大きさの順ではない"
+  },
+  {
+    "id": "nashi",
+    "name": "なし",
+    "variety": "幸水",
+    "perTenA": {
+      "yieldKg": {
+        "value": 3500,
+        "kind": "official",
+        "sourceId": "pref-fruit-plan",
+        "note": "成園10aあたり（幸水）"
+      },
+      "laborHours": {
+        "value": 259,
+        "kind": "official",
+        "sourceId": "pref-fruit-plan",
+        "note": "成園10aあたりの年間労働時間（なし 幸水、県調べ）"
+      },
+      "unitPriceYenPerKg": {
+        "value": 358,
+        "kind": "estimate",
+        "sourceId": "nagano-indicators",
+        "note": "長野県の作目別経営指標の単価をそのまま使用（福島の値ではない）"
+      },
+      "costYen": {
+        "value": 1065392,
+        "kind": "estimate",
+        "sourceId": "nagano-indicators",
+        "note": "長野県の作目別経営指標の経営費（1065392円/10a）。福島の値ではない"
+      }
+    },
+    "yearsToFirstHarvest": {
+      "value": 3,
+      "kind": "estimate",
+      "sourceId": "agriguide-open-08",
+      "note": "新植の収量の立ち上がり（0、0、0.02、0.11、0.19、0.37、0.46、0.62、0.75、0.85）で、初めて収量が出る年"
+    },
+    "yearsToFullProduction": {
+      "value": null,
+      "kind": "estimate",
+      "sourceId": "agriguide-open-08",
+      "unavailable": true,
+      "note": "試算の10年の中では成園並みにならない（10年目で0.85）"
+    },
+    "initialInvestmentPerTenA": {
+      "value": 1350000,
+      "kind": "estimate",
+      "sourceId": "agriguide-open-08",
+      "note": "推測（公開用データ08の根拠の列を参照）"
+    },
+    "mainMunicipalityIds": [
+      "072010",
+      "072109",
+      "072141",
+      "073083",
+      "073229",
+      "072036",
+      "072117",
+      "075213",
+      "075221",
+      "072028",
+      "072087",
+      "074021",
+      "074055",
+      "074071",
+      "074080",
+      "074217",
+      "074225",
+      "074233",
+      "074446",
+      "074454",
+      "074462",
+      "074471",
+      "073628",
+      "073644",
+      "073679",
+      "073687",
+      "072095",
+      "072125",
+      "075485",
+      "075612",
+      "075647",
+      "072044"
+    ],
+    "mainMunicipalitiesNote": "福島県「果樹農業振興計画書（案）」令和8年3月の果樹産地協議会のうち、対象品目に「なし」を挙げている協議会に入っている市町村（公開用データ03）。産出額の大きさの順ではない"
+  },
+  {
+    "id": "ringo",
+    "name": "りんご",
+    "variety": "ふじ（普通）",
+    "perTenA": {
+      "yieldKg": {
+        "value": 4000,
+        "kind": "official",
+        "sourceId": "pref-fruit-plan",
+        "note": "成園10aあたり（ふじ（普通））"
+      },
+      "laborHours": {
+        "value": 197,
+        "kind": "official",
+        "sourceId": "pref-fruit-plan",
+        "note": "成園10aあたりの年間労働時間（りんご ふじ、県調べ）"
+      },
+      "unitPriceYenPerKg": {
+        "value": 290,
+        "kind": "estimate",
+        "sourceId": "nagano-indicators",
+        "note": "長野県の作目別経営指標の単価をそのまま使用（福島の値ではない）"
+      },
+      "costYen": {
+        "value": 913784,
+        "kind": "estimate",
+        "sourceId": "nagano-indicators",
+        "note": "長野県の作目別経営指標の経営費（913784円/10a）。福島の値ではない"
+      }
+    },
+    "yearsToFirstHarvest": {
+      "value": 3,
+      "kind": "estimate",
+      "sourceId": "agriguide-open-08",
+      "note": "新植の収量の立ち上がり（0、0、0.09、0.09、0.25、0.4、0.55、0.7、0.85、1）で、初めて収量が出る年"
+    },
+    "yearsToFullProduction": {
+      "value": 10,
+      "kind": "estimate",
+      "sourceId": "agriguide-open-08",
+      "note": "新植の収量の立ち上がりで、成園並み（割合1）になる年"
+    },
+    "initialInvestmentPerTenA": {
+      "value": 700000,
+      "kind": "estimate",
+      "sourceId": "agriguide-open-08",
+      "note": "公開用データ08の根拠の列を参照"
+    },
+    "mainMunicipalityIds": [
+      "072010",
+      "072109",
+      "072133",
+      "072141",
+      "073016",
+      "073032",
+      "073083",
+      "073229",
+      "072036",
+      "072079",
+      "072117",
+      "073423",
+      "073440",
+      "075019",
+      "075027",
+      "075035",
+      "075043",
+      "075051",
+      "075213",
+      "075221",
+      "072052",
+      "072028",
+      "072087",
+      "074021",
+      "074055",
+      "074071",
+      "074080",
+      "074217",
+      "074225",
+      "074233",
+      "074446",
+      "074454",
+      "074462",
+      "074471",
+      "073628",
+      "073644",
+      "073679",
+      "073687",
+      "072095",
+      "072125",
+      "075418",
+      "075426",
+      "075434",
+      "075442",
+      "075451",
+      "075469",
+      "075477",
+      "075485",
+      "075612",
+      "075647"
+    ],
+    "mainMunicipalitiesNote": "福島県「果樹農業振興計画書（案）」令和8年3月の果樹産地協議会のうち、対象品目に「りんご」を挙げている協議会に入っている市町村（公開用データ03）。産出額の大きさの順ではない"
+  }
+]
