@@ -23,6 +23,7 @@ export default async function RegionPage({ params }: Props) {
   const r = getRegion((await params).region);
   if (!r) notFound();
   const ms = r.municipalityIds.map((id) => getMunicipalityById(id)).filter((m): m is Municipality => Boolean(m));
+  const zeroTotal = ms.filter((m) => m.production.total.value === 0).map((m) => m.name);
   const sums = [
     { label: "合計", ...sumProduction(ms, (m) => m.production.total) },
     ...PRODUCTION_CATEGORIES.map((c) => ({ label: c.label, ...sumProduction(ms, (m) => m.production.byCategory[c.id]) })),
@@ -81,7 +82,7 @@ export default async function RegionPage({ params }: Props) {
           </table>
         </div>
         <p className="mt-2 text-xs text-gray-600">
-          推計：所属する市町村の産出額（<SourceRef sourceId="maff-production-r5" getSource={getSource} sourcesHref="/kata/sources" year={2023} />）を足した値。数値が出ていない市町村は 0 として足さず、右の列に名前を出している。そのため、地方の本当の合計より小さいことがある。
+          推計：所属する市町村の産出額（<SourceRef sourceId="maff-production-r5" getSource={getSource} sourcesHref="/kata/sources" year={2023} />）を足した値。数値が出ていない市町村は 0 として足さず、右の列に名前を出している。そのため、地方の本当の合計より小さいことがある。{zeroTotal.length > 0 && `公開用データの値が 0 の町村（${zeroTotal.join("、")}）は 0 として足している（元の資料で 0 かは確かめていない）。`}
         </p>
       </section>
     </main>

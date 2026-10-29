@@ -28,7 +28,7 @@ export const NEW_PLANTING_YIELD_RATIO: Partial<Record<CropId, readonly number[]>
 
 /**
  * 先輩の園地（成園）を受け継ぐ場合の、慣れるまでの収量の割合（1〜10年目、全品目）。
- * 推測（根拠になる資料は見つからなかった）。4年目に県の目標の収量に届くのは楽観的な仮定。
+ * 推測（根拠になる資料は見つからなかった）。4年目に成園の収量（県の果樹農業振興計画の値）に届くのは楽観的な仮定。
  */
 export const TAKEOVER_YIELD_RATIO: readonly number[] = [0.7, 0.8, 0.9, 1, 1, 1, 1, 1, 1, 1];
 

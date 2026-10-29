@@ -30,7 +30,7 @@
 3. `npm run kata:validate` → 「問題なし」と、ページごとの仮データの数が出る
 4. `git diff src/kata/data` で差分を確かめてコミット
 
-`kata:validate` は data-raw がなくても動きます（JSON と計算を確かめる）。data-raw があれば、`roadmap.ts` の定数と 08 の CSV も照らし合わせます。Node 22.18 以降（`roadmap.ts` を型を取り除いて直接読むため）。
+`kata:validate` は data-raw がなくても動きます（JSON と計算を確かめる）。data-raw があれば、`roadmap.ts` の定数と 08 の CSV も照らし合わせます。`roadmap.ts` を Node の型の取り除きで直接読むため、Node 22.18 以降が要る（確かめたのは Node 24.19）。
 
 ## 市町村ID・ふりがな・slug
 
