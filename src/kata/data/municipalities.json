@@ -7927,7 +7927,8 @@
         "value": 0,
         "kind": "official",
         "sourceId": "maff-production-r5",
-        "year": 2023
+        "year": 2023,
+        "note": "公開用データの値が 0（単位は千万円）。元の資料で 0 と書かれているのか、ほかの表記の代わりかは確かめていない"
       },
       "byCategory": {
         "rice": {
@@ -9478,7 +9479,8 @@
         "value": 0,
         "kind": "official",
         "sourceId": "maff-production-r5",
-        "year": 2023
+        "year": 2023,
+        "note": "公開用データの値が 0（単位は千万円）。元の資料で 0 と書かれているのか、ほかの表記の代わりかは確かめていない"
       },
       "byCategory": {
         "rice": {

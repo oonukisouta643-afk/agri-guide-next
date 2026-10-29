@@ -51,7 +51,7 @@ const sourceDefs = [
   { id: "pref-new-farmers", item: "新規就農者数", publisher: "福島県 農業担い手課", dataYear: "令和8年度調査（2026年9月15日公表）", usedFor: "地方別の新規就農者数", license: LICENSE_PREF },
   { id: "pref-fruit-plan", item: "成園の収量・年間労働時間", publisher: "福島県", dataYear: "令和8年3月", usedFor: "果樹の成園10aあたりの収量・労働時間", license: LICENSE_PREF },
   { id: "nagano-indicators", item: "10a当たりの単価", title: "長野県「作目別経営指標一覧表」（令和4年版と推定）", url: "https://www.pref.nagano.lg.jp/nogi/keiei/documents/r4keieishihyoulist.pdf", publisher: "長野県", dataYear: "令和4年版と推定", usedFor: "果樹の単価・経営費（福島県の果樹の経営指標が見つからないため仮に使用。福島の値ではない）", license: LICENSE_PREF },
-  { id: "agriguide-open-08", item: "収量の立ち上がり", title: "県北ふくしまAgri-Guide「福島県59市町村 就農の地域データ」08_果樹の試算_前提（2026年10月16日版）", url: "https://fukushima-agri-guide.jp", publisher: "県北ふくしまAgri-Guide", dataYear: "2026年10月16日版", usedFor: "道のりの前提（収量の立ち上がり・地代・経営費の割合・初期投資）と計算のしかた。項目ごとの根拠は 08 の根拠・出典の列", license: "CC BY 4.0（まとめた部分）。元の数値はそれぞれの出典の利用条件による" },
+  { id: "agriguide-open-08", item: "収量の立ち上がり", title: "県北ふくしまAgri-Guide「福島県59市町村 就農の地域データ」08_果樹の試算_前提（2026年10月16日版）", url: "https://www.fukushima-agri-guide.jp", publisher: "県北ふくしまAgri-Guide", dataYear: "2026年10月16日版", usedFor: "道のりの前提（収量の立ち上がり・地代・経営費の割合・初期投資）と計算のしかた。項目ごとの根拠は 08 の根拠・出典の列", license: "CC BY 4.0（まとめた部分）。元の数値はそれぞれの出典の利用条件による" },
 ];
 
 const sources = sourceDefs.map((d) => {
@@ -90,6 +90,8 @@ function sourced(raw, sourceId, extra = {}) {
   if (v === "") return { value: null, kind: "official", ...base, unavailable: true, note: "元の資料に記載がない" };
   fail(`読めない値：「${v}」（${sourceId}）`);
 }
+// 産出額の合計が 0 の町村（公開用データの値が 0）。元の資料の表記が 0 なのかは確かめていないので、そう書いておく
+const zeroNote = (s) => (s.value === 0 ? { ...s, note: "公開用データの値が 0（単位は千万円）。元の資料で 0 と書かれているのか、ほかの表記の代わりかは確かめていない" } : s);
 const notYet = (sourceId, what) => ({ value: null, kind: "placeholder", sourceId, note: `未取得（${what}。Phase 2 で取り込む）` });
 
 // ---------- ふりがな（総務省） ----------
@@ -136,7 +138,7 @@ const municipalities = base.map((r) => {
     production: {
       year: 2023,
       unit: "千万円",
-      total: prod("農業産出額 合計(千万円,R5)"),
+      total: zeroNote(prod("農業産出額 合計(千万円,R5)")),
       byCategory: {
         rice: prod("産出額 米(千万円,R5)"),
         vegetables: prod("産出額 野菜(千万円,R5)"),
