@@ -55,7 +55,9 @@ export const surveyForms: SurveyForm[] = [
 
 // FORM 06：地域とのつながりがない方の就農相談（/soudan）
 // 出典：docs/INSTRUCTIONS_soudan-page.md（2026年10月25日）。フォームは大貫さんが作る。
-// 段階A（公開前）は "preparing" のまま。URL が空なら、status が "open" でも「準備中」として扱う。
+// 2026年10月30日：段階B（受付中）。返信はメールで3日以内、運営者のGmailから。東京に戻ったあとも受け付けを続ける（大貫さんの決定）。
+// URL が空なら、status が "open" でも「準備中」として扱う。
 export type SoudanStatus = "preparing" | "open" | "closed";
-export const FORM06_SOUDAN_STATUS: SoudanStatus = "preparing";
-export const FORM06_SOUDAN_URL: string = "";
+export const FORM06_SOUDAN_STATUS: SoudanStatus = "open";
+export const FORM06_SOUDAN_URL: string =
+  "https://docs.google.com/forms/d/e/1FAIpQLSeW5cji8wOSsimpDhE77_7A0m6Thu5xqPK1KgpBIfjw_tVlgg/viewform";

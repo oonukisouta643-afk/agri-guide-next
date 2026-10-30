@@ -12,7 +12,8 @@ const BASE_URL = "https://www.fukushima-agri-guide.jp";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // 2026年10月28日：/privacy（プライバシーポリシー）を追加。
-  const routes = ["", "/simulator", "/tools", "/farmers", "/subsidies", "/privacy"];
+  // 2026年10月30日：/soudan（地域とのつながりがない方の就農相談）を追加。
+  const routes = ["", "/simulator", "/tools", "/farmers", "/subsidies", "/privacy", "/soudan"];
 
   return routes.map((route) => ({
     url: `${BASE_URL}${route}`,

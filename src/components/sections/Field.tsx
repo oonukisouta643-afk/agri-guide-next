@@ -207,6 +207,28 @@ export function Field() {
           </Link>
         </div>
       </Reveal>
+
+      <Reveal delayMs={250}>
+        <div className="mx-auto mt-4 max-w-5xl">
+          <Link
+            href="/soudan"
+            onClick={() => trackEvent("soudan_link_click", { source: "homepage_field" })}
+            className="block"
+          >
+            <Card className="flex items-center gap-4 transition-shadow hover:shadow">
+              <span className="text-2xl" aria-hidden="true">
+                ✉️
+              </span>
+              <div>
+                <p className="font-bold text-ink">地域とのつながりがない方の就農相談</p>
+                <p className="mt-1 text-sm text-muted">
+                  県北で農業を始めたいけれど、地域に知り合いがいない方の相談を受け付けています（無料） →
+                </p>
+              </div>
+            </Card>
+          </Link>
+        </div>
+      </Reveal>
     </section>
   );
 }

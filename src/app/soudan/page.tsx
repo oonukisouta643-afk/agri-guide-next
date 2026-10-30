@@ -9,12 +9,14 @@ import { windowReferrals } from "@/data/windowReferral";
 
 // / soudan　地域とのつながりがない方の就農相談
 // 出典：docs/INSTRUCTIONS_soudan-page.md（2026年10月25日）。画面の文章は指示書「4. 画面の文章」のまま。
-// 段階A（公開前）：noindex、サイト内リンクなし、サイトマップに入れない。
+// 2026年10月30日：段階B（受付中）。index、サイトマップに入れ、トップのアンケート欄からリンクする。
 // 紹介を約束しない・紹介先の名前を出さない（公的窓口として出す福島県農業経営・就農支援センターは除く）。
 
 export const metadata: Metadata = {
   title: "地域とのつながりがない方の就農相談",
-  robots: { index: false, follow: false },
+  description:
+    "福島県北で農業を始めたいけれど、地域に知り合いや親せきがいない方の相談を、運営者が直接うかがいます。相談は無料です。",
+  alternates: { canonical: "/soudan" },
 };
 
 // 同意文（Googleフォーム FORM 06 と同じ文）
@@ -80,8 +82,8 @@ export default function SoudanPage() {
               <li>
                 下のボタンから相談フォームを開き、いまの状況と相談したいことを送ってください（5〜10分ほど）。
               </li>
-              {/* 返信の目安は、段階Bの条件2で大貫さんが決めたら入れる。決まるまでは書かない。 */}
-              <li>大貫がメールでお返事します。</li>
+              {/* 返信の目安（3日以内）は、段階Bの条件2で大貫さんが決めたもの（2026年10月30日）。 */}
+              <li>大貫がメールでお返事します（3日以内を目安にしています）。</li>
               <li>必要に応じて、オンラインでお話しします。</li>
             </ol>
             <div className="mt-5 text-center">
