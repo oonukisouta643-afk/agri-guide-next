@@ -11,6 +11,7 @@ import { siteConfig } from "@/data/site";
 //   ・GA4（components/GoogleAnalytics.tsx、lib/analytics.ts のカスタムイベント。氏名・連絡先は送らない）
 //   ・お問い合わせは mailto（サイトのサーバーには保存しない。components/sections/Contact.tsx）
 //   ・アンケートは Google フォームへのリンク（data/forms.ts）
+//   ・相談ページ /soudan の相談フォームも Google フォーム（FORM 06。2026年10月30日に追記）
 //   ・シミュレーターの回答はブラウザの中で計算し、共有用URLに入るだけ（サーバーには保存しない）。
 //     共有用URL（?sim=）は、開いたあと URL から消し、GA4 には ?sim= を外した URL を送る（2026年10月28日から）
 //   ・シミュレーター結果の「メールで相談する」は mailto で、本文に回答の一部が入る（lib/simulator/calculations.ts）
@@ -57,11 +58,16 @@ const sections: { title: string; body: ReactNode }[] = [
     ),
   },
   {
-    title: "3. アンケート",
+    title: "3. アンケート・就農相談",
     body: (
-      <p>
-        アンケートは Google フォームで受け付けています。回答の扱いは、それぞれのフォームに書いてある説明に沿います。集計した結果は、個人が分からない形で、サービスの改善や、行政・関係団体への説明に使うことがあります。
-      </p>
+      <>
+        <p>
+          アンケートは Google フォームで受け付けています。回答の扱いは、それぞれのフォームに書いてある説明に沿います。集計した結果は、個人が分からない形で、サービスの改善や、行政・関係団体への説明に使うことがあります。
+        </p>
+        <p className="mt-3">
+          「地域とのつながりがない方の就農相談」も Google フォームで受け付けています。いただいたお名前・メールアドレス・相談の内容は、お返事のために使い、扱いはフォームと相談ページに書いてある説明に沿います。
+        </p>
+      </>
     ),
   },
   {
@@ -124,7 +130,7 @@ export default function PrivacyPage() {
             {s.body}
           </section>
         ))}
-        <p className="text-xs text-muted">制定：2026年10月28日</p>
+        <p className="text-xs text-muted">制定：2026年10月28日／改定：2026年10月30日（3. に就農相談を追記）</p>
       </div>
     </div>
   );
