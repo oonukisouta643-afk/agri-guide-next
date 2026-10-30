@@ -122,7 +122,8 @@ export const overviewResources: OverviewResource[] = [
   {
     goal: "地域とのつながりがない人が、最初に相談できる",
     resource: "地域とのつながりがない方の就農相談",
-    status: "準備中",
+    status: "公開中",
+    href: "/soudan",
     soudan: true,
   },
   {

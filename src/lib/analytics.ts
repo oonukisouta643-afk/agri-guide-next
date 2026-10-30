@@ -21,3 +21,8 @@ export function trackEvent(eventName: string, params?: Record<string, string | n
   if (typeof window.gtag !== "function") return;
   window.gtag("event", eventName, params ?? {});
 }
+
+// /soudan の「相談フォームを開く」ボタン（FORM 06 の Googleフォームへの遷移）
+export function trackSoudanFormClick() {
+  trackEvent("soudan_form_click", { source: "soudan_page" });
+}
