@@ -119,13 +119,15 @@ function sourced(raw, sourceId, extra = {}) {
 }
 // 農林水産省の統計の記号（産出額・センサスで共通）。「0」＝単位に満たないもの、「－」＝事実のないもの、「x」＝秘匿
 const DASH = /^[-－‐−]$/;
-function maffValue(raw, sourceId, extra = {}) {
+const isX = (v) => v === "x" || v === "ｘ";
+// zeroNote：「0」のときの注。産出額は四捨五入の「0」、人数は数えた結果の「0」なので、呼ぶ側で決める
+function maffValue(raw, sourceId, extra = {}, zeroNote = "元の資料で「0」（単位に満たないもの。四捨五入して0）") {
   const v = (raw ?? "").trim();
   if (/^\d+$/.test(v)) {
     const s = { value: Number(v), kind: "official", sourceId, ...extra };
-    return v === "0" ? { ...s, note: "元の資料で「0」（単位に満たないもの。四捨五入して0）" } : s;
+    return v === "0" ? { ...s, note: zeroNote } : s;
   }
-  if (v === "x" || v === "ｘ") return { value: null, kind: "official", sourceId, ...extra, suppressed: true, note: "秘匿（元の資料で「x」。個々の経営が分かってしまうため非公表）" };
+  if (isX(v)) return { value: null, kind: "official", sourceId, ...extra, suppressed: true, note: "秘匿（元の資料で「x」。個々の経営が分かってしまうため非公表）" };
   if (DASH.test(v)) return { value: null, kind: "official", sourceId, ...extra, unavailable: true, note: "元の資料で「－」（事実のないもの）" };
   fail(`読めない値：「${v}」（${sourceId}）`);
 }
@@ -134,7 +136,8 @@ const numOrDash = (raw) => (DASH.test((raw ?? "").trim()) ? 0 : /^\d+$/.test((ra
 // ---------- 産出額（令和6年。e-Stat の Excel） ----------
 // 列：C 合計（＝耕種＋畜産＋加工農産物）、E 米、J 野菜、K 果実、L 花き、P 畜産（小計）。
 // 「その他」＝麦類 F・雑穀 G・豆類 H・いも類 I・工芸農作物 M（内訳に茶 N）・その他作物 O・加工農産物 Y。
-// 内訳に「x」が1つでもあれば非公表にする。合計から5部門を引いて出すと、秘匿の値が逆算できてしまうので、引き算はしない。
+// 内訳に「x」が1つでもあれば非公表にする（安全側）。合計からほかの5部門を引けば「その他」の合計は出るが、
+// 秘匿された値を含む数を型として出すことになるので、引き算はしない。花きが x の町村も、「その他」が出ないので合計からは花きを出せない。
 const PROD_YEAR = 2024;
 const estatPath = path.join(RAW, "estat", "e033-06-007.xlsx");
 if (!fs.existsSync(estatPath)) fail(`${estatPath} がない。src/kata/README.md の手順でファイルを置く`);
@@ -149,8 +152,8 @@ function productionOf(id, name) {
   const p = (col) => maffValue(r[col], "maff-production-r6", { year: PROD_YEAR });
   const otherRaw = OTHER_COLS.map((c) => (r[c] ?? "").trim());
   let other;
-  if (otherRaw.some((v) => v === "x" || v === "ｘ")) {
-    other = { value: null, kind: "official", sourceId: "maff-production-r6", year: PROD_YEAR, suppressed: true, note: "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出せない。合計からほかの部門を引くと秘匿の値が逆算できてしまうので、引き算もしない" };
+  if (otherRaw.some(isX)) {
+    other = { value: null, kind: "official", sourceId: "maff-production-r6", year: PROD_YEAR, suppressed: true, note: "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない" };
   } else if (otherRaw.every((v) => DASH.test(v))) {
     other = { value: null, kind: "official", sourceId: "maff-production-r6", year: PROD_YEAR, unavailable: true, note: "内訳がすべて「－」（事実のないもの）" };
   } else {
@@ -173,17 +176,23 @@ const headerOk = (coreSheet.find((r) => r.H === "計" && r.S) ?? {});
 if (!/65/.test(headerOk.S ?? "") || !/85/.test(headerOk.W ?? "")) fail(`センサスの (12) の列の並びが想定と違う（S「${headerOk.S}」、W「${headerOk.W}」）`);
 const coreRows = new Map(coreSheet.filter((r) => r.A === "07" && r.D === "00" && r.C !== "000").map((r) => [r.C, r]));
 if (coreRows.size !== 59) fail(`センサスの (12) の市町村が ${coreRows.size} 件（59件のはず）`);
-const avgAgeRows = new Map(readXlsxSheet(censusPath, "(15)").filter((r) => r.A === "07" && r.D === "00" && r.C !== "000").map((r) => [r.C, r]));
+// シート「(15)」世帯員の平均年齢。列 K＝基幹的農業従事者の男女計の平均年齢（見出しで確かめる）
+const avgSheet = readXlsxSheet(censusPath, "(15)");
+const avgHeader = avgSheet.find((r) => r.K && /基幹的農業従事者/.test(r.K)) ?? {};
+if (!/^基幹的農業従事者$/.test((avgHeader.K ?? "").trim()) || !/男女計/.test(avgSheet.find((r) => r.K && /平均年齢/.test(r.K))?.K ?? "")) {
+  fail(`センサスの (15) の列 K が「基幹的農業従事者」の「男女計の平均年齢」でない（${avgHeader.K}）`);
+}
+const avgAgeRows = new Map(avgSheet.filter((r) => r.A === "07" && r.D === "00" && r.C !== "000").map((r) => [r.C, r]));
 const OVER65 = ["S", "T", "U", "V", "W"];
 function workersOf(id, name, avgAgeFromTohoku) {
   const r = coreRows.get(id.slice(2, 5)) ?? fail(`${name}（${id}）がセンサスの (12) にない`);
   if (r.F !== name) fail(`${id}：名前が違う（公開用データ「${name}」、センサス「${r.F}」）`);
   const extra = { year: 2020 };
-  const count = maffValue(r.H, "census-2020-workers", { ...extra, note: "個人経営体の世帯員のうち、仕事が主で、主に自営農業に従事した人" });
+  const count = maffValue(r.H, "census-2020-workers", { ...extra, note: "個人経営体の世帯員のうち、仕事が主で、主に自営農業に従事した人" }, "元の資料で「0」（0人）");
   let ratio;
   if (count.value === null || count.value === 0) {
     ratio = { value: null, kind: "official", sourceId: "census-2020-workers", ...extra, ...(count.suppressed ? { suppressed: true } : { unavailable: true }), note: "基幹的農業従事者数が出ていないため割合も出せない" };
-  } else if ([r.H, ...OVER65.map((c) => r[c])].some((v) => v === "x")) {
+  } else if ([r.H, ...OVER65.map((c) => r[c])].some((v) => isX((v ?? "").trim()))) {
     ratio = { value: null, kind: "official", sourceId: "census-2020-workers", ...extra, suppressed: true, note: "年齢別の人数に秘匿（x）がある" };
   } else {
     const over = OVER65.reduce((a, c) => a + (numOrDash(r[c]) ?? fail(`${name}：${c}列が読めない（${r[c]}）`)), 0);
@@ -191,8 +200,9 @@ function workersOf(id, name, avgAgeFromTohoku) {
     ratio = { value: Math.round((over / count.value) * 1000) / 1000, kind: "estimate", sourceId: "census-2020-workers", ...extra, note: `65歳以上の基幹的農業従事者数（${over}人）÷基幹的農業従事者数（${count.value}人）。小数第3位まで${small}` };
   }
   // 東北農政局の平均年齢（公開用データ01）と、県の表の平均年齢（シート (15) の列 K）を照らし合わせる
-  const prefAvg = avgAgeRows.get(id.slice(2, 5))?.K;
-  if (avgAgeFromTohoku.value !== null && /^[\d.]+$/.test(prefAvg ?? "") && Math.abs(Number(prefAvg) - avgAgeFromTohoku.value) > 0.051) {
+  const prefAvg = (avgAgeRows.get(id.slice(2, 5))?.K ?? "").trim();
+  if (avgAgeFromTohoku.value !== null && !/^[\d.]+$/.test(prefAvg)) fail(`${name}：県の表の平均年齢が数でない（「${prefAvg}」）。東北農政局は ${avgAgeFromTohoku.value}`);
+  if (avgAgeFromTohoku.value !== null && Math.abs(Number(prefAvg) - avgAgeFromTohoku.value) > 0.051) {
     fail(`${name}：基幹的農業従事者の平均年齢が合わない（東北農政局 ${avgAgeFromTohoku.value}、県の表 ${prefAvg}）`);
   }
   return { count, ratio };
