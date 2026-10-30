@@ -145,7 +145,14 @@ const prodRows = new Map(
   readXlsxSheet(estatPath, 0).filter((r) => /^\d{3}$/.test(r.B ?? "")).map((r) => [r.B, r]),
 );
 if (prodRows.size !== 59) fail(`e-Stat の産出額の表の市町村が ${prodRows.size} 件（59件のはず）`);
-const OTHER_COLS = ["F", "G", "H", "I", "M", "N", "O", "Y"];
+// 年が変わって列がずれても静かに取り違えないよう、見出しを確かめる
+const prodHeader = readXlsxSheet(estatPath, 0).find((r) => /小計/.test((r.D ?? "").replace(/\s/g, ""))) ?? {};
+for (const [col, word] of Object.entries({ E: "米", F: "麦類", G: "雑穀", H: "豆類", I: "いも類", J: "野菜", K: "果実", L: "花き", P: "小計" })) {
+  if ((prodHeader[col] ?? "").replace(/\s/g, "") !== word) fail(`e-Stat の産出額の表の列 ${col} が「${word}」でない（「${prodHeader[col]}」）`);
+}
+// N（茶）は工芸農作物 M の内訳と読むので足さない。x の判定にだけ入れる
+const OTHER_SUM_COLS = ["F", "G", "H", "I", "M", "O", "Y"];
+const OTHER_COLS = [...OTHER_SUM_COLS, "N"];
 function productionOf(id, name) {
   const r = prodRows.get(id.slice(2, 5)) ?? fail(`${name}（${id}）が e-Stat の産出額の表にない`);
   if (r.A.replace(/\s/g, "") !== name) fail(`${id}：名前が違う（公開用データ「${name}」、e-Stat「${r.A}」）`);
@@ -157,7 +164,7 @@ function productionOf(id, name) {
   } else if (otherRaw.every((v) => DASH.test(v))) {
     other = { value: null, kind: "official", sourceId: "maff-production-r6", year: PROD_YEAR, unavailable: true, note: "内訳がすべて「－」（事実のないもの）" };
   } else {
-    const sum = otherRaw.reduce((a, v) => a + (numOrDash(v) ?? fail(`${name}：その他の内訳が読めない（${v}）`)), 0);
+    const sum = OTHER_SUM_COLS.reduce((a, c) => a + (numOrDash(r[c]) ?? fail(`${name}：その他の内訳が読めない（${r[c]}）`)), 0);
     other = { value: sum, kind: "estimate", sourceId: "maff-production-r6", year: PROD_YEAR, note: "麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物の合計（千万円の値を足したもの。四捨五入のため、元の合計と内訳の計が合わないことがある）" };
   }
   return {
