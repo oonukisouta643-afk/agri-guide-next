@@ -27,6 +27,9 @@ export const fmtNumber = (n: number, digits = 0) =>
 
 export const fmtPercent = (ratio: number, digits = 1) => `${fmtNumber(ratio * 100, digits)}%`;
 
+/** 西暦 → 令和（2019年＝令和元年より後の年だけに使う） */
+export const reiwa = (year: number) => `令和${year - 2018}年`;
+
 /** 千万円 → 億円（1桁の小数。千万円の整数を10で割るだけなので丸めは起きない） */
 export const fmtOkuFromSenman = (senman: number) => `${fmtNumber(senman / 10, 1)}億円`;
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { crops, municipalities, PRODUCTION_CATEGORIES, regionName, regions, topCategory, getSource } from "@/kata";
-import { KIND_DESCRIPTION, KIND_LABEL, missingText, fmtNumber } from "@/kata/format";
+import { crops, municipalities, PRODUCTION_CATEGORIES, PRODUCTION_SOURCE_ID, PRODUCTION_YEAR, regionName, regions, topCategory, getSource } from "@/kata";
+import { KIND_DESCRIPTION, KIND_LABEL, missingText, fmtNumber, reiwa } from "@/kata/format";
 import type { DataKind } from "@/kata/types";
 import { KindBadge } from "@/kata/components/KindBadge";
 import { SourceRef } from "@/kata/components/SourcedValue";
@@ -57,9 +57,10 @@ export default function KataTop() {
           rows={rows}
           regions={regions.map((r) => ({ id: r.id, label: r.name }))}
           categories={PRODUCTION_CATEGORIES.filter((c) => c.id !== "other").map((c) => ({ id: c.id, label: c.label }))}
+          productionYearLabel={reiwa(PRODUCTION_YEAR)}
         />
         <p className="mt-1 text-xs text-gray-600">
-          農業産出額：<SourceRef sourceId="maff-production-r5" getSource={getSource} sourcesHref="/kata/sources" year={2023} />（推計の公表値）。
+          農業産出額：<SourceRef sourceId={PRODUCTION_SOURCE_ID} getSource={getSource} sourcesHref="/kata/sources" year={PRODUCTION_YEAR} />（推計の公表値）。
         </p>
       </section>
 

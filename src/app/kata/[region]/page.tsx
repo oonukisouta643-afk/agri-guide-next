@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getMunicipalityById, getRegion, getSource, PRODUCTION_CATEGORIES, regions, sumProduction } from "@/kata";
-import { fmtNumber, fmtOkuFromSenman } from "@/kata/format";
+import { getMunicipalityById, getRegion, getSource, PRODUCTION_CATEGORIES, PRODUCTION_SOURCE_ID, PRODUCTION_YEAR, regions, sumProduction } from "@/kata";
+import { fmtNumber, fmtOkuFromSenman, reiwa } from "@/kata/format";
 import { KindBadge } from "@/kata/components/KindBadge";
 import { SourceRef, SourcedValue } from "@/kata/components/SourcedValue";
 import type { Municipality } from "@/kata/types";
@@ -56,7 +56,7 @@ export default async function RegionPage({ params }: Props) {
       </section>
 
       <section className="mt-8">
-        <h2 className="mb-2 text-lg font-bold">部門別の農業産出額の合計（令和5年）</h2>
+        <h2 className="mb-2 text-lg font-bold">部門別の農業産出額の合計（{reiwa(PRODUCTION_YEAR)}）</h2>
         <div className="overflow-x-auto">
           <table className="w-full min-w-[480px] border-collapse text-sm">
             <thead>
@@ -82,7 +82,7 @@ export default async function RegionPage({ params }: Props) {
           </table>
         </div>
         <p className="mt-2 text-xs text-gray-600">
-          推計：所属する市町村の産出額（<SourceRef sourceId="maff-production-r5" getSource={getSource} sourcesHref="/kata/sources" year={2023} />）を足した値。数値が出ていない市町村は 0 として足さず、右の列に名前を出している。そのため、地方の本当の合計より小さいことがある。{zeroTotal.length > 0 && `公開用データの値が 0 の町村（${zeroTotal.join("、")}）は 0 として足している（元の資料で 0 かは確かめていない）。`}
+          推計：所属する市町村の産出額（<SourceRef sourceId={PRODUCTION_SOURCE_ID} getSource={getSource} sourcesHref="/kata/sources" year={PRODUCTION_YEAR} />）を足した値。数値が出ていない市町村は 0 として足さず、右の列に名前を出している。そのため、地方の本当の合計より小さいことがある。{zeroTotal.length > 0 && `合計が 0 の町村（${zeroTotal.join("、")}）は、元の資料で「0」（千万円の単位に満たないもの）なので 0 として足している。`}
         </p>
       </section>
     </main>

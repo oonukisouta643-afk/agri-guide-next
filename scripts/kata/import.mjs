@@ -3,12 +3,14 @@
 // ネットからは取りにいかない。置くファイルは src/kata/README.md「取り込みの手順」を参照。
 //
 // 読むもの：
-//   data-raw/open/   県北ふくしまAgri-Guide「福島県59市町村 就農の地域データ」（2026年10月16日版）の CSV 01・02・03・07・08・09・11・13
+//   data-raw/open/   県北ふくしまAgri-Guide「福島県59市町村 就農の地域データ」（2026年10月16日版）の CSV 01・03・07・08・09・11・13
 //   data-raw/soumu/000925835.xlsx   総務省「全国地方公共団体コード」（令和6年1月1日現在）。ふりがなに使う
+//   data-raw/estat/e033-06-007.xlsx   農林水産省「市町村別農業産出額（推計）」令和6年 福島県（e-Stat）。産出額に使う
+//   data-raw/census2020/484307.xlsx   福島県統計課「2020年農林業センサス」10 世帯員の状況（個人経営体）。基幹的農業従事者数に使う
 // 市町村の支援制度（04・05）は、/kata に出すかが決まっていないので読まない。
 import fs from "node:fs";
 import path from "node:path";
-import { readCsv, readXlsxFirstSheet, kataToHira, hiraToRomaji, writeJson } from "./lib.mjs";
+import { readCsv, readXlsxFirstSheet, readXlsxSheet, kataToHira, hiraToRomaji, writeJson } from "./lib.mjs";
 import { REGIONS, CROPS } from "./spec.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "../..");
@@ -29,28 +31,53 @@ const sourceRows = csv("13_出典一覧.csv");
 const fromList = (itemPrefix) =>
   sourceRows.find((r) => r["項目"].startsWith(itemPrefix)) ?? fail(`13_出典一覧.csv に「${itemPrefix}」がない`);
 
-const LICENSE_GOV = "公共データ利用規約（第1.0版）に準拠（CC BY 4.0 と互換）。公開用データの README による。Phase 2 で確かめ直す";
-const LICENSE_PREF = "オープンデータとしての利用条件の表示なし。数値のみを出典つきで引いている。Phase 2 で確かめる";
+// 利用条件は、それぞれのサイトの利用規約のページを開いて確かめた（2026年10月30日）
+const LICENSE_CHECKED = "2026年10月30日";
+// ページに書いてあるのは「権利表記の記載がない限り PDL1.0 に準拠」。個々の資料（PDF・Excel）に別の権利表記がないかは見ていない
+const pdl = (page) =>
+  `サイトの決まりでは、権利表記の記載がない限り公共データ利用規約（第1.0版）（PDL1.0）に準拠。出典の記載と、加工したときはそのことの記載が要る。${page} で確かめた（${LICENSE_CHECKED}）。この資料そのものに別の権利表記がないかは確かめていない`;
+const LICENSE_MAFF = pdl("農林水産省「リンクについて・著作権」https://www.maff.go.jp/j/use/link.html");
+const LICENSE_TOHOKU = pdl("東北農政局「リンクについて・著作権」https://www.maff.go.jp/tohoku/use/riyou.html");
+const LICENSE_JMA = pdl("気象庁「気象庁ホームページについて」の利用規約 https://www.jma.go.jp/jma/kishou/info/coment.html");
+const LICENSE_SOUMU = pdl("総務省「当省ホームページについて」の著作権について https://www.soumu.go.jp/menu_kyotsuu/policy/tyosaku.html");
+// 福島県：オープンデータ（CC BY 2.1）はバナーのあるページ・データだけ（https://www.pref.fukushima.lg.jp/sec/11045a/open-data-top.html ）。
+// それ以外は「リンク・著作権・免責事項などについて」により著作権の対象で、著作権法で認められた範囲（引用など）で使う。
+const PREF_RULE = "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）";
+const licensePref = (bannerPage) => bannerPage
+  ? `${PREF_RULE}。資料を置いているページ（${bannerPage}）に福島県オープンデータ（CC BY 2.1）の表示はない。この型では数値だけを出典つきで使っている（${LICENSE_CHECKED}確認）`
+  : `${PREF_RULE}。資料を置いているページは見つけられず、オープンデータの表示があるかは確かめられていない。この型では数値だけを出典つきで使っている（${LICENSE_CHECKED}確認）`;
+const LICENSE_NAGANO = `長野県「このサイトの考え方」の著作権について https://www.pref.nagano.lg.jp/koho/kensei/koho/homepage/riyo.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページ https://www.pref.nagano.lg.jp/nogi/keiei/keiei_list.html にオープンデータの表示はない。PDF そのものの権利表記は確かめていない。この型では数値だけを出典つきで使っている（${LICENSE_CHECKED}確認）`;
 
 const sourceDefs = [
-  { id: "pref-yakuba", item: "市町村の一覧", publisher: "福島県", dataYear: "2026年1月22日更新", usedFor: "市町村の一覧・地方の区分・公式サイト", license: LICENSE_PREF },
-  { id: "pref-code", item: "団体コード", publisher: "福島県", dataYear: "掲載時点", usedFor: "市町村ID（全国地方公共団体コード）。2026年10月28日にページの59件と一致することを確かめた", accessedAt: "2026-10-28", license: LICENSE_PREF },
-  { id: "soumu-code", title: "総務省「全国地方公共団体コード」（都道府県コード及び市区町村コード）", url: "https://www.soumu.go.jp/denshijiti/code.html", publisher: "総務省", dataYear: "令和6年1月1日現在", usedFor: "ふりがな（市区町村名のカナ）。ローマ字の slug はこのカナから機械的に作った", accessedAt: "2026-10-28" },
-  { id: "area", item: "総面積", publisher: "福島県（元：国土地理院）", dataYear: "2025年10月1日または2022年10月1日", usedFor: "総面積", license: LICENSE_PREF },
-  { id: "maff-production-r5", item: "農業産出額", publisher: "農林水産省 東北農政局", dataYear: "令和5年（2023年）", usedFor: "農業産出額（合計・部門別）", license: LICENSE_GOV },
-  { id: "census-2020", item: "農業経営体数", publisher: "福島県", dataYear: "2020年（農林業センサス）", usedFor: "経営耕地面積", license: LICENSE_PREF },
-  { id: "tohoku-age-2020", item: "基幹的農業従事者の平均年齢", publisher: "農林水産省 東北農政局", dataYear: "2020年（農林業センサス）", usedFor: "基幹的農業従事者の平均年齢", license: LICENSE_GOV },
-  { id: "tohoku-successor-2020", item: "後継者がいる", publisher: "農林水産省 東北農政局", dataYear: "2020年（農林業センサス）", usedFor: "後継者を確保している経営体の割合", license: LICENSE_GOV },
-  { id: "tohoku-consolidation", item: "耕地面積・担い手", publisher: "農林水産省 東北農政局", dataYear: "2026年3月末", usedFor: "担い手への農地集積率", license: LICENSE_GOV },
-  { id: "jma-normals", item: "気候の平年値", publisher: "気象庁", dataYear: "平年値（1991〜2020年）", usedFor: "年平均気温・年降水量・日照時間・最深積雪", license: LICENSE_GOV },
-  { id: "gi", item: "地理的表示", publisher: "農林水産省", dataYear: "登録日は産品ごと", usedFor: "産地の目印（GI）", license: LICENSE_GOV },
-  { id: "vegetable-designated", item: "野菜指定産地", publisher: "農林水産省 東北農政局", dataYear: "2026年8月3日現在", usedFor: "産地の目印（野菜指定産地）", license: LICENSE_GOV },
-  { id: "fruit-plan-councils", item: "果樹産地協議会", publisher: "福島県", dataYear: "令和8年3月（案）", usedFor: "産地の目印（果樹産地協議会）、品目ページの主な産地", license: LICENSE_PREF },
-  { id: "aizu-brands", item: "会津のブランド", publisher: "福島県 会津農林事務所", dataYear: "2021年3月", usedFor: "産地の目印（その他のブランド）", license: LICENSE_PREF },
-  { id: "trademark-asparagus", item: "地域団体商標", publisher: "福島県", dataYear: "令和5年5月10日", usedFor: "産地の目印（地域団体商標）", license: LICENSE_PREF },
-  { id: "pref-new-farmers", item: "新規就農者数", publisher: "福島県 農業担い手課", dataYear: "令和8年度調査（2026年9月15日公表）", usedFor: "地方別の新規就農者数", license: LICENSE_PREF },
-  { id: "pref-fruit-plan", item: "成園の収量・年間労働時間", publisher: "福島県", dataYear: "令和8年3月", usedFor: "果樹の成園10aあたりの収量・労働時間", license: LICENSE_PREF },
-  { id: "nagano-indicators", item: "10a当たりの単価", title: "長野県「作目別経営指標一覧表」（令和4年版と推定）", url: "https://www.pref.nagano.lg.jp/nogi/keiei/documents/r4keieishihyoulist.pdf", publisher: "長野県", dataYear: "令和4年版と推定", usedFor: "果樹の単価・経営費（福島県の果樹の経営指標が見つからないため仮に使用。福島の値ではない）", license: LICENSE_PREF },
+  { id: "pref-yakuba", item: "市町村の一覧", publisher: "福島県", dataYear: "2026年1月22日更新", usedFor: "市町村の一覧・地方の区分・公式サイト", license: `ページの本文は${PREF_RULE}。ページに置かれた一覧のデータファイル（市役所・町村役場一覧）には福島県オープンデータ（CC BY 2.1）の表示がある。公開用データの値が本文とデータファイルのどちらから取ったものかは記録がない（${LICENSE_CHECKED}確認）` },
+  { id: "pref-code", item: "団体コード", publisher: "福島県", dataYear: "掲載時点", usedFor: "市町村ID（全国地方公共団体コード）。2026年10月28日にページの59件と一致することを確かめた", accessedAt: "2026-10-28", license: licensePref("このページ") },
+  { id: "soumu-code", title: "総務省「全国地方公共団体コード」（都道府県コード及び市区町村コード）", url: "https://www.soumu.go.jp/denshijiti/code.html", publisher: "総務省", dataYear: "令和6年1月1日現在", usedFor: "ふりがな（市区町村名のカナ）。ローマ字の slug はこのカナから機械的に作った", accessedAt: "2026-10-28", license: LICENSE_SOUMU },
+  { id: "area", item: "総面積", publisher: "福島県（元：国土地理院）", dataYear: "2025年10月1日または2022年10月1日", usedFor: "総面積", license: licensePref("第140回福島県統計年鑑 https://www.pref.fukushima.lg.jp/sec/11045b/nenkan140.html") },
+  {
+    id: "maff-production-r6", title: "農林水産省「市町村別農業産出額（推計）」令和6年 確報 統計表1 福島県（e-Stat）", url: "https://www.e-stat.go.jp/stat-search/files?stat_infid=000040477284",
+    publisher: "農林水産省", dataYear: "令和6年（2024年）。2026年7月24日公開", accessedAt: "2026-10-30",
+    usedFor: "農業産出額（合計・部門別）。記号は「0」＝単位に満たないもの、「－」＝事実のないもの、「x」＝秘匿（農林水産省「市町村別農業産出額（推計）の概要」利用上の注意 https://www.maff.go.jp/j/tokei/kouhyou/sityoson_sansyutu/gaiyou/index.html ）",
+    license: `e-Stat「利用規約」https://www.e-stat.go.jp/terms-of-use により、出典を書けば複製・加工・商用利用ができる（加工したときはそのことも書く）。農林水産省は、転載するときは「市町村別農業産出額（推計）」（農林水産省）による旨を書くよう求めている（上の利用上の注意）（${LICENSE_CHECKED}確認）`,
+  },
+  { id: "census-2020", item: "農業経営体数", publisher: "福島県", dataYear: "2020年（農林業センサス）", usedFor: "経営耕地面積", license: licensePref("2020年農林業センサス農林業経営体調査結果 https://www.pref.fukushima.lg.jp/sec/11045b/nourin2020.html") },
+  {
+    id: "census-2020-workers", title: "福島県統計課「2020年農林業センサス農林業経営体調査結果（確定値）」02 農業経営体 10 世帯員の状況（個人経営体）（Excel）", url: "https://www.pref.fukushima.lg.jp/uploaded/attachment/484307.xlsx",
+    publisher: "福島県（元：農林水産省 農林業センサス）", dataYear: "2020年（農林業センサス）", accessedAt: "2026-10-30",
+    usedFor: "基幹的農業従事者数・65歳以上の割合（シート「(12)」年齢階層別の基幹的農業従事者数）。記号は「－」＝調査は行ったが事実のないもの、「x」＝秘匿（農林水産省「農林業センサスの概要」https://www.maff.go.jp/j/tokei/kouhyou/noucen/gaiyou/ ）",
+    license: licensePref("2020年農林業センサス農林業経営体調査結果 https://www.pref.fukushima.lg.jp/sec/11045b/nourin2020.html"),
+  },
+  { id: "tohoku-age-2020", item: "基幹的農業従事者の平均年齢", publisher: "農林水産省 東北農政局", dataYear: "2020年（農林業センサス）", usedFor: "基幹的農業従事者の平均年齢", license: LICENSE_TOHOKU },
+  { id: "tohoku-successor-2020", item: "後継者がいる", publisher: "農林水産省 東北農政局", dataYear: "2020年（農林業センサス）", usedFor: "後継者を確保している経営体の割合", license: LICENSE_TOHOKU },
+  { id: "tohoku-consolidation", item: "耕地面積・担い手", publisher: "農林水産省 東北農政局", dataYear: "2026年3月末", usedFor: "担い手への農地集積率", license: LICENSE_TOHOKU },
+  { id: "jma-normals", item: "気候の平年値", publisher: "気象庁", dataYear: "平年値（1991〜2020年）", usedFor: "年平均気温・年降水量・日照時間・最深積雪", license: LICENSE_JMA },
+  { id: "gi", item: "地理的表示", publisher: "農林水産省", dataYear: "登録日は産品ごと", usedFor: "産地の目印（GI）", license: `${LICENSE_MAFF}。GIマークの表示は地理的表示法による制約があり、この型では使っていない` },
+  { id: "vegetable-designated", item: "野菜指定産地", publisher: "農林水産省 東北農政局", dataYear: "2026年8月3日現在", usedFor: "産地の目印（野菜指定産地）", license: LICENSE_TOHOKU },
+  { id: "fruit-plan-councils", item: "果樹産地協議会", publisher: "福島県", dataYear: "令和8年3月（案）", usedFor: "産地の目印（果樹産地協議会）、品目ページの主な産地", license: licensePref(null) },
+  { id: "aizu-brands", item: "会津のブランド", publisher: "福島県 会津農林事務所", dataYear: "2021年3月", usedFor: "産地の目印（その他のブランド）", license: licensePref(null) },
+  { id: "trademark-asparagus", item: "地域団体商標", publisher: "福島県", dataYear: "令和5年5月10日", usedFor: "産地の目印（地域団体商標）", license: licensePref(null) },
+  { id: "pref-new-farmers", item: "新規就農者数", publisher: "福島県 農業担い手課", dataYear: "令和8年度調査（2026年9月15日公表）", usedFor: "地方別の新規就農者数", license: `${licensePref(null)}。参考：前年の「令和7年度の新規就農者数について」https://www.pref.fukushima.lg.jp/sec/36021c/sinkisyunou07.html にはオープンデータの表示はない` },
+  { id: "pref-fruit-plan", item: "成園の収量・年間労働時間", publisher: "福島県", dataYear: "令和8年3月", usedFor: "果樹の成園10aあたりの収量・労働時間", license: licensePref("福島県果樹農業振興計画 https://www.pref.fukushima.lg.jp/sec/36035c/kajushinkou.html") },
+  { id: "nagano-indicators", item: "10a当たりの単価", title: "長野県「作目別経営指標一覧表」（令和4年版と推定）", url: "https://www.pref.nagano.lg.jp/nogi/keiei/documents/r4keieishihyoulist.pdf", publisher: "長野県", dataYear: "令和4年版と推定", usedFor: "果樹の単価・経営費（福島県の果樹の経営指標が見つからないため仮に使用。福島の値ではない）", license: LICENSE_NAGANO },
   { id: "agriguide-open-08", item: "収量の立ち上がり", title: "県北ふくしまAgri-Guide「福島県59市町村 就農の地域データ」08_果樹の試算_前提（2026年10月16日版）", url: "https://www.fukushima-agri-guide.jp", publisher: "県北ふくしまAgri-Guide", dataYear: "2026年10月16日版", usedFor: "道のりの前提（収量の立ち上がり・地代・経営費の割合・初期投資）と計算のしかた。項目ごとの根拠は 08 の根拠・出典の列", license: "CC BY 4.0（まとめた部分）。元の数値はそれぞれの出典の利用条件による" },
 ];
 
@@ -90,9 +117,96 @@ function sourced(raw, sourceId, extra = {}) {
   if (v === "") return { value: null, kind: "official", ...base, unavailable: true, note: "元の資料に記載がない" };
   fail(`読めない値：「${v}」（${sourceId}）`);
 }
-// 産出額の合計が 0 の町村（公開用データの値が 0）。元の資料の表記が 0 なのかは確かめていないので、そう書いておく
-const zeroNote = (s) => (s.value === 0 ? { ...s, note: "公開用データの値が 0（単位は千万円）。元の資料で 0 と書かれているのか、ほかの表記の代わりかは確かめていない" } : s);
-const notYet = (sourceId, what) => ({ value: null, kind: "placeholder", sourceId, note: `未取得（${what}。Phase 2 で取り込む）` });
+// 農林水産省の統計の記号（産出額・センサスで共通）。「0」＝単位に満たないもの、「－」＝事実のないもの、「x」＝秘匿
+const DASH = /^[-－‐−]$/;
+const isX = (v) => v === "x" || v === "ｘ";
+// zeroNote：「0」のときの注。産出額は四捨五入の「0」、人数は数えた結果の「0」なので、呼ぶ側で決める
+function maffValue(raw, sourceId, extra = {}, zeroNote = "元の資料で「0」（単位に満たないもの。四捨五入して0）") {
+  const v = (raw ?? "").trim();
+  if (/^\d+$/.test(v)) {
+    const s = { value: Number(v), kind: "official", sourceId, ...extra };
+    return v === "0" ? { ...s, note: zeroNote } : s;
+  }
+  if (isX(v)) return { value: null, kind: "official", sourceId, ...extra, suppressed: true, note: "秘匿（元の資料で「x」。個々の経営が分かってしまうため非公表）" };
+  if (DASH.test(v)) return { value: null, kind: "official", sourceId, ...extra, unavailable: true, note: "元の資料で「－」（事実のないもの）" };
+  fail(`読めない値：「${v}」（${sourceId}）`);
+}
+const numOrDash = (raw) => (DASH.test((raw ?? "").trim()) ? 0 : /^\d+$/.test((raw ?? "").trim()) ? Number(raw) : null);
+
+// ---------- 産出額（令和6年。e-Stat の Excel） ----------
+// 列：C 合計（＝耕種＋畜産＋加工農産物）、E 米、J 野菜、K 果実、L 花き、P 畜産（小計）。
+// 「その他」＝麦類 F・雑穀 G・豆類 H・いも類 I・工芸農作物 M（内訳に茶 N）・その他作物 O・加工農産物 Y。
+// 内訳に「x」が1つでもあれば非公表にする（安全側）。合計からほかの5部門を引けば「その他」の合計は出るが、
+// 秘匿された値を含む数を型として出すことになるので、引き算はしない。花きが x の町村も、「その他」が出ないので合計からは花きを出せない。
+const PROD_YEAR = 2024;
+const estatPath = path.join(RAW, "estat", "e033-06-007.xlsx");
+if (!fs.existsSync(estatPath)) fail(`${estatPath} がない。src/kata/README.md の手順でファイルを置く`);
+const prodRows = new Map(
+  readXlsxSheet(estatPath, 0).filter((r) => /^\d{3}$/.test(r.B ?? "")).map((r) => [r.B, r]),
+);
+if (prodRows.size !== 59) fail(`e-Stat の産出額の表の市町村が ${prodRows.size} 件（59件のはず）`);
+const OTHER_COLS = ["F", "G", "H", "I", "M", "N", "O", "Y"];
+function productionOf(id, name) {
+  const r = prodRows.get(id.slice(2, 5)) ?? fail(`${name}（${id}）が e-Stat の産出額の表にない`);
+  if (r.A.replace(/\s/g, "") !== name) fail(`${id}：名前が違う（公開用データ「${name}」、e-Stat「${r.A}」）`);
+  const p = (col) => maffValue(r[col], "maff-production-r6", { year: PROD_YEAR });
+  const otherRaw = OTHER_COLS.map((c) => (r[c] ?? "").trim());
+  let other;
+  if (otherRaw.some(isX)) {
+    other = { value: null, kind: "official", sourceId: "maff-production-r6", year: PROD_YEAR, suppressed: true, note: "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない" };
+  } else if (otherRaw.every((v) => DASH.test(v))) {
+    other = { value: null, kind: "official", sourceId: "maff-production-r6", year: PROD_YEAR, unavailable: true, note: "内訳がすべて「－」（事実のないもの）" };
+  } else {
+    const sum = otherRaw.reduce((a, v) => a + (numOrDash(v) ?? fail(`${name}：その他の内訳が読めない（${v}）`)), 0);
+    other = { value: sum, kind: "estimate", sourceId: "maff-production-r6", year: PROD_YEAR, note: "麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物の合計（千万円の値を足したもの。四捨五入のため、元の合計と内訳の計が合わないことがある）" };
+  }
+  return {
+    total: p("C"),
+    byCategory: { rice: p("E"), vegetables: p("J"), fruits: p("K"), flowers: p("L"), livestock: p("P"), other },
+  };
+}
+
+// ---------- 基幹的農業従事者（2020年センサス。福島県統計課の Excel） ----------
+// シート「(12)」年齢階層別の基幹的農業従事者数。旧市区町村の列 D が "00" の行が市町村の計。
+// 列 H＝男女計の計、S〜W＝65〜69歳・70〜74・75〜79・80〜84・85歳以上（男女計）。
+const censusPath = path.join(RAW, "census2020", "484307.xlsx");
+if (!fs.existsSync(censusPath)) fail(`${censusPath} がない。src/kata/README.md の手順でファイルを置く`);
+const coreSheet = readXlsxSheet(censusPath, "(12)");
+const headerOk = (coreSheet.find((r) => r.H === "計" && r.S) ?? {});
+if (!/65/.test(headerOk.S ?? "") || !/85/.test(headerOk.W ?? "")) fail(`センサスの (12) の列の並びが想定と違う（S「${headerOk.S}」、W「${headerOk.W}」）`);
+const coreRows = new Map(coreSheet.filter((r) => r.A === "07" && r.D === "00" && r.C !== "000").map((r) => [r.C, r]));
+if (coreRows.size !== 59) fail(`センサスの (12) の市町村が ${coreRows.size} 件（59件のはず）`);
+// シート「(15)」世帯員の平均年齢。列 K＝基幹的農業従事者の男女計の平均年齢（見出しで確かめる）
+const avgSheet = readXlsxSheet(censusPath, "(15)");
+const avgHeader = avgSheet.find((r) => r.K && /基幹的農業従事者/.test(r.K)) ?? {};
+if (!/^基幹的農業従事者$/.test((avgHeader.K ?? "").trim()) || !/男女計/.test(avgSheet.find((r) => r.K && /平均年齢/.test(r.K))?.K ?? "")) {
+  fail(`センサスの (15) の列 K が「基幹的農業従事者」の「男女計の平均年齢」でない（${avgHeader.K}）`);
+}
+const avgAgeRows = new Map(avgSheet.filter((r) => r.A === "07" && r.D === "00" && r.C !== "000").map((r) => [r.C, r]));
+const OVER65 = ["S", "T", "U", "V", "W"];
+function workersOf(id, name, avgAgeFromTohoku) {
+  const r = coreRows.get(id.slice(2, 5)) ?? fail(`${name}（${id}）がセンサスの (12) にない`);
+  if (r.F !== name) fail(`${id}：名前が違う（公開用データ「${name}」、センサス「${r.F}」）`);
+  const extra = { year: 2020 };
+  const count = maffValue(r.H, "census-2020-workers", { ...extra, note: "個人経営体の世帯員のうち、仕事が主で、主に自営農業に従事した人" }, "元の資料で「0」（0人）");
+  let ratio;
+  if (count.value === null || count.value === 0) {
+    ratio = { value: null, kind: "official", sourceId: "census-2020-workers", ...extra, ...(count.suppressed ? { suppressed: true } : { unavailable: true }), note: "基幹的農業従事者数が出ていないため割合も出せない" };
+  } else if ([r.H, ...OVER65.map((c) => r[c])].some((v) => isX((v ?? "").trim()))) {
+    ratio = { value: null, kind: "official", sourceId: "census-2020-workers", ...extra, suppressed: true, note: "年齢別の人数に秘匿（x）がある" };
+  } else {
+    const over = OVER65.reduce((a, c) => a + (numOrDash(r[c]) ?? fail(`${name}：${c}列が読めない（${r[c]}）`)), 0);
+    const small = count.value < 20 ? `。人数が少ない（${count.value}人）ため、割合は1人の違いで大きく変わる` : "";
+    ratio = { value: Math.round((over / count.value) * 1000) / 1000, kind: "estimate", sourceId: "census-2020-workers", ...extra, note: `65歳以上の基幹的農業従事者数（${over}人）÷基幹的農業従事者数（${count.value}人）。小数第3位まで${small}` };
+  }
+  // 東北農政局の平均年齢（公開用データ01）と、県の表の平均年齢（シート (15) の列 K）を照らし合わせる
+  const prefAvg = (avgAgeRows.get(id.slice(2, 5))?.K ?? "").trim();
+  if (avgAgeFromTohoku.value !== null && !/^[\d.]+$/.test(prefAvg)) fail(`${name}：県の表の平均年齢が数でない（「${prefAvg}」）。東北農政局は ${avgAgeFromTohoku.value}`);
+  if (avgAgeFromTohoku.value !== null && Math.abs(Number(prefAvg) - avgAgeFromTohoku.value) > 0.051) {
+    fail(`${name}：基幹的農業従事者の平均年齢が合わない（東北農政局 ${avgAgeFromTohoku.value}、県の表 ${prefAvg}）`);
+  }
+  return { count, ratio };
+}
 
 // ---------- ふりがな（総務省） ----------
 const soumuPath = path.join(RAW, "soumu", "000925835.xlsx");
@@ -104,7 +218,6 @@ for (const r of readXlsxFirstSheet(soumuPath)) {
 
 // ---------- 市町村 ----------
 const base = csv("01_市町村の基本データ.csv");
-const main = new Map(csv("02_主力品目.csv").map((r) => [r["市町村"], r]));
 const marks = csv("03_産地の目印.csv");
 const regionIdByName = new Map(REGIONS.map((r) => [r.name, r.id]));
 const BRAND_KIND = { GI: "gi", 野菜指定産地: "designated", 果樹産地計画: "fruitPlan", 地域団体商標: "trademark", その他: "local" };
@@ -119,14 +232,14 @@ const municipalities = base.map((r) => {
   if (!suffix || !s.kana.endsWith(suffix)) fail(`${name}：ふりがな「${s.kana}」の終わりが「${suffix}」でない`);
   const slug = hiraToRomaji(s.kana.slice(0, -suffix.length));
 
-  const m2 = main.get(name) ?? fail(`02 に ${name} がない`);
   const dist = r["役場から参照観測所までの距離"].match(/^([\d.]+)km(（市町村内）)?$/) ?? fail(`${name}：距離が読めない`);
   const areaDate = r["面積の基準日"];
   const climateNote = r["気候データの確認状況"] === "第三者サイト"
     ? "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
     : undefined;
   const climate = (col) => sourced(r[col], "jma-normals", climateNote ? { note: climateNote } : {});
-  const prod = (col) => sourced(r[col], "maff-production-r5", { year: 2023 });
+  const avgAge = sourced(r["基幹的農業従事者の平均年齢(歳,2020)"], "tohoku-age-2020", { year: 2020 });
+  const workers = workersOf(id, name, avgAge);
 
   return {
     id,
@@ -136,20 +249,9 @@ const municipalities = base.map((r) => {
     regionId,
     areaKm2: sourced(r["総面積(km²)"], "area", { year: Number(areaDate.slice(0, 4)), note: `基準日 ${areaDate}` }),
     production: {
-      year: 2023,
+      year: PROD_YEAR,
       unit: "千万円",
-      total: zeroNote(prod("農業産出額 合計(千万円,R5)")),
-      byCategory: {
-        rice: prod("産出額 米(千万円,R5)"),
-        vegetables: prod("産出額 野菜(千万円,R5)"),
-        fruits: prod("産出額 果実(千万円,R5)"),
-        flowers: prod("産出額 花き(千万円,R5)"),
-        livestock: prod("産出額 畜産(千万円,R5)"),
-        other: notYet("maff-production-r5", "公開用データに「その他」の列がない"),
-      },
-      prefRank: sourced(m2["県内順位(R5)"], "maff-production-r5", {
-        kind: "estimate", year: 2023, note: "令和5年の農業産出額（合計）を59市町村で大きい順に並べた順位（公開用データ02）",
-      }),
+      ...productionOf(id, name),
     },
     brands: marks.filter((b) => b["市町村"] === name).map((b) => ({
       name: b["名称"],
@@ -170,9 +272,9 @@ const municipalities = base.map((r) => {
     },
     workforce: {
       censusYear: 2020,
-      coreWorkers: notYet("census-2020", "基幹的農業従事者数は公開用データにない"),
-      coreWorkersAvgAge: sourced(r["基幹的農業従事者の平均年齢(歳,2020)"], "tohoku-age-2020", { year: 2020 }),
-      coreWorkersOver65Ratio: notYet("census-2020", "65歳以上の割合は公開用データにない"),
+      coreWorkers: workers.count,
+      coreWorkersAvgAge: avgAge,
+      coreWorkersOver65Ratio: workers.ratio,
       successorSecuredRatio: sourced(r["後継者がいる経営体の割合(2020)"], "tohoku-successor-2020", { year: 2020 }),
       farmedAreaHa: sourced(r["経営耕地面積(ha,2020)"], "census-2020", { year: 2020 }),
     },
@@ -180,6 +282,18 @@ const municipalities = base.map((r) => {
     contact: { label: `${name}の公式サイト`, url: r["公式サイト"] || fail(`${name}：公式サイトがない`) },
   };
 });
+
+// 県内順位（令和6年の合計）。千万円の値で並べるので、同じ値は同じ順位にする
+const ranked = municipalities.filter((m) => m.production.total.value !== null);
+for (const m of municipalities) {
+  const v = m.production.total.value;
+  m.production.prefRank = v === null
+    ? { value: null, kind: "estimate", sourceId: "maff-production-r6", year: PROD_YEAR, unavailable: true, note: "合計が出ていないため順位を付けない" }
+    : {
+        value: 1 + ranked.filter((x) => x.production.total.value > v).length, kind: "estimate", sourceId: "maff-production-r6", year: PROD_YEAR,
+        note: `令和6年の農業産出額（合計、千万円の値）を、合計が出ている${ranked.length}市町村で大きい順に並べた順位。同じ値は同じ順位。農林水産省は100万円単位の元の数で順位を付けているので、それとは違うことがある`,
+      };
+}
 
 // 第3章の並びに合わせる
 const order = REGIONS.flatMap((r) => r.municipalities);
