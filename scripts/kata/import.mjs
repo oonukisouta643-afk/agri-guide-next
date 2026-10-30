@@ -11,7 +11,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { readCsv, readXlsxFirstSheet, readXlsxSheet, kataToHira, hiraToRomaji, writeJson } from "./lib.mjs";
-import { REGIONS, CROPS } from "./spec.mjs";
+import { REGIONS, CROPS, SNOW_AREAS } from "./spec.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "../..");
 const RAW = path.join(ROOT, "data-raw");
@@ -69,12 +69,16 @@ const sourceDefs = [
   { id: "tohoku-age-2020", item: "基幹的農業従事者の平均年齢", publisher: "農林水産省 東北農政局", dataYear: "2020年（農林業センサス）", usedFor: "基幹的農業従事者の平均年齢", license: LICENSE_TOHOKU },
   { id: "tohoku-successor-2020", item: "後継者がいる", publisher: "農林水産省 東北農政局", dataYear: "2020年（農林業センサス）", usedFor: "後継者を確保している経営体の割合", license: LICENSE_TOHOKU },
   { id: "tohoku-consolidation", item: "耕地面積・担い手", publisher: "農林水産省 東北農政局", dataYear: "2026年3月末", usedFor: "担い手への農地集積率", license: LICENSE_TOHOKU },
-  { id: "jma-normals", item: "気候の平年値", title: "気象庁「過去の気象データ検索」の平年値（1991〜2020年）。公開用データで第三者サイトの値だった観測所（飯舘・東白川・川内・南郷）は、2026年10月30日に気象庁の平年値で確かめ直した", publisher: "気象庁", dataYear: "平年値（1991〜2020年）", usedFor: "年平均気温・年降水量・日照時間・最深積雪", license: LICENSE_JMA },
+  { id: "jma-normals", item: "気候の平年値", publisher: "気象庁", dataYear: "平年値（1991〜2020年）", usedFor: "年平均気温・年降水量・日照時間・最深積雪", license: LICENSE_JMA },
   { id: "gi", item: "地理的表示", publisher: "農林水産省", dataYear: "登録日は産品ごと", usedFor: "産地の目印（GI）", license: `${LICENSE_MAFF}。GIマークの表示は地理的表示法による制約があり、この型では使っていない` },
   { id: "vegetable-designated", item: "野菜指定産地", publisher: "農林水産省 東北農政局", dataYear: "2026年8月3日現在", usedFor: "産地の目印（野菜指定産地）", license: LICENSE_TOHOKU },
   { id: "fruit-plan-councils", item: "果樹産地協議会", publisher: "福島県", dataYear: "令和8年3月（案）", usedFor: "産地の目印（果樹産地協議会）、品目ページの主な産地", license: licensePref(null) },
   { id: "aizu-brands", item: "会津のブランド", publisher: "福島県 会津農林事務所", dataYear: "2021年3月", usedFor: "産地の目印（その他のブランド）", license: licensePref(null) },
   { id: "trademark-asparagus", item: "地域団体商標", publisher: "福島県", dataYear: "令和5年5月10日", usedFor: "産地の目印（地域団体商標）", license: licensePref(null) },
+  {
+    id: "pref-snow-plan", title: "福島県「福島県豪雪地帯対策基本計画（第四次）」令和6年3月 資料編「福島県の豪雪地帯市町村一覧」", url: "https://www.pref.fukushima.lg.jp/uploaded/attachment/623392.pdf",
+    publisher: "福島県", dataYear: "令和5年4月1日現在", accessedAt: "2026-10-30", usedFor: "豪雪地帯・特別豪雪地帯の指定", license: licensePref(null),
+  },
   { id: "pref-new-farmers", item: "新規就農者数", publisher: "福島県 農業担い手課", dataYear: "令和8年度調査（2026年9月15日公表）", usedFor: "地方別の新規就農者数", license: `${licensePref(null)}。参考：前年の「令和7年度の新規就農者数について」https://www.pref.fukushima.lg.jp/sec/36021c/sinkisyunou07.html にはオープンデータの表示はない` },
   { id: "pref-fruit-plan", item: "成園の収量・年間労働時間", publisher: "福島県", dataYear: "令和8年3月", usedFor: "果樹の成園10aあたりの収量・労働時間", license: licensePref("福島県果樹農業振興計画 https://www.pref.fukushima.lg.jp/sec/36035c/kajushinkou.html") },
   { id: "nagano-indicators", item: "10a当たりの単価", title: "長野県「作目別経営指標一覧表」（令和4年版と推定）", url: "https://www.pref.nagano.lg.jp/nogi/keiei/documents/r4keieishihyoulist.pdf", publisher: "長野県", dataYear: "令和4年版と推定", usedFor: "果樹の単価・経営費（福島県の果樹の経営指標が見つからないため仮に使用。福島の値ではない）", license: LICENSE_NAGANO },
@@ -113,7 +117,7 @@ function sourced(raw, sourceId, extra = {}) {
   if (v === "x") return { value: null, kind: "official", ...base, suppressed: true, note: "秘匿（個々の経営が分かってしまうため非公表）" };
   if (v === "-" || v === "…" || v === "—") return { value: null, kind: "official", ...base, unavailable: true, note: `元の資料で数値が示されていない（「${v}」）` };
   if (v === "調査なし") return { value: null, kind: "official", ...base, unavailable: true, note: "避難指示の影響により調査されていない" };
-  if (v === "観測なし") return { value: null, kind: "official", ...base, unavailable: true, note: "参照している観測所で、この項目を観測していない" };
+  if (v === "観測なし") return { value: null, kind: "official", ...base, unavailable: true, note: "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない" };
   if (v === "") return { value: null, kind: "official", ...base, unavailable: true, note: "元の資料に記載がない" };
   fail(`読めない値：「${v}」（${sourceId}）`);
 }
@@ -136,8 +140,8 @@ const numOrDash = (raw) => (DASH.test((raw ?? "").trim()) ? 0 : /^\d+$/.test((ra
 // ---------- 産出額（令和6年。e-Stat の Excel） ----------
 // 列：C 合計（＝耕種＋畜産＋加工農産物）、E 米、J 野菜、K 果実、L 花き、P 畜産（小計）。
 // 「その他」＝麦類 F・雑穀 G・豆類 H・いも類 I・工芸農作物 M（内訳に茶 N）・その他作物 O・加工農産物 Y。
-// 内訳に「x」が1つでもあれば非公表にする（安全側）。合計からほかの5部門を引けば「その他」の合計は出るが、
-// 秘匿された値を含む数を型として出すことになるので、引き算はしない。花きが x の町村も、「その他」が出ないので合計からは花きを出せない。
+// 内訳に「x」が1つでもあれば「その他」の合計は非公表にする。合計からほかの5部門を引く計算はしない（秘匿された値を含む数になるため）。
+// 代わりに、公表されている内訳（otherBreakdown）を品目の名前つきでそのまま持つ。
 const PROD_YEAR = 2024;
 const estatPath = path.join(RAW, "estat", "e033-06-007.xlsx");
 if (!fs.existsSync(estatPath)) fail(`${estatPath} がない。src/kata/README.md の手順でファイルを置く`);
@@ -152,6 +156,7 @@ for (const [col, word] of Object.entries({ E: "米", F: "麦類", G: "雑穀", H
 }
 // N（茶）は工芸農作物 M の内訳と読むので足さない。x の判定にだけ入れる
 const OTHER_SUM_COLS = ["F", "G", "H", "I", "M", "O", "Y"];
+const OTHER_LABELS = { F: "麦類", G: "雑穀", H: "豆類", I: "いも類", M: "工芸農作物", N: "茶", O: "その他作物", Y: "加工農産物" };
 const OTHER_COLS = [...OTHER_SUM_COLS, "N"];
 function productionOf(id, name) {
   const r = prodRows.get(id.slice(2, 5)) ?? fail(`${name}（${id}）が e-Stat の産出額の表にない`);
@@ -160,16 +165,20 @@ function productionOf(id, name) {
   const otherRaw = OTHER_COLS.map((c) => (r[c] ?? "").trim());
   let other;
   if (otherRaw.some(isX)) {
-    other = { value: null, kind: "official", sourceId: "maff-production-r6", year: PROD_YEAR, suppressed: true, note: "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない" };
+    other = { value: null, kind: "official", sourceId: "maff-production-r6", year: PROD_YEAR, suppressed: true, note: "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く" };
   } else if (otherRaw.every((v) => DASH.test(v))) {
     other = { value: null, kind: "official", sourceId: "maff-production-r6", year: PROD_YEAR, unavailable: true, note: "内訳がすべて「－」（事実のないもの）" };
   } else {
     const sum = OTHER_SUM_COLS.reduce((a, c) => a + (numOrDash(r[c]) ?? fail(`${name}：その他の内訳が読めない（${r[c]}）`)), 0);
     other = { value: sum, kind: "estimate", sourceId: "maff-production-r6", year: PROD_YEAR, note: "麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物の合計（千万円の値を足したもの。四捨五入のため、元の合計と内訳の計が合わないことがある）" };
   }
+  // 「0」（単位に満たない）と「－」は並べない
+  const published = OTHER_SUM_COLS.filter((c) => numOrDash(r[c]) > 0).map((c) => ({ label: OTHER_LABELS[c], value: Number(r[c]) })).sort((a, b) => b.value - a.value);
+  const withheld = OTHER_COLS.filter((c) => isX((r[c] ?? "").trim())).map((c) => OTHER_LABELS[c]);
   return {
     total: p("C"),
     byCategory: { rice: p("E"), vegetables: p("J"), fruits: p("K"), flowers: p("L"), livestock: p("P"), other },
+    otherBreakdown: { published, withheld, sourceId: "maff-production-r6" },
   };
 }
 
@@ -223,18 +232,6 @@ for (const r of readXlsxFirstSheet(soumuPath)) {
   if (/^07\d{4}$/.test(r.A ?? "") && r.C) soumu.set(r.A, { name: r.C, kana: kataToHira(r.E) });
 }
 
-// ---------- 気象庁で確かめ直した観測所 ----------
-// 公開用データで「第三者サイト」の値だった観測所を、気象庁「過去の気象データ検索」の平年値（1991〜2020年）で確かめた。
-// https://www.data.jma.go.jp/stats/etrn/view/nml_amd_ym.php?prec_no=36&block_no=（観測所番号）の「年」の行。
-// 気温・降水量・日照時間は公開用データと同じだった（取り込みでも照らし合わせる）。snow：最深積雪(cm)。null は観測していない
-const JMA_CHECKED_AT = "2026年10月30日";
-const JMA_CHECKED = {
-  飯舘: { block: "1130", temp: 10.3, precip: 1367.4, sun: 1881.0, snow: null },
-  東白川: { block: "0312", temp: 12.0, precip: 1405.1, sun: 1940.8, snow: null },
-  川内: { block: "1129", temp: 10.6, precip: 1484.1, sun: 1943.4, snow: null },
-  南郷: { block: "0301", temp: 9.9, precip: 1492.1, sun: 1540.6, snow: 166 },
-};
-
 // ---------- 市町村 ----------
 const base = csv("01_市町村の基本データ.csv");
 const marks = csv("03_産地の目印.csv");
@@ -253,21 +250,7 @@ const municipalities = base.map((r) => {
 
   const dist = r["役場から参照観測所までの距離"].match(/^([\d.]+)km(（市町村内）)?$/) ?? fail(`${name}：距離が読めない`);
   const areaDate = r["面積の基準日"];
-  const checked = JMA_CHECKED[r["参照観測所"]];
-  if (r["気候データの確認状況"] === "第三者サイト" && !checked) fail(`${name}：観測所「${r["参照観測所"]}」は第三者サイトの値で、気象庁で確かめた表（JMA_CHECKED）にない`);
-  if (checked) {
-    for (const [col, v] of [["年平均気温(℃,平年値1991-2020)", checked.temp], ["年降水量(mm,平年値)", checked.precip], ["年間日照時間(h,平年値)", checked.sun]]) {
-      if (Number(r[col]) !== v) fail(`${name}：${col} が公開用データ ${r[col]} と気象庁 ${v} で違う`);
-    }
-  }
-  const climateNote = checked ? `気象庁の平年値のページ（観測所 ${r["参照観測所"]}）で確かめた（${JMA_CHECKED_AT}）` : undefined;
-  const climate = (col) => sourced(r[col], "jma-normals", climateNote ? { note: climateNote } : {});
-  // 最深積雪：公開用データで「未取得」だった観測所は、気象庁で確かめた値（観測していなければ「観測なし」）にする
-  const snow = checked && r["最深積雪(cm,平年値)"] === "未取得"
-    ? (checked.snow === null
-      ? { value: null, kind: "official", sourceId: "jma-normals", unavailable: true, note: `参照している観測所（${r["参照観測所"]}）の積雪の平年値が出ていない（気象庁の平年値の表で最深積雪が「///」、資料年数0年。${JMA_CHECKED_AT}確認）` }
-      : { value: checked.snow, kind: "official", sourceId: "jma-normals", note: climateNote })
-    : climate("最深積雪(cm,平年値)");
+  const climate = (col) => sourced(r[col], "jma-normals");
   const avgAge = sourced(r["基幹的農業従事者の平均年齢(歳,2020)"], "tohoku-age-2020", { year: 2020 });
   const workers = workersOf(id, name, avgAge);
 
@@ -298,7 +281,8 @@ const municipalities = base.map((r) => {
       annualMeanTempC: climate("年平均気温(℃,平年値1991-2020)"),
       annualPrecipMm: climate("年降水量(mm,平年値)"),
       annualSunshineH: climate("年間日照時間(h,平年値)"),
-      maxSnowDepthCm: snow,
+      maxSnowDepthCm: climate("最深積雪(cm,平年値)"),
+      snowArea: { value: SNOW_AREAS[name] ?? "指定なし", kind: "official", sourceId: "pref-snow-plan", note: "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない" },
     },
     workforce: {
       censusYear: 2020,
@@ -324,6 +308,8 @@ for (const m of municipalities) {
         note: `令和6年の農業産出額（合計、千万円の値）を、合計が出ている${ranked.length}市町村で大きい順に並べた順位。同じ値は同じ順位。農林水産省は100万円単位の元の数で順位を付けているので、それとは違うことがある`,
       };
 }
+
+for (const n of Object.keys(SNOW_AREAS)) if (!municipalities.some((m) => m.name === n)) fail(`豪雪地帯の表の「${n}」が 01 にない`);
 
 // 第3章の並びに合わせる
 const order = REGIONS.flatMap((r) => r.municipalities);

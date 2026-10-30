@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { crops, gapFromMainCategories, getMunicipality, getSource, municipalities, PRODUCTION_CATEGORIES, regionName } from "@/kata";
+import { crops, getMunicipality, getSource, municipalities, PRODUCTION_CATEGORIES, regionName } from "@/kata";
 import { fmtNumber, fmtOkuFromSenman, fmtPercent, reiwa } from "@/kata/format";
 import { KindBadge } from "@/kata/components/KindBadge";
-import { SourcedTable, type SourcedRow } from "@/kata/components/SourcedValue";
+import { SourceRef, SourcedTable, type SourcedRow } from "@/kata/components/SourcedValue";
 import { FieldNotesSlot } from "@/kata/components/FieldNotesSlot";
 import type { Brand, BrandKind, Municipality, Sourced } from "@/kata/types";
 
@@ -51,7 +51,7 @@ export default async function MunicipalityPage({ params }: Props) {
   if (!m) notFound();
 
   const oku = (n: number) => fmtOkuFromSenman(n);
-  const otherGap = gapFromMainCategories(m);
+  const other = m.production.otherBreakdown;
   const production: SourcedRow[] = [
     { label: "合計", s: m.production.total, format: oku },
     ...PRODUCTION_CATEGORIES.map((c) => ({ label: c.label, s: m.production.byCategory[c.id], format: oku })),
@@ -65,12 +65,12 @@ export default async function MunicipalityPage({ params }: Props) {
     { label: "経営耕地面積", s: m.workforce.farmedAreaHa, format: (n) => `${fmtNumber(n, 2)}ha` },
     { label: "担い手への農地集積率", s: m.farmlandConsolidationRate, format: (n) => fmtPercent(n) },
   ];
-  const station = `${m.climate.stationName}（役場から${m.climate.stationDistanceKm}km${m.climate.stationInMunicipality ? "、市町村の中" : ""}）`;
+  const station = `${m.climate.stationName}（役場から${m.climate.stationDistanceKm}km${m.climate.stationInMunicipality ? "、市町村の中" : "、市町村の外"}）`;
   const climateRows: SourcedRow[] = [
     { label: "年平均気温", s: m.climate.annualMeanTempC, format: (n) => `${fmtNumber(n, 1)}℃` },
     { label: "年降水量", s: m.climate.annualPrecipMm, format: (n) => `${fmtNumber(n, 1)}mm` },
     { label: "年間日照時間", s: m.climate.annualSunshineH, format: (n) => `${fmtNumber(n, 1)}時間` },
-    { label: "最深積雪", s: m.climate.maxSnowDepthCm, format: (n) => `${fmtNumber(n)}cm` },
+    { label: "最深積雪（毎年の一番深い積雪の平年値）", s: m.climate.maxSnowDepthCm, format: (n) => `${fmtNumber(n)}cm`, missing: "この観測所では測っていない" },
   ];
   const climate = climateRows.map((r) => ({ ...r, extra: `観測所：${station}` }));
   const land: SourcedRow[] = [{ label: "総面積", s: m.areaKm2 as Sourced<number>, format: (n) => `${fmtNumber(n, 2)}km²` }];
@@ -93,10 +93,10 @@ export default async function MunicipalityPage({ params }: Props) {
       <section className="mt-8">
         <h2 className="mb-2 text-lg font-bold">産地：農業産出額（{reiwa(m.production.year)}）</h2>
         <SourcedTable rows={production} getSource={getSource} sourcesHref={SOURCES_HREF} />
-        {otherGap !== null && m.production.byCategory.other.suppressed && (
+        {other && other.published.length > 0 && (
           <p className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-gray-600">
-            合計から米・野菜・果実・花き・畜産を引いた差は {fmtOkuFromSenman(otherGap)} <KindBadge kind="estimate" />
-            （「その他」の、非公表の項目を含む。千万円の値どうしの差なので、四捨五入の誤差がある）
+            その他のうち公表分：{other.published.map((x) => `${x.label} ${oku(x.value)}`).join("、")} <KindBadge kind="official" />
+            {other.withheld.length > 0 && `（${other.withheld.join("・")}は非公表）`}
           </p>
         )}
         {brandGroups.length > 0 && (
@@ -130,8 +130,12 @@ export default async function MunicipalityPage({ params }: Props) {
       <section className="mt-8">
         <h2 className="mb-2 text-lg font-bold">気候（平年値 1991〜2020年）</h2>
         <p className="mb-2 text-sm">参照観測所：{station}</p>
+        <p className="mb-2 flex flex-wrap items-center gap-1.5 text-sm">
+          豪雪地帯の指定：{m.climate.snowArea.value} <KindBadge kind={m.climate.snowArea.kind} />
+          <SourceRef sourceId={m.climate.snowArea.sourceId} getSource={getSource} sourcesHref={SOURCES_HREF} />
+        </p>
         <SourcedTable rows={climate} getSource={getSource} sourcesHref={SOURCES_HREF} />
-        <p className="mt-1 text-xs text-gray-600">役場から一番近い観測所（直線距離）の値です。山あいの集落など、役場から離れた場所とは違うことがあります。</p>
+        <p className="mt-1 text-xs text-gray-600">役場から一番近い観測所（直線距離）の値です。山あいの集落など、役場から離れた場所とは違うことがあります。豪雪地帯の指定は令和5年4月1日現在で、「指定なし」は雪が降らないという意味ではありません。</p>
       </section>
 
       <section className="mt-8">
