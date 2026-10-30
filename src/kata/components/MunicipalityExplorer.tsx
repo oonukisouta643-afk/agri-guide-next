@@ -18,10 +18,11 @@ export type MunicipalityRow = {
 
 type Option = { id: string; label: string };
 
-export function MunicipalityExplorer({ rows, regions, categories }: {
+export function MunicipalityExplorer({ rows, regions, categories, productionYearLabel }: {
   rows: MunicipalityRow[];
   regions: Option[];
   categories: Option[];
+  productionYearLabel: string; // 例：「令和6年」
 }) {
   const [region, setRegion] = useState("");
   const [category, setCategory] = useState("");
@@ -69,7 +70,7 @@ export function MunicipalityExplorer({ rows, regions, categories }: {
             <tr className="border-b border-gray-300 text-left text-xs text-gray-600">
               <th className="py-2 pr-3 font-medium">市町村</th>
               <th className="py-2 pr-3 font-medium">地方</th>
-              <th className="py-2 pr-3 text-right font-medium">農業産出額（令和5年）</th>
+              <th className="py-2 pr-3 text-right font-medium">農業産出額（{productionYearLabel}）</th>
               <th className="py-2 font-medium">主力部門</th>
             </tr>
           </thead>
@@ -93,7 +94,7 @@ export function MunicipalityExplorer({ rows, regions, categories }: {
         </table>
       </div>
       <p className="mt-2 text-xs text-gray-600">
-        主力部門：米・野菜・果実・花き・畜産のうち、数値が出ている部門で産出額がいちばん大きいもの。「その他」の部門と、多くの市町村の花きはまだ取り込んでいない（未取得）ため、それらを含めた本当の1位とは限らない。
+        主力部門：米・野菜・果実・花き・畜産のうち、数値が出ている部門で産出額がいちばん大きいもの。「その他」は比べていない。花き・畜産などが非公表の市町村では、それを含めた本当の1位とは限らない。
       </p>
     </div>
   );

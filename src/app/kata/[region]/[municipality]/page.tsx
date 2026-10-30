@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { crops, getMunicipality, getSource, municipalities, PRODUCTION_CATEGORIES, regionName } from "@/kata";
-import { fmtNumber, fmtOkuFromSenman, fmtPercent } from "@/kata/format";
+import { fmtNumber, fmtOkuFromSenman, fmtPercent, reiwa } from "@/kata/format";
 import { SourcedTable, type SourcedRow } from "@/kata/components/SourcedValue";
 import { FieldNotesSlot } from "@/kata/components/FieldNotesSlot";
 import type { Brand, BrandKind, Municipality, Sourced } from "@/kata/types";
@@ -89,7 +89,7 @@ export default async function MunicipalityPage({ params }: Props) {
       <p className="text-sm text-gray-600">{m.kana}　全国地方公共団体コード {m.id}</p>
 
       <section className="mt-8">
-        <h2 className="mb-2 text-lg font-bold">産地：農業産出額（令和5年）</h2>
+        <h2 className="mb-2 text-lg font-bold">産地：農業産出額（{reiwa(m.production.year)}）</h2>
         <SourcedTable rows={production} getSource={getSource} sourcesHref={SOURCES_HREF} />
         {brandGroups.length > 0 && (
           <div className="mt-4">

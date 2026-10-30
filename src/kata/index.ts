@@ -33,6 +33,10 @@ export const PRODUCTION_CATEGORIES: { id: ProductionCategory; label: string }[] 
   { id: "other", label: "その他" },
 ];
 
+/** 産出額の出典と年（見出し・注記で使う。59市町村で同じ） */
+export const PRODUCTION_SOURCE_ID = municipalities[0].production.total.sourceId;
+export const PRODUCTION_YEAR = municipalities[0].production.year;
+
 export const getRegion = (id: string) => regions.find((r) => r.id === id);
 export const getMunicipality = (regionId: string, slug: string) =>
   municipalities.find((m) => m.regionId === regionId && m.slug === slug);
@@ -46,11 +50,11 @@ export const hasValue = (s: Sourced<number>): s is Sourced<number> & { value: nu
   typeof s.value === "number";
 
 /**
- * 数値が出ている部門のうち、いちばん産出額が大きい部門。
- * 秘匿・未取得の部門は比べられないので、それを含めた本当の1位とは限らない（画面に注記する）。
+ * 米・野菜・果実・花き・畜産のうち、数値が出ている部門でいちばん産出額が大きい部門。
+ * 「その他」は寄せ集めなので比べない。秘匿の部門は比べられないので、それを含めた本当の1位とは限らない（画面に注記する）。
  */
 export function topCategory(m: Municipality) {
-  const entries = PRODUCTION_CATEGORIES.map((c) => ({ ...c, s: m.production.byCategory[c.id] }));
+  const entries = PRODUCTION_CATEGORIES.filter((c) => c.id !== "other").map((c) => ({ ...c, s: m.production.byCategory[c.id] }));
   const known = entries.filter((e) => hasValue(e.s));
   if (known.length === 0) return null;
   const top = known.reduce((a, b) => ((b.s.value as number) > (a.s.value as number) ? b : a));

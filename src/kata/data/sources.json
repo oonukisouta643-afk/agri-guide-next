@@ -40,14 +40,14 @@
     "usedFor": "総面積"
   },
   {
-    "id": "maff-production-r5",
-    "title": "東北農政局 福島県拠点「MAFF NAVI ふくしま Vol.04（令和7年4月）令和5年市町村別農業産出額（推計）」",
-    "publisher": "農林水産省 東北農政局",
-    "dataYear": "令和5年（2023年）",
-    "url": "https://www.maff.go.jp/tohoku/tiiki/hukusima/attach/pdf/index-6.pdf",
-    "accessedAt": "2026-10-16",
-    "license": "サイトの決まりでは、権利表記の記載がない限り公共データ利用規約（第1.0版）（PDL1.0）に準拠。出典の記載と、加工したときはそのことの記載が要る。東北農政局「リンクについて・著作権」https://www.maff.go.jp/tohoku/use/riyou.html で確かめた（2026年10月30日）。この資料そのものに別の権利表記がないかは確かめていない",
-    "usedFor": "農業産出額（合計・部門別）"
+    "id": "maff-production-r6",
+    "title": "農林水産省「市町村別農業産出額（推計）」令和6年 確報 統計表1 福島県（e-Stat）",
+    "publisher": "農林水産省",
+    "dataYear": "令和6年（2024年）。2026年7月24日公開",
+    "url": "https://www.e-stat.go.jp/stat-search/files?stat_infid=000040477284",
+    "accessedAt": "2026-10-30",
+    "license": "e-Stat「利用規約」https://www.e-stat.go.jp/terms-of-use により、出典を書けば複製・加工・商用利用ができる（加工したときはそのことも書く）。農林水産省は、転載するときは「市町村別農業産出額（推計）」（農林水産省）による旨を書くよう求めている（上の利用上の注意）（2026年10月30日確認）",
+    "usedFor": "農業産出額（合計・部門別）。記号は「0」＝単位に満たないもの、「－」＝事実のないもの、「x」＝秘匿（農林水産省「市町村別農業産出額（推計）の概要」利用上の注意 https://www.maff.go.jp/j/tokei/kouhyou/sityoson_sansyutu/gaiyou/index.html ）"
   },
   {
     "id": "census-2020",
@@ -58,6 +58,16 @@
     "accessedAt": "2026-10-16",
     "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページ（2020年農林業センサス農林業経営体調査結果 https://www.pref.fukushima.lg.jp/sec/11045b/nourin2020.html）に福島県オープンデータ（CC BY 2.1）の表示はない。この型では数値だけを出典つきで使っている（2026年10月30日確認）",
     "usedFor": "経営耕地面積"
+  },
+  {
+    "id": "census-2020-workers",
+    "title": "福島県統計課「2020年農林業センサス農林業経営体調査結果（確定値）」02 農業経営体 10 世帯員の状況（個人経営体）（Excel）",
+    "publisher": "福島県（元：農林水産省 農林業センサス）",
+    "dataYear": "2020年（農林業センサス）",
+    "url": "https://www.pref.fukushima.lg.jp/uploaded/attachment/484307.xlsx",
+    "accessedAt": "2026-10-30",
+    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページ（2020年農林業センサス農林業経営体調査結果 https://www.pref.fukushima.lg.jp/sec/11045b/nourin2020.html）に福島県オープンデータ（CC BY 2.1）の表示はない。この型では数値だけを出典つきで使っている（2026年10月30日確認）",
+    "usedFor": "基幹的農業従事者数・65歳以上の割合（シート「(12)」年齢階層別の基幹的農業従事者数）。記号は「－」＝調査は行ったが事実のないもの、「x」＝秘匿（農林水産省「農林業センサスの概要」https://www.maff.go.jp/j/tokei/kouhyou/noucen/gaiyou/ ）"
   },
   {
     "id": "tohoku-age-2020",

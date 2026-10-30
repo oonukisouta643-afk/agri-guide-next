@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { sources } from "@/kata";
-import { fmtNumber } from "@/kata/format";
+import { PRODUCTION_YEAR, sources } from "@/kata";
+import { fmtNumber, reiwa } from "@/kata/format";
 import {
   NEW_PLANTING_COST_FLOOR, NEW_PLANTING_YIELD_RATIO, RENT_YEN_PER_TEN_A, TAKEOVER_COST_FIXED_SHARE,
   TAKEOVER_ONE_TIME_YEN_PER_TEN_A, TAKEOVER_YIELD_RATIO,
@@ -41,7 +41,9 @@ export default function SourcesPage() {
         <h2 className="mb-2 text-lg font-bold">計算式</h2>
         <ul className="list-disc space-y-1 pl-5 text-sm text-gray-800">
           <li>部門別産出額の地方の合計＝所属する市町村の産出額の和。非公表・データなし・未取得の市町村は足さない</li>
-          <li>産出額の県内順位＝令和5年の合計産出額を59市町村で大きい順に並べた順位</li>
+          <li>産出額の県内順位＝{reiwa(PRODUCTION_YEAR)}の合計産出額（千万円の値）を、合計が出ている市町村で大きい順に並べた順位。同じ値は同じ順位</li>
+          <li>産出額の「その他」＝麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物の和。内訳に秘匿（x）があるときは非公表（合計からの引き算はしない）</li>
+          <li>基幹的農業従事者のうち65歳以上の割合＝65歳以上の基幹的農業従事者数÷基幹的農業従事者数（2020年センサス、個人経営体）</li>
           <li>農業所得＝販売額−経営費−地代。販売額＝成園の収量×収量の割合×単価×（面積÷10a）</li>
           <li>経営費（新しく植える）＝成園の経営費×（{NEW_PLANTING_COST_FLOOR}＋{fmtNumber(1 - NEW_PLANTING_COST_FLOOR, 1)}×収量の割合）×（面積÷10a）</li>
           <li>経営費（受け継ぐ）＝成園の経営費×（{TAKEOVER_COST_FIXED_SHARE}＋{fmtNumber(1 - TAKEOVER_COST_FIXED_SHARE, 1)}×収量の割合）×（面積÷10a）</li>

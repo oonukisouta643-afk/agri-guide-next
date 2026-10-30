@@ -57,12 +57,26 @@ const xmlText = (s) =>
 
 /** xlsx の1枚目のシートを、列の文字（A, B, …）をキーにした行の配列にする */
 export function readXlsxFirstSheet(path) {
+  return readXlsxSheet(path, 0);
+}
+
+/** xlsx のシート（何枚目か、またはシート名）を、列の文字（A, B, …）をキーにした行の配列にする */
+export function readXlsxSheet(path, which) {
   const buf = fs.readFileSync(path);
   const ss = [...unzipEntry(buf, "xl/sharedStrings.xml").toString("utf8").matchAll(/<si>([\s\S]*?)<\/si>/g)].map(
     // ふりがな（<rPh>）は除く
     (m) => [...m[1].replace(/<rPh[\s\S]*?<\/rPh>/g, "").matchAll(/<t[^>]*>([^<]*)<\/t>/g)].map((x) => xmlText(x[1])).join(""),
   );
-  const sheet = unzipEntry(buf, "xl/worksheets/sheet1.xml").toString("utf8");
+  const sheets = [...unzipEntry(buf, "xl/workbook.xml").toString("utf8").matchAll(/<sheet\b[^>]*>/g)].map((m) => ({
+    name: xmlText(m[0].match(/name="([^"]*)"/)[1]),
+    rid: m[0].match(/r:id="([^"]*)"/)[1],
+  }));
+  const s = typeof which === "number" ? sheets[which] : sheets.find((x) => x.name === which);
+  if (!s) throw new Error(`${path} にシート「${which}」がない`);
+  const rel = [...unzipEntry(buf, "xl/_rels/workbook.xml.rels").toString("utf8").matchAll(/<Relationship\b[^>]*>/g)]
+    .map((m) => m[0]).find((r) => r.includes(`Id="${s.rid}"`));
+  const target = rel.match(/Target="([^"]*)"/)[1].replace(/^\/?xl\//, "");
+  const sheet = unzipEntry(buf, `xl/${target}`).toString("utf8");
   return [...sheet.matchAll(/<row[^>]*>([\s\S]*?)<\/row>/g)].map((r) => {
     const out = {};
     for (const c of r[1].matchAll(/<c r="([A-Z]+)\d+"([^>]*?)(?:\/>|>([\s\S]*?)<\/c>)/g)) {
