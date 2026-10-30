@@ -29,28 +29,41 @@ const sourceRows = csv("13_出典一覧.csv");
 const fromList = (itemPrefix) =>
   sourceRows.find((r) => r["項目"].startsWith(itemPrefix)) ?? fail(`13_出典一覧.csv に「${itemPrefix}」がない`);
 
-const LICENSE_GOV = "公共データ利用規約（第1.0版）に準拠（CC BY 4.0 と互換）。公開用データの README による。Phase 2 で確かめ直す";
-const LICENSE_PREF = "オープンデータとしての利用条件の表示なし。数値のみを出典つきで引いている。Phase 2 で確かめる";
+// 利用条件は、それぞれのサイトの利用規約のページを開いて確かめた（2026年10月30日）
+const LICENSE_CHECKED = "2026年10月30日";
+const pdl = (site, url) =>
+  `公共データ利用規約（第1.0版）（PDL1.0。CC BY 4.0 と互換）。出典の記載と、加工したときはそのことの記載が要る。${site}「リンクについて・著作権」${url} で確かめた（${LICENSE_CHECKED}）`;
+const LICENSE_MAFF = pdl("農林水産省", "https://www.maff.go.jp/j/use/link.html");
+const LICENSE_TOHOKU = pdl("東北農政局", "https://www.maff.go.jp/tohoku/use/riyou.html");
+const LICENSE_JMA = `公共データ利用規約（第1.0版）（PDL1.0。CC BY 4.0 と互換）。出典の記載と、加工したときはそのことの記載が要る。気象庁「利用規約」https://www.jma.go.jp/jma/kishou/info/coment.html で確かめた（${LICENSE_CHECKED}）`;
+const LICENSE_SOUMU = `公共データ利用規約（第1.0版）（PDL1.0。CC BY 4.0 と互換）。出典の記載と、加工したときはそのことの記載が要る。総務省「当省ホームページについて」の著作権 https://www.soumu.go.jp/menu_kyotsuu/policy/tyosaku.html で確かめた（${LICENSE_CHECKED}）`;
+// 福島県：オープンデータ（CC BY 2.1）はバナーのあるページ・データだけ（https://www.pref.fukushima.lg.jp/sec/11045a/open-data-top.html ）。
+// それ以外は「リンク・著作権・免責事項などについて」により著作権の対象で、著作権法で認められた範囲（引用など）で使う。
+const PREF_RULE = "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）";
+const licensePref = (bannerPage) => bannerPage
+  ? `${PREF_RULE}。資料を置いているページ（${bannerPage}）に福島県オープンデータ（CC BY 2.1）の表示はない。数値（事実）だけを出典つきで引いている（${LICENSE_CHECKED}確認）`
+  : `${PREF_RULE}。資料を置いているページは見つけられず、オープンデータの表示があるかは確かめられていない。数値（事実）だけを出典つきで引いている（${LICENSE_CHECKED}確認）`;
+const LICENSE_NAGANO = `長野県「このサイトの考え方」の著作権 https://www.pref.nagano.lg.jp/koho/kensei/koho/homepage/riyo.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページ https://www.pref.nagano.lg.jp/nogi/keiei/keiei_list.html にオープンデータの表示はない。数値（事実）だけを出典つきで引いている（${LICENSE_CHECKED}確認）`;
 
 const sourceDefs = [
-  { id: "pref-yakuba", item: "市町村の一覧", publisher: "福島県", dataYear: "2026年1月22日更新", usedFor: "市町村の一覧・地方の区分・公式サイト", license: LICENSE_PREF },
-  { id: "pref-code", item: "団体コード", publisher: "福島県", dataYear: "掲載時点", usedFor: "市町村ID（全国地方公共団体コード）。2026年10月28日にページの59件と一致することを確かめた", accessedAt: "2026-10-28", license: LICENSE_PREF },
-  { id: "soumu-code", title: "総務省「全国地方公共団体コード」（都道府県コード及び市区町村コード）", url: "https://www.soumu.go.jp/denshijiti/code.html", publisher: "総務省", dataYear: "令和6年1月1日現在", usedFor: "ふりがな（市区町村名のカナ）。ローマ字の slug はこのカナから機械的に作った", accessedAt: "2026-10-28" },
-  { id: "area", item: "総面積", publisher: "福島県（元：国土地理院）", dataYear: "2025年10月1日または2022年10月1日", usedFor: "総面積", license: LICENSE_PREF },
-  { id: "maff-production-r5", item: "農業産出額", publisher: "農林水産省 東北農政局", dataYear: "令和5年（2023年）", usedFor: "農業産出額（合計・部門別）", license: LICENSE_GOV },
-  { id: "census-2020", item: "農業経営体数", publisher: "福島県", dataYear: "2020年（農林業センサス）", usedFor: "経営耕地面積", license: LICENSE_PREF },
-  { id: "tohoku-age-2020", item: "基幹的農業従事者の平均年齢", publisher: "農林水産省 東北農政局", dataYear: "2020年（農林業センサス）", usedFor: "基幹的農業従事者の平均年齢", license: LICENSE_GOV },
-  { id: "tohoku-successor-2020", item: "後継者がいる", publisher: "農林水産省 東北農政局", dataYear: "2020年（農林業センサス）", usedFor: "後継者を確保している経営体の割合", license: LICENSE_GOV },
-  { id: "tohoku-consolidation", item: "耕地面積・担い手", publisher: "農林水産省 東北農政局", dataYear: "2026年3月末", usedFor: "担い手への農地集積率", license: LICENSE_GOV },
-  { id: "jma-normals", item: "気候の平年値", publisher: "気象庁", dataYear: "平年値（1991〜2020年）", usedFor: "年平均気温・年降水量・日照時間・最深積雪", license: LICENSE_GOV },
-  { id: "gi", item: "地理的表示", publisher: "農林水産省", dataYear: "登録日は産品ごと", usedFor: "産地の目印（GI）", license: LICENSE_GOV },
-  { id: "vegetable-designated", item: "野菜指定産地", publisher: "農林水産省 東北農政局", dataYear: "2026年8月3日現在", usedFor: "産地の目印（野菜指定産地）", license: LICENSE_GOV },
-  { id: "fruit-plan-councils", item: "果樹産地協議会", publisher: "福島県", dataYear: "令和8年3月（案）", usedFor: "産地の目印（果樹産地協議会）、品目ページの主な産地", license: LICENSE_PREF },
-  { id: "aizu-brands", item: "会津のブランド", publisher: "福島県 会津農林事務所", dataYear: "2021年3月", usedFor: "産地の目印（その他のブランド）", license: LICENSE_PREF },
-  { id: "trademark-asparagus", item: "地域団体商標", publisher: "福島県", dataYear: "令和5年5月10日", usedFor: "産地の目印（地域団体商標）", license: LICENSE_PREF },
-  { id: "pref-new-farmers", item: "新規就農者数", publisher: "福島県 農業担い手課", dataYear: "令和8年度調査（2026年9月15日公表）", usedFor: "地方別の新規就農者数", license: LICENSE_PREF },
-  { id: "pref-fruit-plan", item: "成園の収量・年間労働時間", publisher: "福島県", dataYear: "令和8年3月", usedFor: "果樹の成園10aあたりの収量・労働時間", license: LICENSE_PREF },
-  { id: "nagano-indicators", item: "10a当たりの単価", title: "長野県「作目別経営指標一覧表」（令和4年版と推定）", url: "https://www.pref.nagano.lg.jp/nogi/keiei/documents/r4keieishihyoulist.pdf", publisher: "長野県", dataYear: "令和4年版と推定", usedFor: "果樹の単価・経営費（福島県の果樹の経営指標が見つからないため仮に使用。福島の値ではない）", license: LICENSE_PREF },
+  { id: "pref-yakuba", item: "市町村の一覧", publisher: "福島県", dataYear: "2026年1月22日更新", usedFor: "市町村の一覧・地方の区分・公式サイト", license: `ページに置かれた一覧のデータファイル（市役所・町村役場一覧）は福島県オープンデータ（CC BY 2.1）。ページの本文は${PREF_RULE}（${LICENSE_CHECKED}確認）` },
+  { id: "pref-code", item: "団体コード", publisher: "福島県", dataYear: "掲載時点", usedFor: "市町村ID（全国地方公共団体コード）。2026年10月28日にページの59件と一致することを確かめた", accessedAt: "2026-10-28", license: licensePref("このページ") },
+  { id: "soumu-code", title: "総務省「全国地方公共団体コード」（都道府県コード及び市区町村コード）", url: "https://www.soumu.go.jp/denshijiti/code.html", publisher: "総務省", dataYear: "令和6年1月1日現在", usedFor: "ふりがな（市区町村名のカナ）。ローマ字の slug はこのカナから機械的に作った", accessedAt: "2026-10-28", license: LICENSE_SOUMU },
+  { id: "area", item: "総面積", publisher: "福島県（元：国土地理院）", dataYear: "2025年10月1日または2022年10月1日", usedFor: "総面積", license: licensePref("第140回福島県統計年鑑 https://www.pref.fukushima.lg.jp/sec/11045b/nenkan140.html") },
+  { id: "maff-production-r5", item: "農業産出額", publisher: "農林水産省 東北農政局", dataYear: "令和5年（2023年）", usedFor: "農業産出額（合計・部門別）", license: LICENSE_TOHOKU },
+  { id: "census-2020", item: "農業経営体数", publisher: "福島県", dataYear: "2020年（農林業センサス）", usedFor: "経営耕地面積", license: licensePref("2020年農林業センサス農林業経営体調査結果 https://www.pref.fukushima.lg.jp/sec/11045b/nourin2020.html") },
+  { id: "tohoku-age-2020", item: "基幹的農業従事者の平均年齢", publisher: "農林水産省 東北農政局", dataYear: "2020年（農林業センサス）", usedFor: "基幹的農業従事者の平均年齢", license: LICENSE_TOHOKU },
+  { id: "tohoku-successor-2020", item: "後継者がいる", publisher: "農林水産省 東北農政局", dataYear: "2020年（農林業センサス）", usedFor: "後継者を確保している経営体の割合", license: LICENSE_TOHOKU },
+  { id: "tohoku-consolidation", item: "耕地面積・担い手", publisher: "農林水産省 東北農政局", dataYear: "2026年3月末", usedFor: "担い手への農地集積率", license: LICENSE_TOHOKU },
+  { id: "jma-normals", item: "気候の平年値", publisher: "気象庁", dataYear: "平年値（1991〜2020年）", usedFor: "年平均気温・年降水量・日照時間・最深積雪", license: LICENSE_JMA },
+  { id: "gi", item: "地理的表示", publisher: "農林水産省", dataYear: "登録日は産品ごと", usedFor: "産地の目印（GI）", license: `${LICENSE_MAFF}。GIマークの表示は地理的表示法による制約があり、この型では使っていない` },
+  { id: "vegetable-designated", item: "野菜指定産地", publisher: "農林水産省 東北農政局", dataYear: "2026年8月3日現在", usedFor: "産地の目印（野菜指定産地）", license: LICENSE_TOHOKU },
+  { id: "fruit-plan-councils", item: "果樹産地協議会", publisher: "福島県", dataYear: "令和8年3月（案）", usedFor: "産地の目印（果樹産地協議会）、品目ページの主な産地", license: licensePref(null) },
+  { id: "aizu-brands", item: "会津のブランド", publisher: "福島県 会津農林事務所", dataYear: "2021年3月", usedFor: "産地の目印（その他のブランド）", license: licensePref(null) },
+  { id: "trademark-asparagus", item: "地域団体商標", publisher: "福島県", dataYear: "令和5年5月10日", usedFor: "産地の目印（地域団体商標）", license: licensePref(null) },
+  { id: "pref-new-farmers", item: "新規就農者数", publisher: "福島県 農業担い手課", dataYear: "令和8年度調査（2026年9月15日公表）", usedFor: "地方別の新規就農者数", license: licensePref("令和7年度の新規就農者数について https://www.pref.fukushima.lg.jp/sec/36021c/sinkisyunou07.html。令和8年度の資料を置いているページは見つけられていない") },
+  { id: "pref-fruit-plan", item: "成園の収量・年間労働時間", publisher: "福島県", dataYear: "令和8年3月", usedFor: "果樹の成園10aあたりの収量・労働時間", license: licensePref("福島県果樹農業振興計画 https://www.pref.fukushima.lg.jp/sec/36035c/kajushinkou.html") },
+  { id: "nagano-indicators", item: "10a当たりの単価", title: "長野県「作目別経営指標一覧表」（令和4年版と推定）", url: "https://www.pref.nagano.lg.jp/nogi/keiei/documents/r4keieishihyoulist.pdf", publisher: "長野県", dataYear: "令和4年版と推定", usedFor: "果樹の単価・経営費（福島県の果樹の経営指標が見つからないため仮に使用。福島の値ではない）", license: LICENSE_NAGANO },
   { id: "agriguide-open-08", item: "収量の立ち上がり", title: "県北ふくしまAgri-Guide「福島県59市町村 就農の地域データ」08_果樹の試算_前提（2026年10月16日版）", url: "https://www.fukushima-agri-guide.jp", publisher: "県北ふくしまAgri-Guide", dataYear: "2026年10月16日版", usedFor: "道のりの前提（収量の立ち上がり・地代・経営費の割合・初期投資）と計算のしかた。項目ごとの根拠は 08 の根拠・出典の列", license: "CC BY 4.0（まとめた部分）。元の数値はそれぞれの出典の利用条件による" },
 ];
 
