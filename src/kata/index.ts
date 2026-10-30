@@ -61,6 +61,22 @@ export function topCategory(m: Municipality) {
   return { id: top.id, label: top.label };
 }
 
+/**
+ * 合計から、米・野菜・果実・花き・畜産を引いた差（推計。千万円）。「その他」が非公表のときに、表の下の一言で使う。
+ * 秘匿された項目を含む数なので「その他」の値としては出さない。合計か5部門のどれかが数値でなければ null。
+ * 「－」（事実のないもの）の部門は 0 として引く。
+ */
+export function gapFromMainCategories(m: Municipality): number | null {
+  if (!hasValue(m.production.total)) return null;
+  let gap = m.production.total.value;
+  for (const c of PRODUCTION_CATEGORIES.filter((x) => x.id !== "other")) {
+    const s = m.production.byCategory[c.id];
+    if (hasValue(s)) gap -= s.value;
+    else if (!(s.unavailable && s.kind === "official")) return null;
+  }
+  return gap < 0 ? null : gap; // 四捨五入でマイナスになったときは出さない
+}
+
 /** 地方ごとの部門別産出額の合計（推計）。数値が出ていない市町村は足さず、名前を返す */
 export function sumProduction(ms: Municipality[], pick: (m: Municipality) => Sourced<number>) {
   const included = ms.filter((m) => hasValue(pick(m)));

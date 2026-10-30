@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { crops, getMunicipality, getSource, municipalities, PRODUCTION_CATEGORIES, regionName } from "@/kata";
+import { crops, gapFromMainCategories, getMunicipality, getSource, municipalities, PRODUCTION_CATEGORIES, regionName } from "@/kata";
 import { fmtNumber, fmtOkuFromSenman, fmtPercent, reiwa } from "@/kata/format";
+import { KindBadge } from "@/kata/components/KindBadge";
 import { SourcedTable, type SourcedRow } from "@/kata/components/SourcedValue";
 import { FieldNotesSlot } from "@/kata/components/FieldNotesSlot";
 import type { Brand, BrandKind, Municipality, Sourced } from "@/kata/types";
@@ -50,6 +51,7 @@ export default async function MunicipalityPage({ params }: Props) {
   if (!m) notFound();
 
   const oku = (n: number) => fmtOkuFromSenman(n);
+  const otherGap = gapFromMainCategories(m);
   const production: SourcedRow[] = [
     { label: "合計", s: m.production.total, format: oku },
     ...PRODUCTION_CATEGORIES.map((c) => ({ label: c.label, s: m.production.byCategory[c.id], format: oku })),
@@ -91,6 +93,12 @@ export default async function MunicipalityPage({ params }: Props) {
       <section className="mt-8">
         <h2 className="mb-2 text-lg font-bold">産地：農業産出額（{reiwa(m.production.year)}）</h2>
         <SourcedTable rows={production} getSource={getSource} sourcesHref={SOURCES_HREF} />
+        {otherGap !== null && m.production.byCategory.other.suppressed && (
+          <p className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-gray-600">
+            合計から米・野菜・果実・花き・畜産を引いた差は {fmtOkuFromSenman(otherGap)} <KindBadge kind="estimate" />
+            （「その他」の、非公表の項目を含む。千万円の値どうしの差なので、四捨五入の誤差がある）
+          </p>
+        )}
         {brandGroups.length > 0 && (
           <div className="mt-4">
             <h3 className="mb-1 font-bold">産地の目印</h3>

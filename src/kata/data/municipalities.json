@@ -1269,25 +1269,26 @@
         "value": 10.3,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 飯舘）で確かめた（2026年10月30日）"
       },
       "annualPrecipMm": {
         "value": 1367.4,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 飯舘）で確かめた（2026年10月30日）"
       },
       "annualSunshineH": {
         "value": 1881,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 飯舘）で確かめた（2026年10月30日）"
       },
       "maxSnowDepthCm": {
         "value": null,
-        "kind": "placeholder",
+        "kind": "official",
         "sourceId": "jma-normals",
-        "note": "未取得（公開されている資料から、まだ取れていない）"
+        "unavailable": true,
+        "note": "参照している観測所（飯舘）では積雪を観測していない（気象庁の平年値で最深積雪の資料年数が0年。2026年10月30日確認）"
       }
     },
     "workforce": {
@@ -4842,25 +4843,26 @@
         "value": 12,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 東白川）で確かめた（2026年10月30日）"
       },
       "annualPrecipMm": {
         "value": 1405.1,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 東白川）で確かめた（2026年10月30日）"
       },
       "annualSunshineH": {
         "value": 1940.8,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 東白川）で確かめた（2026年10月30日）"
       },
       "maxSnowDepthCm": {
         "value": null,
-        "kind": "placeholder",
+        "kind": "official",
         "sourceId": "jma-normals",
-        "note": "未取得（公開されている資料から、まだ取れていない）"
+        "unavailable": true,
+        "note": "参照している観測所（東白川）では積雪を観測していない（気象庁の平年値で最深積雪の資料年数が0年。2026年10月30日確認）"
       }
     },
     "workforce": {
@@ -5006,25 +5008,26 @@
         "value": 12,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 東白川）で確かめた（2026年10月30日）"
       },
       "annualPrecipMm": {
         "value": 1405.1,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 東白川）で確かめた（2026年10月30日）"
       },
       "annualSunshineH": {
         "value": 1940.8,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 東白川）で確かめた（2026年10月30日）"
       },
       "maxSnowDepthCm": {
         "value": null,
-        "kind": "placeholder",
+        "kind": "official",
         "sourceId": "jma-normals",
-        "note": "未取得（公開されている資料から、まだ取れていない）"
+        "unavailable": true,
+        "note": "参照している観測所（東白川）では積雪を観測していない（気象庁の平年値で最深積雪の資料年数が0年。2026年10月30日確認）"
       }
     },
     "workforce": {
@@ -5170,25 +5173,26 @@
         "value": 12,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 東白川）で確かめた（2026年10月30日）"
       },
       "annualPrecipMm": {
         "value": 1405.1,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 東白川）で確かめた（2026年10月30日）"
       },
       "annualSunshineH": {
         "value": 1940.8,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 東白川）で確かめた（2026年10月30日）"
       },
       "maxSnowDepthCm": {
         "value": null,
-        "kind": "placeholder",
+        "kind": "official",
         "sourceId": "jma-normals",
-        "note": "未取得（公開されている資料から、まだ取れていない）"
+        "unavailable": true,
+        "note": "参照している観測所（東白川）では積雪を観測していない（気象庁の平年値で最深積雪の資料年数が0年。2026年10月30日確認）"
       }
     },
     "workforce": {
@@ -7552,25 +7556,25 @@
         "value": 9.9,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 南郷）で確かめた（2026年10月30日）"
       },
       "annualPrecipMm": {
         "value": 1492.1,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 南郷）で確かめた（2026年10月30日）"
       },
       "annualSunshineH": {
         "value": 1540.6,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 南郷）で確かめた（2026年10月30日）"
       },
       "maxSnowDepthCm": {
-        "value": null,
-        "kind": "placeholder",
+        "value": 166,
+        "kind": "official",
         "sourceId": "jma-normals",
-        "note": "未取得（公開されている資料から、まだ取れていない）"
+        "note": "気象庁の平年値のページ（観測所 南郷）で確かめた（2026年10月30日）"
       }
     },
     "workforce": {
@@ -9521,25 +9525,26 @@
         "value": 10.6,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 川内）で確かめた（2026年10月30日）"
       },
       "annualPrecipMm": {
         "value": 1484.1,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 川内）で確かめた（2026年10月30日）"
       },
       "annualSunshineH": {
         "value": 1943.4,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 川内）で確かめた（2026年10月30日）"
       },
       "maxSnowDepthCm": {
         "value": null,
-        "kind": "placeholder",
+        "kind": "official",
         "sourceId": "jma-normals",
-        "note": "未取得（公開されている資料から、まだ取れていない）"
+        "unavailable": true,
+        "note": "参照している観測所（川内）では積雪を観測していない（気象庁の平年値で最深積雪の資料年数が0年。2026年10月30日確認）"
       }
     },
     "workforce": {
@@ -10543,25 +10548,26 @@
         "value": 10.3,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 飯舘）で確かめた（2026年10月30日）"
       },
       "annualPrecipMm": {
         "value": 1367.4,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 飯舘）で確かめた（2026年10月30日）"
       },
       "annualSunshineH": {
         "value": 1881,
         "kind": "official",
         "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "note": "気象庁の平年値のページ（観測所 飯舘）で確かめた（2026年10月30日）"
       },
       "maxSnowDepthCm": {
         "value": null,
-        "kind": "placeholder",
+        "kind": "official",
         "sourceId": "jma-normals",
-        "note": "未取得（公開されている資料から、まだ取れていない）"
+        "unavailable": true,
+        "note": "参照している観測所（飯舘）では積雪を観測していない（気象庁の平年値で最深積雪の資料年数が0年。2026年10月30日確認）"
       }
     },
     "workforce": {

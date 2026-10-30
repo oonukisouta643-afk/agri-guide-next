@@ -216,6 +216,18 @@ for (const r of readXlsxFirstSheet(soumuPath)) {
   if (/^07\d{4}$/.test(r.A ?? "") && r.C) soumu.set(r.A, { name: r.C, kana: kataToHira(r.E) });
 }
 
+// ---------- 気象庁で確かめ直した観測所 ----------
+// 公開用データで「第三者サイト」の値だった観測所を、気象庁「過去の気象データ検索」の平年値（1991〜2020年）で確かめた。
+// https://www.data.jma.go.jp/stats/etrn/view/nml_amd_ym.php?prec_no=36&block_no=（観測所番号）の「年」の行。
+// 気温・降水量・日照時間は公開用データと同じだった（取り込みでも照らし合わせる）。snow：最深積雪(cm)。null は観測していない
+const JMA_CHECKED_AT = "2026年10月30日";
+const JMA_CHECKED = {
+  飯舘: { block: "1130", temp: 10.3, precip: 1367.4, sun: 1881.0, snow: null },
+  東白川: { block: "0312", temp: 12.0, precip: 1405.1, sun: 1940.8, snow: null },
+  川内: { block: "1129", temp: 10.6, precip: 1484.1, sun: 1943.4, snow: null },
+  南郷: { block: "0301", temp: 9.9, precip: 1492.1, sun: 1540.6, snow: 166 },
+};
+
 // ---------- 市町村 ----------
 const base = csv("01_市町村の基本データ.csv");
 const marks = csv("03_産地の目印.csv");
@@ -234,10 +246,21 @@ const municipalities = base.map((r) => {
 
   const dist = r["役場から参照観測所までの距離"].match(/^([\d.]+)km(（市町村内）)?$/) ?? fail(`${name}：距離が読めない`);
   const areaDate = r["面積の基準日"];
-  const climateNote = r["気候データの確認状況"] === "第三者サイト"
-    ? "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
-    : undefined;
+  const checked = JMA_CHECKED[r["参照観測所"]];
+  if (r["気候データの確認状況"] === "第三者サイト" && !checked) fail(`${name}：観測所「${r["参照観測所"]}」は第三者サイトの値で、気象庁で確かめた表（JMA_CHECKED）にない`);
+  if (checked) {
+    for (const [col, v] of [["年平均気温(℃,平年値1991-2020)", checked.temp], ["年降水量(mm,平年値)", checked.precip], ["年間日照時間(h,平年値)", checked.sun]]) {
+      if (Number(r[col]) !== v) fail(`${name}：${col} が公開用データ ${r[col]} と気象庁 ${v} で違う`);
+    }
+  }
+  const climateNote = checked ? `気象庁の平年値のページ（観測所 ${r["参照観測所"]}）で確かめた（${JMA_CHECKED_AT}）` : undefined;
   const climate = (col) => sourced(r[col], "jma-normals", climateNote ? { note: climateNote } : {});
+  // 最深積雪：公開用データで「未取得」だった観測所は、気象庁で確かめた値（観測していなければ「観測なし」）にする
+  const snow = checked && r["最深積雪(cm,平年値)"] === "未取得"
+    ? (checked.snow === null
+      ? { value: null, kind: "official", sourceId: "jma-normals", unavailable: true, note: `参照している観測所（${r["参照観測所"]}）では積雪を観測していない（気象庁の平年値で最深積雪の資料年数が0年。${JMA_CHECKED_AT}確認）` }
+      : { value: checked.snow, kind: "official", sourceId: "jma-normals", note: climateNote })
+    : climate("最深積雪(cm,平年値)");
   const avgAge = sourced(r["基幹的農業従事者の平均年齢(歳,2020)"], "tohoku-age-2020", { year: 2020 });
   const workers = workersOf(id, name, avgAge);
 
@@ -268,7 +291,7 @@ const municipalities = base.map((r) => {
       annualMeanTempC: climate("年平均気温(℃,平年値1991-2020)"),
       annualPrecipMm: climate("年降水量(mm,平年値)"),
       annualSunshineH: climate("年間日照時間(h,平年値)"),
-      maxSnowDepthCm: climate("最深積雪(cm,平年値)"),
+      maxSnowDepthCm: snow,
     },
     workforce: {
       censusYear: 2020,
