@@ -69,7 +69,7 @@ const sourceDefs = [
   { id: "tohoku-age-2020", item: "基幹的農業従事者の平均年齢", publisher: "農林水産省 東北農政局", dataYear: "2020年（農林業センサス）", usedFor: "基幹的農業従事者の平均年齢", license: LICENSE_TOHOKU },
   { id: "tohoku-successor-2020", item: "後継者がいる", publisher: "農林水産省 東北農政局", dataYear: "2020年（農林業センサス）", usedFor: "後継者を確保している経営体の割合", license: LICENSE_TOHOKU },
   { id: "tohoku-consolidation", item: "耕地面積・担い手", publisher: "農林水産省 東北農政局", dataYear: "2026年3月末", usedFor: "担い手への農地集積率", license: LICENSE_TOHOKU },
-  { id: "jma-normals", item: "気候の平年値", publisher: "気象庁", dataYear: "平年値（1991〜2020年）", usedFor: "年平均気温・年降水量・日照時間・最深積雪", license: LICENSE_JMA },
+  { id: "jma-normals", item: "気候の平年値", title: "気象庁「過去の気象データ検索」の平年値（1991〜2020年）。公開用データで第三者サイトの値だった観測所（飯舘・東白川・川内・南郷）は、2026年10月30日に気象庁の平年値で確かめ直した", publisher: "気象庁", dataYear: "平年値（1991〜2020年）", usedFor: "年平均気温・年降水量・日照時間・最深積雪", license: LICENSE_JMA },
   { id: "gi", item: "地理的表示", publisher: "農林水産省", dataYear: "登録日は産品ごと", usedFor: "産地の目印（GI）", license: `${LICENSE_MAFF}。GIマークの表示は地理的表示法による制約があり、この型では使っていない` },
   { id: "vegetable-designated", item: "野菜指定産地", publisher: "農林水産省 東北農政局", dataYear: "2026年8月3日現在", usedFor: "産地の目印（野菜指定産地）", license: LICENSE_TOHOKU },
   { id: "fruit-plan-councils", item: "果樹産地協議会", publisher: "福島県", dataYear: "令和8年3月（案）", usedFor: "産地の目印（果樹産地協議会）、品目ページの主な産地", license: licensePref(null) },
@@ -258,7 +258,7 @@ const municipalities = base.map((r) => {
   // 最深積雪：公開用データで「未取得」だった観測所は、気象庁で確かめた値（観測していなければ「観測なし」）にする
   const snow = checked && r["最深積雪(cm,平年値)"] === "未取得"
     ? (checked.snow === null
-      ? { value: null, kind: "official", sourceId: "jma-normals", unavailable: true, note: `参照している観測所（${r["参照観測所"]}）では積雪を観測していない（気象庁の平年値で最深積雪の資料年数が0年。${JMA_CHECKED_AT}確認）` }
+      ? { value: null, kind: "official", sourceId: "jma-normals", unavailable: true, note: `参照している観測所（${r["参照観測所"]}）の積雪の平年値が出ていない（気象庁の平年値の表で最深積雪が「///」、資料年数0年。${JMA_CHECKED_AT}確認）` }
       : { value: checked.snow, kind: "official", sourceId: "jma-normals", note: climateNote })
     : climate("最深積雪(cm,平年値)");
   const avgAge = sourced(r["基幹的農業従事者の平均年齢(歳,2020)"], "tohoku-age-2020", { year: 2020 });

@@ -74,7 +74,9 @@ export function gapFromMainCategories(m: Municipality): number | null {
     if (hasValue(s)) gap -= s.value;
     else if (!(s.unavailable && s.kind === "official")) return null;
   }
-  return gap < 0 ? null : gap; // 四捨五入でマイナスになったときは出さない
+  // 合計と5部門はそれぞれ千万円で四捨五入されているので、差には最大で ±3（千万円）ほどの誤差がある。
+  // それ以下の差は意味のある数と言えないので出さない
+  return gap > 3 ? gap : null;
 }
 
 /** 地方ごとの部門別産出額の合計（推計）。数値が出ていない市町村は足さず、名前を返す */
