@@ -6,7 +6,7 @@
     "dataYear": "2026年1月22日更新",
     "url": "https://www.pref.fukushima.lg.jp/sec/01145a/yakuba.html",
     "accessedAt": "2026-10-16",
-    "license": "ページに置かれた一覧のデータファイル（市役所・町村役場一覧）は福島県オープンデータ（CC BY 2.1）。ページの本文は福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）（2026年10月30日確認）",
+    "license": "ページの本文は福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。ページに置かれた一覧のデータファイル（市役所・町村役場一覧）には福島県オープンデータ（CC BY 2.1）の表示がある。公開用データの値が本文とデータファイルのどちらから取ったものかは記録がない（2026年10月30日確認）",
     "usedFor": "市町村の一覧・地方の区分・公式サイト"
   },
   {
@@ -16,7 +16,7 @@
     "dataYear": "掲載時点",
     "url": "https://www.pref.fukushima.lg.jp/sec/01145a/code.html",
     "accessedAt": "2026-10-28",
-    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページ（このページ）に福島県オープンデータ（CC BY 2.1）の表示はない。数値（事実）だけを出典つきで引いている（2026年10月30日確認）",
+    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページ（このページ）に福島県オープンデータ（CC BY 2.1）の表示はない。この型では数値だけを出典つきで使っている（2026年10月30日確認）",
     "usedFor": "市町村ID（全国地方公共団体コード）。2026年10月28日にページの59件と一致することを確かめた"
   },
   {
@@ -26,7 +26,7 @@
     "dataYear": "令和6年1月1日現在",
     "url": "https://www.soumu.go.jp/denshijiti/code.html",
     "accessedAt": "2026-10-28",
-    "license": "公共データ利用規約（第1.0版）（PDL1.0。CC BY 4.0 と互換）。出典の記載と、加工したときはそのことの記載が要る。総務省「当省ホームページについて」の著作権 https://www.soumu.go.jp/menu_kyotsuu/policy/tyosaku.html で確かめた（2026年10月30日）",
+    "license": "サイトの決まりでは、権利表記の記載がない限り公共データ利用規約（第1.0版）（PDL1.0）に準拠。出典の記載と、加工したときはそのことの記載が要る。総務省「当省ホームページについて」の著作権について https://www.soumu.go.jp/menu_kyotsuu/policy/tyosaku.html で確かめた（2026年10月30日）。この資料そのものに別の権利表記がないかは確かめていない",
     "usedFor": "ふりがな（市区町村名のカナ）。ローマ字の slug はこのカナから機械的に作った"
   },
   {
@@ -36,7 +36,7 @@
     "dataYear": "2025年10月1日または2022年10月1日",
     "url": "https://www.pref.fukushima.lg.jp/uploaded/attachment/746485.pdf",
     "accessedAt": "2026-10-16",
-    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページ（第140回福島県統計年鑑 https://www.pref.fukushima.lg.jp/sec/11045b/nenkan140.html）に福島県オープンデータ（CC BY 2.1）の表示はない。数値（事実）だけを出典つきで引いている（2026年10月30日確認）",
+    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページ（第140回福島県統計年鑑 https://www.pref.fukushima.lg.jp/sec/11045b/nenkan140.html）に福島県オープンデータ（CC BY 2.1）の表示はない。この型では数値だけを出典つきで使っている（2026年10月30日確認）",
     "usedFor": "総面積"
   },
   {
@@ -46,7 +46,7 @@
     "dataYear": "令和5年（2023年）",
     "url": "https://www.maff.go.jp/tohoku/tiiki/hukusima/attach/pdf/index-6.pdf",
     "accessedAt": "2026-10-16",
-    "license": "公共データ利用規約（第1.0版）（PDL1.0。CC BY 4.0 と互換）。出典の記載と、加工したときはそのことの記載が要る。東北農政局「リンクについて・著作権」https://www.maff.go.jp/tohoku/use/riyou.html で確かめた（2026年10月30日）",
+    "license": "サイトの決まりでは、権利表記の記載がない限り公共データ利用規約（第1.0版）（PDL1.0）に準拠。出典の記載と、加工したときはそのことの記載が要る。東北農政局「リンクについて・著作権」https://www.maff.go.jp/tohoku/use/riyou.html で確かめた（2026年10月30日）。この資料そのものに別の権利表記がないかは確かめていない",
     "usedFor": "農業産出額（合計・部門別）"
   },
   {
@@ -56,7 +56,7 @@
     "dataYear": "2020年（農林業センサス）",
     "url": "https://www.pref.fukushima.lg.jp/uploaded/attachment/484291.pdf",
     "accessedAt": "2026-10-16",
-    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページ（2020年農林業センサス農林業経営体調査結果 https://www.pref.fukushima.lg.jp/sec/11045b/nourin2020.html）に福島県オープンデータ（CC BY 2.1）の表示はない。数値（事実）だけを出典つきで引いている（2026年10月30日確認）",
+    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページ（2020年農林業センサス農林業経営体調査結果 https://www.pref.fukushima.lg.jp/sec/11045b/nourin2020.html）に福島県オープンデータ（CC BY 2.1）の表示はない。この型では数値だけを出典つきで使っている（2026年10月30日確認）",
     "usedFor": "経営耕地面積"
   },
   {
@@ -66,7 +66,7 @@
     "dataYear": "2020年（農林業センサス）",
     "url": "https://www.maff.go.jp/tohoku/stinfo/deta/attach/pdf/tizu-29.pdf",
     "accessedAt": "2026-10-16",
-    "license": "公共データ利用規約（第1.0版）（PDL1.0。CC BY 4.0 と互換）。出典の記載と、加工したときはそのことの記載が要る。東北農政局「リンクについて・著作権」https://www.maff.go.jp/tohoku/use/riyou.html で確かめた（2026年10月30日）",
+    "license": "サイトの決まりでは、権利表記の記載がない限り公共データ利用規約（第1.0版）（PDL1.0）に準拠。出典の記載と、加工したときはそのことの記載が要る。東北農政局「リンクについて・著作権」https://www.maff.go.jp/tohoku/use/riyou.html で確かめた（2026年10月30日）。この資料そのものに別の権利表記がないかは確かめていない",
     "usedFor": "基幹的農業従事者の平均年齢"
   },
   {
@@ -76,7 +76,7 @@
     "dataYear": "2020年（農林業センサス）",
     "url": "https://www.maff.go.jp/tohoku/stinfo/deta/attach/pdf/tizu-15.pdf",
     "accessedAt": "2026-10-16",
-    "license": "公共データ利用規約（第1.0版）（PDL1.0。CC BY 4.0 と互換）。出典の記載と、加工したときはそのことの記載が要る。東北農政局「リンクについて・著作権」https://www.maff.go.jp/tohoku/use/riyou.html で確かめた（2026年10月30日）",
+    "license": "サイトの決まりでは、権利表記の記載がない限り公共データ利用規約（第1.0版）（PDL1.0）に準拠。出典の記載と、加工したときはそのことの記載が要る。東北農政局「リンクについて・著作権」https://www.maff.go.jp/tohoku/use/riyou.html で確かめた（2026年10月30日）。この資料そのものに別の権利表記がないかは確かめていない",
     "usedFor": "後継者を確保している経営体の割合"
   },
   {
@@ -86,7 +86,7 @@
     "dataYear": "2026年3月末",
     "url": "https://www.maff.go.jp/tohoku/keiei/nouti_seisaku/noutisyuuseki/attach/pdf/index-30.pdf",
     "accessedAt": "2026-10-16",
-    "license": "公共データ利用規約（第1.0版）（PDL1.0。CC BY 4.0 と互換）。出典の記載と、加工したときはそのことの記載が要る。東北農政局「リンクについて・著作権」https://www.maff.go.jp/tohoku/use/riyou.html で確かめた（2026年10月30日）",
+    "license": "サイトの決まりでは、権利表記の記載がない限り公共データ利用規約（第1.0版）（PDL1.0）に準拠。出典の記載と、加工したときはそのことの記載が要る。東北農政局「リンクについて・著作権」https://www.maff.go.jp/tohoku/use/riyou.html で確かめた（2026年10月30日）。この資料そのものに別の権利表記がないかは確かめていない",
     "usedFor": "担い手への農地集積率"
   },
   {
@@ -96,7 +96,7 @@
     "dataYear": "平年値（1991〜2020年）",
     "url": "https://www.data.jma.go.jp/stats/etrn/",
     "accessedAt": "2026-10-16",
-    "license": "公共データ利用規約（第1.0版）（PDL1.0。CC BY 4.0 と互換）。出典の記載と、加工したときはそのことの記載が要る。気象庁「利用規約」https://www.jma.go.jp/jma/kishou/info/coment.html で確かめた（2026年10月30日）",
+    "license": "サイトの決まりでは、権利表記の記載がない限り公共データ利用規約（第1.0版）（PDL1.0）に準拠。出典の記載と、加工したときはそのことの記載が要る。気象庁「気象庁ホームページについて」の利用規約 https://www.jma.go.jp/jma/kishou/info/coment.html で確かめた（2026年10月30日）。この資料そのものに別の権利表記がないかは確かめていない",
     "usedFor": "年平均気温・年降水量・日照時間・最深積雪"
   },
   {
@@ -106,7 +106,7 @@
     "dataYear": "登録日は産品ごと",
     "url": "https://www.maff.go.jp/j/shokusan/gi_act/register/",
     "accessedAt": "2026-10-16",
-    "license": "公共データ利用規約（第1.0版）（PDL1.0。CC BY 4.0 と互換）。出典の記載と、加工したときはそのことの記載が要る。農林水産省「リンクについて・著作権」https://www.maff.go.jp/j/use/link.html で確かめた（2026年10月30日）。GIマークの表示は地理的表示法による制約があり、この型では使っていない",
+    "license": "サイトの決まりでは、権利表記の記載がない限り公共データ利用規約（第1.0版）（PDL1.0）に準拠。出典の記載と、加工したときはそのことの記載が要る。農林水産省「リンクについて・著作権」https://www.maff.go.jp/j/use/link.html で確かめた（2026年10月30日）。この資料そのものに別の権利表記がないかは確かめていない。GIマークの表示は地理的表示法による制約があり、この型では使っていない",
     "usedFor": "産地の目印（GI）"
   },
   {
@@ -116,7 +116,7 @@
     "dataYear": "2026年8月3日現在",
     "url": "https://www.maff.go.jp/tohoku/seisan/yasai/shiteisanchi/list_fu.html",
     "accessedAt": "2026-10-16",
-    "license": "公共データ利用規約（第1.0版）（PDL1.0。CC BY 4.0 と互換）。出典の記載と、加工したときはそのことの記載が要る。東北農政局「リンクについて・著作権」https://www.maff.go.jp/tohoku/use/riyou.html で確かめた（2026年10月30日）",
+    "license": "サイトの決まりでは、権利表記の記載がない限り公共データ利用規約（第1.0版）（PDL1.0）に準拠。出典の記載と、加工したときはそのことの記載が要る。東北農政局「リンクについて・著作権」https://www.maff.go.jp/tohoku/use/riyou.html で確かめた（2026年10月30日）。この資料そのものに別の権利表記がないかは確かめていない",
     "usedFor": "産地の目印（野菜指定産地）"
   },
   {
@@ -126,7 +126,7 @@
     "dataYear": "令和8年3月（案）",
     "url": "https://www.pref.fukushima.lg.jp/uploaded/attachment/724548.pdf",
     "accessedAt": "2026-10-16",
-    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページは見つけられず、オープンデータの表示があるかは確かめられていない。数値（事実）だけを出典つきで引いている（2026年10月30日確認）",
+    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページは見つけられず、オープンデータの表示があるかは確かめられていない。この型では数値だけを出典つきで使っている（2026年10月30日確認）",
     "usedFor": "産地の目印（果樹産地協議会）、品目ページの主な産地"
   },
   {
@@ -136,7 +136,7 @@
     "dataYear": "2021年3月",
     "url": "https://www.pref.fukushima.lg.jp/uploaded/attachment/482916.pdf",
     "accessedAt": "2026-10-16",
-    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページは見つけられず、オープンデータの表示があるかは確かめられていない。数値（事実）だけを出典つきで引いている（2026年10月30日確認）",
+    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページは見つけられず、オープンデータの表示があるかは確かめられていない。この型では数値だけを出典つきで使っている（2026年10月30日確認）",
     "usedFor": "産地の目印（その他のブランド）"
   },
   {
@@ -146,7 +146,7 @@
     "dataYear": "令和5年5月10日",
     "url": "https://www.pref.fukushima.lg.jp/uploaded/attachment/575229.pdf",
     "accessedAt": "2026-10-16",
-    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページは見つけられず、オープンデータの表示があるかは確かめられていない。数値（事実）だけを出典つきで引いている（2026年10月30日確認）",
+    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページは見つけられず、オープンデータの表示があるかは確かめられていない。この型では数値だけを出典つきで使っている（2026年10月30日確認）",
     "usedFor": "産地の目印（地域団体商標）"
   },
   {
@@ -156,7 +156,7 @@
     "dataYear": "令和8年度調査（2026年9月15日公表）",
     "url": "https://www.pref.fukushima.lg.jp/sec/36021c/sinkisyunou07.html",
     "accessedAt": "2026-10-16",
-    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページ（令和7年度の新規就農者数について https://www.pref.fukushima.lg.jp/sec/36021c/sinkisyunou07.html。令和8年度の資料を置いているページは見つけられていない）に福島県オープンデータ（CC BY 2.1）の表示はない。数値（事実）だけを出典つきで引いている（2026年10月30日確認）",
+    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページは見つけられず、オープンデータの表示があるかは確かめられていない。この型では数値だけを出典つきで使っている（2026年10月30日確認）。参考：前年の「令和7年度の新規就農者数について」https://www.pref.fukushima.lg.jp/sec/36021c/sinkisyunou07.html にはオープンデータの表示はない",
     "usedFor": "地方別の新規就農者数"
   },
   {
@@ -166,7 +166,7 @@
     "dataYear": "令和8年3月",
     "url": "https://www.pref.fukushima.lg.jp/uploaded/attachment/737680.pdf",
     "accessedAt": "2026-10-16",
-    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページ（福島県果樹農業振興計画 https://www.pref.fukushima.lg.jp/sec/36035c/kajushinkou.html）に福島県オープンデータ（CC BY 2.1）の表示はない。数値（事実）だけを出典つきで引いている（2026年10月30日確認）",
+    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページ（福島県果樹農業振興計画 https://www.pref.fukushima.lg.jp/sec/36035c/kajushinkou.html）に福島県オープンデータ（CC BY 2.1）の表示はない。この型では数値だけを出典つきで使っている（2026年10月30日確認）",
     "usedFor": "果樹の成園10aあたりの収量・労働時間"
   },
   {
@@ -176,7 +176,7 @@
     "dataYear": "令和4年版と推定",
     "url": "https://www.pref.nagano.lg.jp/nogi/keiei/documents/r4keieishihyoulist.pdf",
     "accessedAt": "2026-10-16",
-    "license": "長野県「このサイトの考え方」の著作権 https://www.pref.nagano.lg.jp/koho/kensei/koho/homepage/riyo.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページ https://www.pref.nagano.lg.jp/nogi/keiei/keiei_list.html にオープンデータの表示はない。数値（事実）だけを出典つきで引いている（2026年10月30日確認）",
+    "license": "長野県「このサイトの考え方」の著作権について https://www.pref.nagano.lg.jp/koho/kensei/koho/homepage/riyo.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページ https://www.pref.nagano.lg.jp/nogi/keiei/keiei_list.html にオープンデータの表示はない。PDF そのものの権利表記は確かめていない。この型では数値だけを出典つきで使っている（2026年10月30日確認）",
     "usedFor": "果樹の単価・経営費（福島県の果樹の経営指標が見つからないため仮に使用。福島の値ではない）"
   },
   {
