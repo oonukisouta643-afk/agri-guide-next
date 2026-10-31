@@ -141,10 +141,11 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
       <Reveal>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
           <Card className="text-center">
-            <p className="text-xs text-muted">受給可能な補助金（上限目安）</p>
+            <p className="text-xs text-muted">条件が合えば使える資金の上限</p>
             <p className="mt-1 font-serif text-xl font-bold text-green-700">
               {funding.maxSubsidyText}
             </p>
+            <p className="mt-1 text-xs text-muted">{funding.maxSubsidyNote}</p>
           </Card>
           <Card className="text-center">
             <p className="text-xs text-muted">就農までの目安（研修含む概算）</p>
@@ -153,7 +154,7 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
             </p>
           </Card>
           <Card className="text-center">
-            <p className="text-xs text-muted">想定初期費用（仮データ）</p>
+            <p className="text-xs text-muted">農機・設備の初期費用（仮データ）</p>
             <p className="mt-1 font-serif text-xl font-bold text-green-700">
               {funding.initialCostEstimateText}
             </p>
@@ -215,16 +216,16 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
                 <td className="py-2 text-muted">農機・設備（初期）</td>
                 <td className="py-2 text-right font-mono font-bold text-ink">50〜300万円</td>
               </tr>
-              <tr className="border-b border-green-200">
-                <td className="py-2 text-muted">苗木・資材（果樹）</td>
-                <td className="py-2 text-right font-mono font-bold text-ink">30〜80万円/反</td>
-              </tr>
-              <tr className="border-b border-green-200 bg-green-50/40">
-                <td className="py-2 text-muted">就農1年目の総費用</td>
-                <td className="py-2 text-right font-mono font-bold text-ink">中央値 約400万円</td>
-              </tr>
             </tbody>
           </table>
+          <div className="mt-4 text-center">
+            <Link
+              href="/tools#profit"
+              className="inline-block rounded-full border border-green-200 px-5 py-2 text-xs font-bold text-green-700 hover:bg-green-50"
+            >
+              もも・なし・りんごの初期投資と所得の試算を見る →
+            </Link>
+          </div>
         </Card>
       </Reveal>
 
@@ -353,6 +354,25 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
             {windowReferral.label} →
           </a>
         </div>
+      </Reveal>
+
+      {/* ⑦.5 相談ページへの入口（2026年11月1日に追加。文言は /soudan とトップのカードにそろえた） */}
+      <Reveal>
+        <Card>
+          <h3 className="font-bold text-ink">地域に知り合いがいない方へ</h3>
+          <p className="mt-2 text-sm leading-relaxed text-ink">
+            県北で農業を始めたいけれど、地域に知り合いがいない方の相談を受け付けています（無料）。紹介をお約束するものではありません。
+          </p>
+          <div className="mt-4">
+            <Link
+              href="/soudan"
+              onClick={() => trackEvent("soudan_link_click", { source: "simulator_result" })}
+              className="inline-block rounded bg-green-700 px-4 py-2 text-sm font-bold text-white hover:bg-green-600"
+            >
+              相談ページを見る →
+            </Link>
+          </div>
+        </Card>
       </Reveal>
 
       {/* ⑧ 次のステップ（就農意欲レベルはユーザーに見せない） */}

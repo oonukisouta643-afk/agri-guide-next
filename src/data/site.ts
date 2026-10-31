@@ -17,6 +17,7 @@ export const navLinks = [
   { href: "/farmers", label: "農家さんの声" },
   { href: "/subsidies", label: "補助金一覧" },
   { href: "/#chiiki", label: "地域施策" },
+  { href: "/soudan", label: "相談する" },
 ];
 
 // モバイルドロワー用の目次（ToC）。navLinksより網羅的で、グループ分けして表示する。
@@ -45,6 +46,7 @@ export const mobileToc: { heading: string; links: { href: string; label: string 
     links: [
       { href: "/farmers", label: "農家さんの声" },
       { href: "/subsidies", label: "補助金一覧" },
+      { href: "/soudan", label: "相談する" },
     ],
   },
 ];
