@@ -120,8 +120,8 @@ function SurveyAccordion() {
 const teaserCards = [
   {
     icon: "🎤",
-    title: "農家インタビュー（進行中）",
-    description: "果樹研究所・元JA人脈経由で福島県北地域農家へのヒアリングを実施中",
+    title: "現場に近い方に聞いた話",
+    description: "果樹の現場に近い方に聞いた話を、確かめながら少しずつ反映しています",
   },
   {
     icon: "🏛️",

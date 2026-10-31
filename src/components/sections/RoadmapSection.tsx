@@ -9,11 +9,11 @@ import { businessRoadmapPhases, type BusinessRoadmapKey } from "@/data/businessR
 // 2026年8月21日：「モバイルだとページが長い・事業計画の詳細は一般ユーザーには冗長」という
 // フィードバックを受け、縦タイムライン＋各フェーズの箇条書き詳細を、
 // 横並び3枚の要約カード（フェーズ名＋期間のみ）に圧縮。
+// 2026年11月1日：Phase 1〜3 をやめ、「いま」「これから」の2枚にした（src/data/businessRoadmap.ts のコメント）。
 
 const toneClassByKey: Record<BusinessRoadmapKey, string> = {
   now: "border-green-700 bg-green-700 text-white",
   next: "border-green-200 bg-green-50 text-green-700",
-  future: "border-green-200 bg-white text-green-700",
 };
 
 export function RoadmapSection() {
@@ -21,18 +21,18 @@ export function RoadmapSection() {
     <section id="roadmap" className="px-5 py-10 sm:px-10 sm:py-12">
       <Reveal>
         <SectionHeader
-          eye="展開計画"
+          eye="運営について"
           title={
             <>
-              2026〜2027年の<span className="font-bold text-green-700">ロードマップ</span>
+              これからの<span className="font-bold text-green-700">予定</span>
             </>
           }
-          lead="調査フェーズから始め、データに基づいてサービスを育てます。"
+          lead="確かめられたことから、順に載せていきます。"
         />
       </Reveal>
 
       <Reveal delayMs={100}>
-        <div className="mx-auto mt-6 grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3">
+        <div className="mx-auto mt-6 grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-2">
           {businessRoadmapPhases.map((phase) => (
             <div
               key={phase.key}

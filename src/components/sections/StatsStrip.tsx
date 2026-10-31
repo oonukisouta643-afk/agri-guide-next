@@ -19,7 +19,7 @@ const stats = [
   },
   {
     value: "0円",
-    label: "利用料金（Phase 1 完全無料）",
+    label: "利用料金（無料）",
   },
 ];
 
