@@ -12,7 +12,7 @@ export default function KataLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 text-gray-900">
       <p className="mb-6 rounded border border-dashed border-gray-400 bg-gray-50 px-3 py-2 text-xs text-gray-700">
-        見本（公開前の確認用）。福島県59市町村の就農データの「型」の動作確認のためのページです。個人が公開の統計を整理したもので、福島県・農林水産省・ふくのうの公式の資料ではありません。
+        見本（公開前の確認用）。福島県59市町村の就農データの「型」の動作確認のためのページです。県北ふくしまAgri-Guide（個人運営）が、公開の統計と、それをもとにした試算を整理したものです。福島県・農林水産省・ふくのうの公式の資料ではありません。
       </p>
       {children}
     </div>

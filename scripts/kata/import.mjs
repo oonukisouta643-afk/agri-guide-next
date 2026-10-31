@@ -3,7 +3,7 @@
 // ネットからは取りにいかない。置くファイルは src/kata/README.md「取り込みの手順」を参照。
 //
 // 読むもの：
-//   data-raw/open/   県北ふくしまAgri-Guide「福島県59市町村 就農の地域データ」（2026年10月16日版）の CSV 01・03・07・08・09・11・13
+//   data-raw/open/   県北ふくしまAgri-Guide「福島県59市町村 就農の地域データ」（2026年10月16日版を、10月30日に気象の6地点だけ直したもの）の CSV 01・03・07・08・09・11・13
 //   data-raw/soumu/000925835.xlsx   総務省「全国地方公共団体コード」（令和6年1月1日現在）。ふりがなに使う
 //   data-raw/estat/e033-06-007.xlsx   農林水産省「市町村別農業産出額（推計）」令和6年 福島県（e-Stat）。産出額に使う
 //   data-raw/census2020/484307.xlsx   福島県統計課「2020年農林業センサス」10 世帯員の状況（個人経営体）。基幹的農業従事者数に使う
@@ -150,13 +150,16 @@ const prodRows = new Map(
 );
 if (prodRows.size !== 59) fail(`e-Stat の産出額の表の市町村が ${prodRows.size} 件（59件のはず）`);
 // 年が変わって列がずれても静かに取り違えないよう、見出しを確かめる
-const prodHeader = readXlsxSheet(estatPath, 0).find((r) => /小計/.test((r.D ?? "").replace(/\s/g, ""))) ?? {};
-for (const [col, word] of Object.entries({ E: "米", F: "麦類", G: "雑穀", H: "豆類", I: "いも類", J: "野菜", K: "果実", L: "花き", P: "小計" })) {
-  if ((prodHeader[col] ?? "").replace(/\s/g, "") !== word) fail(`e-Stat の産出額の表の列 ${col} が「${word}」でない（「${prodHeader[col]}」）`);
+// 見出しは数行に分かれているので、最初の市町村の行より上を列ごとにつなげて見る
+const prodSheet = readXlsxSheet(estatPath, 0);
+const prodHeadRows = prodSheet.slice(0, prodSheet.findIndex((r) => /^\d{3}$/.test(r.B ?? "")));
+const prodHead = (col) => prodHeadRows.map((r) => r[col] ?? "").join("").replace(/\s/g, "");
+for (const [col, word] of Object.entries({ C: "農業産出額", E: "米", F: "麦類", G: "雑穀", H: "豆類", I: "いも類", J: "野菜", K: "果実", L: "花き", M: "工芸農作物", N: "茶", O: "その他作物", P: "小計", Y: "加工農産物" })) {
+  if (!prodHead(col).includes(word)) fail(`e-Stat の産出額の表の列 ${col} に「${word}」がない（「${prodHead(col)}」）`);
 }
 // N（茶）は工芸農作物 M の内訳と読むので足さない。x の判定にだけ入れる
 const OTHER_SUM_COLS = ["F", "G", "H", "I", "M", "O", "Y"];
-const OTHER_LABELS = { F: "麦類", G: "雑穀", H: "豆類", I: "いも類", M: "工芸農作物", N: "茶", O: "その他作物", Y: "加工農産物" };
+const OTHER_LABELS = { F: "麦類", G: "雑穀", H: "豆類", I: "いも類", M: "工芸農作物", O: "その他作物", Y: "加工農産物" };
 const OTHER_COLS = [...OTHER_SUM_COLS, "N"];
 function productionOf(id, name) {
   const r = prodRows.get(id.slice(2, 5)) ?? fail(`${name}（${id}）が e-Stat の産出額の表にない`);
@@ -165,7 +168,7 @@ function productionOf(id, name) {
   const otherRaw = OTHER_COLS.map((c) => (r[c] ?? "").trim());
   let other;
   if (otherRaw.some(isX)) {
-    other = { value: null, kind: "official", sourceId: "maff-production-r6", year: PROD_YEAR, suppressed: true, note: "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く" };
+    other = { value: null, kind: "official", sourceId: "maff-production-r6", year: PROD_YEAR, suppressed: true, note: "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く" };
   } else if (otherRaw.every((v) => DASH.test(v))) {
     other = { value: null, kind: "official", sourceId: "maff-production-r6", year: PROD_YEAR, unavailable: true, note: "内訳がすべて「－」（事実のないもの）" };
   } else {
@@ -174,7 +177,7 @@ function productionOf(id, name) {
   }
   // 「0」（単位に満たない）と「－」は並べない
   const published = OTHER_SUM_COLS.filter((c) => numOrDash(r[c]) > 0).map((c) => ({ label: OTHER_LABELS[c], value: Number(r[c]) })).sort((a, b) => b.value - a.value);
-  const withheld = OTHER_COLS.filter((c) => isX((r[c] ?? "").trim())).map((c) => OTHER_LABELS[c]);
+  const withheld = OTHER_SUM_COLS.filter((c) => isX((r[c] ?? "").trim())).map((c) => OTHER_LABELS[c]);
   return {
     total: p("C"),
     byCategory: { rice: p("E"), vegetables: p("J"), fruits: p("K"), flowers: p("L"), livestock: p("P"), other },
@@ -250,6 +253,7 @@ const municipalities = base.map((r) => {
 
   const dist = r["役場から参照観測所までの距離"].match(/^([\d.]+)km(（市町村内）)?$/) ?? fail(`${name}：距離が読めない`);
   const areaDate = r["面積の基準日"];
+  if (r["気候データの確認状況"].startsWith("第三者サイト")) fail(`${name}：気候の値が第三者サイトのまま。公開用データは10月30日に直したものを置く`);
   const climate = (col) => sourced(r[col], "jma-normals");
   const avgAge = sourced(r["基幹的農業従事者の平均年齢(歳,2020)"], "tohoku-age-2020", { year: 2020 });
   const workers = workersOf(id, name, avgAge);
@@ -282,7 +286,7 @@ const municipalities = base.map((r) => {
       annualPrecipMm: climate("年降水量(mm,平年値)"),
       annualSunshineH: climate("年間日照時間(h,平年値)"),
       maxSnowDepthCm: climate("最深積雪(cm,平年値)"),
-      snowArea: { value: SNOW_AREAS[name] ?? "指定なし", kind: "official", sourceId: "pref-snow-plan", note: "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない" },
+      snowArea: { value: SNOW_AREAS[name]?.area ?? "指定なし", kind: "official", sourceId: "pref-snow-plan", ...(SNOW_AREAS[name]?.scope ? { note: SNOW_AREAS[name].scope } : {}) },
     },
     workforce: {
       censusYear: 2020,
@@ -309,6 +313,7 @@ for (const m of municipalities) {
       };
 }
 
+if (Object.keys(SNOW_AREAS).length !== 20) fail("豪雪地帯の表が20市町村でない");
 for (const n of Object.keys(SNOW_AREAS)) if (!municipalities.some((m) => m.name === n)) fail(`豪雪地帯の表の「${n}」が 01 にない`);
 
 // 第3章の並びに合わせる

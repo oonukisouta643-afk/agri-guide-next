@@ -14,14 +14,21 @@ export const REGIONS = [
  * 豪雪地帯の指定（20市町村。載っていない市町村は「指定なし」）。
  * 出典：福島県「福島県豪雪地帯対策基本計画（第四次）」令和6年3月 資料編（令和5年4月1日現在）
  * https://www.pref.fukushima.lg.jp/uploaded/attachment/623392.pdf
- * 一部豪雪：福島市は昭和39年・43年の合併前の旧福島市など、郡山市は旧湖南村の地域。一部特別豪雪は旧市町村の一部が特別豪雪地帯
+ * scope：指定が市町村の一部のときの範囲（同じ資料の注と表から）
  */
 const SPECIAL = "特別豪雪地帯", PART_SPECIAL = "豪雪地帯（一部が特別豪雪地帯）", SNOWY = "豪雪地帯", PART_SNOWY = "一部が豪雪地帯";
 export const SNOW_AREAS = {
-  福島市: PART_SNOWY, 会津若松市: SNOWY, 郡山市: PART_SNOWY, 喜多方市: PART_SPECIAL, 天栄村: SNOWY,
-  下郷町: SPECIAL, 檜枝岐村: SPECIAL, 只見町: SPECIAL, 南会津町: PART_SPECIAL, 北塩原村: SPECIAL,
-  西会津町: SPECIAL, 磐梯町: SPECIAL, 猪苗代町: SPECIAL, 会津坂下町: SNOWY, 湯川村: SNOWY,
-  柳津町: SPECIAL, 三島町: SPECIAL, 金山町: SPECIAL, 昭和村: SPECIAL, 会津美里町: PART_SPECIAL,
+  福島市: { area: PART_SNOWY, scope: "昭和39年1月1日合併前の旧福島市・旧飯坂町、昭和43年10月1日合併前の旧吾妻町の地域" },
+  会津若松市: { area: SNOWY },
+  郡山市: { area: PART_SNOWY, scope: "昭和40年5月1日合併前の旧湖南村の地域" },
+  喜多方市: { area: PART_SPECIAL, scope: "特別豪雪地帯は旧熱塩加納村・旧山都町・旧高郷村" },
+  天栄村: { area: SNOWY },
+  下郷町: { area: SPECIAL }, 檜枝岐村: { area: SPECIAL }, 只見町: { area: SPECIAL },
+  南会津町: { area: PART_SPECIAL, scope: "特別豪雪地帯は旧舘岩村・旧伊南村・旧南郷村" },
+  北塩原村: { area: SPECIAL }, 西会津町: { area: SPECIAL }, 磐梯町: { area: SPECIAL }, 猪苗代町: { area: SPECIAL },
+  会津坂下町: { area: SNOWY }, 湯川村: { area: SNOWY },
+  柳津町: { area: SPECIAL }, 三島町: { area: SPECIAL }, 金山町: { area: SPECIAL }, 昭和村: { area: SPECIAL },
+  会津美里町: { area: PART_SPECIAL, scope: "特別豪雪地帯は旧会津高田町" },
 };
 
 /** 道のりのページを作る品目（ぶどうは前提を確かめてから） */

@@ -26,7 +26,7 @@ export function SourcedValue({ s, format, missing }: { s: Sourced<number>; forma
   return (
     <span className="inline-flex flex-wrap items-center gap-1.5">
       {s.value === null ? (
-        <span className="text-gray-500">{missing ?? missingText(s)}</span>
+        <span className="text-gray-500">{(s.unavailable && missing) || missingText(s)}</span>
       ) : (
         <span className="font-mono font-bold text-gray-900">{format(s.value)}</span>
       )}

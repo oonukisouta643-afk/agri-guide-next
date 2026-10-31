@@ -58,7 +58,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -78,8 +78,7 @@
         ],
         "withheld": [
           "麦類",
-          "その他作物",
-          "茶"
+          "その他作物"
         ],
         "sourceId": "maff-production-r6"
       },
@@ -169,7 +168,7 @@
         "value": "一部が豪雪地帯",
         "kind": "official",
         "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "note": "昭和39年1月1日合併前の旧福島市・旧飯坂町、昭和43年10月1日合併前の旧吾妻町の地域"
       }
     },
     "workforce": {
@@ -278,7 +277,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -298,8 +297,7 @@
         ],
         "withheld": [
           "麦類",
-          "その他作物",
-          "茶"
+          "その他作物"
         ],
         "sourceId": "maff-production-r6"
       },
@@ -390,8 +388,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -500,7 +497,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -619,8 +616,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -729,7 +725,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -832,8 +828,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -944,7 +939,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -1039,8 +1034,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -1151,7 +1145,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -1238,8 +1232,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -1348,7 +1341,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -1443,8 +1436,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -1553,7 +1545,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -1659,8 +1651,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -1769,7 +1760,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -1885,7 +1876,7 @@
         "value": "一部が豪雪地帯",
         "kind": "official",
         "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "note": "昭和40年5月1日合併前の旧湖南村の地域"
       }
     },
     "workforce": {
@@ -1994,7 +1985,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -2114,8 +2105,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -2224,7 +2214,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -2331,8 +2321,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -2443,7 +2432,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -2539,8 +2528,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -2650,7 +2638,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -2759,8 +2747,7 @@
       "snowArea": {
         "value": "豪雪地帯",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -2869,7 +2856,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -2972,8 +2959,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -3082,7 +3068,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -3179,8 +3165,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -3291,7 +3276,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -3382,8 +3367,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -3495,7 +3479,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -3601,8 +3585,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -3714,7 +3697,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -3793,8 +3776,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -3903,7 +3885,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -4002,8 +3984,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -4115,7 +4096,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -4205,8 +4186,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -4315,7 +4295,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -4424,8 +4404,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -4534,7 +4513,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -4619,8 +4598,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -4731,7 +4709,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -4828,8 +4806,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -4941,7 +4918,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -5035,8 +5012,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -5147,7 +5123,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -5260,8 +5236,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -5370,7 +5345,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -5445,8 +5420,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -5555,7 +5529,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -5630,8 +5604,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -5740,7 +5713,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -5811,8 +5784,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -5922,7 +5894,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -5997,8 +5969,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -6107,7 +6078,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -6228,8 +6199,7 @@
       "snowArea": {
         "value": "豪雪地帯",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -6338,7 +6308,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -6454,7 +6424,7 @@
         "value": "豪雪地帯（一部が特別豪雪地帯）",
         "kind": "official",
         "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "note": "特別豪雪地帯は旧熱塩加納村・旧山都町・旧高郷村"
       }
     },
     "workforce": {
@@ -6565,7 +6535,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -6646,8 +6616,7 @@
       "snowArea": {
         "value": "特別豪雪地帯",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -6759,7 +6728,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -6847,8 +6816,7 @@
       "snowArea": {
         "value": "特別豪雪地帯",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -6959,7 +6927,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -7048,8 +7016,7 @@
       "snowArea": {
         "value": "特別豪雪地帯",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -7158,7 +7125,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -7251,8 +7218,7 @@
       "snowArea": {
         "value": "特別豪雪地帯",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -7361,7 +7327,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -7470,8 +7436,7 @@
       "snowArea": {
         "value": "豪雪地帯",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -7584,7 +7549,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -7663,8 +7628,7 @@
       "snowArea": {
         "value": "豪雪地帯",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -7776,7 +7740,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -7881,8 +7845,7 @@
       "snowArea": {
         "value": "特別豪雪地帯",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -7995,7 +7958,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -8074,8 +8037,7 @@
       "snowArea": {
         "value": "特別豪雪地帯",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -8190,7 +8152,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -8269,8 +8231,7 @@
       "snowArea": {
         "value": "特別豪雪地帯",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -8382,7 +8343,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -8462,8 +8423,7 @@
       "snowArea": {
         "value": "特別豪雪地帯",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -8572,7 +8532,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -8686,7 +8646,7 @@
         "value": "豪雪地帯（一部が特別豪雪地帯）",
         "kind": "official",
         "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "note": "特別豪雪地帯は旧会津高田町"
       }
     },
     "workforce": {
@@ -8795,7 +8755,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -8912,8 +8872,7 @@
       "snowArea": {
         "value": "特別豪雪地帯",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -9029,7 +8988,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -9092,8 +9051,7 @@
       "snowArea": {
         "value": "特別豪雪地帯",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -9205,7 +9163,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -9297,8 +9255,7 @@
       "snowArea": {
         "value": "特別豪雪地帯",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -9407,7 +9364,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -9521,7 +9478,7 @@
         "value": "豪雪地帯（一部が特別豪雪地帯）",
         "kind": "official",
         "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "note": "特別豪雪地帯は旧舘岩村・旧伊南村・旧南郷村"
       }
     },
     "workforce": {
@@ -9630,7 +9587,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -9725,8 +9682,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -9835,7 +9791,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -9938,8 +9894,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -10050,7 +10005,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -10116,8 +10071,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -10227,7 +10181,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -10305,8 +10259,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -10419,7 +10372,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -10490,8 +10443,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -10602,7 +10554,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -10660,8 +10612,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -10774,7 +10725,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -10845,8 +10796,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -11031,8 +10981,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -11152,7 +11101,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -11223,8 +11172,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -11344,7 +11292,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -11409,8 +11357,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -11519,7 +11466,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -11614,8 +11561,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -11725,7 +11671,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -11788,8 +11734,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -11898,7 +11843,7 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため、合計は出さない。公表されている内訳は表の下に書く"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
       },
       "otherBreakdown": {
@@ -11991,8 +11936,7 @@
       "snowArea": {
         "value": "指定なし",
         "kind": "official",
-        "sourceId": "pref-snow-plan",
-        "note": "豪雪地帯対策特別措置法による指定（令和5年4月1日現在）。「指定なし」は雪が降らないという意味ではない"
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {

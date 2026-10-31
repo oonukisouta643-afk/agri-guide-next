@@ -17,7 +17,7 @@ export default function SourcesPage() {
       <p className="text-sm"><Link href="/kata" className="underline decoration-gray-300 underline-offset-2">59市町村の一覧</Link></p>
       <h1 className="mt-2 text-2xl font-bold">出典の一覧</h1>
       <p className="mt-2 text-sm text-gray-700">
-        数値は、次の資料から取り込んでいます。産出額と基幹的農業従事者数は国・県の Excel から直接、それ以外は県北ふくしまAgri-Guide「福島県59市町村 就農の地域データ」（2026年10月16日版）を通して取り込みました。利用条件は資料ごとに書いています。
+        数値は、次の資料から取り込んでいます。産出額と基幹的農業従事者数は国・県の Excel から、豪雪地帯の指定は県の計画から直接、それ以外は県北ふくしまAgri-Guide「福島県59市町村 就農の地域データ」（2026年10月16日版。10月30日に気象の6地点を気象庁の値で修正）を通して取り込みました。利用条件は資料ごとに書いています。
       </p>
 
       <ul className="mt-6 space-y-4">
