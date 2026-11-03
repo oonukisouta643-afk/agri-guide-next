@@ -23,7 +23,7 @@ export type Sourced<T> = {
   note?: string;          // 推計なら計算式
   suppressed?: boolean;   // 統計の秘匿（「x」）
   unavailable?: boolean;  // 公表されていない（「-」「…」「観測なし」など）
-  notApplicable?: boolean; // （足した）農水省の統計で「－」＝調査は行ったが事実のないもの。unavailable といっしょに立てる
+  dash?: boolean;         // （足した）元の資料の記号が横棒（「－」「-」）。意味は資料ごとに note に書く。unavailable といっしょに立てる
 };
 
 export type Source = {

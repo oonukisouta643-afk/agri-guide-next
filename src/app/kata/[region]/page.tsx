@@ -75,7 +75,7 @@ export default async function RegionPage({ params }: Props) {
                       <span className="inline-flex items-center gap-1.5 font-mono">{fmtOkuFromSenman(s.total)} <KindBadge kind="estimate" /></span>
                     )}
                   </td>
-                  <td className="py-1.5 text-xs text-gray-600">{s.excluded.length ? `${s.excluded.join("、")}（非公表・データなし・未取得）` : "—"}</td>
+                  <td className="py-1.5 text-xs text-gray-600">{s.excluded.length ? `${s.excluded.join("、")}（非公表・「－」・データなし・未取得）` : "—"}</td>
                 </tr>
               ))}
             </tbody>

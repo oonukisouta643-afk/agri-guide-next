@@ -81,7 +81,7 @@ const sourceDefs = [
   },
   {
     id: "pref-evac", title: "福島県 避難地域復興課（避難指示区域の状況）と、ふくしま復興情報ポータルサイト「避難地域12市町村の状況」", url: "https://www.pref.fukushima.lg.jp/sec/11050a/",
-    publisher: "福島県", dataYear: "2026年11月3日確認", accessedAt: "2026-11-03", usedFor: "避難地域12市町村の一覧（https://www.pref.fukushima.lg.jp/site/portal/cat01-more.html ）と、いまの区域の案内", license: licensePref(null),
+    publisher: "福島県", dataYear: "2026年11月3日確認", accessedAt: "2026-11-03", usedFor: "避難地域12市町村の一覧（https://www.pref.fukushima.lg.jp/site/portal/cat01-more.html ）と、いまの避難指示区域の範囲を確かめる県のページへの案内", license: `${PREF_RULE}。市町村の一覧（どの12市町村か）と、区域の案内のリンクにだけ使い、文章や図は写していない。オープンデータの表示があるかは確かめていない（2026年11月3日確認）`,
   },
   { id: "pref-new-farmers", item: "新規就農者数", publisher: "福島県 農業担い手課", dataYear: "令和8年度調査（2026年9月15日公表）", usedFor: "地方別の新規就農者数", license: `${licensePref(null)}。参考：前年の「令和7年度の新規就農者数について」https://www.pref.fukushima.lg.jp/sec/36021c/sinkisyunou07.html にはオープンデータの表示はない` },
   { id: "pref-fruit-plan", item: "成園の収量・年間労働時間", publisher: "福島県", dataYear: "令和8年3月", usedFor: "果樹の成園10aあたりの収量・労働時間", license: licensePref("福島県果樹農業振興計画 https://www.pref.fukushima.lg.jp/sec/36035c/kajushinkou.html") },
@@ -119,7 +119,8 @@ function sourced(raw, sourceId, extra = {}) {
   delete base.kind;
   if (v === "未取得") return { value: null, kind: "placeholder", ...base, note: "未取得（公開されている資料から、まだ取れていない）" };
   if (v === "x") return { value: null, kind: "official", ...base, suppressed: true, note: "秘匿（個々の経営が分かってしまうため非公表）" };
-  if (v === "-" || v === "…" || v === "—") return { value: null, kind: "official", ...base, unavailable: true, note: `元の資料で数値が示されていない（「${v}」）` };
+  if (v === "-") return { value: null, kind: "official", ...base, unavailable: true, dash: true, note: "元の資料で「-」（この資料での記号の意味は確かめていない）" };
+  if (v === "…" || v === "—") return { value: null, kind: "official", ...base, unavailable: true, note: `元の資料で数値が示されていない（「${v}」）` };
   if (v === "調査なし") return { value: null, kind: "official", ...base, unavailable: true, note: "避難指示の影響により調査されていない" };
   if (v === "観測なし") return { value: null, kind: "official", ...base, unavailable: true, note: "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない" };
   if (v === "") return { value: null, kind: "official", ...base, unavailable: true, note: "元の資料に記載がない" };
@@ -129,14 +130,14 @@ function sourced(raw, sourceId, extra = {}) {
 const DASH = /^[-－‐−]$/;
 const isX = (v) => v === "x" || v === "ｘ";
 // zeroNote：「0」のときの注。産出額は四捨五入の「0」、人数は数えた結果の「0」なので、呼ぶ側で決める
-function maffValue(raw, sourceId, extra = {}, zeroNote = "元の資料で「0」（単位に満たないもの。四捨五入して0）") {
+function maffValue(raw, sourceId, extra = {}, zeroNote = "元の資料で「0」（単位に満たないもの。四捨五入して0）", dashNote = "元の資料で「－」（農水省の凡例では「事実のないもの」）") {
   const v = (raw ?? "").trim();
   if (/^\d+$/.test(v)) {
     const s = { value: Number(v), kind: "official", sourceId, ...extra };
     return v === "0" ? { ...s, note: zeroNote } : s;
   }
   if (isX(v)) return { value: null, kind: "official", sourceId, ...extra, suppressed: true, note: "秘匿（元の資料で「x」。個々の経営が分かってしまうため非公表）" };
-  if (DASH.test(v)) return { value: null, kind: "official", sourceId, ...extra, unavailable: true, notApplicable: true, note: "元の資料で「－」（調査は行ったが事実のないもの）" };
+  if (DASH.test(v)) return { value: null, kind: "official", sourceId, ...extra, unavailable: true, dash: true, note: dashNote };
   fail(`読めない値：「${v}」（${sourceId}）`);
 }
 const numOrDash = (raw) => (DASH.test((raw ?? "").trim()) ? 0 : /^\d+$/.test((raw ?? "").trim()) ? Number(raw) : null);
@@ -174,7 +175,7 @@ function productionOf(id, name) {
   if (otherRaw.some(isX)) {
     other = { value: null, kind: "official", sourceId: "maff-production-r6", year: PROD_YEAR, suppressed: true, note: "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く" };
   } else if (otherRaw.every((v) => DASH.test(v))) {
-    other = { value: null, kind: "official", sourceId: "maff-production-r6", year: PROD_YEAR, unavailable: true, note: "内訳がすべて「－」（事実のないもの）" };
+    other = { value: null, kind: "official", sourceId: "maff-production-r6", year: PROD_YEAR, unavailable: true, dash: true, note: "内訳がすべて「－」（農水省の凡例では「事実のないもの」）" };
   } else {
     const sum = OTHER_SUM_COLS.reduce((a, c) => a + (numOrDash(r[c]) ?? fail(`${name}：その他の内訳が読めない（${r[c]}）`)), 0);
     other = { value: sum, kind: "estimate", sourceId: "maff-production-r6", year: PROD_YEAR, note: "麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物の合計（千万円の値を足したもの。四捨五入のため、元の合計と内訳の計が合わないことがある）" };
@@ -211,17 +212,17 @@ function workersOf(id, name, avgAgeFromTohoku) {
   const r = coreRows.get(id.slice(2, 5)) ?? fail(`${name}（${id}）がセンサスの (12) にない`);
   if (r.F !== name) fail(`${id}：名前が違う（公開用データ「${name}」、センサス「${r.F}」）`);
   const extra = { year: 2020 };
-  const count = maffValue(r.H, "census-2020-workers", { ...extra, note: "個人経営体の世帯員のうち、仕事が主で、主に自営農業に従事した人" }, "元の資料で「0」（0人）");
+  const count = maffValue(r.H, "census-2020-workers", { ...extra, note: "個人経営体の世帯員のうち、仕事が主で、主に自営農業に従事した人" }, "元の資料で「0」（0人）", "元の資料で「－」（農水省の凡例では「調査は行ったが事実のないもの」）。個人経営体だけを数えた値で、その市町村で農業をしている人がいないことを示すとは限らない");
   let ratio;
   let overCount;
   if (count.value === null || count.value === 0) {
-    ratio = { value: null, kind: "official", sourceId: "census-2020-workers", ...extra, ...(count.suppressed ? { suppressed: true } : { unavailable: true, ...(count.notApplicable ? { notApplicable: true } : {}) }), note: count.notApplicable ? "基幹的農業従事者数が「－」（調査は行ったが事実のないもの）のため、割合もない" : "基幹的農業従事者数が出ていないため割合も出せない" };
+    ratio = { value: null, kind: "official", sourceId: "census-2020-workers", ...extra, ...(count.suppressed ? { suppressed: true } : { unavailable: true, ...(count.dash ? { dash: true } : {}) }), note: count.dash ? "基幹的農業従事者数が元の資料で「－」のため、割合もない" : "基幹的農業従事者数が出ていないため割合も出せない" };
   } else if ([r.H, ...OVER65.map((c) => r[c])].some((v) => isX((v ?? "").trim()))) {
     ratio = { value: null, kind: "official", sourceId: "census-2020-workers", ...extra, suppressed: true, note: "年齢別の人数に秘匿（x）がある" };
   } else {
     const over = OVER65.reduce((a, c) => a + (numOrDash(r[c]) ?? fail(`${name}：${c}列が読めない（${r[c]}）`)), 0);
-    const small = count.value < 20 ? `。人数が少ない（${count.value}人）ため、割合は1人の違いで大きく変わる` : "";
-    ratio = { value: Math.round((over / count.value) * 1000) / 1000, kind: "estimate", sourceId: "census-2020-workers", ...extra, note: `65歳以上の基幹的農業従事者数（${over}人）÷基幹的農業従事者数（${count.value}人）。小数第3位まで${small}` };
+    const small = count.value < 20 ? `。人数が少ない（${count.value.toLocaleString("ja-JP")}人）ため、割合は1人の違いで大きく変わる` : "";
+    ratio = { value: Math.round((over / count.value) * 1000) / 1000, kind: "estimate", sourceId: "census-2020-workers", ...extra, note: `65歳以上の基幹的農業従事者数（${over.toLocaleString("ja-JP")}人）÷基幹的農業従事者数（${count.value.toLocaleString("ja-JP")}人）。小数第3位まで${small}` };
     overCount = over;
   }
   // 東北農政局の平均年齢（公開用データ01）と、県の表の平均年齢（シート (15) の列 K）を照らし合わせる

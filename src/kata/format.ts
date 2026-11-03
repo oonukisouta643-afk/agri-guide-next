@@ -18,7 +18,7 @@ export const KIND_DESCRIPTION: Record<DataKind, string> = {
 /** 値がないときの文言 */
 export function missingText(s: Sourced<unknown>): string {
   if (s.suppressed) return "非公表";
-  if (s.notApplicable) return "該当なし";
+  if (s.dash) return "－（元の資料の記号）";
   if (s.unavailable) return "データなし";
   return "未取得";
 }

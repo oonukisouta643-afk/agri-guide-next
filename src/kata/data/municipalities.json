@@ -184,7 +184,7 @@
         "kind": "estimate",
         "sourceId": "census-2020-workers",
         "year": 2020,
-        "note": "65歳以上の基幹的農業従事者数（3196人）÷基幹的農業従事者数（4469人）。小数第3位まで"
+        "note": "65歳以上の基幹的農業従事者数（3,196人）÷基幹的農業従事者数（4,469人）。小数第3位まで"
       },
       "coreWorkersOver65Count": 3196,
       "successorSecuredRatio": {
@@ -398,7 +398,7 @@
         "kind": "estimate",
         "sourceId": "census-2020-workers",
         "year": 2020,
-        "note": "65歳以上の基幹的農業従事者数（1916人）÷基幹的農業従事者数（2495人）。小数第3位まで"
+        "note": "65歳以上の基幹的農業従事者数（1,916人）÷基幹的農業従事者数（2,495人）。小数第3位まで"
       },
       "coreWorkersOver65Count": 1916,
       "successorSecuredRatio": {
@@ -620,7 +620,7 @@
         "kind": "estimate",
         "sourceId": "census-2020-workers",
         "year": 2020,
-        "note": "65歳以上の基幹的農業従事者数（2350人）÷基幹的農業従事者数（3133人）。小数第3位まで"
+        "note": "65歳以上の基幹的農業従事者数（2,350人）÷基幹的農業従事者数（3,133人）。小数第3位まで"
       },
       "coreWorkersOver65Count": 2350,
       "successorSecuredRatio": {
@@ -1847,7 +1847,7 @@
         "kind": "estimate",
         "sourceId": "census-2020-workers",
         "year": 2020,
-        "note": "65歳以上の基幹的農業従事者数（3214人）÷基幹的農業従事者数（4532人）。小数第3位まで"
+        "note": "65歳以上の基幹的農業従事者数（3,214人）÷基幹的農業従事者数（4,532人）。小数第3位まで"
       },
       "coreWorkersOver65Count": 3214,
       "successorSecuredRatio": {
@@ -2070,7 +2070,7 @@
         "kind": "estimate",
         "sourceId": "census-2020-workers",
         "year": 2020,
-        "note": "65歳以上の基幹的農業従事者数（2266人）÷基幹的農業従事者数（3367人）。小数第3位まで"
+        "note": "65歳以上の基幹的農業従事者数（2,266人）÷基幹的農業従事者数（3,367人）。小数第3位まで"
       },
       "coreWorkersOver65Count": 2266,
       "successorSecuredRatio": {
@@ -2280,7 +2280,7 @@
         "kind": "estimate",
         "sourceId": "census-2020-workers",
         "year": 2020,
-        "note": "65歳以上の基幹的農業従事者数（1916人）÷基幹的農業従事者数（2420人）。小数第3位まで"
+        "note": "65歳以上の基幹的農業従事者数（1,916人）÷基幹的農業従事者数（2,420人）。小数第3位まで"
       },
       "coreWorkersOver65Count": 1916,
       "successorSecuredRatio": {
@@ -4306,7 +4306,7 @@
         "kind": "estimate",
         "sourceId": "census-2020-workers",
         "year": 2020,
-        "note": "65歳以上の基幹的農業従事者数（1507人）÷基幹的農業従事者数（2003人）。小数第3位まで"
+        "note": "65歳以上の基幹的農業従事者数（1,507人）÷基幹的農業従事者数（2,003人）。小数第3位まで"
       },
       "coreWorkersOver65Count": 1507,
       "successorSecuredRatio": {
@@ -6047,7 +6047,7 @@
         "kind": "estimate",
         "sourceId": "census-2020-workers",
         "year": 2020,
-        "note": "65歳以上の基幹的農業従事者数（1727人）÷基幹的農業従事者数（2459人）。小数第3位まで"
+        "note": "65歳以上の基幹的農業従事者数（1,727人）÷基幹的農業従事者数（2,459人）。小数第3位まで"
       },
       "coreWorkersOver65Count": 1727,
       "successorSecuredRatio": {
@@ -6266,7 +6266,7 @@
         "kind": "estimate",
         "sourceId": "census-2020-workers",
         "year": 2020,
-        "note": "65歳以上の基幹的農業従事者数（2155人）÷基幹的農業従事者数（2838人）。小数第3位まで"
+        "note": "65歳以上の基幹的農業従事者数（2,155人）÷基幹的農業従事者数（2,838人）。小数第3位まで"
       },
       "coreWorkersOver65Count": 2155,
       "successorSecuredRatio": {
@@ -7248,7 +7248,7 @@
         "kind": "estimate",
         "sourceId": "census-2020-workers",
         "year": 2020,
-        "note": "65歳以上の基幹的農業従事者数（807人）÷基幹的農業従事者数（1103人）。小数第3位まで"
+        "note": "65歳以上の基幹的農業従事者数（807人）÷基幹的農業従事者数（1,103人）。小数第3位まで"
       },
       "coreWorkersOver65Count": 807,
       "successorSecuredRatio": {
@@ -7317,8 +7317,8 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "unavailable": true,
-          "notApplicable": true,
-          "note": "元の資料で「－」（調査は行ったが事実のないもの）"
+          "dash": true,
+          "note": "元の資料で「－」（農水省の凡例では「事実のないもの」）"
         },
         "flowers": {
           "value": null,
@@ -7517,8 +7517,8 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "unavailable": true,
-          "notApplicable": true,
-          "note": "元の資料で「－」（調査は行ったが事実のないもの）"
+          "dash": true,
+          "note": "元の資料で「－」（農水省の凡例では「事実のないもの」）"
         },
         "other": {
           "value": null,
@@ -7716,8 +7716,8 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "unavailable": true,
-          "notApplicable": true,
-          "note": "元の資料で「－」（調査は行ったが事実のないもの）"
+          "dash": true,
+          "note": "元の資料で「－」（農水省の凡例では「事実のないもの」）"
         },
         "flowers": {
           "value": null,
@@ -7903,8 +7903,8 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "unavailable": true,
-          "notApplicable": true,
-          "note": "元の資料で「－」（調査は行ったが事実のないもの）"
+          "dash": true,
+          "note": "元の資料で「－」（農水省の凡例では「事実のないもの」）"
         },
         "flowers": {
           "value": null,
@@ -7920,8 +7920,8 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "unavailable": true,
-          "notApplicable": true,
-          "note": "元の資料で「－」（調査は行ったが事実のないもの）"
+          "dash": true,
+          "note": "元の資料で「－」（農水省の凡例では「事実のないもの」）"
         },
         "other": {
           "value": null,
@@ -8106,8 +8106,8 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "unavailable": true,
-          "notApplicable": true,
-          "note": "元の資料で「－」（調査は行ったが事実のないもの）"
+          "dash": true,
+          "note": "元の資料で「－」（農水省の凡例では「事実のないもの」）"
         },
         "other": {
           "value": null,
@@ -8428,7 +8428,7 @@
         "kind": "estimate",
         "sourceId": "census-2020-workers",
         "year": 2020,
-        "note": "65歳以上の基幹的農業従事者数（1074人）÷基幹的農業従事者数（1393人）。小数第3位まで"
+        "note": "65歳以上の基幹的農業従事者数（1,074人）÷基幹的農業従事者数（1,393人）。小数第3位まで"
       },
       "coreWorkersOver65Count": 1074,
       "successorSecuredRatio": {
@@ -8705,8 +8705,8 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "unavailable": true,
-          "notApplicable": true,
-          "note": "元の資料で「－」（調査は行ったが事実のないもの）"
+          "dash": true,
+          "note": "元の資料で「－」（農水省の凡例では「事実のないもの」）"
         },
         "vegetables": {
           "value": 2,
@@ -8720,8 +8720,8 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "unavailable": true,
-          "notApplicable": true,
-          "note": "元の資料で「－」（調査は行ったが事実のないもの）"
+          "dash": true,
+          "note": "元の資料で「－」（農水省の凡例では「事実のないもの」）"
         },
         "flowers": {
           "value": null,
@@ -8729,8 +8729,8 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "unavailable": true,
-          "notApplicable": true,
-          "note": "元の資料で「－」（調査は行ったが事実のないもの）"
+          "dash": true,
+          "note": "元の資料で「－」（農水省の凡例では「事実のないもの」）"
         },
         "livestock": {
           "value": 0,
@@ -8894,8 +8894,8 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "unavailable": true,
-          "notApplicable": true,
-          "note": "元の資料で「－」（調査は行ったが事実のないもの）"
+          "dash": true,
+          "note": "元の資料で「－」（農水省の凡例では「事実のないもの」）"
         },
         "flowers": {
           "value": 7,
@@ -10089,8 +10089,8 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "unavailable": true,
-          "notApplicable": true,
-          "note": "元の資料で「－」（調査は行ったが事実のないもの）"
+          "dash": true,
+          "note": "元の資料で「－」（農水省の凡例では「事実のないもの」）"
         },
         "other": {
           "value": null,
@@ -10429,8 +10429,8 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "unavailable": true,
-          "notApplicable": true,
-          "note": "元の資料で「－」（調査は行ったが事実のないもの）"
+          "dash": true,
+          "note": "元の資料で「－」（農水省の凡例では「事実のないもの」）"
         },
         "livestock": {
           "value": null,
@@ -10438,8 +10438,8 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "unavailable": true,
-          "notApplicable": true,
-          "note": "元の資料で「－」（調査は行ったが事実のないもの）"
+          "dash": true,
+          "note": "元の資料で「－」（農水省の凡例では「事実のないもの」）"
         },
         "other": {
           "value": null,
@@ -10521,9 +10521,9 @@
         "kind": "official",
         "sourceId": "census-2020-workers",
         "year": 2020,
-        "note": "元の資料で「－」（調査は行ったが事実のないもの）",
+        "note": "元の資料で「－」（農水省の凡例では「調査は行ったが事実のないもの」）。個人経営体だけを数えた値で、その市町村で農業をしている人がいないことを示すとは限らない",
         "unavailable": true,
-        "notApplicable": true
+        "dash": true
       },
       "coreWorkersAvgAge": {
         "value": null,
@@ -10539,8 +10539,8 @@
         "sourceId": "census-2020-workers",
         "year": 2020,
         "unavailable": true,
-        "notApplicable": true,
-        "note": "基幹的農業従事者数が「－」（調査は行ったが事実のないもの）のため、割合もない"
+        "dash": true,
+        "note": "基幹的農業従事者数が元の資料で「－」のため、割合もない"
       },
       "successorSecuredRatio": {
         "value": null,
@@ -10556,7 +10556,8 @@
         "sourceId": "census-2020",
         "year": 2020,
         "unavailable": true,
-        "note": "元の資料で数値が示されていない（「-」）"
+        "dash": true,
+        "note": "元の資料で「-」（この資料での記号の意味は確かめていない）"
       }
     },
     "farmlandConsolidationRate": {
@@ -10596,8 +10597,8 @@
         "sourceId": "maff-production-r6",
         "year": 2024,
         "unavailable": true,
-        "notApplicable": true,
-        "note": "元の資料で「－」（調査は行ったが事実のないもの）"
+        "dash": true,
+        "note": "元の資料で「－」（農水省の凡例では「事実のないもの」）"
       },
       "byCategory": {
         "rice": {
@@ -10606,8 +10607,8 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "unavailable": true,
-          "notApplicable": true,
-          "note": "元の資料で「－」（調査は行ったが事実のないもの）"
+          "dash": true,
+          "note": "元の資料で「－」（農水省の凡例では「事実のないもの」）"
         },
         "vegetables": {
           "value": null,
@@ -10615,8 +10616,8 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "unavailable": true,
-          "notApplicable": true,
-          "note": "元の資料で「－」（調査は行ったが事実のないもの）"
+          "dash": true,
+          "note": "元の資料で「－」（農水省の凡例では「事実のないもの」）"
         },
         "fruits": {
           "value": null,
@@ -10624,8 +10625,8 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "unavailable": true,
-          "notApplicable": true,
-          "note": "元の資料で「－」（調査は行ったが事実のないもの）"
+          "dash": true,
+          "note": "元の資料で「－」（農水省の凡例では「事実のないもの」）"
         },
         "flowers": {
           "value": null,
@@ -10633,8 +10634,8 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "unavailable": true,
-          "notApplicable": true,
-          "note": "元の資料で「－」（調査は行ったが事実のないもの）"
+          "dash": true,
+          "note": "元の資料で「－」（農水省の凡例では「事実のないもの」）"
         },
         "livestock": {
           "value": null,
@@ -10642,8 +10643,8 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "unavailable": true,
-          "notApplicable": true,
-          "note": "元の資料で「－」（調査は行ったが事実のないもの）"
+          "dash": true,
+          "note": "元の資料で「－」（農水省の凡例では「事実のないもの」）"
         },
         "other": {
           "value": null,
@@ -10651,7 +10652,8 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "unavailable": true,
-          "note": "内訳がすべて「－」（事実のないもの）"
+          "dash": true,
+          "note": "内訳がすべて「－」（農水省の凡例では「事実のないもの」）"
         }
       },
       "otherBreakdown": {
@@ -10709,9 +10711,9 @@
         "kind": "official",
         "sourceId": "census-2020-workers",
         "year": 2020,
-        "note": "元の資料で「－」（調査は行ったが事実のないもの）",
+        "note": "元の資料で「－」（農水省の凡例では「調査は行ったが事実のないもの」）。個人経営体だけを数えた値で、その市町村で農業をしている人がいないことを示すとは限らない",
         "unavailable": true,
-        "notApplicable": true
+        "dash": true
       },
       "coreWorkersAvgAge": {
         "value": null,
@@ -10727,8 +10729,8 @@
         "sourceId": "census-2020-workers",
         "year": 2020,
         "unavailable": true,
-        "notApplicable": true,
-        "note": "基幹的農業従事者数が「－」（調査は行ったが事実のないもの）のため、割合もない"
+        "dash": true,
+        "note": "基幹的農業従事者数が元の資料で「－」のため、割合もない"
       },
       "successorSecuredRatio": {
         "value": null,
@@ -10744,7 +10746,8 @@
         "sourceId": "census-2020",
         "year": 2020,
         "unavailable": true,
-        "note": "元の資料で数値が示されていない（「-」）"
+        "dash": true,
+        "note": "元の資料で「-」（この資料での記号の意味は確かめていない）"
       }
     },
     "farmlandConsolidationRate": {
@@ -10898,9 +10901,9 @@
         "kind": "official",
         "sourceId": "census-2020-workers",
         "year": 2020,
-        "note": "元の資料で「－」（調査は行ったが事実のないもの）",
+        "note": "元の資料で「－」（農水省の凡例では「調査は行ったが事実のないもの」）。個人経営体だけを数えた値で、その市町村で農業をしている人がいないことを示すとは限らない",
         "unavailable": true,
-        "notApplicable": true
+        "dash": true
       },
       "coreWorkersAvgAge": {
         "value": null,
@@ -10908,7 +10911,8 @@
         "sourceId": "tohoku-age-2020",
         "year": 2020,
         "unavailable": true,
-        "note": "元の資料で数値が示されていない（「-」）"
+        "dash": true,
+        "note": "元の資料で「-」（この資料での記号の意味は確かめていない）"
       },
       "coreWorkersOver65Ratio": {
         "value": null,
@@ -10916,8 +10920,8 @@
         "sourceId": "census-2020-workers",
         "year": 2020,
         "unavailable": true,
-        "notApplicable": true,
-        "note": "基幹的農業従事者数が「－」（調査は行ったが事実のないもの）のため、割合もない"
+        "dash": true,
+        "note": "基幹的農業従事者数が元の資料で「－」のため、割合もない"
       },
       "successorSecuredRatio": {
         "value": null,
@@ -10925,7 +10929,8 @@
         "sourceId": "tohoku-successor-2020",
         "year": 2020,
         "unavailable": true,
-        "note": "元の資料で数値が示されていない（「-」）"
+        "dash": true,
+        "note": "元の資料で「-」（この資料での記号の意味は確かめていない）"
       },
       "farmedAreaHa": {
         "value": null,
@@ -10933,7 +10938,8 @@
         "sourceId": "census-2020",
         "year": 2020,
         "unavailable": true,
-        "note": "元の資料で数値が示されていない（「-」）"
+        "dash": true,
+        "note": "元の資料で「-」（この資料での記号の意味は確かめていない）"
       }
     },
     "farmlandConsolidationRate": {
@@ -11661,7 +11667,7 @@
         "kind": "estimate",
         "sourceId": "census-2020-workers",
         "year": 2020,
-        "note": "65歳以上の基幹的農業従事者数（2339人）÷基幹的農業従事者数（2901人）。小数第3位まで"
+        "note": "65歳以上の基幹的農業従事者数（2,339人）÷基幹的農業従事者数（2,901人）。小数第3位まで"
       },
       "coreWorkersOver65Count": 2339,
       "successorSecuredRatio": {

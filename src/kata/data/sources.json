@@ -176,8 +176,8 @@
     "dataYear": "2026年11月3日確認",
     "url": "https://www.pref.fukushima.lg.jp/sec/11050a/",
     "accessedAt": "2026-11-03",
-    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。資料を置いているページは見つけられず、オープンデータの表示があるかは確かめられていない。この型では数値だけを出典つきで使っている（2026年10月30日確認）",
-    "usedFor": "避難地域12市町村の一覧（https://www.pref.fukushima.lg.jp/site/portal/cat01-more.html ）と、いまの区域の案内"
+    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。市町村の一覧（どの12市町村か）と、区域の案内のリンクにだけ使い、文章や図は写していない。オープンデータの表示があるかは確かめていない（2026年11月3日確認）",
+    "usedFor": "避難地域12市町村の一覧（https://www.pref.fukushima.lg.jp/site/portal/cat01-more.html ）と、いまの避難指示区域の範囲を確かめる県のページへの案内"
   },
   {
     "id": "pref-new-farmers",
