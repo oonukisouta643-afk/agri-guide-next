@@ -16,7 +16,7 @@ import { surveyForms } from "@/data/forms";
 // 掲載の了承をいただいた方の話から載せる（実名は本人の了承がある場合だけ）。
 
 export const metadata: Metadata = {
-  title: "福島県北の桃農家の1日（繁忙期の例）と農家さんの声",
+  title: "農家さんの声",
   alternates: { canonical: "/farmers" },
   description:
     "福島県北で就農した農家さんの声を集めています。掲載の了承をいただいた方から順に紹介します。",

@@ -13,22 +13,9 @@ const BASE_URL = "https://www.fukushima-agri-guide.jp";
 export default function sitemap(): MetadataRoute.Sitemap {
   // 2026年10月28日：/privacy（プライバシーポリシー）を追加。
   // 2026年10月30日：/soudan（地域とのつながりがない方の就農相談）を追加。
-  // 2026年11月3日：lastModified を全ページ8月24日の固定から、ページごとに中身を最後に変えた日へ。
-  // ページの中身（ページのファイル・使っているデータ）を変えたら、ここの日付も手で直す。
-  const routes: { path: string; lastModified: string }[] = [
-    { path: "", lastModified: "2026-11-03" },
-    { path: "/simulator", lastModified: "2026-11-03" },
-    { path: "/tools", lastModified: "2026-11-03" },
-    { path: "/farmers", lastModified: "2026-11-03" },
-    { path: "/subsidies", lastModified: "2026-11-03" },
-    { path: "/privacy", lastModified: "2026-10-30" },
-    { path: "/soudan", lastModified: "2026-11-03" },
-  ];
+  // 2026年11月3日：lastModified（全ページ 2026-08-24 で固定）・changeFrequency・priority を外した。
+  // 手で日付を保つと直し忘れて実際とずれやすく、ずれた lastmod は検索エンジンに信用されなくなるため。
+  const routes = ["", "/simulator", "/tools", "/farmers", "/subsidies", "/privacy", "/soudan"];
 
-  return routes.map(({ path: route, lastModified }) => ({
-    url: `${BASE_URL}${route}`,
-    lastModified: new Date(lastModified),
-    changeFrequency: "weekly" as const,
-    priority: route === "" ? 1 : 0.8,
-  }));
+  return routes.map((route) => ({ url: `${BASE_URL}${route}` }));
 }
