@@ -11,8 +11,9 @@ export const siteConfig = {
 // 2026年8月21日：OLD版index.htmlはPCナビ・モバイルドロワー・フッターの3箇所全部に
 // 「補助金一覧」へのリンクを置いていたが、Next版はmobileTocにしか入っておらず
 // デスクトップナビ・フッターから抜け落ちていたため追加（「HTML版と再度照らし合わせて」の指摘対応）。
+// 2026年11月3日：トップの Story を外したので、「このサービスとは」（/#story）を「使い方」（/#how）に替えた。
 export const navLinks = [
-  { href: "/#story", label: "このサービスとは" },
+  { href: "/#how", label: "使い方" },
   { href: "/tools", label: "ツール集" },
   { href: "/farmers", label: "農家さんの声" },
   { href: "/subsidies", label: "補助金一覧" },
@@ -27,7 +28,6 @@ export const mobileToc: { heading: string; links: { href: string; label: string 
   {
     heading: "このページについて",
     links: [
-      { href: "/#story", label: "このサービスとは" },
       { href: "/#how", label: "使い方" },
       { href: "/#field", label: "アンケートに答える" },
       { href: "/#chiiki", label: "地域の支援策" },

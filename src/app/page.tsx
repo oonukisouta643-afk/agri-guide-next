@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { HeroDay } from "@/components/home/HeroDay";
 import { StatsStrip } from "@/components/sections/StatsStrip";
-import { Story } from "@/components/sections/Story";
 import { How } from "@/components/sections/How";
 import { SimCta } from "@/components/sections/SimCta";
 import { Field } from "@/components/sections/Field";
@@ -15,7 +14,9 @@ import { Contact } from "@/components/sections/Contact";
 // 出典：AgriGuide_Next移行_要件定義書v2.0 §5、OLD版 index.html（旧サイト）の実際のセクション順序
 // 2026年10月27日：AdminSection（/admin へのリンク）を外した。/admin はサイト内からリンクしない（ハンドブック第4章）。
 // 2026年10月28日：ファーストビューを Hero から HeroDay（今の文言のまま、右に季節ごとの農家の一日）に替えた（大貫さんの判断）。
-// セクション順序：HeroDay→StatsStrip→Story→How→SimCta→Field→ProduceShowcase→Tools→Regions→RoadmapSection→Contact
+// 2026年11月3日：Story（地域・行政側の課題の数字、情報格差の見出し、運営者の語り）を外した。読み手は就農を考える個人で、
+// その判断材料にならないため（大貫さんの判断）。運営の説明は Contact の上に短く置いた。Story.tsx は /lab の見本が使っている。
+// セクション順序：HeroDay→StatsStrip→How→SimCta→Field→ProduceShowcase→Tools→Regions→RoadmapSection→Contact
 // 2026年8月20日：OLD版との突合で欠落していたセクション（StatsStrip・SimCta・AdminSection・
 // ProduceShowcase・RoadmapSection等）を復元。
 // 2026年8月20日：チーム紹介セクション・連携調整中の機関チップは引き続き非掲載
@@ -32,7 +33,6 @@ export default function Home() {
     <>
       <HeroDay />
       <StatsStrip />
-      <Story />
       <How />
       <SimCta />
       <Field />
