@@ -15,7 +15,7 @@ import { windowReferrals } from "@/data/windowReferral";
 export const metadata: Metadata = {
   title: "地域とのつながりがない方の就農相談（福島県北）",
   description:
-    "福島県北で農業を始めたいけれど、地域に知り合いや親せきがいない方の相談を、このサイトを個人で運営している者が直接うかがいます。公的な窓口ではありません。相談は無料です。",
+    "福島県北で農業を始めたいけれど、地域に知り合いや親せきがいない方の相談を、このサイトの運営者（個人）が直接うかがいます。公的な窓口ではありません。相談は無料です。",
   alternates: { canonical: "/soudan" },
 };
 
