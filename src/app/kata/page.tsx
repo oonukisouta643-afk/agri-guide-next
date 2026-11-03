@@ -87,7 +87,7 @@ export default function KataTop() {
           ))}
         </dl>
         <p className="mt-3 text-sm text-gray-700">
-          値のない所は、0 ではなく次のように書いています。「非公表」＝統計で秘匿されている値。「データなし」＝統計上の理由で公表されていない、または観測していない値。「未取得」＝公開されている資料から、まだ取り込めていない値（{KIND_LABEL.placeholder}）。どれも比較からは外しています。
+          値のない所は、0 ではなく次のように書いています。「非公表」＝統計で秘匿されている値。「該当なし」＝元の資料で「－」（調査は行ったが事実のないもの）。「データなし」＝そのほかの理由で数値が示されていない、または観測していない値。「未取得」＝公開されている資料から、まだ取り込めていない値（{KIND_LABEL.placeholder}）。どれも比較からは外しています。
         </p>
         <p className="mt-3 text-sm">
           <Link href="/kata/sources" className="underline decoration-gray-300 underline-offset-2">出典と計算式の一覧</Link>

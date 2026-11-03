@@ -23,6 +23,7 @@ export type Sourced<T> = {
   note?: string;          // 推計なら計算式
   suppressed?: boolean;   // 統計の秘匿（「x」）
   unavailable?: boolean;  // 公表されていない（「-」「…」「観測なし」など）
+  notApplicable?: boolean; // （足した）農水省の統計で「－」＝調査は行ったが事実のないもの。unavailable といっしょに立てる
 };
 
 export type Source = {
@@ -72,7 +73,6 @@ export type Municipality = {
     byCategory: Record<ProductionCategory, Sourced<number>>;
     /** （足した）「その他」のうち公表されている内訳（千万円、大きい順）と、秘匿（x）の項目名 */
     otherBreakdown?: { published: { label: string; value: number }[]; withheld: string[]; sourceId: string };
-    prefRank?: Sourced<number>;
   };
   brands: Brand[];
   climate: {
@@ -90,11 +90,13 @@ export type Municipality = {
     coreWorkers: Sourced<number>;
     coreWorkersAvgAge: Sourced<number>;
     coreWorkersOver65Ratio: Sourced<number>;
+    coreWorkersOver65Count?: number; // （足した）65歳以上の人数（割合の横に添える）
     successorSecuredRatio: Sourced<number>;
     farmedAreaHa: Sourced<number>;
   };
   farmlandConsolidationRate: Sourced<number>;
   contact: { label: string; url: string }; // 市町村の公式サイト
+  evacuationArea?: { sourceId: string };    // （足した）県の「避難地域12市町村」に入る
   extensions?: MunicipalityExtensions;     // 差し込み口（第7章）
 };
 

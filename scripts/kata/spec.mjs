@@ -31,6 +31,13 @@ export const SNOW_AREAS = {
   会津美里町: { area: PART_SPECIAL, scope: "特別豪雪地帯は旧会津高田町" },
 };
 
+/**
+ * 県の「避難地域12市町村」（福島県「ふくしま復興情報ポータルサイト」の一覧、2026年11月3日確認）。
+ * https://www.pref.fukushima.lg.jp/site/portal/cat01-more.html
+ * 避難指示は区域ごとで、市町村の全域だったところと一部の地区だけだったところがある。毎年の更新では触らない
+ */
+export const EVAC_AREA_12 = ["田村市", "南相馬市", "川俣町", "広野町", "楢葉町", "富岡町", "川内村", "大熊町", "双葉町", "浪江町", "葛尾村", "飯舘村"];
+
 /** 道のりのページを作る品目（ぶどうは前提を確かめてから） */
 export const CROPS = [
   { id: "momo", name: "もも", csvName: "もも", laborVariety: "もも あかつき" },

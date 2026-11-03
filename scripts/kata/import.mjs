@@ -11,7 +11,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { readCsv, readXlsxFirstSheet, readXlsxSheet, kataToHira, hiraToRomaji, writeJson } from "./lib.mjs";
-import { REGIONS, CROPS, SNOW_AREAS } from "./spec.mjs";
+import { REGIONS, CROPS, SNOW_AREAS, EVAC_AREA_12 } from "./spec.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "../..");
 const RAW = path.join(ROOT, "data-raw");
@@ -79,6 +79,10 @@ const sourceDefs = [
     id: "pref-snow-plan", title: "福島県「福島県豪雪地帯対策基本計画（第四次）」令和6年3月 資料編「福島県の豪雪地帯市町村一覧」", url: "https://www.pref.fukushima.lg.jp/uploaded/attachment/623392.pdf",
     publisher: "福島県", dataYear: "令和5年4月1日現在", accessedAt: "2026-10-30", usedFor: "豪雪地帯・特別豪雪地帯の指定", license: licensePref(null),
   },
+  {
+    id: "pref-evac", title: "福島県 避難地域復興課（避難指示区域の状況）と、ふくしま復興情報ポータルサイト「避難地域12市町村の状況」", url: "https://www.pref.fukushima.lg.jp/sec/11050a/",
+    publisher: "福島県", dataYear: "2026年11月3日確認", accessedAt: "2026-11-03", usedFor: "避難地域12市町村の一覧（https://www.pref.fukushima.lg.jp/site/portal/cat01-more.html ）と、いまの区域の案内", license: licensePref(null),
+  },
   { id: "pref-new-farmers", item: "新規就農者数", publisher: "福島県 農業担い手課", dataYear: "令和8年度調査（2026年9月15日公表）", usedFor: "地方別の新規就農者数", license: `${licensePref(null)}。参考：前年の「令和7年度の新規就農者数について」https://www.pref.fukushima.lg.jp/sec/36021c/sinkisyunou07.html にはオープンデータの表示はない` },
   { id: "pref-fruit-plan", item: "成園の収量・年間労働時間", publisher: "福島県", dataYear: "令和8年3月", usedFor: "果樹の成園10aあたりの収量・労働時間", license: licensePref("福島県果樹農業振興計画 https://www.pref.fukushima.lg.jp/sec/36035c/kajushinkou.html") },
   { id: "nagano-indicators", item: "10a当たりの単価", title: "長野県「作目別経営指標一覧表」（令和4年版と推定）", url: "https://www.pref.nagano.lg.jp/nogi/keiei/documents/r4keieishihyoulist.pdf", publisher: "長野県", dataYear: "令和4年版と推定", usedFor: "果樹の単価・経営費（福島県の果樹の経営指標が見つからないため仮に使用。福島の値ではない）", license: LICENSE_NAGANO },
@@ -132,7 +136,7 @@ function maffValue(raw, sourceId, extra = {}, zeroNote = "元の資料で「0」
     return v === "0" ? { ...s, note: zeroNote } : s;
   }
   if (isX(v)) return { value: null, kind: "official", sourceId, ...extra, suppressed: true, note: "秘匿（元の資料で「x」。個々の経営が分かってしまうため非公表）" };
-  if (DASH.test(v)) return { value: null, kind: "official", sourceId, ...extra, unavailable: true, note: "元の資料で「－」（事実のないもの）" };
+  if (DASH.test(v)) return { value: null, kind: "official", sourceId, ...extra, unavailable: true, notApplicable: true, note: "元の資料で「－」（調査は行ったが事実のないもの）" };
   fail(`読めない値：「${v}」（${sourceId}）`);
 }
 const numOrDash = (raw) => (DASH.test((raw ?? "").trim()) ? 0 : /^\d+$/.test((raw ?? "").trim()) ? Number(raw) : null);
@@ -209,14 +213,16 @@ function workersOf(id, name, avgAgeFromTohoku) {
   const extra = { year: 2020 };
   const count = maffValue(r.H, "census-2020-workers", { ...extra, note: "個人経営体の世帯員のうち、仕事が主で、主に自営農業に従事した人" }, "元の資料で「0」（0人）");
   let ratio;
+  let overCount;
   if (count.value === null || count.value === 0) {
-    ratio = { value: null, kind: "official", sourceId: "census-2020-workers", ...extra, ...(count.suppressed ? { suppressed: true } : { unavailable: true }), note: "基幹的農業従事者数が出ていないため割合も出せない" };
+    ratio = { value: null, kind: "official", sourceId: "census-2020-workers", ...extra, ...(count.suppressed ? { suppressed: true } : { unavailable: true, ...(count.notApplicable ? { notApplicable: true } : {}) }), note: count.notApplicable ? "基幹的農業従事者数が「－」（調査は行ったが事実のないもの）のため、割合もない" : "基幹的農業従事者数が出ていないため割合も出せない" };
   } else if ([r.H, ...OVER65.map((c) => r[c])].some((v) => isX((v ?? "").trim()))) {
     ratio = { value: null, kind: "official", sourceId: "census-2020-workers", ...extra, suppressed: true, note: "年齢別の人数に秘匿（x）がある" };
   } else {
     const over = OVER65.reduce((a, c) => a + (numOrDash(r[c]) ?? fail(`${name}：${c}列が読めない（${r[c]}）`)), 0);
     const small = count.value < 20 ? `。人数が少ない（${count.value}人）ため、割合は1人の違いで大きく変わる` : "";
     ratio = { value: Math.round((over / count.value) * 1000) / 1000, kind: "estimate", sourceId: "census-2020-workers", ...extra, note: `65歳以上の基幹的農業従事者数（${over}人）÷基幹的農業従事者数（${count.value}人）。小数第3位まで${small}` };
+    overCount = over;
   }
   // 東北農政局の平均年齢（公開用データ01）と、県の表の平均年齢（シート (15) の列 K）を照らし合わせる
   const prefAvg = (avgAgeRows.get(id.slice(2, 5))?.K ?? "").trim();
@@ -224,7 +230,7 @@ function workersOf(id, name, avgAgeFromTohoku) {
   if (avgAgeFromTohoku.value !== null && Math.abs(Number(prefAvg) - avgAgeFromTohoku.value) > 0.051) {
     fail(`${name}：基幹的農業従事者の平均年齢が合わない（東北農政局 ${avgAgeFromTohoku.value}、県の表 ${prefAvg}）`);
   }
-  return { count, ratio };
+  return { count, ratio, overCount };
 }
 
 // ---------- ふりがな（総務省） ----------
@@ -293,27 +299,18 @@ const municipalities = base.map((r) => {
       coreWorkers: workers.count,
       coreWorkersAvgAge: avgAge,
       coreWorkersOver65Ratio: workers.ratio,
+      ...(workers.overCount !== undefined ? { coreWorkersOver65Count: workers.overCount } : {}),
       successorSecuredRatio: sourced(r["後継者がいる経営体の割合(2020)"], "tohoku-successor-2020", { year: 2020 }),
       farmedAreaHa: sourced(r["経営耕地面積(ha,2020)"], "census-2020", { year: 2020 }),
     },
     farmlandConsolidationRate: sourced(r["集積率(2026年3月末)"], "tohoku-consolidation", { year: 2026, note: "2026年3月末" }),
     contact: { label: `${name}の公式サイト`, url: r["公式サイト"] || fail(`${name}：公式サイトがない`) },
+    ...(EVAC_AREA_12.includes(name) ? { evacuationArea: { sourceId: "pref-evac" } } : {}),
   };
 });
 
-// 県内順位（令和6年の合計）。千万円の値で並べるので、同じ値は同じ順位にする
-const ranked = municipalities.filter((m) => m.production.total.value !== null);
-for (const m of municipalities) {
-  const v = m.production.total.value;
-  m.production.prefRank = v === null
-    ? { value: null, kind: "estimate", sourceId: "maff-production-r6", year: PROD_YEAR, unavailable: true, note: "合計が出ていないため順位を付けない" }
-    : {
-        value: 1 + ranked.filter((x) => x.production.total.value > v).length, kind: "estimate", sourceId: "maff-production-r6", year: PROD_YEAR,
-        note: `令和6年の農業産出額（合計、千万円の値）を、合計が出ている${ranked.length}市町村で大きい順に並べた順位。同じ値は同じ順位。農林水産省は100万円単位の元の数で順位を付けているので、それとは違うことがある`,
-      };
-}
-
 if (Object.keys(SNOW_AREAS).length !== 20) fail("豪雪地帯の表が20市町村でない");
+if (EVAC_AREA_12.length !== 12 || EVAC_AREA_12.some((n) => !municipalities.some((m) => m.name === n))) fail("避難地域12市町村の表が 01 と合わない");
 for (const n of Object.keys(SNOW_AREAS)) if (!municipalities.some((m) => m.name === n)) fail(`豪雪地帯の表の「${n}」が 01 にない`);
 
 // 第3章の並びに合わせる
