@@ -61,10 +61,10 @@ export function topCategory(m: Municipality) {
   return { id: top.id, label: top.label };
 }
 
-/** 地方ごとの部門別産出額の合計（推計）。数値が出ていない市町村は足さず、名前を返す */
+/** 地方ごとの部門別産出額の合計（推計）。数値が出ていない市町村は足さず、名前を返す。元の資料で「－」（事実のないもの）の市町村は合計を変えないので名前も返さない */
 export function sumProduction(ms: Municipality[], pick: (m: Municipality) => Sourced<number>) {
   const included = ms.filter((m) => hasValue(pick(m)));
-  const excluded = ms.filter((m) => !hasValue(pick(m)));
+  const excluded = ms.filter((m) => !hasValue(pick(m)) && !pick(m).dash);
   const total = included.reduce((a, m) => a + (pick(m).value as number), 0);
   return { total: included.length ? total : null, excluded: excluded.map((m) => m.name) };
 }

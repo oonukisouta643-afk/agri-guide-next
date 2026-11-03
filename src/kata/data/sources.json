@@ -170,6 +170,16 @@
     "usedFor": "豪雪地帯・特別豪雪地帯の指定"
   },
   {
+    "id": "pref-evac",
+    "title": "福島県 避難地域復興課（避難指示区域の状況）と、ふくしま復興情報ポータルサイト「避難地域12市町村の状況」",
+    "publisher": "福島県",
+    "dataYear": "2026年11月3日確認",
+    "url": "https://www.pref.fukushima.lg.jp/sec/11050a/",
+    "accessedAt": "2026-11-03",
+    "license": "福島県ホームページ「リンク・著作権・免責事項などについて」https://www.pref.fukushima.lg.jp/sec/01010d/koho-chosakuken.html により著作権の対象（私的使用・引用など著作権法で認められた範囲で利用できる）。市町村の一覧（どの12市町村か）と、区域の案内のリンクにだけ使い、文章や図は写していない。オープンデータの表示があるかは確かめていない（2026年11月3日確認）",
+    "usedFor": "避難地域12市町村の一覧（https://www.pref.fukushima.lg.jp/site/portal/cat01-more.html ）と、いまの避難指示区域の範囲を確かめる県のページへの案内"
+  },
+  {
     "id": "pref-new-farmers",
     "title": "福島県農業担い手課「令和7年度の新規就農者数について」「令和8年度の新規就農者数について」（2026年9月15日）",
     "publisher": "福島県 農業担い手課",

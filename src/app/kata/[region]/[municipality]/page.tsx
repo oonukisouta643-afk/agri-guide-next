@@ -5,6 +5,7 @@ import { crops, getMunicipality, getSource, municipalities, PRODUCTION_CATEGORIE
 import { fmtNumber, fmtOkuFromSenman, fmtPercent, reiwa } from "@/kata/format";
 import { KindBadge } from "@/kata/components/KindBadge";
 import { SourceRef, SourcedTable, type SourcedRow } from "@/kata/components/SourcedValue";
+import { ContactGuides } from "@/kata/components/ContactGuides";
 import { FieldNotesSlot } from "@/kata/components/FieldNotesSlot";
 import type { Brand, BrandKind, Municipality, Sourced } from "@/kata/types";
 
@@ -55,12 +56,11 @@ export default async function MunicipalityPage({ params }: Props) {
   const production: SourcedRow[] = [
     { label: "合計", s: m.production.total, format: oku },
     ...PRODUCTION_CATEGORIES.map((c) => ({ label: c.label, s: m.production.byCategory[c.id], format: oku })),
-    ...(m.production.prefRank ? [{ label: "県内順位（合計）", s: m.production.prefRank, format: (n: number) => `59市町村中 ${n}位` }] : []),
   ];
   const workforce: SourcedRow[] = [
     { label: "基幹的農業従事者数", s: m.workforce.coreWorkers, format: (n) => `${fmtNumber(n)}人` },
     { label: "基幹的農業従事者の平均年齢", s: m.workforce.coreWorkersAvgAge, format: (n) => `${fmtNumber(n, 1)}歳` },
-    { label: "基幹的農業従事者のうち65歳以上の割合", s: m.workforce.coreWorkersOver65Ratio, format: (n) => fmtPercent(n) },
+    { label: "基幹的農業従事者のうち65歳以上の割合", s: m.workforce.coreWorkersOver65Ratio, format: (n) => (m.workforce.coreWorkersOver65Count !== undefined && m.workforce.coreWorkers.value !== null ? `${fmtPercent(n)}（${fmtNumber(m.workforce.coreWorkers.value)}人中${fmtNumber(m.workforce.coreWorkersOver65Count)}人）` : fmtPercent(n)) },
     { label: "後継者を確保している経営体の割合", s: m.workforce.successorSecuredRatio, format: (n) => fmtPercent(n) },
     { label: "経営耕地面積", s: m.workforce.farmedAreaHa, format: (n) => `${fmtNumber(n, 2)}ha` },
     { label: "担い手への農地集積率", s: m.farmlandConsolidationRate, format: (n) => fmtPercent(n) },
@@ -125,7 +125,7 @@ export default async function MunicipalityPage({ params }: Props) {
       <section className="mt-8">
         <h2 className="mb-2 text-lg font-bold">担い手（{m.workforce.censusYear}年農林業センサスほか）</h2>
         <SourcedTable rows={workforce} getSource={getSource} sourcesHref={SOURCES_HREF} />
-        <p className="mt-1 text-xs text-gray-600">担い手の数字は、事実として並べています。</p>
+        <p className="mt-1 text-xs text-gray-600">統計の値を並べています（割合はこのサイトで計算）。基幹的農業従事者数・平均年齢・65歳以上の割合は、2020年農林業センサス（2020年2月1日現在）の個人経営体の値で、法人などの団体経営体で働く人は入っていません。2020年2月より後の変化（営農の再開や新しく始めた人など）は入っていません。ほかの行は、行ごとに資料と年が違います。「－（元の資料の記号）」の意味は、各行の注に書いています。</p>
       </section>
 
       <section className="mt-8">
@@ -163,8 +163,9 @@ export default async function MunicipalityPage({ params }: Props) {
         <h2 className="mb-2 text-lg font-bold">窓口</h2>
         <p className="text-sm">
           <a href={m.contact.url} target="_blank" rel="noopener noreferrer" className="underline decoration-gray-300 underline-offset-2">{m.contact.label}</a>
-          <span className="ml-1 text-xs text-gray-600">（就農の相談先は、公式サイトの農政の担当課のページで確かめてください）</span>
+          <span className="ml-1 text-xs text-gray-600">（{m.evacuationArea ? "就農・営農再開" : "就農"}の相談先は、公式サイトの農政の担当課のページで確かめてください）</span>
         </p>
+        <ContactGuides name={m.name} evacuationSourceId={m.evacuationArea?.sourceId} getSource={getSource} sourcesHref={SOURCES_HREF} />
         {m.extensions?.localContacts && m.extensions.localContacts.length > 0 && (
           <ul className="mt-2 text-sm">
             {m.extensions.localContacts.map((c) => (
