@@ -6,10 +6,10 @@ import { ToolTabs } from "@/components/tools/ToolTabs";
 // 出典：AgriGuide_Next移行_要件定義書v2.0 §2
 
 export const metadata: Metadata = {
-  title: "農業ツール集",
+  title: "就農の準備ツール（農業カレンダー・果樹の収益モデルなど）",
   alternates: { canonical: "/tools" },
   description:
-    "農業カレンダー・補助金クイズ・品目別収益モデルなど、就農をリアルに体感できる5つの無料ツール集です。",
+    "福島県北で就農を考える人向けの無料ツール。農業カレンダー、補助金クイズ、農業適性チェック、就農タイムライン、果樹（もも・なし・りんご）の品目別収益モデルの5つです。",
 };
 
 export default function ToolsPage() {

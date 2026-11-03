@@ -13,7 +13,7 @@ import { windowReferrals } from "@/data/windowReferral";
 // 紹介を約束しない・紹介先の名前を出さない（公的窓口として出す福島県農業経営・就農支援センターは除く）。
 
 export const metadata: Metadata = {
-  title: "地域とのつながりがない方の就農相談",
+  title: "福島県北の就農相談（地域とのつながりがない方へ）",
   description:
     "福島県北で農業を始めたいけれど、地域に知り合いや親せきがいない方の相談を、運営者が直接うかがいます。相談は無料です。",
   alternates: { canonical: "/soudan" },

@@ -9,10 +9,10 @@ import { SubsidyTabs } from "@/components/subsidies/SubsidyTabs";
 // 就農支援制度を地域タブで切り替えて確認できるページ。
 
 export const metadata: Metadata = {
-  title: "補助金・支援制度一覧",
+  title: "福島県北の新規就農 補助金・支援制度一覧（県・6市町村・JA）",
   alternates: { canonical: "/subsidies" },
   description:
-    "福島県北6市町村＋県＋JAふくしま未来の新規就農・農業経営に関する補助金・支援制度を地域ごとにまとめた一覧です。",
+    "福島県で新規就農するときの補助金・支援制度を、福島県・県北6市町村（伊達市・桑折町・国見町・二本松市・大玉村・本宮市）・JAふくしま未来ごとにまとめた一覧です。金額・条件・出典つき。",
 };
 
 export default function SubsidiesPage() {

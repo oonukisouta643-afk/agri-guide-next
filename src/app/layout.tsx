@@ -32,11 +32,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.fukushima-agri-guide.jp"),
   title: {
-    default: "県北ふくしまAgri-Guide｜農家という生き方を、もっとリアルに。",
+    default: "福島県北で就農したい人へ｜補助金・試算・相談｜県北ふくしまAgri-Guide",
     template: "%s｜県北ふくしまAgri-Guide",
   },
   description:
-    "農業に興味はあるけど踏み出せていない人向けに、福島県北地域への就農・移住のリアルな情報を届ける伴走型サービス。無料の就農シミュレーターで補助金や手順を自動算出します。",
+    "福島県北（伊達市・桑折町・国見町など）で新規就農を考える人向けに、補助金・支援制度の一覧、果樹の収益の試算、就農シミュレーター、地域とのつながりがない方の相談をまとめています。",
   openGraph: {
     type: "website",
     locale: "ja_JP",

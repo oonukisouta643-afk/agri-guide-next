@@ -6,10 +6,10 @@ import { SimulatorApp } from "@/components/simulator/SimulatorApp";
 // 出典：AgriGuide_Next移行_要件定義書v2.0 §2・§6（Phase 3・最優先機能）
 
 export const metadata: Metadata = {
-  title: "就農シミュレーター",
+  title: "福島県北の就農シミュレーター（補助金の目安・次の一歩）",
   alternates: { canonical: "/simulator" },
   description:
-    "10問に答えるだけで、補助金の目安・おすすめの地域・次のステップが分かる無料の就農シミュレーターです。",
+    "福島県北で農業を始めたい人向けの無料の就農シミュレーター。10問に答えると、使えそうな補助金の目安・地域・次のステップが分かります。",
 };
 
 export default function SimulatorPage() {
