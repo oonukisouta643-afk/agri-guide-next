@@ -58,8 +58,29 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 13
+          },
+          {
+            "label": "工芸農作物",
+            "value": 2
+          },
+          {
+            "label": "豆類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 3,
@@ -142,6 +163,12 @@
         "value": 26,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "一部が豪雪地帯",
+        "kind": "official",
+        "sourceId": "pref-snow-plan",
+        "note": "昭和39年1月1日合併前の旧福島市・旧飯坂町、昭和43年10月1日合併前の旧吾妻町の地域"
       }
     },
     "workforce": {
@@ -250,8 +277,29 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 9
+          },
+          {
+            "label": "工芸農作物",
+            "value": 3
+          },
+          {
+            "label": "豆類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 9,
@@ -335,7 +383,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -444,8 +497,29 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 8
+          },
+          {
+            "label": "豆類",
+            "value": 1
+          },
+          {
+            "label": "工芸農作物",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 2,
@@ -537,7 +611,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -646,8 +725,21 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 3
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 22,
@@ -731,7 +823,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -842,8 +939,21 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 19,
@@ -919,7 +1029,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -1030,8 +1145,21 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 16,
@@ -1099,7 +1227,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -1208,8 +1341,21 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 43,
@@ -1268,26 +1414,29 @@
       "annualMeanTempC": {
         "value": 10.3,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "annualPrecipMm": {
         "value": 1367.4,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "annualSunshineH": {
         "value": 1881,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "maxSnowDepthCm": {
         "value": null,
-        "kind": "placeholder",
+        "kind": "official",
         "sourceId": "jma-normals",
-        "note": "未取得（公開されている資料から、まだ取れていない）"
+        "unavailable": true,
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -1396,8 +1545,24 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 4
+          },
+          {
+            "label": "雑穀",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 24,
@@ -1481,7 +1646,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -1590,8 +1760,33 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 43
+          },
+          {
+            "label": "工芸農作物",
+            "value": 3
+          },
+          {
+            "label": "雑穀",
+            "value": 2
+          },
+          {
+            "label": "豆類",
+            "value": 2
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 1,
@@ -1675,7 +1870,13 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "一部が豪雪地帯",
+        "kind": "official",
+        "sourceId": "pref-snow-plan",
+        "note": "昭和40年5月1日合併前の旧湖南村の地域"
       }
     },
     "workforce": {
@@ -1784,8 +1985,28 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 4
+          },
+          {
+            "label": "工芸農作物",
+            "value": 2
+          },
+          {
+            "label": "雑穀",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 4,
@@ -1872,14 +2093,19 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
       },
       "maxSnowDepthCm": {
         "value": null,
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -1988,8 +2214,33 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 10
+          },
+          {
+            "label": "工芸農作物",
+            "value": 5
+          },
+          {
+            "label": "雑穀",
+            "value": 1
+          },
+          {
+            "label": "豆類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 10,
@@ -2065,7 +2316,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -2176,8 +2432,20 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 2
+          }
+        ],
+        "withheld": [
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 23,
@@ -2248,14 +2516,19 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
       },
       "maxSnowDepthCm": {
         "value": null,
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -2365,8 +2638,21 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 4
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 31,
@@ -2457,6 +2743,11 @@
         "value": 25,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "豪雪地帯",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -2565,8 +2856,21 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 4
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 25,
@@ -2650,7 +2954,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -2759,8 +3068,21 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 26,
@@ -2831,14 +3153,19 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
       },
       "maxSnowDepthCm": {
         "value": null,
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -2949,8 +3276,25 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 3
+          },
+          {
+            "label": "工芸農作物",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 30,
@@ -3018,7 +3362,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -3130,8 +3479,24 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 3
+          },
+          {
+            "label": "工芸農作物",
+            "value": 2
+          }
+        ],
+        "withheld": [
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 33,
@@ -3215,7 +3580,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -3327,8 +3697,21 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 35,
@@ -3388,7 +3771,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -3497,8 +3885,25 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 4
+          },
+          {
+            "label": "工芸農作物",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 38,
@@ -3574,7 +3979,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -3686,8 +4096,24 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 1
+          },
+          {
+            "label": "工芸農作物",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 32,
@@ -3755,7 +4181,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -3864,8 +4295,29 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 8
+          },
+          {
+            "label": "工芸農作物",
+            "value": 2
+          },
+          {
+            "label": "豆類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 8,
@@ -3948,6 +4400,11 @@
         "value": 25,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -4056,8 +4513,21 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 3
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 18,
@@ -4124,6 +4594,11 @@
         "value": 25,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -4234,8 +4709,25 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "雑穀",
+            "value": 1
+          },
+          {
+            "label": "いも類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 21,
@@ -4310,6 +4802,11 @@
         "value": 25,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -4421,8 +4918,20 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 29,
@@ -4498,7 +5007,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -4609,8 +5123,29 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 3
+          },
+          {
+            "label": "工芸農作物",
+            "value": 2
+          },
+          {
+            "label": "豆類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 15,
@@ -4689,14 +5224,19 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
       },
       "maxSnowDepthCm": {
         "value": null,
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -4805,8 +5345,25 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 2
+          },
+          {
+            "label": "工芸農作物",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 27,
@@ -4841,26 +5398,29 @@
       "annualMeanTempC": {
         "value": 12,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "annualPrecipMm": {
         "value": 1405.1,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "annualSunshineH": {
         "value": 1940.8,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "maxSnowDepthCm": {
         "value": null,
-        "kind": "placeholder",
+        "kind": "official",
         "sourceId": "jma-normals",
-        "note": "未取得（公開されている資料から、まだ取れていない）"
+        "unavailable": true,
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -4969,8 +5529,25 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 2
+          },
+          {
+            "label": "工芸農作物",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 45,
@@ -5005,26 +5582,29 @@
       "annualMeanTempC": {
         "value": 12,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "annualPrecipMm": {
         "value": 1405.1,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "annualSunshineH": {
         "value": 1940.8,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "maxSnowDepthCm": {
         "value": null,
-        "kind": "placeholder",
+        "kind": "official",
         "sourceId": "jma-normals",
-        "note": "未取得（公開されている資料から、まだ取れていない）"
+        "unavailable": true,
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -5133,8 +5713,21 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 6
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 36,
@@ -5169,26 +5762,29 @@
       "annualMeanTempC": {
         "value": 12,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "annualPrecipMm": {
         "value": 1405.1,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "annualSunshineH": {
         "value": 1940.8,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "maxSnowDepthCm": {
         "value": null,
-        "kind": "placeholder",
+        "kind": "official",
         "sourceId": "jma-normals",
-        "note": "未取得（公開されている資料から、まだ取れていない）"
+        "unavailable": true,
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -5298,8 +5894,25 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 9
+          },
+          {
+            "label": "工芸農作物",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 37,
@@ -5351,7 +5964,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -5460,8 +6078,33 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 20
+          },
+          {
+            "label": "雑穀",
+            "value": 6
+          },
+          {
+            "label": "豆類",
+            "value": 3
+          },
+          {
+            "label": "工芸農作物",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 5,
@@ -5552,6 +6195,11 @@
         "value": 59,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "豪雪地帯",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -5660,8 +6308,33 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "雑穀",
+            "value": 13
+          },
+          {
+            "label": "いも類",
+            "value": 6
+          },
+          {
+            "label": "工芸農作物",
+            "value": 2
+          },
+          {
+            "label": "豆類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 6,
@@ -5745,7 +6418,13 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "豪雪地帯（一部が特別豪雪地帯）",
+        "kind": "official",
+        "sourceId": "pref-snow-plan",
+        "note": "特別豪雪地帯は旧熱塩加納村・旧山都町・旧高郷村"
       }
     },
     "workforce": {
@@ -5856,8 +6535,15 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [],
+        "withheld": [
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 47,
@@ -5925,7 +6611,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "特別豪雪地帯",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -6037,8 +6728,24 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 4
+          },
+          {
+            "label": "雑穀",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 39,
@@ -6105,6 +6812,11 @@
         "value": 96,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "特別豪雪地帯",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -6215,8 +6927,25 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "雑穀",
+            "value": 1
+          },
+          {
+            "label": "いも類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 42,
@@ -6283,6 +7012,11 @@
         "value": 90,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "特別豪雪地帯",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -6391,8 +7125,29 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "雑穀",
+            "value": 3
+          },
+          {
+            "label": "いも類",
+            "value": 2
+          },
+          {
+            "label": "工芸農作物",
+            "value": 2
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 14,
@@ -6459,6 +7214,11 @@
         "value": 90,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "特別豪雪地帯",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -6567,8 +7327,29 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 8
+          },
+          {
+            "label": "雑穀",
+            "value": 4
+          },
+          {
+            "label": "工芸農作物",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 13,
@@ -6651,6 +7432,11 @@
         "value": 59,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "豪雪地帯",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -6763,8 +7549,15 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [],
+        "withheld": [
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 28,
@@ -6831,6 +7624,11 @@
         "value": 59,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "豪雪地帯",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -6942,8 +7740,25 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "雑穀",
+            "value": 1
+          },
+          {
+            "label": "いも類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 46,
@@ -7026,6 +7841,11 @@
         "value": 96,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "特別豪雪地帯",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -7138,8 +7958,15 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [],
+        "withheld": [
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 56,
@@ -7206,6 +8033,11 @@
         "value": 162,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "特別豪雪地帯",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -7320,8 +8152,15 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [],
+        "withheld": [
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 52,
@@ -7388,6 +8227,11 @@
         "value": 162,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "特別豪雪地帯",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -7499,8 +8343,16 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 48,
@@ -7551,26 +8403,27 @@
       "annualMeanTempC": {
         "value": 9.9,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "annualPrecipMm": {
         "value": 1492.1,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "annualSunshineH": {
         "value": 1540.6,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "maxSnowDepthCm": {
-        "value": null,
-        "kind": "placeholder",
-        "sourceId": "jma-normals",
-        "note": "未取得（公開されている資料から、まだ取れていない）"
+        "value": 166,
+        "kind": "official",
+        "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "特別豪雪地帯",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -7679,8 +8532,33 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "雑穀",
+            "value": 3
+          },
+          {
+            "label": "いも類",
+            "value": 3
+          },
+          {
+            "label": "豆類",
+            "value": 1
+          },
+          {
+            "label": "工芸農作物",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 11,
@@ -7763,6 +8641,12 @@
         "value": 59,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "豪雪地帯（一部が特別豪雪地帯）",
+        "kind": "official",
+        "sourceId": "pref-snow-plan",
+        "note": "特別豪雪地帯は旧会津高田町"
       }
     },
     "workforce": {
@@ -7871,8 +8755,29 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 3
+          },
+          {
+            "label": "工芸農作物",
+            "value": 3
+          },
+          {
+            "label": "雑穀",
+            "value": 2
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 40,
@@ -7963,6 +8868,11 @@
         "value": 88,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "特別豪雪地帯",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -8078,8 +8988,15 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [],
+        "withheld": [
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 58,
@@ -8130,6 +9047,11 @@
         "value": 222,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "特別豪雪地帯",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -8241,8 +9163,20 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "工芸農作物",
+            "value": 4
+          }
+        ],
+        "withheld": [
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 41,
@@ -8317,6 +9251,11 @@
         "value": 231,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "特別豪雪地帯",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -8425,8 +9364,25 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "雑穀",
+            "value": 6
+          },
+          {
+            "label": "いも類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 19,
@@ -8517,6 +9473,12 @@
         "value": 88,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "豪雪地帯（一部が特別豪雪地帯）",
+        "kind": "official",
+        "sourceId": "pref-snow-plan",
+        "note": "特別豪雪地帯は旧舘岩村・旧伊南村・旧南郷村"
       }
     },
     "workforce": {
@@ -8625,8 +9587,29 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 3
+          },
+          {
+            "label": "豆類",
+            "value": 2
+          },
+          {
+            "label": "工芸農作物",
+            "value": 2
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 17,
@@ -8694,7 +9677,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -8803,8 +9791,29 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 19
+          },
+          {
+            "label": "豆類",
+            "value": 4
+          },
+          {
+            "label": "工芸農作物",
+            "value": 2
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 12,
@@ -8880,7 +9889,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -8991,8 +10005,16 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 52,
@@ -9044,7 +10066,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -9154,8 +10181,20 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 5
+          }
+        ],
+        "withheld": [
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 49,
@@ -9215,7 +10254,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -9328,8 +10372,21 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 55,
@@ -9381,7 +10438,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -9492,8 +10554,16 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 51,
@@ -9520,26 +10590,29 @@
       "annualMeanTempC": {
         "value": 10.6,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "annualPrecipMm": {
         "value": 1484.1,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "annualSunshineH": {
         "value": 1943.4,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "maxSnowDepthCm": {
         "value": null,
-        "kind": "placeholder",
+        "kind": "official",
         "sourceId": "jma-normals",
-        "note": "未取得（公開されている資料から、まだ取れていない）"
+        "unavailable": true,
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -9652,8 +10725,21 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 57,
@@ -9705,7 +10791,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -9837,6 +10928,11 @@
           "note": "内訳がすべて「－」（事実のないもの）"
         }
       },
+      "otherBreakdown": {
+        "published": [],
+        "withheld": [],
+        "sourceId": "maff-production-r6"
+      },
       "prefRank": {
         "value": null,
         "kind": "estimate",
@@ -9880,7 +10976,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -10000,8 +11101,21 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "工芸農作物",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 44,
@@ -10053,7 +11167,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -10173,8 +11292,15 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [],
+        "withheld": [
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 50,
@@ -10226,7 +11352,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -10335,8 +11466,29 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 3
+          },
+          {
+            "label": "工芸農作物",
+            "value": 2
+          },
+          {
+            "label": "豆類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 34,
@@ -10404,7 +11556,12 @@
         "kind": "official",
         "sourceId": "jma-normals",
         "unavailable": true,
-        "note": "参照している観測所で、この項目を観測していない"
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -10514,8 +11671,21 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 54,
@@ -10542,26 +11712,29 @@
       "annualMeanTempC": {
         "value": 10.3,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "annualPrecipMm": {
         "value": 1367.4,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "annualSunshineH": {
         "value": 1881,
         "kind": "official",
-        "sourceId": "jma-normals",
-        "note": "気象庁の平年値を転載しているサイトで確かめた値（気象庁の原典との照合はまだ）"
+        "sourceId": "jma-normals"
       },
       "maxSnowDepthCm": {
         "value": null,
-        "kind": "placeholder",
+        "kind": "official",
         "sourceId": "jma-normals",
-        "note": "未取得（公開されている資料から、まだ取れていない）"
+        "unavailable": true,
+        "note": "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {
@@ -10670,8 +11843,29 @@
           "sourceId": "maff-production-r6",
           "year": 2024,
           "suppressed": true,
-          "note": "内訳（麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物）に秘匿（x）があるため出さない。秘匿の値を含む数になるので、合計からほかの部門を引いて出すこともしない"
+          "note": "内訳に秘匿（x）があるため、合計は出さない。内訳は表の下に書く"
         }
+      },
+      "otherBreakdown": {
+        "published": [
+          {
+            "label": "いも類",
+            "value": 13
+          },
+          {
+            "label": "工芸農作物",
+            "value": 2
+          },
+          {
+            "label": "豆類",
+            "value": 1
+          }
+        ],
+        "withheld": [
+          "麦類",
+          "その他作物"
+        ],
+        "sourceId": "maff-production-r6"
       },
       "prefRank": {
         "value": 7,
@@ -10738,6 +11932,11 @@
         "value": 5,
         "kind": "official",
         "sourceId": "jma-normals"
+      },
+      "snowArea": {
+        "value": "指定なし",
+        "kind": "official",
+        "sourceId": "pref-snow-plan"
       }
     },
     "workforce": {

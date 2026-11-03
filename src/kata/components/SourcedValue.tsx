@@ -22,20 +22,21 @@ export function SourceRef({ sourceId, getSource, sourcesHref, year }: {
   );
 }
 
-export function SourcedValue({ s, format }: { s: Sourced<number>; format: (n: number) => string }) {
+export function SourcedValue({ s, format, missing }: { s: Sourced<number>; format: (n: number) => string; missing?: string }) {
   return (
     <span className="inline-flex flex-wrap items-center gap-1.5">
       {s.value === null ? (
-        <span className="text-gray-500">{missingText(s)}</span>
+        <span className="text-gray-500">{(s.unavailable && missing) || missingText(s)}</span>
       ) : (
         <span className="font-mono font-bold text-gray-900">{format(s.value)}</span>
       )}
-      <KindBadge kind={s.kind} />
+      {/* 値がない行に「公式統計」を付けると、公式が「ない」と言っているように読めるので付けない。仮データだけは示す */}
+      {(s.value !== null || s.kind === "placeholder") && <KindBadge kind={s.kind} />}
     </span>
   );
 }
 
-export type SourcedRow = { label: string; s: Sourced<number>; format: (n: number) => string; extra?: string };
+export type SourcedRow = { label: string; s: Sourced<number>; format: (n: number) => string; extra?: string; missing?: string };
 
 export function SourcedTable({ rows, getSource, sourcesHref, caption }: {
   rows: SourcedRow[];
@@ -58,7 +59,7 @@ export function SourcedTable({ rows, getSource, sourcesHref, caption }: {
           {rows.map((r) => (
             <tr key={r.label} className="border-b border-gray-200 align-top">
               <th scope="row" className="py-2 pr-3 text-left font-normal text-gray-800">{r.label}</th>
-              <td className="py-2 pr-3"><SourcedValue s={r.s} format={r.format} /></td>
+              <td className="py-2 pr-3"><SourcedValue s={r.s} format={r.format} missing={r.missing} /></td>
               <td className="py-2 text-xs text-gray-600">
                 <SourceRef sourceId={r.s.sourceId} getSource={getSource} sourcesHref={sourcesHref} year={r.s.year} />
                 {r.s.note && <span className="block">{r.s.note}</span>}
