@@ -70,6 +70,8 @@ export type Municipality = {
     unit: "千万円";       // （足した）産出額の単位
     total: Sourced<number>;
     byCategory: Record<ProductionCategory, Sourced<number>>;
+    /** （足した）「その他」のうち公表されている内訳（千万円、大きい順）と、秘匿（x）の項目名 */
+    otherBreakdown?: { published: { label: string; value: number }[]; withheld: string[]; sourceId: string };
     prefRank?: Sourced<number>;
   };
   brands: Brand[];
@@ -81,6 +83,7 @@ export type Municipality = {
     annualPrecipMm: Sourced<number>;
     annualSunshineH: Sourced<number>;
     maxSnowDepthCm: Sourced<number>;
+    snowArea: Sourced<string>; // （足した）豪雪地帯の指定
   };
   workforce: {
     censusYear: 2020 | 2025;

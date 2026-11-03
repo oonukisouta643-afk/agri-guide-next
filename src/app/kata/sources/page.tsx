@@ -17,7 +17,7 @@ export default function SourcesPage() {
       <p className="text-sm"><Link href="/kata" className="underline decoration-gray-300 underline-offset-2">59市町村の一覧</Link></p>
       <h1 className="mt-2 text-2xl font-bold">出典の一覧</h1>
       <p className="mt-2 text-sm text-gray-700">
-        数値は、県北ふくしまAgri-Guide「福島県59市町村 就農の地域データ」（2026年10月16日版）から取り込んでいます。元の資料は次のとおりです。利用条件は Phase 2 で資料ごとに確かめ直します。
+        数値は、次の資料から取り込んでいます。産出額と基幹的農業従事者数は国・県の Excel から、豪雪地帯の指定は県の計画から直接、それ以外は県北ふくしまAgri-Guide「福島県59市町村 就農の地域データ」（2026年10月16日版。10月30日に気象の6地点を気象庁の値で修正）を通して取り込みました。利用条件は資料ごとに書いています。
       </p>
 
       <ul className="mt-6 space-y-4">
@@ -42,7 +42,7 @@ export default function SourcesPage() {
         <ul className="list-disc space-y-1 pl-5 text-sm text-gray-800">
           <li>部門別産出額の地方の合計＝所属する市町村の産出額の和。非公表・データなし・未取得の市町村は足さない</li>
           <li>産出額の県内順位＝{reiwa(PRODUCTION_YEAR)}の合計産出額（千万円の値）を、合計が出ている市町村で大きい順に並べた順位。同じ値は同じ順位</li>
-          <li>産出額の「その他」＝麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物の和。内訳に秘匿（x）があるときは非公表（合計からの引き算はしない）</li>
+          <li>産出額の「その他」＝麦類・雑穀・豆類・いも類・工芸農作物・その他作物・加工農産物の和。内訳に秘匿（x）があるときは非公表（合計からの引き算はしない）。公表されている内訳は、市町村ページの表の下に品目の名前つきで書く</li>
           <li>基幹的農業従事者のうち65歳以上の割合＝65歳以上の基幹的農業従事者数÷基幹的農業従事者数（2020年センサス、個人経営体）</li>
           <li>農業所得＝販売額−経営費−地代。販売額＝成園の収量×収量の割合×単価×（面積÷10a）</li>
           <li>経営費（新しく植える）＝成園の経営費×（{NEW_PLANTING_COST_FLOOR}＋{fmtNumber(1 - NEW_PLANTING_COST_FLOOR, 1)}×収量の割合）×（面積÷10a）</li>
