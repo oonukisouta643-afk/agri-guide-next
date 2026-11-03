@@ -26,6 +26,8 @@ export type SubsidyItem = {
 
 export type FundingResult = {
   maxSubsidyText: string;
+  /** 上限の数字が何を足したものかの説明 */
+  maxSubsidyNote: string;
   durationEstimateText: string;
   initialCostEstimateText: string;
   subsidyItems: SubsidyItem[];
@@ -54,13 +56,9 @@ const durationLabelJa: Record<TimingKey, string> = {
   info: "まず情報収集から",
 };
 
-// 旧版buildResult()の costMap をそのまま移植（KPI「想定初期費用」用。⑨のコスト表とは別の数値）
-const initialCostByCrop: Partial<Record<CropKey, string>> = {
-  momo: "80〜120万円/反",
-  apple: "60〜100万円/反",
-  kyu: "50〜120万円/反",
-  rice: "30〜80万円/反",
-};
+// 2026年11月1日：品目別の金額（桃80〜120万円/反など）は収益モデルの試算と食い違い、出典もなかったため外した。
+// 品目ごとの初期投資は /tools#profit の試算に任せ、ここは農機・設備の仮データだけを出す。
+const INITIAL_COST_TEXT = "50〜300万円";
 
 export function calcFunding(s: SimulatorState): FundingResult {
   // 50歳以上は就農準備資金の対象外（trainOk）
@@ -70,8 +68,14 @@ export function calcFunding(s: SimulatorState): FundingResult {
   // 出典：福島県「ふくしま移住支援金給付事業について」https://www.pref.fukushima.lg.jp/sec/11025b/iju.html
   // （2026年7月27日更新）。2026年10月27日に確認。
   const fromTokyo = s.loc === "tokyo";
+  // 2026年11月1日：上限の合計を答えに合わせた。経営開始資金は独立・自営就農が前提で、農業法人への雇用就農は対象外。
+  // 就農準備資金は雇用就農も対象で、研修を終えた人は足さない。移住支援金は条件が多いので合計に入れない。
+  // 出典：農林水産省 新規就農者育成総合対策の資料。2026年11月1日に確認。
+  const isHire = s.type === "hire";
+  const trained = s.exp === "train";
 
   const items: SubsidyItem[] = [];
+  const countedNames: string[] = [];
   let maxTotal = 0;
 
   // 1. 就農準備資金（研修期間中）
@@ -79,24 +83,36 @@ export function calcFunding(s: SimulatorState): FundingResult {
     icon: "💴",
     name: "就農準備資金（研修期間中）",
     amountText: trainOk ? "年間165万円×最長2年" : "対象外（50歳未満が条件）",
-    badge: trainOk ? "ok" : "no",
+    badge: !trainOk ? "no" : trained ? "req" : "ok",
     note: "農業研修機関に登録して研修中に受け取れる生活支援金。令和8年度からの新規交付分は年165万円（従来は年150万円）。",
-    warn: trainOk ? undefined : "50歳以上は対象外です。",
+    warn: !trainOk
+      ? "50歳以上は対象外です。"
+      : trained
+        ? "これから研修を受ける方の制度です。研修を終えている場合は、上限の合計に入れていません。"
+        : undefined,
   });
-  if (trainOk) maxTotal += 330;
+  if (trainOk && !trained) {
+    maxTotal += 330;
+    countedNames.push("就農準備資金");
+  }
 
   // 2. 経営開始資金（新規就農者育成総合対策）
   items.push({
     icon: "🌱",
     name: "経営開始資金（新規就農者育成総合対策）",
-    amountText: trainOk ? "年間165万円×最長3年" : "対象外（原則50歳未満が条件）",
-    badge: trainOk ? "req" : "no",
+    amountText: !trainOk ? "対象外（原則50歳未満が条件）" : isHire ? "対象外（独立・自営就農が条件）" : "年間165万円×最長3年",
+    badge: trainOk && !isHire ? "req" : "no",
     note: "独立就農後に受け取れる収入補助。認定新規就農者の認定が必要。令和8年度からの新規交付分は年165万円（従来は年150万円）。",
-    warn: trainOk
-      ? "認定には、青年等就農計画を市町村に提出する必要があります。"
-      : "50歳以上は対象外です（原則50歳未満）。",
+    warn: !trainOk
+      ? "50歳以上は対象外です（原則50歳未満）。"
+      : isHire
+        ? "農業法人に就職する場合は対象になりません。あとで独立するときに改めて確かめてください。"
+        : "認定には、青年等就農計画を市町村に提出する必要があります。",
   });
-  if (trainOk) maxTotal += 495;
+  if (trainOk && !isHire) {
+    maxTotal += 495;
+    countedNames.push("経営開始資金");
+  }
 
   // 3・4. 経営発展支援事業（機械・施設の初期投資。常時案内）
   // 2026年10月27日：農水省の令和8年度の資料（hatten-57.pdf、r8kettei_pr45.pdf）と福島市の案内で、上限額と併用の可否を確認。
@@ -150,11 +166,10 @@ export function calcFunding(s: SimulatorState): FundingResult {
       icon: "🏠",
       name: `ふくしま移住支援金（${isSingle ? "単身60万円" : "家族100万円"}）`,
       amountText: isSingle ? "60万円（一時金）" : "100万円（一時金）",
-      badge: "ok",
+      badge: "req",
       note: "東京23区に住んでいた人や、東京圏（東京・埼玉・千葉・神奈川）から23区へ通勤していた人などが移住したときに支給される一時金。",
-      warn: "転入前に市町村窓口で必ず要件確認してください。",
+      warn: "直近10年のうち5年以上の居住・通勤などの条件と、移住先での就業などの条件があります（自営で始める場合は、起業支援金の採択が条件になることがあります）。条件が多いので、上限の合計には入れていません。転入前に市町村窓口で必ず確認してください。",
     });
-    maxTotal += isSingle ? 60 : 100;
   }
 
   // 7. 日本政策金融公庫 農業融資（常時案内・自己資金の多寡にかかわらず表示）
@@ -169,17 +184,21 @@ export function calcFunding(s: SimulatorState): FundingResult {
 
   const durationEstimateText = s.timing ? durationLabelJa[s.timing] : "—";
 
-  const mainCrop = s.crops.find((c): c is CropKey => c in initialCostByCrop);
-  const initialCostEstimateText = mainCrop ? initialCostByCrop[mainCrop]! : "100〜300万円";
 
   const ageLbl = s.age ? ageLabelJa[s.age] : "";
   const famLbl = s.family ? familyLabelJa[s.family] : "";
   const titleText = `${ageLbl}・${famLbl}・目標年収${s.income}万円`;
 
   return {
-    maxSubsidyText: `最大${maxTotal.toLocaleString()}万円`,
+    maxSubsidyText: maxTotal > 0 ? `最大${maxTotal.toLocaleString()}万円` : trainOk ? "いま足せる資金はありません" : "生活資金は対象外",
+    maxSubsidyNote:
+      maxTotal > 0
+        ? `${countedNames.join("と")}の上限${countedNames.length > 1 ? "を足した" : "の"}目安です。条件と審査があります。`
+        : trainOk
+          ? "研修を終えて農業法人に就職する場合です。独立するときに改めて確かめてください。"
+          : "機械・施設の制度や市町村の制度は、下の一覧で確かめてください。",
     durationEstimateText,
-    initialCostEstimateText,
+    initialCostEstimateText: INITIAL_COST_TEXT,
     subsidyItems: items,
     titleText,
   };
@@ -229,12 +248,6 @@ export function calcCropCoverage(crops: CropKey[]): CropCoverage {
   }
 
   return { coveredLabels, uncoveredLabels, message };
-}
-
-// Q8「目標年収」ライブ補助金カバー率（旧版updIncome()の移植）
-// 2026年10月26日：就農準備資金・経営開始資金の令和8年度からの新規交付分（年165万円）に合わせて 150→165。
-export function calcIncomeCoverPercent(income: number): number {
-  return Math.min(95, Math.round((165 / income) * 100));
 }
 
 // ---------------------------------------------------------------------------

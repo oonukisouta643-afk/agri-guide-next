@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { Question } from "@/lib/simulator/questions";
 import type { SimulatorAction, SimulatorMachineState } from "@/lib/simulator/reducer";
-import { calcCropCoverage, calcIncomeCoverPercent } from "@/lib/simulator/calculations";
+import { calcCropCoverage } from "@/lib/simulator/calculations";
 import type { CropKey } from "@/lib/simulator/types";
 
 // シミュレーターの質問ステップ（Q1〜Q10）
@@ -203,12 +203,6 @@ export function QuestionStep({
               {answers.income >= question.incomeMax
                 ? `${question.incomeMax}万円以上`
                 : `${answers.income}万円`}
-            </p>
-            <p className="mb-3 mt-1 text-center text-xs text-muted">
-              補助金カバー率 →{" "}
-              <span className="font-bold text-green-700">
-                {calcIncomeCoverPercent(answers.income)}%
-              </span>
             </p>
             <input
               type="range"

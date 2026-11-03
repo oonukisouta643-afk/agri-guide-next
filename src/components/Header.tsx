@@ -41,7 +41,7 @@ export function Header() {
         {/* タブレット以上：横並びナビ */}
         <nav
           aria-label="メインナビゲーション"
-          className="hidden items-center gap-6 sm:flex"
+          className="hidden items-center gap-6 lg:flex"
         >
           {navLinks.map((link) => (
             <Link
@@ -60,7 +60,7 @@ export function Header() {
         {/* モバイル：ハンバーガー */}
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center rounded sm:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded lg:hidden"
           aria-label={isDrawerOpen ? "メニューを閉じる" : "メニューを開く"}
           aria-expanded={isDrawerOpen}
           aria-controls="mobile-drawer"
@@ -89,12 +89,12 @@ export function Header() {
 
       {/* モバイルドロワー：サイト全体の目次（ToC）として機能させる。
           2026年8月21日：「スマホだとページ内に何があるかわからない」というフィードバックを受け、
-          navLinks（4項目）だけでなくmobileToc（グループ分けした網羅的な一覧）を表示するよう変更。 */}
+          navLinksだけでなくmobileToc（グループ分けした網羅的な一覧）を表示するよう変更。 */}
       {isDrawerOpen && (
         <nav
           id="mobile-drawer"
           aria-label="モバイルメニュー"
-          className="flex max-h-[calc(100vh-64px)] flex-col gap-5 overflow-y-auto border-t border-green-200 bg-white px-5 py-5 sm:hidden"
+          className="flex max-h-[calc(100vh-64px)] flex-col gap-5 overflow-y-auto border-t border-green-200 bg-white px-5 py-5 lg:hidden"
         >
           <Button href={simulatorCta.href} className="w-full" onClick={() => setIsDrawerOpen(false)}>
             {simulatorCta.label}

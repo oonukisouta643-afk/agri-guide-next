@@ -73,7 +73,7 @@ export const questions: Question[] = [
     kind: "single",
     key: "family",
     title: "一緒に移住する家族はいますか？",
-    subtitle: "家族構成で移住支援金が変わります（単身60万円・家族100万円）。",
+    subtitle: "移住支援金は、条件が合えば単身60万円・家族100万円です。",
     options: [
       { value: "single", label: "単身", icon: "🧍" },
       { value: "couple", label: "夫婦2人", icon: "👫" },
@@ -85,7 +85,7 @@ export const questions: Question[] = [
     kind: "single",
     key: "loc",
     title: "今どこに住んでいますか？",
-    subtitle: "東京圏からの移住だとふくしま移住支援金の対象になりやすいです。",
+    subtitle: "東京圏からの移住は、条件が合えばふくしま移住支援金の対象になります。",
     hintBand: true,
     options: [
       { value: "tokyo", label: "東京圏（1都3県）", icon: "🗼" },
@@ -173,7 +173,7 @@ export const questions: Question[] = [
     subtitle: "まだ未定でも大丈夫です。",
     options: [
       { value: "small", label: "0.5反以下でスタート", icon: "🌱", sub: "まず試してみたい" },
-      { value: "mid", label: "1〜3反", icon: "🌿", sub: "生活できる規模で" },
+      { value: "mid", label: "1〜3反", icon: "🌿", sub: "少し広めに" },
       { value: "large", label: "3反以上", icon: "🌾", sub: "本格的にやりたい" },
       { value: "unknown", label: "まだわからない", icon: "🤔" },
     ],

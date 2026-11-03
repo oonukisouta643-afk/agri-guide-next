@@ -12,7 +12,6 @@ import { siteConfig } from "@/data/site";
 // "use client"：フォーム入力状態・送信時のバリデーション/mailto遷移のため。
 
 const inquiryTypes = [
-  "βテスターとして登録したい",
   "農業・就農について相談したい",
   "行政・JA連携についての相談",
   "取材・メディアのご依頼",
