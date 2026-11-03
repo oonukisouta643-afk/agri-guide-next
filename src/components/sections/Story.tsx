@@ -111,23 +111,8 @@ export function Story() {
         ))}
       </div>
 
-      <Reveal delayMs={100}>
-        <div className="mx-auto mt-6 flex max-w-5xl items-start gap-4 rounded-lg border border-green-200 bg-green-50 p-5 sm:p-6">
-          <p className="shrink-0 text-3xl" aria-hidden="true">
-            🌿
-          </p>
-          <div>
-            <p className="text-sm leading-loose text-ink">
-              「農業も伊達市も何も知らないまま移住して、最初の1年間で一番困ったのは、誰に何を聞けばいいかわからないことでした。同じ状態にいる人のために、農業未経験の移住者目線で作っています。」
-            </p>
-            <p className="mt-3 text-sm font-bold text-ink">
-              大貫想太 / 県北ふくしまAgri-Guide準備室
-            </p>
-          </div>
-        </div>
-      </Reveal>
-
       {/* 断念者の声（3件）は作った声だったため2026年10月28日に外した */}
+      {/* 運営者の言葉（署名付きの一人称の引用）は、ブログのようになるため2026年11月3日に外した（大貫さんの指示） */}
     </section>
   );
 }
