@@ -32,23 +32,19 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.fukushima-agri-guide.jp"),
   title: {
-    default: "県北ふくしまAgri-Guide｜農家という生き方を、もっとリアルに。",
+    default: "福島県北の就農・移住を、もっとリアルに｜県北ふくしまAgri-Guide",
     template: "%s｜県北ふくしまAgri-Guide",
   },
   description:
-    "農業に興味はあるけど踏み出せていない人向けに、福島県北地域への就農・移住のリアルな情報を届ける伴走型サービス。無料の就農シミュレーターで補助金や手順を自動算出します。",
+    "県北6市町村（伊達市・桑折町・国見町・二本松市・大玉村・本宮市）で就農・移住を考える人向けに、補助金・支援制度の一覧、果樹の収益の試算、就農シミュレーター、地域とのつながりがない方の相談をまとめています。個人が運営する非公式のサイトです。",
   openGraph: {
     type: "website",
     locale: "ja_JP",
     siteName: siteConfig.fullName,
-    title: "県北ふくしまAgri-Guide｜農家という生き方を、もっとリアルに。",
-    description:
-      "農業に興味はあるけど踏み出せていない人向けに、福島県北地域への就農・移住のリアルな情報を届ける伴走型サービス。",
+    // title・description は書かない（各ページの title・description がそのまま使われる。2026年11月3日）
   },
   twitter: {
     card: "summary_large_image",
-    title: "県北ふくしまAgri-Guide｜農家という生き方を、もっとリアルに。",
-    description: "無料の就農シミュレーターで補助金や手順を自動算出します。",
   },
 };
 
@@ -61,7 +57,7 @@ const jsonLd = {
   logo: `${siteConfig.url}/favicon.ico`,
   email: siteConfig.contactEmail,
   description:
-    "福島県北地域への就農・移住を検討している人向けに、就農シミュレーターや農業ツール集を提供する伴走型サービス。",
+    "県北6市町村で就農・移住を考える人向けに、補助金・支援制度の一覧、果樹の収益の試算、就農シミュレーター、相談をまとめた情報サイト。",
 };
 
 export default function RootLayout({
