@@ -119,8 +119,7 @@ function sourced(raw, sourceId, extra = {}) {
   delete base.kind;
   if (v === "未取得") return { value: null, kind: "placeholder", ...base, note: "未取得（公開されている資料から、まだ取れていない）" };
   if (v === "x") return { value: null, kind: "official", ...base, suppressed: true, note: "秘匿（個々の経営が分かってしまうため非公表）" };
-  if (v === "-") return { value: null, kind: "official", ...base, unavailable: true, dash: true, note: "元の資料で「-」（この資料での記号の意味は確かめていない）" };
-  if (v === "…" || v === "—") return { value: null, kind: "official", ...base, unavailable: true, note: `元の資料で数値が示されていない（「${v}」）` };
+  if (v === "-" || v === "…" || v === "—") return { value: null, kind: "official", ...base, unavailable: true, note: `元の資料で数値が示されていない（「${v}」）` };
   if (v === "調査なし") return { value: null, kind: "official", ...base, unavailable: true, note: "避難指示の影響により調査されていない" };
   if (v === "観測なし") return { value: null, kind: "official", ...base, unavailable: true, note: "参照している観測所で、この項目を観測していない。少ない・ないという意味ではない" };
   if (v === "") return { value: null, kind: "official", ...base, unavailable: true, note: "元の資料に記載がない" };

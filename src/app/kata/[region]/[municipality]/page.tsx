@@ -125,7 +125,7 @@ export default async function MunicipalityPage({ params }: Props) {
       <section className="mt-8">
         <h2 className="mb-2 text-lg font-bold">担い手（{m.workforce.censusYear}年農林業センサスほか）</h2>
         <SourcedTable rows={workforce} getSource={getSource} sourcesHref={SOURCES_HREF} />
-        <p className="mt-1 text-xs text-gray-600">統計の値を並べています（割合は型で計算）。基幹的農業従事者数・平均年齢・65歳以上の割合は、2020年農林業センサス（2020年2月1日現在）の個人経営体の値で、法人などの団体経営体で働く人は入っていません。ほかの行は、行ごとに資料と年が違います。「－（元の資料の記号）」の意味は、各行の注に書いています。</p>
+        <p className="mt-1 text-xs text-gray-600">統計の値を並べています（割合はこのサイトで計算）。基幹的農業従事者数・平均年齢・65歳以上の割合は、2020年農林業センサス（2020年2月1日現在）の個人経営体の値で、法人などの団体経営体で働く人は入っていません。2020年2月より後の変化（営農の再開や新しく始めた人など）は入っていません。ほかの行は、行ごとに資料と年が違います。「－（元の資料の記号）」の意味は、各行の注に書いています。</p>
       </section>
 
       <section className="mt-8">
@@ -163,7 +163,7 @@ export default async function MunicipalityPage({ params }: Props) {
         <h2 className="mb-2 text-lg font-bold">窓口</h2>
         <p className="text-sm">
           <a href={m.contact.url} target="_blank" rel="noopener noreferrer" className="underline decoration-gray-300 underline-offset-2">{m.contact.label}</a>
-          <span className="ml-1 text-xs text-gray-600">（就農・営農再開の相談先は、公式サイトの農政の担当課のページで確かめてください）</span>
+          <span className="ml-1 text-xs text-gray-600">（{m.evacuationArea ? "就農・営農再開" : "就農"}の相談先は、公式サイトの農政の担当課のページで確かめてください）</span>
         </p>
         <ContactGuides name={m.name} evacuationSourceId={m.evacuationArea?.sourceId} getSource={getSource} sourcesHref={SOURCES_HREF} />
         {m.extensions?.localContacts && m.extensions.localContacts.length > 0 && (

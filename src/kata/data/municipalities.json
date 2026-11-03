@@ -10556,8 +10556,7 @@
         "sourceId": "census-2020",
         "year": 2020,
         "unavailable": true,
-        "dash": true,
-        "note": "元の資料で「-」（この資料での記号の意味は確かめていない）"
+        "note": "元の資料で数値が示されていない（「-」）"
       }
     },
     "farmlandConsolidationRate": {
@@ -10746,8 +10745,7 @@
         "sourceId": "census-2020",
         "year": 2020,
         "unavailable": true,
-        "dash": true,
-        "note": "元の資料で「-」（この資料での記号の意味は確かめていない）"
+        "note": "元の資料で数値が示されていない（「-」）"
       }
     },
     "farmlandConsolidationRate": {
@@ -10911,8 +10909,7 @@
         "sourceId": "tohoku-age-2020",
         "year": 2020,
         "unavailable": true,
-        "dash": true,
-        "note": "元の資料で「-」（この資料での記号の意味は確かめていない）"
+        "note": "元の資料で数値が示されていない（「-」）"
       },
       "coreWorkersOver65Ratio": {
         "value": null,
@@ -10929,8 +10926,7 @@
         "sourceId": "tohoku-successor-2020",
         "year": 2020,
         "unavailable": true,
-        "dash": true,
-        "note": "元の資料で「-」（この資料での記号の意味は確かめていない）"
+        "note": "元の資料で数値が示されていない（「-」）"
       },
       "farmedAreaHa": {
         "value": null,
@@ -10938,8 +10934,7 @@
         "sourceId": "census-2020",
         "year": 2020,
         "unavailable": true,
-        "dash": true,
-        "note": "元の資料で「-」（この資料での記号の意味は確かめていない）"
+        "note": "元の資料で数値が示されていない（「-」）"
       }
     },
     "farmlandConsolidationRate": {
