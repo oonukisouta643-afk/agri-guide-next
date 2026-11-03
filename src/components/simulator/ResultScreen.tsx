@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
@@ -22,6 +22,8 @@ import {
 import { windowReferrals } from "@/data/windowReferral";
 import { buildRoadmap } from "@/data/roadmap";
 import { trackEvent } from "@/lib/analytics";
+import { describeAnswers, isNotifyEnabled, sendSimulatorNotice } from "@/lib/simulator/notify";
+import { ContactRequestForm } from "@/components/simulator/ContactRequestForm";
 
 // シミュレーター結果画面（12要素）
 // 出典：AgriGuide_Next移行_要件定義書v2.0 §6「結果画面の表示順序」
@@ -74,9 +76,11 @@ const fukunouLinks = [
 type ResultScreenProps = {
   answers: SimulatorState;
   onRestart: () => void;
+  /** 10問に答えて出た結果なら true。共有用URL（?sim=）で開いた結果は false で、運営者には送らない */
+  answeredHere: boolean;
 };
 
-export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
+export function ResultScreen({ answers, onRestart, answeredHere }: ResultScreenProps) {
   const funding = useMemo(() => calcFunding(answers), [answers]);
   const regionMatches = useMemo(() => calcRegionMatch(answers), [answers]);
   const level = useMemo(() => calcMotivationLevel(answers), [answers]);
@@ -96,6 +100,15 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
   useEffect(() => {
     trackEvent("simulator_result_view", { motivation_level: level });
   }, [level]);
+
+  // 運営者への通知（2026年11月3日）：10問に答えた結果だけを1回送る。氏名・連絡先は含めない。
+  // 開発時の StrictMode で effect が2回走っても1回にするため ref で止める。
+  const notified = useRef(false);
+  useEffect(() => {
+    if (!answeredHere || notified.current) return;
+    notified.current = true;
+    void sendSimulatorNotice({ kind: "result", answers: describeAnswers(answers), level });
+  }, [answeredHere, answers, level]);
   const timingAlerts = useMemo(
     () => (currentMonth ? calcTimingAlerts(answers.crops.filter((c) => c !== "any"), currentMonth) : []),
     [answers.crops, currentMonth]
@@ -443,6 +456,13 @@ export function ResultScreen({ answers, onRestart }: ResultScreenProps) {
           </div>
         </Card>
       </Reveal>
+
+      {/* ⑩.5 返事がほしい方の連絡先（任意。2026年11月3日に追加） */}
+      {isNotifyEnabled && (
+        <Reveal>
+          <ContactRequestForm answers={answers} level={level} />
+        </Reveal>
+      )}
 
       {/* ⑪ メール相談CTA */}
       <Reveal>
