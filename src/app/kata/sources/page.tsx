@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PRODUCTION_YEAR, sources } from "@/kata";
-import { fmtNumber, reiwa } from "@/kata/format";
+import { sources } from "@/kata";
+import { fmtNumber } from "@/kata/format";
 import {
   NEW_PLANTING_COST_FLOOR, NEW_PLANTING_YIELD_RATIO, RENT_YEN_PER_TEN_A, TAKEOVER_COST_FIXED_SHARE,
   TAKEOVER_ONE_TIME_YEN_PER_TEN_A, TAKEOVER_YIELD_RATIO,
