@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import Link from "next/link";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
@@ -57,6 +58,19 @@ export function Contact() {
           title="お問い合わせ"
           lead="就農や移住について話を聞いてみたい方・農業関係者でアンケートに協力いただける方はお気軽にご連絡ください。"
         />
+      </Reveal>
+      {/* 2026年11月3日：トップの Story を外したので、運営についての事実だけをここに短く置いた（運営者の語りにはしない）。 */}
+      <Reveal delayMs={100}>
+        <div className="mx-auto mt-8 max-w-content rounded-lg border border-green-200 bg-white p-5 text-sm leading-relaxed text-ink">
+          <p className="font-bold">このサイトについて</p>
+          <p className="mt-2">
+            このサイトは個人で運営しています。利用は無料です。市町村・団体・農家の方への紹介や、農地・園地をお約束するものではありません。就農の相談は
+            <Link href="/soudan" className="font-bold text-green-700 hover:underline">
+              相談ページ
+            </Link>
+            から受け付けています。
+          </p>
+        </div>
       </Reveal>
       <Reveal delayMs={100}>
         <form
